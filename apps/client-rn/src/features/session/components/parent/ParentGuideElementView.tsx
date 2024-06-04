@@ -1,9 +1,11 @@
-import { ParentGuideCategory, ParentGuideType, requestParentGuideExampleMessage } from "@aacesstalk/libs/ts-core";
+import { ParentGuideCategory, ParentGuideType, TopicCategory, requestParentGuideExampleMessage } from "@aacesstalk/libs/ts-core";
 import { useDispatch, useSelector } from "apps/client-rn/src/redux/hooks"
 import { styleTemplates } from "apps/client-rn/src/styles"
 import { useCallback, useEffect, useMemo } from "react";
 import { Pressable, Text, View, StyleSheet } from "react-native"
 import Animated ,{ Easing, ZoomIn, interpolate, interpolateColor, useAnimatedStyle, useSharedValue, withSpring, withTiming } from 'react-native-reanimated';
+const themeColors = require('../../../../styles/colors')
+console.log(themeColors)
 
 const styles = StyleSheet.create({
     guideFrame: {
@@ -20,7 +22,7 @@ const TEXT_MESSAGE_CLASSNAME = "text-2xl text-white text-center"
 
 const GUIDE_FRAME_DIMENSION_CLASSNAME = "w-[70vw] h-[16vh]"
 
-const GUIDE_FRAME_CLASSNAME = `absolute ${GUIDE_FRAME_DIMENSION_CLASSNAME} justify-center px-8 rounded-2xl border-white border-[4px]`
+const GUIDE_FRAME_CLASSNAME = `absolute ${GUIDE_FRAME_DIMENSION_CLASSNAME} justify-center px-8 rounded-2xl border-white border-[6px]`
 
 export const ParentGuideElementView = (props: Props) => {
     const guideType = useSelector(state => state.session.parentGuideEntityState.entities[props.id].type)
@@ -81,7 +83,6 @@ const ParentMessageGuideElementView = (props: Props) => {
 
     const guideMessageAnimStyle = useAnimatedStyle(()=>{
         return {
-            opacity: interpolate(exampleTransitionAnimProgress.value, [0,1], [1,0], 'clamp'),
             shadowColor: interpolateColor(exampleTransitionAnimProgress.value,[0, 0.2], ["rgba(0,0,50,0.3)", "rgba(0,0,50,0)"], "RGB"),
             transform: [
                 {rotateY: `${interpolate(exampleTransitionAnimProgress.value,[0, 1], [0, 180])}deg`}
@@ -91,24 +92,33 @@ const ParentMessageGuideElementView = (props: Props) => {
 
     const exampleMessageAnimStyle = useAnimatedStyle(()=>{
         return {
-            shadowColor: interpolateColor(exampleTransitionAnimProgress.value,[0.8, 1], ["rgba(0,0,50,0)", "rgba(0,0,50,0.3)"], "RGB"),
             opacity: interpolate(exampleTransitionAnimProgress.value, [0,1], [0,1], 'clamp'),
+            shadowColor: interpolateColor(exampleTransitionAnimProgress.value,[0.8, 1], ["rgba(0,0,50,0)", "rgba(0,0,50,0.3)"], "RGB"),
             transform: [
                 {rotateY: `${interpolate(exampleTransitionAnimProgress.value,[0, 1], [180, 360])}deg`}
             ]
         }
     }, [])
 
-    console.log(`bg-topic${topicCategory}-light ${GUIDE_FRAME_CLASSNAME}`)
+    const [guideMessageFrameBackgroundClassName, exampleMessageFrameBackgroundClassName] = useMemo(()=>{
+        switch(topicCategory){
+            case TopicCategory.Plan:
+                return ["bg-topicplan-fg", "bg-topicplan-dimmed"]
+            case TopicCategory.Recall:
+                return ["bg-topicrecall-fg", "bg-topicrecall-dimmed"]
+            case TopicCategory.Free:
+                return ["bg-topicfree-fg", "bg-topicfree-dimmed"]
+        }
+    }, [topicCategory])
     
     return <Animated.View entering={enteringAnim}>
             <Pressable onPress={onPress} onPressIn={onPressIn} onPressOut={onPressOut} >
                 <Animated.View style={containerAnimStyle} className={`${GUIDE_FRAME_DIMENSION_CLASSNAME}`}>
-                    <Animated.View style={[styles.guideFrame, guideMessageAnimStyle]} className={`${GUIDE_FRAME_CLASSNAME} bg-topic${topicCategory}-fg`}>
+                    <Animated.View style={[styles.guideFrame, guideMessageAnimStyle]} className={`${GUIDE_FRAME_CLASSNAME} ${guideMessageFrameBackgroundClassName}`}>
                         <Text style={styleTemplates.withSemiboldFont} className={TEXT_MESSAGE_CLASSNAME}>{guideMessage}</Text>
                     </Animated.View>
-                    <Animated.View style={[styles.guideFrame, exampleMessageAnimStyle]} className={`${GUIDE_FRAME_CLASSNAME} bg-topic${topicCategory}-dimmed`}>
-                        <Text style={styleTemplates.withSemiboldFont} className={TEXT_MESSAGE_CLASSNAME}>{exampleMessage?.message_localized || exampleMessage?.message}</Text>
+                    <Animated.View style={[styles.guideFrame, exampleMessageAnimStyle]} className={`${GUIDE_FRAME_CLASSNAME} ${exampleMessageFrameBackgroundClassName}`}>
+                        <Text style={styleTemplates.withHandwritingFont} className={`${TEXT_MESSAGE_CLASSNAME} text-black text-3xl`}>"{exampleMessage?.message_localized || exampleMessage?.message}"</Text>
                     </Animated.View>
                 </Animated.View>
             </Pressable>
