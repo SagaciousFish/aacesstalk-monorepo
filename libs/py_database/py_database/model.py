@@ -49,7 +49,7 @@ class DyadORM(SQLModel, IdTimestampMixin, table=True):
     child_name: str = Field(min_length=1)
     child_gender: ChildGender = Field(nullable=False)
     parent_type: ParentType = Field(nullable=False)
-    locale: UserLocale = Field(nullable=False, default=UserLocale.Korean)
+    locale: UserLocale = Field(nullable=False, default=UserLocale.SimplifiedChinese)
 
     sessions: list['SessionORM'] = Relationship(back_populates='dyad')
 
@@ -156,7 +156,7 @@ class ChildCardRecommendationResultORM(SQLModel, IdTimestampMixin, SessionIdMixi
 
     cards: list[CardInfo] = Field(sa_column=Column(JSON), default=[])
 
-    def to_data_model(self) -> ChildCardRecommendationResult:    
+    def to_data_model(self) -> ChildCardRecommendationResult:
         return ChildCardRecommendationResult(**self.model_dump(exclude={"cards"}), cards=self.cards)
 
     @classmethod
@@ -219,12 +219,19 @@ class InteractionORM(SQLModel, IdTimestampMixin, SessionIdMixin, table=True):
     @classmethod
     def from_data_model(cls, interaction: Interaction, session_id: str) -> 'InteractionORM':
         return InteractionORM(**interaction.model_dump(exclude={'metadata'}), metadata_json=interaction.metadata, session_id=session_id)
-    
 
-class UserDefinedCardInfoORM(SQLModel, IdTimestampMixin, TimestampColumnMixin, DyadIdMixin, table=True):
-    __tablename__:str = "user_defined_card"
+
+class UserDefinedCardInfoORM(
+    SQLModel, IdTimestampMixin, TimestampColumnMixin, DyadIdMixin, table=True
+):
+    __tablename__: str = "user_defined_card"
     __table_args__ = (
-        UniqueConstraint("dyad_id", "label_localized", "category", name="label_category_unique_by_dyad_idx"),
+        UniqueConstraint(
+            "dyad_id",
+            "label_localized",
+            "category",
+            name="label_category_unique_by_dyad_idx",
+        ),
     )
 
     label: Optional[str] = Field(index=True, default=None)
@@ -236,26 +243,30 @@ class UserDefinedCardInfoORM(SQLModel, IdTimestampMixin, TimestampColumnMixin, D
     image_height: Optional[int]
 
     @classmethod
-    def from_data_model(cls, info: UserDefinedCardInfo, dyad_id: str)->'UserDefinedCardInfoORM':
+    def from_data_model(
+        cls, info: UserDefinedCardInfo, dyad_id: str
+    ) -> "UserDefinedCardInfoORM":
         return UserDefinedCardInfoORM(**info.model_dump(), dyad_id=dyad_id)
 
     def to_data_model(self) -> UserDefinedCardInfo:
-        return UserDefinedCardInfo(**self.model_dump(exclude={'dyad_id'}))
-    
+        return UserDefinedCardInfo(**self.model_dump(exclude={"dyad_id"}))
+
 
 class FreeTopicDetailORM(SQLModel, IdTimestampMixin, DyadIdMixin, table=True):
-    __tablename__:str = "free_topic_detail"
+    __tablename__: str = "free_topic_detail"
     __table_args__ = (
         UniqueConstraint("dyad_id", "subtopic", name="subtopic_unique_by_dyad_idx"),
     )
 
     subtopic: str
     subtopic_description: str
-    topic_image_filename: Optional[str]
+    topic_image_filename: Optional[str] = None
 
     @classmethod
-    def from_data_model(cls, detail: FreeTopicDetail, dyad_id: str) -> 'FreeTopicDetailORM':
+    def from_data_model(
+        cls, detail: FreeTopicDetail, dyad_id: str
+    ) -> "FreeTopicDetailORM":
         return FreeTopicDetailORM(**detail.model_dump(), dyad_id=dyad_id)
-    
+
     def to_data_model(self) -> FreeTopicDetail:
         return FreeTopicDetail(**self.model_dump(exclude={'dyad_id'}))

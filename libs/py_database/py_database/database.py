@@ -14,25 +14,41 @@ def create_database_engine(db_path: str, verbose: bool = False) -> AsyncEngine:
 def make_async_session_maker(engine: AsyncEngine) -> sessionmaker[AsyncSession]:
     return sessionmaker(bind=engine, class_=AsyncSession, expire_on_commit=False)
 
-async def column_exists_in_db(engine: AsyncEngine, model: SQLModel, column_name: str)->bool: 
+async def column_exists_in_db(
+    engine: AsyncEngine, model: SQLModel, column_name: str
+) -> bool:
     async with engine.connect() as connection:
         result = await connection.execute(text(f"PRAGMA table_info({model.__tablename__})"))
 
         columns = [row[1] for row in result]
 
         return column_name in columns
-    
-async def add_column_to_table(engine: AsyncEngine, model: SQLModel, column_name: str, column_params: str, default_value: Optional[any]):
+
+
+async def add_column_to_table(
+    engine: AsyncEngine,
+    model: SQLModel,
+    column_name: str,
+    column_params: str,
+    default_value: Optional[any],
+):
     async with engine.connect() as connection:
-        await connection.execute(text(f"ALTER TABLE {model.__tablename__}\nADD COLUMN {column_name} {column_params} {('DEFAULT ' + default_value) if default_value is not None else ''}"))
-    
+        await connection.execute(
+            text(
+                f"ALTER TABLE {model.__tablename__}\nADD COLUMN {column_name} {column_params} {('DEFAULT ' + default_value) if default_value is not None else ''}"
+            )
+        )
+
+
 async def migrate(engine: AsyncEngine):
     print("Run migration...")
 
     if (await column_exists_in_db(engine, DyadORM, "locale")) is False:
         # Add locale column
-        await add_column_to_table(engine, DyadORM, "locale", "VARCHAR(7) NOT NULL", "Korean")
-    
+        await add_column_to_table(
+            engine, DyadORM, "locale", "VARCHAR(7) NOT NULL", "SimplifiedChinese"
+        )
+
     return
 
 async def create_db_and_tables(engine: AsyncEngine):

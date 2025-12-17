@@ -2,56 +2,128 @@ plan:
   - key: plan-inform
     guide_category: specification
     guide: Explain the main event of the day.
-    guide_localized: "오늘의 주요 일정을 알려주세요."
+    guide_localized:
+      en: "Tell me about the main schedule for today."
+      ko: "오늘의 주요 일정을 알려주세요."
+      zh: "请告诉我今天的主要日程安排."
+      yue: "講下今日嘅主要行程."
     example: "Today we are visiting grandmother."
-    example_localized: "오늘은 할머니 집 가는 날이야."
+    example_localized:
+      en: "Today we are visiting grandmother."
+      ko: "오늘은 할머니 집 가는 날이야."
+      zh: "今天我们要去看奶奶."
+      yue: "今日我哋去探望嫲嫲."
   - key: plan-todo
     guide_category: specification
     guide: Explain to-do of your child.
-    guide_localized: "오늘 {child_name}가 해야 할 일을 알려주세요."
+    guide_localized:
+      en: "Tell me what {child_name} has to do today."
+      ko: "오늘 {child_name}가 해야 할 일을 알려주세요."
+      zh: "请告诉我今天{child_name}需要做什么."
+      yue: "講下今日{child_name}要做啲乜嘢."
     example: "Do you know what to do today, {child_name}?"
-    example_localized: "{child_name}는 오늘 무슨 일 해야 하는지 알고 있어?"
+    example_localized:
+      en: "Do you know what to do today, {child_name}?"
+      ko: "{child_name}는 오늘 무슨 일 해야 하는지 알고 있어?"
+      zh: "{child_name}, 你知道今天要做什么吗?"
+      yue: "{child_name},你知唔知今日要做啲乜嘢?"
   - key: plan-expectation
     guide_category: intention
     guide: Ask your child what they expect to do.
-    guide_localized: "{child_name}가 기대하는 일정을 물어봐 주세요."
+    guide_localized:
+      ko: "{child_name}가 기대하는 일정을 물어봐 주세요."
+      en: "Ask {child_name} about what they expect to do."
+      zh: "请问{child_name}期待做什么."
+      yue: "問下{child_name}期待做啲乜嘢."
     example: "What do you want to do today, {child_name}?"
-    example_localized: "{child_name}는 오늘 뭐 하고 싶어?"
+    example_localized:
+      ko: "{child_name}는 오늘 뭐 하고 싶어?"
+      en: "What do you want to do today, {child_name}?"
+      zh: "{child_name},你今天想做什么?"
+      yue: "{child_name},你今日想做啲乜嘢?"
 recall:
   - key: recall-event
     guide_category: specification
     guide: Ask about an event of the day.
-    guide_localized: "오늘 어떤 일이 있었는지 물어보세요."
+    guide_localized:
+      ko: "오늘 어떤 일이 있었는지 물어보세요."
+      en: "Ask about an event of the day."
+      zh: "询问今天发生的事情."
+      yue: "問下今日發生咗啲乜嘢事."
     example: "What did you do, {child_name}?"
-    example_localized: "{child_name} 오늘 뭐 했어?"
+    example_localized:
+      ko: "{child_name} 오늘 뭐 했어?"
+      en: "What did you do today, {child_name}?"
+      zh: "{child_name},你今天做了什么?"
+      yue: "{child_name},你今日做咗啲乜嘢?"
   - key: recall-memorable
     guide_category: specification
     guide: Ask about the most memorable thing of the day.
-    guide_localized: "가장 기억에 남는 일에 대해 물어보세요."
+    guide_localized:
+      ko: "가장 기억에 남는 일에 대해 물어보세요."
+      en: "Ask about the most memorable thing of the day."
+      zh: "询问今天最难忘的事情."
+      yue: "問下今日最難忘嘅事情."
     example: "What was the most memorable thing, {child_name}?"
-    example_localized: "{child_name}는 오늘 뭐가 제일 기억나?"
+    example_localized:
+      ko: "{child_name}는 오늘 뭐가 제일 기억나?"
+      en: "What was the most memorable thing, {child_name}?"
+      zh: "{child_name},今天什么事情让你印象最深刻?"
+      yue: "{child_name},今日乜嘢事令你印象最深刻?"
   - key: recall-place
     guide_category: specification
     guide: Ask where {child_name} went to.
-    guide_localized: "{child_name}가 오늘 간 장소에 대해 물어보세요."
+    guide_localized:
+      ko: "{child_name}가 오늘 간 장소에 대해 물어보세요."
+      en: "Ask where {child_name} went to."
+      zh: "询问{child_name}今天去了哪里."
+      yue: "問下{child_name}今日去咗邊度."
     example: "Did you go to any interesting place, {child_name}?"
-    example_localized: "{child_name}는 오늘 어디 갔었어?"
+    example_localized:
+      ko: "{child_name}는 오늘 어디 갔었어?"
+      en: "Did you go to any interesting place, {child_name}?"
+      zh: "{child_name},你今天去了什么有趣的地方吗?"
+      yue: "{child_name},你今日去咗啲有趣嘅地方嗎?"
 free:
   - key: free-inform
     guide_category: specification
     guide: Raise what you are going to talk about.
-    guide_localized: "무엇에 대해 이야기할지 알려주세요."
+    guide_localized:
+      ko: "무엇에 대해 이야기할지 알려주세요."
+      en: "Tell me what you want to talk about."
+      zh: "告诉我你想谈论什么."
+      yue: "講下你想傾啲乜嘢."
     example: "What do you want to talk about? {subtopic}?"
-    example_localized: "우리 무슨 이야기 할까? {subtopic} 이야기 할까?"
+    example_localized:
+      ko: "우리 무슨 이야기 할까? {subtopic} 이야기 할까?"
+      en: "What do you want to talk about? {subtopic}?"
+      zh: "我们来聊点什么?聊聊{subtopic}吗?"
+      yue: "我哋傾啲乜嘢好呢?傾下{subtopic}好唔好?"
   - key: free-curiosity
     guide_category: encourage
     guide: Spice up the conversation.
-    guide_localized: "대화의 흥미를 돋궈주세요."
+    guide_localized:
+      ko: "대화의 흥미를 돋궈주세요."
+      en: "Spice up the conversation."
+      zh: "让对话更有趣一些."
+      yue: "令對話更有趣啲."
     example: "Why don't we talk about something interesting?"
-    example_localized: "우리 재미있는 이야기 해볼까? 뭐 하면 좋을까?"
+    example_localized:
+      ko: "우리 재미있는 이야기 해볼까? 뭐 하면 좋을까?"
+      en: "Why don't we talk about something interesting?"
+      zh: "我们来聊点有趣的东西怎么样?"
+      yue: "我哋傾啲有趣嘅嘢好唔好?"
   - key: free-specific
     guide_category: extend
     guide: "Ask what specific things {child_name} wants to talk about {subtopic}."
-    guide_localized: "{subtopic}에 대해 어떤 이야기를 하고 싶은지 물어보세요."
+    guide_localized:
+      ko: "{subtopic}에 대해 어떤 이야기를 하고 싶은지 물어보세요."
+      en: "Ask what specific things {child_name} wants to talk about {subtopic}."
+      zh: "询问{child_name}想具体谈论{subtopic}的哪些内容."
+      yue: "問下{child_name}想具體傾下{subtopic}嘅啲乜嘢."
     example: "What do you want to specifically talk about {subtopic}?"
-    example_localized: "오늘은 {subtopic} 이야기 뭐로 할까?"
+    example_localized:
+      ko: "오늘은 {subtopic} 이야기 뭐로 할까?"
+      en: "What do you want to specifically talk about {subtopic}?"
+      zh: "{child_name}, 关于 {subtopic}, 你最想聊点什么呢?"
+      yue: "{child_name},關於{subtopic},你最想傾啲乜嘢呢?"

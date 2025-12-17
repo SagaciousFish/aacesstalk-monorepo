@@ -7,25 +7,36 @@
     "lock": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry lock --no-update",
+        "command": "uv lock",
         "cwd": "apps/backend"
       }
     },
     "add": {
-      "executor": "@nxlv/python:add",
-      "options": {}
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv add ${args}",
+        "cwd": "apps/backend"
+      }
     },
     "update": {
-      "executor": "@nxlv/python:update",
-      "options": {}
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv lock --upgrade",
+        "cwd": "apps/backend"
+      }
     },
     "remove": {
-      "executor": "@nxlv/python:remove",
-      "options": {}
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv remove ${args}",
+        "cwd": "apps/backend"
+      }
     },
     "build": {
       "executor": "@nxlv/python:build",
-      "outputs": ["{projectRoot}/dist"],
+      "outputs": [
+        "{projectRoot}/dist"
+      ],
       "options": {
         "outputPath": "apps/backend/dist",
         "publish": false,
@@ -34,20 +45,20 @@
       }
     },
     "install": {
-      "executor": "@nxlv/python:install",
+      "executor": "@nxlv/python:run-commands",
       "options": {
-        "silent": false,
-        "args": "",
-        "cacheDir": ".cache/pypoetry",
-        "verbose": false,
-        "debug": false
+        "command": "uv sync",
+        "cwd": "apps/backend"
       }
     },
     "lint": {
-      "executor": "@nxlv/python:flake8",
-      "outputs": ["{workspaceRoot}/reports/apps/backend/pylint.txt"],
+      "executor": "@nxlv/python:run-commands",
+      "outputs": [
+        "{workspaceRoot}/reports/apps/backend/ruff.txt"
+      ],
       "options": {
-        "outputFile": "reports/apps/backend/pylint.txt"
+        "command": "uv run ruff check . --output-format=text > ../../reports/apps/backend/ruff.txt || true",
+        "cwd": "apps/backend"
       }
     },
     "test": {
@@ -57,45 +68,44 @@
         "{workspaceRoot}/coverage/apps/backend"
       ],
       "options": {
-        "command": "poetry run pytest tests/",
+        "command": "uv run pytest tests/",
         "cwd": "apps/backend"
       }
     },
     "setup": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python backend/setup.py",
+        "command": "uv run python backend/setup.py",
         "cwd": "apps/backend"
       }
     },
     "admin-console": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python admin_console.py",
+        "command": "uv run python admin_console.py",
         "cwd": "apps/backend"
       }
     },
     "run-dev": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python backend/main.py",
+        "command": "uv run python backend/main.py",
         "cwd": "apps/backend"
       }
     },
     "run-prod": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run gunicorn --config backend/gunicorn.config.py backend.server:app",
+        "command": "uv run gunicorn --config backend/gunicorn.config.py backend.server:app",
         "cwd": "apps/backend"
       }
     },
     "daemon-dev": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run gunicorn backend.server:app --workers 1 --worker-class backend.workers.DevelopmentWorker --daemon --bind 0.0.0.0:3000",
+        "command": "uv run gunicorn backend.server:app --workers 1 --worker-class backend.workers.DevelopmentWorker --daemon --bind 0.0.0.0:3000",
         "cwd": "apps/backend"
       }
     }
-  },
-  "tags": []
+  }
 }

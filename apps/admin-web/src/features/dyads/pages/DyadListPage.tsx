@@ -7,6 +7,17 @@ import { Link } from "react-router-dom"
 import { CreateDyadModal } from "../components/CreateDyadModal"
 import FileSaver from "file-saver"
 
+// Simple locale label map
+const LOCALE_LABELS: Partial<Record<UserLocale, string>> = {
+    [UserLocale.SimplifiedChinese]: "Simplified Chinese",
+    [UserLocale.TraditionalChinese]: "Traditional Chinese",
+    [UserLocale.English]: "English",
+    [UserLocale.Korean]: "Korean",
+}
+
+const locale_label_to_string = (v: UserLocale | null | undefined) =>
+    LOCALE_LABELS[v as UserLocale] ?? String(v ?? '')
+
 const columns: ColumnsType<DyadWithPasscode> = [{
     title: "Alias",
     dataIndex: "alias",
@@ -28,7 +39,7 @@ const columns: ColumnsType<DyadWithPasscode> = [{
     dataIndex: 'locale',
     key:'locale',
     render: (value, dyad) => {
-        return <span>{value == UserLocale.Korean ? "Korean" : "English"}</span>
+        return <span>{locale_label_to_string(value)}</span>
     }
 }, {
     title: 'Passcode',
@@ -122,7 +133,6 @@ export const DyadListPage = () => {
         <div className="flex flex-wrap gap-2 mb-2">
             <Button onClick={onExportClick}>Export all sessions</Button>
             <Button onClick={onDownloadDb}>Download database</Button>
-
             <Button onClick={onDownloadCards}>Download card dataset</Button>
         </div>
         <Table dataSource={dyads} columns={columns}/>

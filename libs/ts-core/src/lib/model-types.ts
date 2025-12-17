@@ -124,9 +124,11 @@ export enum ChildGender{
     Girl="girl"
 }
 
-export enum UserLocale{
-    Korean="kr",
-    English="en"
+export enum UserLocale {
+    SimplifiedChinese = "zh",
+    TraditionalChinese = "yue",
+    Korean="ko",
+    English = "en",
 }
 
 export interface Dyad{
@@ -153,7 +155,7 @@ export const TOPIC_CATEGORIES = [TopicCategory.Plan, TopicCategory.Recall, Topic
 export interface SessionTopicInfo{
     category: TopicCategory
     subtopic?: string
-    subdescription?: string 
+    subdescription?: string
 }
 
 
@@ -193,7 +195,7 @@ export interface ExtendedSessionInfo{
     started_timestamp: number
 
     ended_timestamp: number
-    
+
     num_turns: number
 }
 
@@ -202,7 +204,7 @@ export interface UserDefinedCardInfo{
     label?: string | undefined
     label_localized: string
     category: CardCategory
-    
+
     image_filename?: string | undefined
     image_width?: number | undefined
     image_height?: number | undefined

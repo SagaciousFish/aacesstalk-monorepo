@@ -21,7 +21,18 @@ class AuthenticationResult(BaseModel):
 @router.post("/login", response_model=AuthenticationResult)
 async def login_with_code(credential: LoginCredential):
     import bcrypt
-    if bcrypt.checkpw(credential.password.encode(), get_env_variable(ADMIN_HASHED_PASSWORD).encode()):
+
+    print("Admin login attempt.")
+    password_from_env = get_env_variable(ADMIN_HASHED_PASSWORD)
+    import base64
+
+    encoded_password = base64.b64decode(password_from_env.encode("ascii"))
+    print(f"{password_from_env=}, {encoded_password=}")
+
+    if bcrypt.checkpw(
+        credential.password.encode("utf8"),
+        encoded_password,
+    ):
         issued_at = get_timestamp()/1000
         to_encode = {
             "sub": get_env_variable(ADMIN_ID),

@@ -29,6 +29,8 @@ const FreeTopicDetailElement = (props: { id: string, dyadId: string, onEditClick
         props.onEditClick?.(props.id)
     }, [props.onEditClick, props.id])
 
+    console.log(`FreeTopic Image: ${detail?.topic_image_filename}`)
+
     return <Card size="small"
         rootClassName="shadow-md flex-1"
         className="p-0"

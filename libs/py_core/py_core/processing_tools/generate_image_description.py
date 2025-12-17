@@ -17,6 +17,7 @@ from numpy import array
 from py_core.config import AACessTalkConfig
 from PIL import ImageOps
 
+from py_core.system.model import UserLocale
 from py_core.utils.math import cosine_similarity
 from py_core.utils.models import CardImageInfo
 from chatlib.utils import env_helper
@@ -66,11 +67,11 @@ def _create_info_row_from_file(file: DirEntry[str], category_name: str, dir_name
 
         row = CardImageInfo(
             category=category_name,
-            name_ko=file.name[:-len(".png")],
+            name_localized=file.name[: -len(".png")],
             filename=path.join(dir_name, file.name),
             format=image.format,
             width=512,
-            height=512
+            height=512,
         )
         return row
 
@@ -129,18 +130,18 @@ def sync_file_to_info_list(delete: bool = False, add_to_list: bool = False)->lis
                                 remove(path.join(AACessTalkConfig.card_image_directory_path, filename))
                             elif add_to_list == True:
                                 new_rows.append(_create_info_row_from_file(file, category_name, dir_name))
-    
+
     if len(new_rows) > 0:
         print("write new rows to file:")
         print(new_rows)
         _save_card_descriptions(info_rows + new_rows)
-                        
+
 
 def inspect_card_info_data():
     rows = _load_card_descriptions()
     for row in rows:
         if row.description is None:
-            print(f"{row.id} ({row.name_ko}) has no descriptions.")
+            print(f"{row.id} ({row.name_localized}) has no descriptions.")
 
 class CardNameTranslationInput(BaseModel):
     label: str
@@ -153,11 +154,10 @@ async def translate_card_names():
 
     mapper = ChatCompletionFewShotMapper(
         GPTChatCompletionAPI(),
-        instruction_generator="""
-You are a helpful assistant that translates Korean card labels into English.
+        instruction_generator="""You are a helpful assistant that translates card labels into English.\n
 [Input]
 {
-    "label": // a Korean label of an illustration.
+    "label": // a label of an illustration.
     "category": // A category of the illustration. May be referred to for disambiguation.
     "description": // A description for the illustration. May be referred to for disambiguation.
 }
@@ -166,37 +166,45 @@ Return an English label. When translating, consider the description of the illus
         """,
         output_str_converter=str_to_str_noop,
         str_output_converter=str_to_str_noop,
-        input_str_converter=input_to_str
+        input_str_converter=input_to_str,
     )
 
     examples = [
         MapperInputOutputPair(
-            input= CardNameTranslationInput(
+            input=CardNameTranslationInput(
                 label="블록쌓기",
                 category=CATEGORY_HUMAN_READABLE_STRING_DICT["hobby"],
-                description="The image shows a human hand depicted as picking up or placing blocks in different colors."
+                description="The image shows a human hand depicted as picking up or placing blocks in different colors.",
             ),
-            output="Stacking blocks"
-            ),
+            output="Stacking blocks",
+        ),
         MapperInputOutputPair(
-            input= CardNameTranslationInput(
-                label="삼계탕",
+            input=CardNameTranslationInput(
+                label="西红柿炒蛋",
                 category=CATEGORY_HUMAN_READABLE_STRING_DICT["food"],
-                description="The image shows a human hand depicted as picking up or placing blocks in different colors."
+                description="这张图片展示了一盘西红柿炒鸡蛋，这是一道受欢迎的中国菜。菜肴由炒熟的鸡蛋和煮熟的西红柿块混合而成，顶部点缀着葱花。",
             ),
-            output="Samgye-Tang (Ginseng Chicken Soup)"
+            output="Stir-fried tomatoes and eggs",
         ),
     ]
 
     rows = _load_card_descriptions()
     for i, info in enumerate(rows):
         if info.name_en is None and info.description is not None:
-            print(f"Translate {info.name_ko} of {info.category} with GPT-4...{i}/{len(rows)}")
+            print(
+                f"Translate {info.name_localized} of {info.category}...{i}/{len(rows)}"
+            )
             try:
                 print(f"Processing {i}/{len(rows)}...")
-                label_translated = await mapper.run(examples, CardNameTranslationInput(label=info.name_ko, category=CATEGORY_HUMAN_READABLE_STRING_DICT[info.category], description=info.description),
-                                               ChatCompletionFewShotMapperParams(model=ChatGPTModel.GPT_4_0613,
-                                                                                 api_params={}))
+                label_translated = await mapper.run(
+                    examples,
+                    CardNameTranslationInput(
+                        label=info.name_localized,
+                        category=CATEGORY_HUMAN_READABLE_STRING_DICT[info.category],
+                        description=info.description,
+                    ),
+                    ChatCompletionFewShotMapperParams(model="qwen3-max", api_params={}),
+                )
                 # print("[Condensed]", description)
                 # print("[Original]", row.description)
                 info.name_en = label_translated
@@ -213,15 +221,13 @@ def generate_card_descriptions_all(openai_client: OpenAI):
         if row.description is None or len(row.description) == 0:
             try:
                 print(f"Processing {i}/{len(rows)} complete...")
-                description = generate_card_description_gpt4(row, openai_client)
+                description = generate_card_description(row, openai_client)
                 row.description = description
-                row.description_src = "gpt4"
+                row.description_src = "qwen-vl-max"
 
             except Exception as e:
-                gemini_description = generate_card_description_gemini(row)
-                if gemini_description is not None and len(gemini_description) > 0:
-                    row.description = gemini_description
-                    row.description_src = "gemini"
+                print(e)
+                raise RuntimeError("Failed to generate description with Qwen.") from e
             finally:
                 _save_card_descriptions(rows)
 
@@ -236,42 +242,8 @@ def _get_image(info: CardImageInfo) -> Image:
 
     return new_image.convert("RGB")
 
-
-def generate_card_description_gemini(info: CardImageInfo) -> str | None:
-    print(f"Generate description for {info.name_ko} of {info.category} with Gemini Pro Vision...")
-
-    t_start = perf_counter()
-
-    model = genai.GenerativeModel('gemini-pro-vision')
-
-    prompt = f"This is an illustration of a visual aid symbolizing \"{info.name_en or info.name_ko}\" in the \"{CATEGORY_HUMAN_READABLE_STRING_DICT[info.category]}\" category. Please briefly describe the visual contents in this illustration so that we can use your description for visual search."
-
-    response = model.generate_content(
-        safety_settings=[
-            {
-                "category": category,
-                "threshold": "BLOCK_NONE"
-            } for category in
-            ["HARM_CATEGORY_SEXUALLY_EXPLICIT", "HARM_CATEGORY_HATE_SPEECH", "HARM_CATEGORY_HARASSMENT",
-             "HARM_CATEGORY_DANGEROUS_CONTENT"]
-        ],
-        contents=[prompt, _get_image(info)]
-    )
-
-    t_end = perf_counter()
-
-    print(f"Gemini-Pro captioning took {t_end - t_start} sec.")
-
-    try:
-        text = response.text
-        return text
-    except ValueError:
-        print(response.prompt_feedback)
-        return None
-
-
-def generate_card_description_gpt4(info: CardImageInfo, client: OpenAI) -> str:
-    print(f"Generate description for {info.name_ko} of {info.category} with GPT-4V...")
+def generate_card_description(info: CardImageInfo, client: OpenAI) -> str:
+    print(f"Generate description for {info.name_localized} of {info.category} ...")
 
     t_start = perf_counter()
 
@@ -281,32 +253,28 @@ def generate_card_description_gpt4(info: CardImageInfo, client: OpenAI) -> str:
 
     image_base64 = base64.b64encode(buffered.getvalue()).decode('utf8')
 
-    prompt = f"This is an illustration of a visual aid symbolizing \"{info.name_ko}\" in the \"{CATEGORY_HUMAN_READABLE_STRING_DICT[info.category]}\" category. Please briefly describe the visual contents in this illustration so that we can use your description for visual search."
+    prompt = f'This is an illustration of a visual aid symbolizing "{info.name_localized}" in the "{CATEGORY_HUMAN_READABLE_STRING_DICT[info.category]}" category. Please briefly describe the visual contents in this illustration so that we can use your description for visual search.'
 
     response = client.chat.completions.create(
-        model="gpt-4-vision-preview",
+        model="qwen-vl-max",
         messages=[
             {
                 "role": "user",
                 "content": [
-                    {
-                        "type": "text", "text": prompt
-                    },
+                    {"type": "text", "text": prompt},
                     {
                         "type": "image_url",
-                        "image_url": {
-                            "url": f"data:image/png;base64,{image_base64}"
-                        }
-                    }
-                ]
+                        "image_url": {"url": f"data:image/png;base64,{image_base64}"},
+                    },
+                ],
             }
         ],
-        max_tokens=300
+        max_tokens=300,
     )
 
     t_end = perf_counter()
 
-    print(f"GPT-4v captioning took {t_end - t_start} sec.")
+    print(f"Qwen-VL-Max captioning took {t_end - t_start} sec.")
 
     return response.choices[0].message.content
 
@@ -366,13 +334,30 @@ Drop assistant messages like "I'm sorry" and style descriptions such as "The des
 
     examples = [
         MapperInputOutputPair(
-            input="The illustration shows a stylized stack of currency notes in green, with the number ""10000"" visible on the top note, indicating the value. Above the stack of notes is text in Korean, ""장애인연금,"" which translates to ""Disability Pension."" The overall image represents a financial support or pension provided to individuals with disabilities. The design is simple and iconic, using minimal colors and flat design principles.",
-            output="A stylized stack of currency notes in green, with the number ""10000"" visible on the top note, indicating the value. Above the stack of notes is text in Korean, ""장애인연금,"" which translates to ""Disability Pension."" The overall image represents a financial support or pension provided to individuals with disabilities."
+            input="The illustration shows a stylized stack of currency notes in green, with the number "
+            "10000"
+            " visible on the top note, indicating the value. Above the stack of notes is text in Korean, "
+            "장애인연금,"
+            " which translates to "
+            "Disability Pension."
+            " The overall image represents a financial support or pension provided to individuals with disabilities. The design is simple and iconic, using minimal colors and flat design principles.",
+            output="A stylized stack of currency notes in green, with the number "
+            "10000"
+            " visible on the top note, indicating the value. Above the stack of notes is text in Korean, "
+            "장애인연금,"
+            " which translates to "
+            "Disability Pension."
+            " The overall image represents a financial support or pension provided to individuals with disabilities.",
         ),
         MapperInputOutputPair(
             input="I'm sorry, but I cannot provide information on the identity of the individual in the image. However, I can describe the visual elements without identifying them. The image shows a person smiling broadly. The individual has short black hair and appears to be wearing a dark purple or blue suit with a tie. The background is blurry, making it difficult to discern details, suggesting the focus is entirely on the person in the foreground. The lighting in the photo highlights the person's face, emphasizing their joyful expression.",
-            output="A person smiling broadly, with joyful expression. The individual has short black hair and appears to be wearing a dark purple or blue suit with a tie."
-        )
+            output="A person smiling broadly, with joyful expression. The individual has short black hair and appears to be wearing a dark purple or blue suit with a tie.",
+        ),
+        # Add a Chinese example
+        MapperInputOutputPair(
+            input="这张图片展示了一盘西红柿炒鸡蛋，这是一道受欢迎的中国菜。菜肴由炒熟的鸡蛋和煮熟的西红柿块混合而成，顶部点缀着葱花。整体外观色彩鲜艳，红色的西红柿和黄色的鸡蛋形成了诱人的对比。这道菜通常作为主菜或配菜食用，具有丰富的口感和营养价值。",
+            output="一盘西红柿炒鸡蛋，由炒熟的鸡蛋和煮熟的西红柿块混合而成，顶部点缀着葱花。整体外观色彩鲜艳，红色的西红柿和黄色的鸡蛋形成了诱人的对比。",
+        ),
     ]
 
     rows = _load_card_descriptions()
@@ -380,9 +365,11 @@ Drop assistant messages like "I'm sorry" and style descriptions such as "The des
         if row.description is not None and row.description_brief is None:
             try:
                 print(f"Processing {i}/{len(rows)}...")
-                description = await mapper.run(examples, row.description,
-                                               ChatCompletionFewShotMapperParams(model=ChatGPTModel.GPT_4_0613,
-                                                                                 api_params={}))
+                description = await mapper.run(
+                    examples,
+                    row.description,
+                    ChatCompletionFewShotMapperParams(model="qwen3-max", api_params={}),
+                )
                 # print("[Condensed]", description)
                 # print("[Original]", row.description)
                 row.description_brief = description
@@ -434,7 +421,7 @@ def rename_card_filenames_to_ascii():
             shutil.move(src_path, path.join(AACessTalkConfig.card_image_directory_path, new_filename))
             row.filename = new_filename
 
-    _save_card_descriptions(rows)        
+    _save_card_descriptions(rows)
 
 
 if __name__ == "__main__":
@@ -458,6 +445,6 @@ if __name__ == "__main__":
     #asyncio.run(translate_card_names())
 
     # sync_file_to_info_list(delete=True)
-    
+
     # cache_description_embeddings_all(openai_client)
     rename_card_filenames_to_ascii()

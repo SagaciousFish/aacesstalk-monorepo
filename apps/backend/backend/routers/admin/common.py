@@ -7,7 +7,7 @@ from chatlib.utils.env_helper import get_env_variable
 from backend.env_variables import ADMIN_ID, AUTH_SECRET
 
 
-oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/admin/auth/login")
 
 async def check_admin_credential(token: Annotated[str, Depends(oauth2_scheme)])->bool:
     exception = HTTPException(

@@ -10,8 +10,12 @@ import moment from 'moment-timezone';
 
 export function App() {
 
+    let base_url = import.meta.env.VITE_BACKEND_ADDRESS || "";
+
+    console.log("Using backend address:", base_url)
+
     useEffect(()=>{
-        Http.initialize(import.meta.env.VITE_BACKEND_ADDRESS, async () => { return moment.tz.guess(true) })
+        Http.initialize(base_url, async () => { return moment.tz.guess(true) })
     },[])
 
     return (<Provider store={store}>
