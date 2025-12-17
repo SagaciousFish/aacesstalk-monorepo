@@ -28,6 +28,10 @@ dependencies = [
     "torch>=2.9.1",
     "alibabacloud-alimt20181012>=1.5.2",
     "nls",
+    "torchaudio>=2.9.1",
+    "funasr>=1.2.9",
+    "modelscope>=1.33.0",
+    "huggingface-hub>=0.36.0",
 ]
 
 [tool.coverage.run]
