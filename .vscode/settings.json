@@ -1,5 +1,7 @@
 {
     "python.analysis.extraPaths": [
         "libs/py_core"
-    ]
+    ],
+    "python-envs.pythonProjects": [],
+    "python.defaultInterpreterPath": "f:\\dev\\aacesstalk-monorepo\\.venv\\Scripts\\python.exe"
 }

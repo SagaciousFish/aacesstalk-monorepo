@@ -34,15 +34,18 @@ class ChildGender(StrEnum):
     Girl="girl"
 
 class UserLocale(StrEnum):
-    Korean="kr"
+    SimplifiedChinese = "zh"
+    TraditionalChinese = "yue"
+    Korean = "ko"
     English="en"
 
+
 class Dyad(ModelWithId):
-    alias: str = Field(min_length=1, unique=True)
+    alias: str = Field(min_length=1, metadata={"unique": True})
     child_name: str = Field(min_length=1)
     parent_type: ParentType = Field(nullable=False)
     child_gender: ChildGender = Field(nullable=False)
-    locale: UserLocale = Field(nullable=False, default=UserLocale.Korean)
+    locale: UserLocale = Field(nullable=False, default=UserLocale.SimplifiedChinese)
 
 class SessionStatus(StrEnum):
     Initial="initial"

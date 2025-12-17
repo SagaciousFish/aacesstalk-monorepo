@@ -35,7 +35,7 @@ export class Http{
   static ENDPOINT_DYAD_MESSAGE_PARENT_SEND_MESSAGE_TEXT = `${Http.ENDPOINT_DYAD_MESSAGE}/parent/message/text`
   static ENDPOINT_DYAD_MESSAGE_PARENT_SEND_MESSAGE_AUDIO = `${Http.ENDPOINT_DYAD_MESSAGE}/parent/message/audio`
   static ENDPOINT_DYAD_MESSAGE_PARENT_EXAMPLE = `${Http.ENDPOINT_DYAD_MESSAGE}/parent/example`
-  
+
   static ENDPOINT_DYAD_MESSAGE_CHILD_APPEND_CARD = `${Http.ENDPOINT_DYAD_MESSAGE}/child/add_card`
   static ENDPOINT_DYAD_MESSAGE_CHILD_REFRESH_CARDS = `${Http.ENDPOINT_DYAD_MESSAGE}/child/refresh_cards`
   static ENDPOINT_DYAD_MESSAGE_CHILD_CONFIRM_CARDS = `${Http.ENDPOINT_DYAD_MESSAGE}/child/confirm_cards`
@@ -63,7 +63,6 @@ export class Http{
   static ENDPOINT_ADMIN_DATA_CARDS = `${Http.ENDPOINT_ADMIN_DATA}/cards`
   static ENDPOINT_ADMIN_DATA_DIALOGUES_ID = `${Http.ENDPOINT_ADMIN_DATA_DIALOGUES}/{dyad_id}`
   static ENDPOINT_ADMIN_DATA_DB_DOWNLOAD = `${Http.ENDPOINT_ADMIN_DATA}/db/download`
-  
 
   static ENDPOINT_ADMIN_DYADS = `${Http.ENDPOINT_ADMIN}/dyads`
 
@@ -89,8 +88,8 @@ export class Http{
 
   static ENDPOINT_ADMIN_DYADS_ID_CUSTOM_CARDS_NEW = `${Http.ENDPOINT_ADMIN_DYADS_ID_CUSTOM_CARDS}/new`
 
-  static ENDPOINT_ADMIN_DYADS_ID_CUSTOM_CARDS_ID = `${Http.ENDPOINT_ADMIN_DYADS_ID}/custom_cards/{card_id}`  
-  static ENDPOINT_ADMIN_DYADS_ID_CUSTOM_CARDS_ID_IMAGE = `${Http.ENDPOINT_ADMIN_DYADS_ID}/custom_cards/{card_id}/image`  
+  static ENDPOINT_ADMIN_DYADS_ID_CUSTOM_CARDS_ID = `${Http.ENDPOINT_ADMIN_DYADS_ID}/custom_cards/{card_id}`
+  static ENDPOINT_ADMIN_DYADS_ID_CUSTOM_CARDS_ID_IMAGE = `${Http.ENDPOINT_ADMIN_DYADS_ID}/custom_cards/{card_id}/image`
 
 
 

@@ -13,9 +13,7 @@ class AACessTalkConfig:
     initial_parent_guides_path: str = path.join(dataset_dir_path, "initial_parent_guides.yml")
     card_image_embeddings_path: str = path.join(dataset_dir_path, "cards_image_desc_embeddings.npz")
 
-
-    database_dir_path: str = path.join(getcwd(), "../../database")
-
+    database_dir_path: str = path.join(getcwd(), "../../backend_data/database")
 
     database_file_path: str = path.join(database_dir_path, "aacesstalk.sqlite3")
 
@@ -34,19 +32,19 @@ class AACessTalkConfig:
         if not path.exists(p) and make_if_not_exist is True:
             makedirs(p)
         return p
-    
+
     @classmethod
-    def get_free_topic_image_dir_path(cls, user_id: str, make_if_not_exist: bool = False) -> str:
+    def get_free_topic_image_dir_path(
+        cls, user_id: str, make_if_not_exist: bool = False
+    ) -> str:
         p = path.join(cls.user_data_dir_path, user_id, "freetopic")
         if not path.exists(p) and make_if_not_exist is True:
             makedirs(p)
         return p
-    
 
     cache_dir_path: str = path.join(database_dir_path, "cache")
 
     voiceover_cache_dir_path: str = path.join(cache_dir_path, "voiceover")
 
-
-    embedding_model = 'text-embedding-3-large'
+    embedding_model = "text-embedding-v4"
     embedding_dimensions = 256

@@ -8,6 +8,7 @@ from chatlib.utils.jinja_utils import convert_to_jinja_template
 from chatlib.utils import env_helper
 
 from py_core.config import AACessTalkConfig
+from py_core.system.model import UserLocale
 from py_core.utils.lookup_translator import LookupTranslator
 from py_core.utils.models import DictionaryRow
 from py_core.utils.vector_db import VectorDB
@@ -18,6 +19,7 @@ from  py_core import env_variables
 
 class ChildCardTranslationParams(ChatCompletionFewShotMapperParams):
     similar_cards: list[DictionaryRow] | None
+    user_locale: UserLocale = UserLocale.SimplifiedChinese
 
 
 def _stringify_english_word(word: str, category: str) -> str:
@@ -25,26 +27,31 @@ def _stringify_english_word(word: str, category: str) -> str:
         return f"{word} (topic, noun)"
     elif category == "action":
         return f"{word} (action, verb)"
+    return f"{word} ({category})"
 
 
 template = convert_to_jinja_template("""
-- Given a list of keywords, translate English words into Korean.
+- Given a list of keywords, translate English words {% if user_locale == UserLocale.SimplifiedChinese %}to Simplified Chinese{% elif user_locale == UserLocale.TraditionalChinese %}to Traditional Chinese{% elif user_locale == UserLocale.Korean %}to Korean{% else %}to English{% endif %}.
 - List of cards are provided as a JSON string list with elements formatted as "keyword (category)". Don't translate categories.
 - Output should a JSON string list with ONLY keywords.
 - Note that the keywords are shown to children with ASD to help with communication.
-- Use honorific Korean expressions like "~해요", "~어요" for adjective/adverb/verbs.
+- Use formal expressions for adjective/adverb/verbs.
 
 {%-if similar_cards is not none and similar_cards | length > 0 %}
 <Examples>
 {%-for card in similar_cards %}
-{{stringify(card.english, card.category)}} => {{card.localized}}
+{{stringify(card.english, card.category, user_locale)}} => {{card.localized}}
 {%-endfor-%}
 {%-endif-%}
 """)
 
 
 def _generate_prompt(input, params: ChildCardTranslationParams) -> str:
-    return template.render(similar_cards=params.similar_cards, stringify=_stringify_english_word)
+    return template.render(
+        similar_cards=params.similar_cards,
+        stringify=_stringify_english_word,
+        user_locale=params.user_locale,
+    )
 
 def _validate_translation_output(input: list[str], output: list[str])->bool:
     return len(input) == len(output)
@@ -80,7 +87,11 @@ class CardTranslator:
         doc = self.__nlp(word)
         return ' '.join([token.text.lower() if token.pos_ != "PROPN" else token.text for token in doc])
 
-    async def translate(self, card_set: ChildCardRecommendationAPIResult) -> list[str]:
+    async def translate(
+        self,
+        card_set: ChildCardRecommendationAPIResult,
+        user_locale: UserLocale = UserLocale.SimplifiedChinese,
+    ) -> list[str]:
 
         word_list = ([(self.__transform_original_word(word), "topic") for word in card_set.topics] +
                      [(self.__transform_original_word(word), "action") for word in card_set.actions])
@@ -115,11 +126,16 @@ class CardTranslator:
                      enumerate([_stringify_english_word(word, category) for word, category in word_list])
                      if localized_words[i] is None]
 
-            result = await self.__mapper.run(None, input,
-                                             ChildCardTranslationParams(model=ChatGPTModel.GPT_3_5_0125,
-                                                                        api_params={},
-                                                                        similar_cards=list(similar_card_set)
-                                                                        ))
+            result = await self.__mapper.run(
+                None,
+                input,
+                ChildCardTranslationParams(
+                    model="qwen3-max",
+                    api_params={},
+                    similar_cards=list(similar_card_set),
+                    user_locale=user_locale,
+                ),
+            )
             print(localized_words, result)
 
             if len(result) > len(input):

@@ -32,7 +32,7 @@ class DictionaryRow(BaseModelWithId):
 
 class CardImageInfo(BaseModelWithId):
     category: str
-    name_ko: str
+    name_localized: str
     name_en: Optional[str] = None
     filename: str
     format: Optional[str]
@@ -49,7 +49,7 @@ class CardImageInfo(BaseModelWithId):
     @computed_field
     @property
     def name(self) -> str:
-        return self.name_en or self.name_ko
+        return self.name_en or self.name_localized
 
     @field_validator('*')
     @classmethod

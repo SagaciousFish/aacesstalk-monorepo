@@ -26,13 +26,18 @@ class OpenAIEmbeddingFunction(EmbeddingFunction[Documents]):
         return [datum.embedding for datum in result.data]
 
 class VectorDB:
-
-    def __init__(self, dir_name: str = "embeddings",
-                 embedding_model: str = "text-embedding-3-large",
-                 embedding_dimensions: int = 256
-                 ):
+    def __init__(
+        self,
+        dir_name: str = "embeddings",
+        embedding_model: str = "text-embedding-v4",
+        embedding_dimensions: int = 256,
+    ):
         #self.__client = chromadb.PersistentClient(path.join(AACessTalkConfig.dataset_dir_path, dir_name))
         self.__client = chromadb.Client()
+
+        print(
+            f"OpenAI API KEY: {GPTChatCompletionAPI.get_auth_variable_for_spec(APIAuthorizationVariableSpecPresets.ApiKey)}"
+        )
 
         GPTChatCompletionAPI.assert_authorize()
         api_key = GPTChatCompletionAPI.get_auth_variable_for_spec(
@@ -44,7 +49,7 @@ class VectorDB:
         return self.__client.get_or_create_collection(name, embedding_function=self.__decode)
 
     def upsert(self, collection: str | Collection, dictionary_row: DictionaryRow | list[DictionaryRow]) -> ndarray | list[ndarray]:
-        
+
         rows = [dictionary_row] if isinstance(dictionary_row, DictionaryRow) else dictionary_row
 
         try:

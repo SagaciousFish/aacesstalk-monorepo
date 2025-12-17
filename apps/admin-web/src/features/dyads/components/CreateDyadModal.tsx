@@ -27,7 +27,7 @@ export const CreateDyadModal = (props: {
     const dispatch = useDispatch()
 
     const {control, handleSubmit, reset, setError, formState: {errors}} = useForm({resolver: yupResolver(creationSchema), defaultValues: {child_gender: ChildGender.Boy, parent_type: ParentType.Father}})
-    
+
     const clearAndClose = useCallback(()=>{
         reset()
         props.onClose()
@@ -40,7 +40,6 @@ export const CreateDyadModal = (props: {
             setError('root', {message: "Dyad creation failed."})
         }))
     }, [clearAndClose])
-
 
     useEffect(()=>{
         return () =>{
@@ -57,8 +56,8 @@ export const CreateDyadModal = (props: {
     const cancelButtonProps: ButtonProps | undefined = useMemo(() => {
         return isCreating === true ? {hidden: true} : undefined
     }, [isCreating])
-    
-    
+
+
     return <Modal okButtonProps={okButtonProps} cancelButtonProps={cancelButtonProps} okText={isCreating === true ? "Creating..." : "Create"} maskClosable={false}
             title="Create Dyad" open={props.open} onCancel={clearAndClose} destroyOnClose={true} onClose={clearAndClose}>
         <Form labelCol={{span: 5}} preserve={false} onFinish={handleSubmit(submitDyadInfo)} id="new-dyad-form">
@@ -67,7 +66,7 @@ export const CreateDyadModal = (props: {
             </FormItem>
 
             <FormItem control={control} name="child_name" label="Child Name">
-                <Input placeholder="Child' name (마지막 글자에 받침이 있을 시 '이'를 붙이세요)"/>
+                <Input placeholder="Child's name" />
             </FormItem>
 
             <FormItem control={control} name="child_gender" label="Child Gender">
@@ -81,7 +80,7 @@ export const CreateDyadModal = (props: {
 
 
             <FormItem control={control} name="locale" label="User Locale">
-                <Select options={LOCALE_OPTIONS} defaultValue={LOCALE_OPTIONS[0]}/>
+                <Select options={LOCALE_OPTIONS} defaultValue={LOCALE_OPTIONS[0]} />
             </FormItem>
 
             {

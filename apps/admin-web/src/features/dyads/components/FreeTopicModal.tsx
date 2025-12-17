@@ -11,7 +11,7 @@ const schema = yup.object().shape({
     subtopic: yup.string().min(1).trim().required(),
     subtopic_description: yup.string().min(1).trim().required(),
     remove_image: yup.boolean().optional(),
-    image: yup.mixed().optional() 
+    image: yup.mixed().optional()
 })
 
 export const FreeTopicModal = (props: Pick<ModalProps, "open"|"onCancel"|"onClose"> & {
@@ -88,12 +88,12 @@ export const FreeTopicModal = (props: Pick<ModalProps, "open"|"onCancel"|"onClos
     }, [props.topicId, detailToModify])
 
 
-    return <Modal title={props.topicId != null ? "Edit Topic" : "New Free Topic"} 
+    return <Modal title={props.topicId != null ? "Edit Topic" : "New Free Topic"}
         open={props.open} onCancel={props.onCancel} maskClosable={false} destroyOnClose={true} okButtonProps={{htmlType: "submit", form: "free-topic-form"}}>
         <Form onFinish={handleSubmit(submit)} id="free-topic-form">
             <FormItem control={control} name="subtopic">
-                <Input placeholder="Topic (Korean)"/>
-            </FormItem>       
+                <Input placeholder="Topic (Localized Language)" />
+            </FormItem>
 
             <FormItem control={control} name="subtopic_description">
                 <Input.TextArea placeholder="Topic description (English)"/>

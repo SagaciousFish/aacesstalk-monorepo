@@ -26,6 +26,7 @@ class DeepLTranslator(IntegrationService):
             return False
 
     def __init__(self):
+        raise NotImplementedError("Translator is not implemented yet")
         self.__client = deepl.Translator(self.get_auth_variable_for_spec(self.__api_key_spec))
 
     async def translate(self, text: Union[str, Iterable[str]], source_lang: str, target_lang: str,

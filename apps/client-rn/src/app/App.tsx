@@ -32,7 +32,7 @@ const GlobalNavigator = () => {
 
   return <Stack.Navigator screenOptions={screenOptions} id={undefined}>
   {
-    isSignedIn ? (<Stack.Screen name="Home" component={MainNavigator}/>) : 
+      isSignedIn ? (<Stack.Screen name="Home" component={MainNavigator} />) :
     (<Stack.Screen name="Auth" component={SignInScreen}/>)
   }
 </Stack.Navigator>
@@ -47,15 +47,21 @@ export const App = () => {
     let host: string
     if(isEmulator){
       if(Platform.OS == 'android'){
-        console.log("Running on Android emulator. Use the host address http://10.0.2.2:3000")  
+        console.log("Running on Android emulator. Use the host address http://10.0.2.2:3000")
         host = "http://10.0.2.2:3000"
       }else{
         host = "http://localhost:3000"
       }
-    }else{
-      host = process.env["BACKEND_ADDRESS"]
+    } else {
+      // For physical devices (including wired debug), use BACKEND_ADDRESS or fallback
+      host = process.env["BACKEND_ADDRESS"];
+      if (!host) {
+        console.warn("BACKEND_ADDRESS not set. Falling back to localhost for physical device.");
+        host = "http://localhost:3000"; // Or a more appropriate default, e.g., production URL
+      }
+      console.log(`Running on physical device`);
     }
-    console.log("Host address: ", host)
+    console.log(`Host address: ${host}`)
     Http.initialize(host, async () => {return getTimeZone()})
   }, [])
 

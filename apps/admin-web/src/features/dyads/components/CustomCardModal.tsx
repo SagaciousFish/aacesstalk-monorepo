@@ -15,7 +15,7 @@ const schema = yup.object().shape({
     label: yup.string().min(1).trim().optional(),
     label_localized: yup.string().min(1).trim().required(),
     category: yup.string().oneOf(CARD_CATEGORIES).required(),
-    image: yup.mixed().required() 
+    image: yup.mixed().required()
 })
 
 export const CustomCardModal = (props: Pick<ModalProps, "open"|"onCancel"|"onClose"> & {
@@ -72,7 +72,7 @@ export const CustomCardModal = (props: Pick<ModalProps, "open"|"onCancel"|"onClo
             formData.append("label_localized", values.label_localized)
             formData.append("category", values.category)
             formData.append("image", values.image.file.originFileObj)
-            
+
             dispatch(createUserDefinedCard(props.dyadId, formData, () => {
                 onClose({})
             }))
@@ -80,14 +80,14 @@ export const CustomCardModal = (props: Pick<ModalProps, "open"|"onCancel"|"onClo
 
     }, [props.dyadId, props.cardId, onClose])
 
-    return <Modal title={props.cardId != null ? "Edit Custom Card" : "Add New Custom Card"} 
-            open={props.open} onClose={onClose} onCancel={onCancel} maskClosable={false} 
+    return <Modal title={props.cardId != null ? "Edit Custom Card" : "Add New Custom Card"}
+        open={props.open} onClose={onClose} onCancel={onCancel} maskClosable={false}
             okText={props.cardId != null ? "Update" : "Create"} okButtonProps={{htmlType: 'submit', "form": "custom-card-form"}}
             destroyOnClose={true}>
         <Form onFinish={handleSubmit(submit)} id="custom-card-form">
-                
+
             <FormItem control={control} name="label_localized">
-                <Input placeholder="Card label in Korean"/>
+                <Input placeholder="Card label in localized language" />
             </FormItem>
 
             <FormItem control={control} name="category">

@@ -1,7 +1,7 @@
 from chatlib.global_config import GlobalConfig
 from chatlib.llm.integration.openai_api import GPTChatCompletionAPI
 from py_core.config import AACessTalkConfig
-from py_core.utils.deepl_translator import DeepLTranslator
+from py_core.utils.translate.deepl_translator import DeepLTranslator
 from py_core.utils.lookup_translator import LookupTranslator
 
 GlobalConfig.is_cli_mode = True

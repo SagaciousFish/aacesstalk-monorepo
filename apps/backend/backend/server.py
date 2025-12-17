@@ -1,5 +1,7 @@
 from contextlib import asynccontextmanager
+import json
 from os import getcwd, path
+import os
 from time import perf_counter
 from py_core.utils.default_cards import inspect_default_card_images
 
@@ -13,10 +15,16 @@ from py_database.database import create_db_and_tables
 from backend.routers import dyad, admin
 from re import compile
 
+import openai
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+openai.base_url = os.getenv("OPENAI_BASE_URL")
+
+
 @asynccontextmanager
 async def server_lifespan(app: FastAPI):
     print("Server launched.")
-    
+
     inspect_default_card_images()
 
     await create_db_and_tables(engine)
@@ -27,21 +35,18 @@ async def server_lifespan(app: FastAPI):
 
     # Cleanup logic will come below.
 
+
 app = FastAPI(lifespan=server_lifespan)
 
 # Setup routers
-app.include_router(
-    dyad.router,
-    prefix="/api/v1/dyad"
-)
-app.include_router(
-    admin.router,
-    prefix="/api/v1/admin"
-)
+app.include_router(dyad.router, prefix="/api/v1/dyad")
+app.include_router(admin.router, prefix="/api/v1/admin")
+
 
 @app.head("/api/v1/ping")
 def ping():
     return Response(status_code=status.HTTP_204_NO_CONTENT)
+
 
 ##############
 
@@ -50,18 +55,17 @@ asset_path_regex = compile("\.[a-z][a-z0-9]+$")
 static_frontend_path = path.join(getcwd(), "../../dist/apps/admin-web")
 print(static_frontend_path)
 if path.exists(static_frontend_path):
+
     @app.get("/{rest_of_path:path}", response_class=HTMLResponse)
     def redirect_frontend_nested_url(*, rest_of_path: str):
-
         if len(asset_path_regex.findall(rest_of_path)) > 0:
             # This is a static asset file path.
             return FileResponse(path.join(static_frontend_path, rest_of_path))
         else:
             return HTMLResponse(
                 status_code=200,
-                content=open(path.join(static_frontend_path, "index.html")).read()
+                content=open(path.join(static_frontend_path, "index.html")).read(),
             )
-
 
     app.mount("/", StaticFiles(directory=static_frontend_path, html=True), name="static")
     print("Compiled static frontend file path was found. Mount the file.")
@@ -84,17 +88,23 @@ origins = [
     "http://0.0.0.0:3000",
     "localhost:4200",
     "http://localhost:4200",
+    "localhost:4300",
+    "http://localhost:4300",
     "http://localhost:8000",
     "localhost:8000",
 ]
 
+allowed_origins = json.loads(os.getenv("ADMIN_WEB_ORIGINS", "[]"))
+
+origin_list = allowed_origins or origins
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=origin_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["X-processing-time", "X-request-id", "X-context-id"]
+    expose_headers=["X-processing-time", "X-request-id", "X-context-id"],
 )
 
 

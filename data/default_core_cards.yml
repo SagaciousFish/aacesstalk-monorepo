@@ -1,26 +1,45 @@
-- id: 'yes'
-  label: 'Yes'
-  label_localized: 네
-  category: core
-  image: 'card_core/iz9zski8dz.png'
-- id: 'no'
-  label: 'No'
-  label_localized: 아니오
-  category: core
-  image: 'card_core/5FwLcuFAGw.png'
-- id: idk
-  label: I don't know
-  label_localized: 모르겠어요
-  category: core
-  image: 'card_core/eUCdvU-_z1.png'
-- id: hby
-  label:
-    father: How about you, dad?
-    mother: How about you, mom?
-  label_localized: 
-    father: 아빠는요?
-    mother: 엄마는요?
-  category: core
-  image:
-    father: 'card_core/xutZT392SX.png'
-    mother: 'card_core/Aa2p2WUs98.png'
+- id: "yes"
+  label: "Yes"
+  label_localized:
+    en: "Yes"
+    ko: "네"
+    zh: "是"
+    yue: "係"
+  category: "core"
+  image: "core_cards/yes.png"
+- id: "no"
+  label: "No"
+  label_localized:
+    en: "No"
+    ko: "아니오"
+    zh: "不是"
+    yue: "唔係"
+  category: "core"
+  image: "core_cards/no.png"
+- id: "idk"
+  label: "I don't know"
+  label_localized:
+    en: "I don't know"
+    ko: "모르겠어요"
+    zh: "我不知道"
+    yue: "我唔知"
+  category: "core"
+  image: "core_cards/idk.png"
+- id: ask
+  label: "Ask"
+  label_localized:
+    en: "Ask"
+    ko: "물어보다"
+    zh: "提问"
+    yue: "問"
+  category: "core"
+  image: "core_cards/ask.png"
+- id: how_are_you
+  label: "How are you?"
+  label_localized:
+    en: "How are you?"
+    ko: "어떻게 지내세요?"
+    zh: "你感觉怎么样？"
+    yue: "你點呀？"
+  category: "core"
+  image: "core_cards/how_are_you.png"
