@@ -19,6 +19,7 @@ dependencies = [
     "torch",
     "setuptools",
     "nls",
+    "numpy>=1.26,<2",
     "torchaudio",
     "funasr",
 ]
