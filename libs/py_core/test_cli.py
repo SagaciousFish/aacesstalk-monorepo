@@ -2,7 +2,7 @@ import asyncio
 
 from chatlib.global_config import GlobalConfig
 from chatlib.llm.integration.openai_api import GPTChatCompletionAPI
-from py_core import ModeratorSession
+from py_core.system.moderator import ModeratorSession
 from py_core.cli import cli_get_session_info, test_session_loop, cli_get_dyad_info
 from py_core.system.storage.session.json import JsonSessionStorage
 from py_core.utils.translate.deepl_translator import DeepLTranslator

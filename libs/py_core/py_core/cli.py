@@ -1,7 +1,7 @@
 import questionary
 from chatlib.utils.validator import make_non_empty_string_validator
 
-from py_core import ModeratorSession
+from py_core.system.moderator import ModeratorSession
 from py_core.system.model import DialogueRole, \
     ParentExampleMessage, SessionInfo, ParentType, Dyad
 from py_core.system.session_topic import SessionTopicCategory, SessionTopicInfo

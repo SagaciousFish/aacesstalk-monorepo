@@ -5,11 +5,15 @@ import aiofiles
 from py_core.utils.speech.speech_recognizer_base import SpeechRecognizerBase
 from py_core.utils.speech.whisper import WhisperSpeechRecognizer
 from py_core.utils.speech.aliyun_nls import AliyunSpeechRecognizer
+
+from py_core.utils.speech.funasr_nano import FunASRNanoSpeechRecognizer
+
+# FunASR import is deferred to avoid heavy startup-time imports (numba/coverage)
 from pydantic import BaseModel
 from os import path
 
 from fastapi import APIRouter, Depends, File, Form, HTTPException, UploadFile, Response
-from py_core import ModeratorSession
+from py_core.system.moderator import ModeratorSession
 from chatlib.utils.time import get_timestamp
 from py_core.system.model import Dialogue, ParentGuideRecommendationResult, CardIdentity, ChildCardRecommendationResult, \
     CardInfo, ParentExampleMessage, UserLocale
@@ -34,10 +38,6 @@ class ResponseWithTurnId(BaseModel, Generic[T]):
     next_turn_id: str
 
 router = APIRouter()
-
-
-# clova_asr: SpeechRecognizerBase = ClovaLongSpeech()
-# whisper_asr: SpeechRecognizerBase = WhisperSpeechRecognizer()
 
 punctuator = Punctuator()
 
@@ -95,18 +95,14 @@ async def send_parent_message_audio(
         await asyncio.gather(write_file_task(), write_turn_info())
 
         print(f"Dictate parent turn audio... {file.filename}")
-        print("TODO: audio api not setup yet.")
-        raise NotImplementedError("Audio API not implemented yet.")
 
-        asr_engine = (
-            clova_asr
-            if dyad.locale == UserLocale.Korean and ClovaLongSpeech.assert_authorize()
-            else whisper_asr
-        )
+        asr_engine = FunASRNanoSpeechRecognizer()
+
+        print("Recognizing with Fun-ASR-Nano...")
 
         text = await asr_engine.recognize_speech(
             file.filename,
-            open(target_file_path, "rb"),
+            target_file_path,
             file.content_type,
             dyad.locale,
             dyad.child_name,
