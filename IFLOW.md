@@ -7,8 +7,8 @@ AACessTalk 是一个获得 **ACM CHI 2025 最佳论文奖**的研究项目，旨
 **核心功能：**
 - 为自闭症儿童提供沟通卡片推荐
 - 为父母提供上下文引导建议
-- 支持语音识别和语音合成
-- 多语言翻译支持（特别是韩语）
+- 支持语音识别和语音合成（包括本地 FunASR 识别）
+- 多语言翻译支持（英语、韩语、简体中文、繁体中文、粤语）
 
 ## 技术栈
 
@@ -18,15 +18,15 @@ AACessTalk 是一个获得 **ACM CHI 2025 最佳论文奖**的研究项目，旨
 - **后端服务：** FastAPI (Python)
 - **AI 能力：** OpenAI API
 - **语音服务：** CLOVA Voice API (NAVER)
-- **语音识别：** CLOVA Speech Recognition API 或 OpenAI Whisper
-- **翻译服务：** DeepL API
+- **语音识别：** FunASR Nano (本地)、CLOVA Speech Recognition API、OpenAI Whisper、阿里云语音识别
+- **翻译服务：** DeepL API、阿里云翻译
 
 ### 开发环境要求
 - Node.js >= 22 (推荐使用 nvm)
 - Python 3.11.8 (推荐使用 pyenv)
 - NX CLI (全局安装)
-- Poetry (Python 包管理)
 - UV (Python 包管理工具)
+- Hatchling (Python 构建工具)
 
 ## 项目结构
 
@@ -35,14 +35,17 @@ aacesstalk-monorepo/
 ├── apps/
 │   ├── backend/              # FastAPI 后端服务
 │   ├── client-rn/           # React Native 移动客户端
-│   ├── admin-web/           # 管理后台 Web 应用
-│   └── enduser-web/         # 终端用户 Web 应用
+│   ├── client-rn-e2e/       # React Native 端到端测试
+│   ├── admin-web/           # 管理后台 Web 应用 (Vite + React)
+│   ├── admin-web-e2e/       # 管理后台端到端测试
+│   ├── enduser-web/         # 终端用户 Web 应用
+│   └── enduser-web-e2e/     # 终端用户端到端测试
 ├── libs/
-│   ├── py_core/             # Python 核心库 (AI 处理、翻译等)
+│   ├── py_core/             # Python 核心库 (AI处理、翻译、语音识别等)
 │   ├── py_database/         # Python 数据库库
 │   └── ts-core/             # TypeScript 核心库
 ├── data/                    # 数据文件 (卡片、语音样本等)
-├── backend_data/            # 后端数据存储
+├── backend_data/            # 后端数据存储 (SQLite数据库)
 └── logs/                    # 日志文件
 ```
 
@@ -72,6 +75,30 @@ aacesstalk-monorepo/
    ```bash
    nx run backend:setup
    ```
+
+### Python 工具链命令
+
+项目使用 UV 进行 Python 包管理，Ruff 进行代码检查：
+
+- **同步依赖：**
+  ```bash
+  nx run backend:install  # 执行 uv sync
+  ```
+
+- **添加依赖：**
+  ```bash
+  nx run backend:add <package-name>
+  ```
+
+- **更新依赖：**
+  ```bash
+  nx run backend:update
+  ```
+
+- **代码检查：**
+  ```bash
+  nx run backend:lint     # 执行 ruff check
+  ```
 
 ### 开发环境运行
 
@@ -145,13 +172,34 @@ nx run py_core:gen_card_desc               # 生成图片描述
    - Secret
 4. **DeepL Translation API** (仅韩语) - 翻译服务
    - API key
+5. **阿里云翻译 API** (可选) - 替代翻译服务
+   - Access Key ID
+   - Access Key Secret
+6. **阿里云语音识别 API** (可选) - 语音识别
+   - Access Key ID
+   - Access Key Secret
+
+### 环境变量配置
+
+以下环境变量可通过 `.env` 文件配置：
+
+- `AUTO_UPDATE_CARD_TRANSLATIONS` - 是否自动更新卡片翻译
+- `ADMIN_WEB_ORIGINS` - 管理后台 Web 源配置
+- `OPENAI_BASE_URL` - OpenAI API 基础 URL（可配置为代理）
+- `DEEPL_API_KEY` - DeepL API 密钥
+- `CLOVA_VOICE_API_KEY` - CLOVA Voice API 密钥
+- `CLOVA_VOICE_SECRET` - CLOVA Voice API 密钥
+- `CLOVA_SPEECH_INVOKE_URL` - CLOVA Speech 调用 URL
+- `CLOVA_SPEECH_SECRET` - CLOVA Speech 密钥
+
+**注意：** FunASR Nano 为本地语音识别模型，无需 API 密钥。
 
 ## 开发约定
 
 ### Python 代码规范
-- 使用 Flake8 进行代码检查
-- 使用 Poetry 进行包管理
-- 使用 UV 进行依赖同步
+- 使用 Ruff 进行代码检查
+- 使用 UV 进行包管理
+- 使用 Hatchling 进行构建
 - 遵循 FastAPI 最佳实践
 
 ### TypeScript/React Native 规范
@@ -168,13 +216,40 @@ nx run py_core:gen_card_desc               # 生成图片描述
 ## 数据文件说明
 
 ### `data/` 目录
-- `cards/` - 沟通卡片数据
+- `cards/` - 沟通卡片图片资源
 - `given/` - 预训练数据和翻译字典
 - `samples/` - 语音和图片样本
+- `default_core_cards.yml` - 核心卡片数据（支持英、韩、中简、中繁、粤语5种语言）
+- `default_emotion_cards.yml` - 情绪卡片数据
+- `initial_parent_guides.yml` - 家长引导内容
+- `parent_example_translation_samples.yml` - 翻译示例
 
 ### `backend_data/` 目录
 - `database/` - SQLite 数据库文件
 - `user_data/` - 用户数据存储
+
+## 功能模块
+
+### FunASR Nano 语音识别
+- **本地推理：** 使用 "Fun-ASR-Nano-2512" 模型，无需外部 API 密钥
+- **GPU/CPU 支持：** 自动选择可用设备
+- **集成架构：** 作为 `IntegrationService` 的一部分统一管理
+
+### 集成服务统一架构
+- **服务基类：** `IntegrationService` 提供标准化接口
+- **子类实现：** `AACCorpusDownloader`, `DeepLTranslator`, `AliyunTranslator`, `WhisperSpeechRecognizer`, `ClovaVoice`, `ClovaSpeech`, `AliyunSpeechRecognizer`
+- **认证管理：** `APIAuthorizationVariableSpec` 统一管理 API 凭证
+
+### 多供应商语音识别栈
+- **FunASR Nano：** 本地识别，无网络依赖
+- **CLOVA Speech：** 韩语语音识别
+- **OpenAI Whisper：** 通用语音识别
+- **阿里云语音识别：** 中文语音识别
+
+### 多语言翻译支持
+- **支持语言：** 英语、韩语、简体中文、繁体中文、粤语
+- **翻译服务：** DeepL API、阿里云翻译 API
+- **卡片数据：** 所有卡片数据均支持多语言翻译
 
 ## 故障排除
 
@@ -183,6 +258,10 @@ nx run py_core:gen_card_desc               # 生成图片描述
 2. **Node.js 版本问题：** 确保使用 Node.js >= 22
 3. **API 凭证缺失：** 检查所有必需的 API 凭证是否已配置
 4. **端口冲突：** 后端默认运行在 3000 端口
+5. **UV 工具链问题：** 项目使用 UV 而非 Poetry，确保运行 `nx run backend:install` 而非 `poetry install`
+6. **Ruff 代码检查：** 代码检查使用 Ruff 而非 Flake8，配置文件为 `apps/backend/.flake8`
+7. **环境变量配置：** 确保正确配置所有环境变量，特别是多供应商 API 凭证
+8. **FunASR 模型下载：** 首次运行会自动下载 FunASR Nano 模型，确保网络连接
 
 ### 日志查看
 - 后端日志：`logs/` 目录
@@ -214,5 +293,5 @@ nx run py_core:gen_card_desc               # 生成图片描述
 
 ---
 
-*最后更新：2025-12-14*  
-*此文档基于项目 README 和配置文件分析生成*
+*最后更新：2025-12-19*  
+*此文档基于项目实际配置和代码分析生成，已同步最新工具链和功能模块*

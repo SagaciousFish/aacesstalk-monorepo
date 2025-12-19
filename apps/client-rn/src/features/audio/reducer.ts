@@ -43,7 +43,7 @@ const parentAudioRecordingSlice = createSlice({
         },
         setRecordingStartTimestamp: (state, action: PayloadAction<number|undefined>) => {
             state.recordingStartedTimestamp = action.payload
-        }, 
+        },
 
         setRecordingArgs: (state, action: PayloadAction<RecordBackType>) => {
             state.recordingMeter = action.payload.currentMetering
@@ -83,7 +83,7 @@ export function startRecording(recordingStartedTimestamp: number = Date.now()): 
         if(await FileSystem.exists(audioDirPath) == false){
             await FileSystem.mkdir(audioDirPath)
         }
-        const audioFilePath = audioDirPath + `/${sessionId}_${turnId}_${Date.now()}.m4a`
+        const audioFilePath = audioDirPath + `/${sessionId}_${turnId}_${Date.now()}.wav`
 
         if(isRecordingActive == false && state.parentAudioRecording.status == RecordingStatus.Initial){
             console.log("Start recording")

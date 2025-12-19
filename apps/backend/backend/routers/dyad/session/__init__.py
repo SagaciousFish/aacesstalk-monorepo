@@ -7,7 +7,7 @@ from backend.routers.dyad.common import create_moderator_session, dispose_sessio
 from backend.crud.dyad.session import find_session_orm, get_session_summaries, ExtendedSessionInfo
 from py_database.model import DyadORM, SessionORM as SessionORM
 from py_core.system.session_topic import SessionTopicInfo
-from py_core.system import ModeratorSession
+from py_core.system.moderator import ModeratorSession
 from sqlmodel import delete
 from py_core.system.model import ParentGuideRecommendationResult
 
