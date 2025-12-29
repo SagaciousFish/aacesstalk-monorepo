@@ -76,13 +76,55 @@ class VectorDB:
                     continue
 
 
-    def query_similar_rows(self, collection: str | Collection, word: str | list[str], category: str | None, k: int = 5) -> list[DictionaryRow]:
+    def query_similar_rows(self, collection: str | Collection, word: str | list[str], category: str | None, k: int = 5, cutout_dist:float = 0.5) -> list[DictionaryRow]:
         #print(f"Query similar cards: {word}, {category}")
         collection_instance = (collection if isinstance(collection, Collection) else self.get_collection(collection))
-        query_result = collection_instance.query(query_texts=[word] if isinstance(word, str) else word,
-                                                     n_results=k, where={"category": category} if category is not None else None)
-        if len(query_result["ids"][0]) > 0:
-            return [DictionaryRow(id=id, english=doc, category=meta["category"], localized=meta["localized"]) for
-                    id, doc, meta in zip(query_result["ids"][0], query_result["documents"][0], query_result["metadatas"][0])]
+        query_result = collection_instance.query(
+            query_texts=[word] if isinstance(word, str) else word,
+            n_results=k,
+            where={"category": category} if category is not None else None,
+            include=["documents", "metadatas", "distances"],
+        )
+        print(
+            query_result
+        )  # inspect distances: smaller == closer (depends on embedding function)
+
+        ids = query_result["ids"][0]
+        docs = query_result["documents"][0]
+        metas = query_result["metadatas"][0]
+        dists = query_result.get("distances", [[]])[0]
+
+        if len(ids) > 0:
+            has_dists = len(dists) == len(ids)
+
+            if has_dists:
+                pairs = list(zip(ids, docs, metas, dists))
+                pairs.sort(key=lambda t: t[3])
+
+                # Apply cutoff: keep only pairs with distance <= cutout_dist
+                if cutout_dist is not None:
+                    pairs = [p for p in pairs if p[3] <= cutout_dist]
+
+                return [
+                    DictionaryRow(
+                        id=id,
+                        english=doc,
+                        category=meta["category"],
+                        localized=meta["localized"],
+                    )
+                    for id, doc, meta, dist in pairs
+                ]
+            else:
+                # No distances available; return in original order
+                pairs = list(zip(ids, docs, metas))
+                return [
+                    DictionaryRow(
+                        id=id,
+                        english=doc,
+                        category=meta["category"],
+                        localized=meta["localized"],
+                    )
+                    for id, doc, meta in pairs
+                ]
         else:
             return []

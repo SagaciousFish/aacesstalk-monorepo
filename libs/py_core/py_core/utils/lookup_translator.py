@@ -6,10 +6,10 @@ from typing import TypeAlias
 from os import path
 
 from py_core.utils.models import DictionaryRow
+from py_core.system.model import UserLocale
 from py_core.utils.vector_db import VectorDB
 
 LookupDictionary: TypeAlias = dict[tuple[str, str], DictionaryRow]
-
 
 class LookupTranslator(AbstractContextManager):
 
@@ -27,6 +27,11 @@ class LookupTranslator(AbstractContextManager):
     @property
     def vector_db(self) -> VectorDB:
         return self.__vector_db
+
+    def _upsert_in_batches(self, rows: list, batch_size: int = 10):
+        for i in range(0, len(rows), batch_size):
+            batch = rows[i : i + batch_size]
+            self.__vector_db.upsert(self.__name, batch)
 
     def load_file(self):
         if self.__dict_filepath is not None:
@@ -46,7 +51,8 @@ class LookupTranslator(AbstractContextManager):
                             self.__dictionary[row_model.lookup_key] = row_model
                         num_lines += 1
 
-                    self.__vector_db.upsert(self.__name, [row for k, row in self.__dictionary.items()])
+                    rows = [row for _, row in self.__dictionary.items()]
+                    self._upsert_in_batches(rows, batch_size=10)
 
                 t_end = perf_counter()
 
@@ -85,18 +91,35 @@ class LookupTranslator(AbstractContextManager):
     def size(self) -> int:
         return len(self.__dictionary)
 
-    def lookup(self, english: str, category: str) -> str | None:
+    def _parse_localized(self, localized: str, locale: UserLocale) -> str:
+        import orjson
+
+        parsed = orjson.loads(localized)
+        if isinstance(parsed, dict) and locale in parsed:
+            return parsed[locale]
+        else:
+            return f"localized string parse error:{localized}"
+
+    def lookup(self, english: str, category: str, locale: UserLocale) -> str | None:
         key = (english, category)
         if key in self.dictionary:
-            return self.dictionary[key].localized
+            return self._parse_localized(self.dictionary[key].localized, locale)
 
     def update(self, english: str, category: str, localized: str):
         row = DictionaryRow(category=category, english=english, localized=localized)
         self.dictionary[(english, category)] = row
         self.__vector_db.upsert(self.__name, row)
 
-    def query_similar_rows(self, english: str | list[str], category: str | None, k: int = 5) -> list[DictionaryRow]:
-        return self.__vector_db.query_similar_rows(self.__name, english, category, k)
+    def query_similar_rows(
+        self,
+        english: str | list[str],
+        category: str | None,
+        k: int = 5,
+        cutout_dist=0.7,
+    ) -> list[DictionaryRow]:
+        return self.__vector_db.query_similar_rows(
+            self.__name, english, category, k, cutout_dist
+        )
 
     def __aenter__(self):
         return self

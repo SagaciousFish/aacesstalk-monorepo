@@ -31,6 +31,7 @@ module.exports = {
         NETWORK_CONNECTION: "The server is currently not responding. This window will disappear automatically when the connection is restored. If this issue persists, please contact the researcher.",
         NETWORK_CONNECTION_REFRESH: "Check again",
         EMPTY_DICTATION: "No speech was detected.\nPlease repeat what you want to say to the child.",
-        SPEECH_ERROR_GENERAL: "Speech recognition error.\nPlease repeat what you want to say to the child."
+        SPEECH_ERROR_GENERAL: "Speech recognition error.\nPlease repeat what you want to say to the child.",
+        NOT_SELECTING_CARDS: "Please select cards to proceed!"
     }
 }

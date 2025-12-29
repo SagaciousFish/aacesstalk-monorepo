@@ -12,7 +12,7 @@ export function useMoveNextTurn(
 ): () => void {
 
     const dispatch = useDispatch()
-    
+
     const currentTurn = useSelector(state => state.session.currentTurn)
 
     const canSubmitSelectedChildCards = useSelector(isChildCardConfirmValidSelector)
@@ -28,7 +28,7 @@ export function useMoveNextTurn(
                             type: 'warning',
                             text1: t("ERRORS.EMPTY_DICTATION"),
                             topOffset: 60,
-                            visibilityTime: 6000                             
+                            visibilityTime: 6000
                         })
                     }else{
                         Toast.show({
@@ -42,8 +42,8 @@ export function useMoveNextTurn(
                 onGoNext?.(currentTurn)
                 break;
             case DialogueRole.Child:
-                if(canSubmitSelectedChildCards === true){  
-                    Toast.hide()  
+                if (canSubmitSelectedChildCards === true) {
+                    Toast.hide()
                     dispatch(confirmSelectedCards())
                     onGoNext?.(currentTurn)
                 }else{
@@ -52,7 +52,7 @@ export function useMoveNextTurn(
                         position: 'bottom',
                         bottomOffset: 100,
                         visibilityTime: 6000,
-                        text1: "카드를 선택해야 다음으로 넘어갈 수 있어요!"
+                        text1: t("ERRORS.NOT_SELECTING_CARDS")
                     })
                     onGoNextFail?.(currentTurn)
                 }
@@ -64,7 +64,7 @@ export function useMoveNextTurn(
 export function useEnterKeyEvent(listening: boolean=true, onKeyPress?: ()=>boolean) {
 
     const isInteractionEnabled = useSelector(isInteractionEnabledSelector)
-    
+
     const isKeyInputConsumed = useRef(false)
 
     useEffect(()=>{
@@ -79,7 +79,7 @@ export function useEnterKeyEvent(listening: boolean=true, onKeyPress?: ()=>boole
             if(event.keyCode == 66 && listening == true && isInteractionEnabled){
             }
         })*/
-        
+
         const upListener = KeyEvent.addKeyUpListener((event) => {
             console.log("Key up event - ", listening, isInteractionEnabled, isKeyInputConsumed.current)
             //66 : enter, 160: numpad enter. Support third-party enter buttons
@@ -97,4 +97,40 @@ export function useEnterKeyEvent(listening: boolean=true, onKeyPress?: ()=>boole
     }, [onKeyPress, isInteractionEnabled, listening])
 
 
+}
+
+export function useEscapeKeyEvent(listening: boolean = true, onKeyPress?: () => boolean) {
+
+    const isInteractionEnabled = useSelector(isInteractionEnabledSelector)
+
+    const isKeyInputConsumed = useRef(false)
+
+    useEffect(() => {
+        if (isInteractionEnabled === true) {
+            isKeyInputConsumed.current = false
+        }
+    }, [isInteractionEnabled])
+
+    useEffect(() => {
+        /*
+        const downListener = KeyEvent.addKeyDownListener((event) => {
+            if(event.keyCode == 66 && listening == true && isInteractionEnabled){
+            }
+        })*/
+
+        const upListener = KeyEvent.addKeyUpListener((event) => {
+            console.log("Key up event - ", listening, isInteractionEnabled, isKeyInputConsumed.current)
+            //67 : escape
+            if (event.keyCode == 67 && listening == true && isInteractionEnabled) {
+                if (isKeyInputConsumed.current == false) {
+                    isKeyInputConsumed.current = onKeyPress?.() || false
+                }
+            }
+        })
+
+        return () => {
+            //downListener.remove()
+            upListener.remove()
+        }
+    }, [onKeyPress, isInteractionEnabled, listening])
 }

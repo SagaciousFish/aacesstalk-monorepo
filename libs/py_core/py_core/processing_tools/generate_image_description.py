@@ -430,11 +430,11 @@ if __name__ == "__main__":
 
     GlobalConfig.is_cli_mode = True
 
-    GPTChatCompletionAPI.assert_authorize()
-    GeminiAPI.assert_authorize()
+    # GPTChatCompletionAPI.assert_authorize()
+    # GeminiAPI.assert_authorize()
 
-    openai_client = OpenAI(api_key=env_helper.get_env_variable("OPEN_A_I_API_KEY"))
-    genai.configure(api_key=env_helper.get_env_variable("GOOGLE_API_KEY"))
+    # openai_client = OpenAI(api_key=env_helper.get_env_variable("OPEN_A_I_API_KEY"))
+    # genai.configure(api_key=env_helper.get_env_variable("GOOGLE_API_KEY"))
 
     # scan_card_images()
     #inspect_card_info_data()

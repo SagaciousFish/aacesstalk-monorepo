@@ -14,6 +14,14 @@ from funasr import AutoModel
 
 
 class FunASRNanoSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
+    _model: AutoModel | None = None
+    _model_lock: asyncio.Lock | None = None
+    _infer_lock: asyncio.Lock | None = None
+
+    @classmethod
+    async def initialize_service(cls) -> None:
+        await cls._get_or_load_model()
+
     @classmethod
     def provider_name(cls) -> str:
         return "Fun-ASR"
@@ -27,10 +35,6 @@ class FunASRNanoSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
         cls, variables: dict[APIAuthorizationVariableSpec, Any]
     ) -> bool:
         return True
-
-    _model: AutoModel | None = None
-    _model_lock: asyncio.Lock | None = None
-    _infer_lock: asyncio.Lock | None = None
 
     @classmethod
     async def _get_or_load_model(cls) -> AutoModel:
@@ -81,7 +85,7 @@ class FunASRNanoSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
 
     async def recognize_speech(
         self,
-        file_name: str,
+        file_path: str,
         file,
         content_type: str = "",
         locale: UserLocale = UserLocale.SimplifiedChinese,
@@ -93,12 +97,12 @@ class FunASRNanoSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
 
         # Prefer a filesystem path for FunASR's loaders (it can accept file-like
         # objects, but some fallbacks expect strings).
-        input_audio = file_name
+        input_audio = file_path
         if hasattr(file, "name") and isinstance(getattr(file, "name"), str):
             if os.path.exists(file.name):
                 input_audio = file.name
-        elif isinstance(file_name, str) and os.path.exists(file_name):
-            input_audio = file_name
+        elif isinstance(file_path, str) and os.path.exists(file_path):
+            input_audio = file_path
 
         # Run inference off the event loop; guard with a lock for safety
         infer_lock = self.__class__._infer_lock

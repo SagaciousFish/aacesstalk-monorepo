@@ -17,9 +17,10 @@ ENGINE_TYPE_CLOVA_SPEECH = "Clova Speech"
 ENGINE_TYPE_OPENAI_WHISPER = "OpenAI Whisper"
 ENGINE_TYPE_LOCAL_FUNASR = "FunASR Nano-2512"
 ENGINE_TYPE_ALIYUN_NLS = "Aliyun NLS"
+ENGINE_TYPE_QWEN_ASR = "Qwen ASR"
 
 engine = None
-engine_type = ENGINE_TYPE_LOCAL_FUNASR
+engine_type = ENGINE_TYPE_QWEN_ASR
 
 # elif engine_type == ENGINE_TYPE_CLOVA_SPEECH:
 #     ClovaLongSpeech.assert_authorize()
@@ -38,6 +39,10 @@ elif engine_type == ENGINE_TYPE_ALIYUN_NLS:
     from py_core.utils.speech.aliyun_nls import AliyunSpeechRecognizer
 
     engine = AliyunSpeechRecognizer()
+elif engine_type == ENGINE_TYPE_QWEN_ASR:
+    from py_core.utils.speech.dashscope_audio import DashscopeQwenSpeechRecognizer
+
+    engine = DashscopeQwenSpeechRecognizer()
 
 if not engine:
     print("No engine selected.")
@@ -51,6 +56,7 @@ audio_dir = pathlib.Path(
     "F:\\dev\\aacesstalk-monorepo\\backend_data\\database\\user_data\\_fZ1sWnf6Wu9hmJOPQe8\\audio\\"
 )
 audio_dir = pathlib.Path("F:\\dev\\aacesstalk-monorepo\\data\\samples")
+audio_dir = pathlib.Path(r"C:\Users\27475\Downloads\Voicemeeter")
 
 for audio_file in audio_dir.iterdir():
     if audio_file.suffix not in [".wav", ".m4a", ".mp3", ".flac", ".ogg"]:

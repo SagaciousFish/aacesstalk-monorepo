@@ -5,3 +5,4 @@ class ErrorType(StrEnum):
     NoSuchUser = "NoSuchUser"
     EmptyDictation = "EmptyDictation"
     DictationFail = "DictationFail"
+    MissingAudioFile = "MissingAudioFile"

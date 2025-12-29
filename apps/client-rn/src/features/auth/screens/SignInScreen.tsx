@@ -5,7 +5,7 @@ import { styleTemplates } from "apps/client-rn/src/styles"
 import { HillBackgroundView } from "apps/client-rn/src/components/HillBackgroundView"
 import colors from "tailwindcss/colors"
 import { TailwindButton } from "apps/client-rn/src/components/tailwind-components"
-import { Control, useController, useForm } from "react-hook-form"
+import { Control, Controller, useController, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { Fragment, useMemo } from "react"
@@ -33,7 +33,7 @@ const PasscodeInput = (props: {
         multiline={true}
         numberOfLines={1}
         className={passcodeInputClassName}
-        // keyboardType="numeric"adb
+        // keyboardType="numeric"
         // inputMode="numeric"
         autoCapitalize="none"
         autoComplete="off"
@@ -43,9 +43,39 @@ const PasscodeInput = (props: {
         onChangeText={field.onChange}
         onBlur={field.onBlur}
         onSubmitEditing={props.onSubmit}
-        blurOnSubmit={true}
         returnKeyType="go"
     />
+
+    // return <Controller
+    //     control={props.control}
+    //     name="passcode"
+    //     render={({ field: { onChange, onBlur, value }, fieldState: { error } }) => (
+    //         <View>
+    //             <TextInput
+    //                 placeholder={t("SignIn.InsertNumber")}
+    //                 placeholderTextColor={colors.slate[400]}
+    //                 style={styleTemplates.withSemiboldFont}
+    //                 textAlign="center"
+    //                 className={twMerge(passcodeInputClassName, error && "border-red-500")}
+    //                 autoCapitalize="none"
+    //                 autoComplete="off"
+    //                 autoCorrect={false}
+    //                 // secureTextEntry={true}
+    //                 textContentType="oneTimeCode"
+    //                 value={value}
+    //                 onChangeText={onChange}
+    //                 onBlur={onBlur}
+    //                 onSubmitEditing={props.onSubmit}
+    //                 returnKeyType="go"
+    //             />
+    //             {error && (
+    //                 <Text className="text-red-500 text-sm mt-1 text-center">
+    //                     {error.message}
+    //                 </Text>
+    //             )}
+    //         </View>
+    //     )}
+    // />
 }
 
 export const SignInScreen = () => {

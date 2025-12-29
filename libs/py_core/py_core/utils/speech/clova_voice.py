@@ -4,6 +4,7 @@ from time import perf_counter
 from typing import Any, Literal, Union
 from chatlib.utils.integration import APIAuthorizationVariableSpec, APIAuthorizationVariableSpecPresets, APIAuthorizationVariableType, IntegrationService
 import httpx
+import aiofiles
 import pendulum
 from pydantic import BaseModel, ConfigDict, Field
 import requests
@@ -64,56 +65,66 @@ class ClovaVoice(IntegrationService):
     def _authorize_impl(cls, variables: dict[APIAuthorizationVariableSpec, Any]) -> bool:
         return True
 
-    
-
     async def create_voice(self, text: str, params: ClovaVoiceParams) -> str:
+        cache = Cache(AACessTalkConfig.voiceover_cache_dir_path)
+        cache_params = CacheKeyParams(**params.model_dump(), text=text, service="clova")
 
-        with Cache(AACessTalkConfig.voiceover_cache_dir_path) as cache:
-            cache_params = CacheKeyParams(**params.model_dump(), text=text, service="clova")
+        def get_from_cache():
             if cache_params.cache_key in cache:
-                print(f"Use cached voiceover file for \"{text}\"...")
-                if path.exists(cache[cache_params.cache_key]):
-                    return cache[cache_params.cache_key]
+                file_path = cache[cache_params.cache_key]
+                if path.exists(file_path):
+                    return file_path
                 else:
                     cache.delete(cache_params.cache_key)
-                    print("Cached file does not exist. Invalidate cache and regenerate the audio...")
-                
+                    print(
+                        "Cached file does not exist. Invalidate cache and regenerate the audio..."
+                    )
+            return None
 
-            headers = {
-                "Content-Type": "application/x-www-form-urlencoded",
-                "X-NCP-APIGW-API-KEY-ID" : self.get_auth_variable_for_spec(self.__client_id_spec),
-                "X-NCP-APIGW-API-KEY" : self.get_auth_variable_for_spec(self.__client_secret_spec)
-            }
+        cached_file = await to_thread(get_from_cache)
+        if cached_file:
+            print(f'Use cached voiceover file for "{text}"...')
+            return cached_file
 
-            body = params.model_dump(by_alias=True)
-            body["text"] = text
+        headers = {
+            "Content-Type": "application/x-www-form-urlencoded",
+            "X-NCP-APIGW-API-KEY-ID": self.get_auth_variable_for_spec(
+                self.__client_id_spec
+            ),
+            "X-NCP-APIGW-API-KEY": self.get_auth_variable_for_spec(
+                self.__client_secret_spec
+            ),
+        }
 
-            t_s = perf_counter()
+        body = params.model_dump(by_alias=True)
+        body["text"] = text
 
-            async with httpx.AsyncClient() as client:
-                response = await client.post(url=ENDPOINT_TTS, data=body, headers=headers)
+        t_s = perf_counter()
 
-            t_end = perf_counter()
+        async with httpx.AsyncClient() as client:
+            response = await client.post(url=ENDPOINT_TTS, data=body, headers=headers)
 
-            print(f"Clova Voice generation took {t_end - t_s} sec.")
+        t_end = perf_counter()
 
-            if response.status_code == 200:
-                
-                file_path = None
-                while True:
-                    timestamp = pendulum.now().format("YYYY-MM-DD-HH-mm-ss", locale="en")
-                    file_path = path.join(AACessTalkConfig.voiceover_cache_dir_path, f"voiceover_{timestamp}_{generate(size=8)}.mp3")
+        print(f"Clova Voice generation took {t_end - t_s} sec.")
 
-                    if not path.exists(file_path):
-                        break
-                
+        if response.status_code == 200:
+            file_path = None
+            while True:
+                timestamp = pendulum.now().format("YYYY-MM-DD-HH-mm-ss", locale="en")
+                file_path = path.join(
+                    AACessTalkConfig.voiceover_cache_dir_path,
+                    f"voiceover_{timestamp}_{generate(size=8)}.mp3",
+                )
 
+                if not path.exists(file_path):
+                    break
 
-                with open(file_path, 'wb') as fp:
-                    fp.write(response.content)
-                    
-                cache.set(cache_params.cache_key, file_path)
-                return file_path
-            else:
-                print(response.status_code, response.json())
-                raise Exception("Voiceover generation failed.")
+            async with aiofiles.open(file_path, "wb") as fp:
+                await fp.write(response.content)
+
+            await to_thread(cache.set, cache_params.cache_key, file_path)
+            return file_path
+        else:
+            print(response.status_code, response.json())
+            raise Exception("Voiceover generation failed.")

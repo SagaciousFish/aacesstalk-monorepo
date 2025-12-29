@@ -31,6 +31,7 @@ module.exports = {
         NETWORK_CONNECTION: "伺服器目前沒有回應。連線恢復後此視窗會自動關閉。如問題持續，請聯絡研究人員。",
         NETWORK_CONNECTION_REFRESH: "重試",
         EMPTY_DICTATION: "未偵測到語音。\n請再說一次你想對孩子說的話。",
-        SPEECH_ERROR_GENERAL: "語音辨識發生錯誤。\n請再說一次你想對孩子說的話。"
+        SPEECH_ERROR_GENERAL: "語音辨識發生錯誤。\n請再說一次你想對孩子說的話。",
+        NOT_SELECTING_CARDS: "請選擇卡片以繼續！"
     }
 }
