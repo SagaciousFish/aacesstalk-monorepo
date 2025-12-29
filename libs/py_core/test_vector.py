@@ -1,5 +1,3 @@
-from time import perf_counter
-
 from chatlib.global_config import GlobalConfig
 
 from py_core.config import AACessTalkConfig

@@ -3,6 +3,10 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/client-rn/src",
   "projectType": "application",
-  "targets": {},
+  "targets": {
+    "clear-avd": {
+      "command": "emulator -avd Medium_Tablet -wipe-data"
+    }
+  },
   "tags": []
 }
