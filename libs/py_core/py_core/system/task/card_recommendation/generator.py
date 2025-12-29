@@ -95,7 +95,11 @@ class ChildCardRecommendationGenerator:
 
         print(f"English cards generated: {t_trans - t_start} sec.")
 
-        translated_keywords = None if locale == UserLocale.English else await self.__translator.translate(recommendation)
+        translated_keywords = (
+            None
+            if locale == UserLocale.English
+            else await self.__translator.translate(recommendation, locale)
+        )
 
         t_end = perf_counter()
 
