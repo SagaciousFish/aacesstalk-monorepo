@@ -87,7 +87,7 @@ def ping():
 
 asset_path_regex = re.compile(r"\.[a-z0-9]+$", re.IGNORECASE)
 
-ROOT = Path(__file__).resolve().parent
+ROOT = Path(__file__).resolve().parent.parent
 static_frontend_path = ROOT / ".." / ".." / "dist" / "apps" / "admin-web"
 print(static_frontend_path)
 if path.exists(static_frontend_path):
@@ -107,6 +107,10 @@ if path.exists(static_frontend_path):
         "/", StaticFiles(directory=static_frontend_path, html=True), name="static"
     )
     print("Compiled static frontend file path was found. Mount the file.")
+else:
+    raise FileNotFoundError(
+        f"Compiled static frontend file path not found: {static_frontend_path}"
+    )
 
 ##############
 
