@@ -35,6 +35,8 @@ dependencies = [
     "en-core-web-sm",
     "aliyun-python-sdk-core",
     "torchvision",
+    "dashscope>=1.25.5",
+    "posthog<6.0.0",
 ]
 
 [tool.coverage.run]

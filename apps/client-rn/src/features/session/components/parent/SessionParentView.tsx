@@ -38,10 +38,10 @@ const ParentMessageTextInputView = (props: {
         })
     }), [])
 
-    return <PopupMenuScreenFrame onPop={props.onPopTextInput} 
+    return <PopupMenuScreenFrame onPop={props.onPopTextInput}
     backgroundClassName="absolute left-0 right-0 top-0 bottom-0" panelClassName="w-[80vw]">
         <View className="flex-row p-3">
-            <TextInput 
+            <TextInput
                 ref={field.ref}
                 value={field.value}
                 onChangeText={field.onChange}
@@ -68,13 +68,13 @@ const selectParentGuideIdsWithFeedbackToEnd = createSelector([parentGuideSelecto
     }
 
     return ids
-}) 
+})
 
 export const SessionParentView = (props: {
     topic: SessionTopicInfo
 }) => {
     const dispatch = useDispatch()
-    
+
     const isProcessing = useSelector(state => state.session.isProcessingRecommendation)
     const parentGuideIds = useSelector(selectParentGuideIdsWithFeedbackToEnd)
 
@@ -86,7 +86,7 @@ export const SessionParentView = (props: {
 
     const {t} = useTranslation()
 
-    const [isTextInputOn, setIsTextInputOn] = useState(false)    
+    const [isTextInputOn, setIsTextInputOn] = useState(false)
 
     const onTapSecretButton = useCallback(()=>{
         console.log("Tapped a secret button.")
@@ -106,7 +106,7 @@ export const SessionParentView = (props: {
     }, [isTextInputOn])
 
     const topic = useNonNullUpdatedValue(props.topic)
-    
+
     return <Fragment>
         <SessionTitleRibbon containerClassName="mt-12" category={topic?.category} />
         <RecordingIndicator/>

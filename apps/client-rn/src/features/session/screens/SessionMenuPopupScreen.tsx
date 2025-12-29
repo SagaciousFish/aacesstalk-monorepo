@@ -10,7 +10,7 @@ import { Alert } from "react-native";
 import { useMoveNextTurn } from "../hooks";
 
 export const SessionMenuPopupScreen = (props: NativeStackScreenProps<MainRoutes.MainNavigatorParamList, "session-menu">) => {
-    
+
     const {t} = useTranslation()
 
     const sessionId = useSelector(state => state.session.id)
@@ -25,8 +25,7 @@ export const SessionMenuPopupScreen = (props: NativeStackScreenProps<MainRoutes.
 
     const dispatch = useDispatch()
 
-    const onTerminationPress = useCallback(()=>{
-
+    const onTerminationPress = useCallback(() => {
         if(numTurns <= 1){
             console.log("The user did nothing. Just terminate the session without asking.")
             dispatch(cancelSession())
@@ -44,7 +43,7 @@ export const SessionMenuPopupScreen = (props: NativeStackScreenProps<MainRoutes.
     const onNextTurnPress = useMoveNextTurn(useCallback((turn: DialogueRole)=>{
         props.navigation.pop()
         }, [props.navigation]))
-    
+
     return <PopupMenuScreenFrame onPop={pop}>
         <PopupMenuItemView title={t("Session.Menu.NextTurn")} onPress={onNextTurnPress} disabled={!((currentTurn == DialogueRole.Child && canSubmitSelectedChildCards) || currentTurn == DialogueRole.Parent)}/>
         <PopupMenuItemView title={t("Session.Menu.TerminateSession")} destructive onPress={onTerminationPress}/>

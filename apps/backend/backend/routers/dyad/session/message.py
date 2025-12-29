@@ -1,12 +1,15 @@
 import asyncio
-from typing import Annotated
+from typing import Annotated, Optional
 
 import aiofiles
 from py_core.utils.speech.speech_recognizer_base import SpeechRecognizerBase
 from py_core.utils.speech.whisper import WhisperSpeechRecognizer
 from py_core.utils.speech.aliyun_nls import AliyunSpeechRecognizer
 
+from fastapi.responses import FileResponse
+
 from py_core.utils.speech.funasr_nano import FunASRNanoSpeechRecognizer
+from py_core.utils.speech.dashscope_audio import DashscopeFunAsrFileRecognizer
 
 # FunASR import is deferred to avoid heavy startup-time imports (numba/coverage)
 from pydantic import BaseModel
@@ -17,36 +20,56 @@ from py_core.system.moderator import ModeratorSession
 from chatlib.utils.time import get_timestamp
 from py_core.system.model import Dialogue, ParentGuideRecommendationResult, CardIdentity, ChildCardRecommendationResult, \
     CardInfo, ParentExampleMessage, UserLocale
+from fastapi import (
+    APIRouter,
+    Depends,
+    File,
+    Form,
+    HTTPException,
+    UploadFile,
+    Response,
+    Request,
+)
 
 from py_core.system.task.parent_guide_recommendation.punctuator import Punctuator
 
 from py_core.config import AACessTalkConfig
 
-from py_core.utils.speech import ClovaLongSpeech
 
-from backend.routers.dyad.common import get_signed_in_dyad_orm, retrieve_moderator_session
+from backend.routers.dyad.common import (
+    get_signed_in_dyad_orm,
+    retrieve_moderator_session,
+)
 
 from typing import TypeVar, Generic
 
 from backend.routers.errors import ErrorType
 from py_database.model import DyadORM
 
-T = TypeVar('T')
+T = TypeVar("T")
+
 
 class ResponseWithTurnId(BaseModel, Generic[T]):
     payload: T
     next_turn_id: str
+    resource_url: Optional[str] = None
+
 
 router = APIRouter()
 
 punctuator = Punctuator()
 
+
 class DialogueResponse(BaseModel):
     dyad_id: str
     dialogue: Dialogue
 
+
 @router.get("/all", response_model=DialogueResponse)
-async def get_dialogue(dyad: Annotated[DyadORM, Depends(get_signed_in_dyad_orm)], session: Annotated[ModeratorSession, Depends(retrieve_moderator_session)]) -> DialogueResponse:
+async def get_dialogue(
+    dyad: Annotated[DyadORM, Depends(get_signed_in_dyad_orm)],
+    session: Annotated[ModeratorSession, Depends(retrieve_moderator_session)],
+) -> DialogueResponse:
     dialogue = await session.storage.get_dialogue()
     return DialogueResponse(dyad_id=dyad.id, dialogue=dialogue)
 
@@ -54,23 +77,33 @@ async def get_dialogue(dyad: Annotated[DyadORM, Depends(get_signed_in_dyad_orm)]
 class SendParentMessageArgs(BaseModel):
     message: str
 
-@router.post("/parent/message/text", response_model=ResponseWithTurnId[ChildCardRecommendationResult])
-async def send_parent_message_text(args: SendParentMessageArgs,
-                              session: Annotated[ModeratorSession, Depends(retrieve_moderator_session)]) -> ResponseWithTurnId[ChildCardRecommendationResult]:
-    turn, recommendation = await session.submit_parent_message(parent_message=args.message)
+
+@router.post(
+    "/parent/message/text",
+    response_model=ResponseWithTurnId[ChildCardRecommendationResult],
+)
+async def send_parent_message_text(
+    args: SendParentMessageArgs,
+    session: Annotated[ModeratorSession, Depends(retrieve_moderator_session)],
+) -> ResponseWithTurnId[ChildCardRecommendationResult]:
+    turn, recommendation = await session.submit_parent_message(
+        parent_message=args.message
+    )
     return ResponseWithTurnId(payload=recommendation, next_turn_id=turn.id)
 
 
-
-@router.post('/parent/message/audio')
+@router.post("/parent/message/audio")
 async def send_parent_message_audio(
     file: Annotated[UploadFile, File()],
     turn_id: Annotated[str, Form()],
     dyad: Annotated[DyadORM, Depends(get_signed_in_dyad_orm)],
     session_id: str,
     session: Annotated[ModeratorSession, Depends(retrieve_moderator_session)],
+    request: Request,
 ) -> ResponseWithTurnId[ChildCardRecommendationResult]:
     try:
+        if file is None or file.filename is None:
+            raise HTTPException(status_code=400, detail=ErrorType.MissingAudioFile)
         extension = file.filename.split(".")[-1]
         target_filename = f"{session_id}__{turn_id}__{get_timestamp()}.{extension}"
         target_file_path = path.join(
@@ -93,20 +126,34 @@ async def send_parent_message_audio(
             await session.storage.upsert_dialogue_turn(turn_info)
 
         await asyncio.gather(write_file_task(), write_turn_info())
+        url = request.url_for(
+            "get_parent_message_audio",
+            dyad_id=dyad.id,
+            file_name=target_filename,
+        )
+        if AACessTalkConfig.public_base_url:
+            audio_url = f"{AACessTalkConfig.public_base_url.rstrip('/')}{url.path}"
+        else:
+            audio_url = str(url)
 
         print(f"Dictate parent turn audio... {file.filename}")
+        print(f"Audio URL: {audio_url}")
 
-        asr_engine = FunASRNanoSpeechRecognizer()
+        asr_engine = DashscopeFunAsrFileRecognizer()
 
-        print("Recognizing with Fun-ASR-Nano...")
+        print("Start recognizing...")
+
+        if file.content_type is None:
+            raise HTTPException(status_code=400, detail=ErrorType.DictationFail)
 
         text = await asr_engine.recognize_speech(
-            file.filename,
-            target_file_path,
+            audio_url,
+            file,
             file.content_type,
             dyad.locale,
             dyad.child_name,
         )
+
         if len(text) > 0:
             processed_text = await punctuator.punctuate(text)
             print(text, processed_text)
@@ -114,10 +161,14 @@ async def send_parent_message_audio(
             turn, recommendation = await session.submit_parent_message(
                 parent_message=processed_text
             )
-            return ResponseWithTurnId(payload=recommendation, next_turn_id=turn.id)
+            return ResponseWithTurnId(
+                payload=recommendation, next_turn_id=turn.id, resource_url=audio_url
+            )
         else:
-            return Response(status_code=500, content=ErrorType.EmptyDictation)
+            print("Empty dictation received.")
+            raise HTTPException(status_code=500, detail=ErrorType.EmptyDictation)
     except Exception as ex:
+        print(ex)
         raise HTTPException(status_code=500, detail=ex.__str__()) from ex
 
 

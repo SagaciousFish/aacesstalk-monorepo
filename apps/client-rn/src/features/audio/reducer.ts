@@ -7,6 +7,7 @@ import { Dirs, FileSystem } from "react-native-file-access";
 import { CoreThunk, Http, makeSubmitParentMessageAudioThunk } from "@aacesstalk/libs/ts-core";
 import ReactNativeBlobUtil from 'react-native-blob-util';
 import { Platform } from "react-native";
+import { stat } from "fs";
 
 
 export enum RecordingStatus{
@@ -124,25 +125,55 @@ export function resumeRecording(){
 export function stopRecording(cancel: boolean = false, onParentMessageError?:(error: string)=>void): ClientThunk{
     return async (dispatch, getState, extraArgument) => {
         const state = getState()
-        if(isRecordingActive == true && (state.parentAudioRecording.status == RecordingStatus.RecordingPause || state.parentAudioRecording.status == RecordingStatus.Recording)){
-            console.log("Recording stopped.")
-            isRecordingActive = false
-            dispatch(parentAudioRecordingSlice.actions.setRecordingStatus(RecordingStatus.Stopping))
-            const uri = await recorder.get().stopRecorder()
-            recorder.get().removeRecordBackListener()
-            recorder.delete()
+        if (isRecordingActive == false) {
+            console.log("Recording is not active. Ignoring stopRecording call.")
+            return
+        }
+        if (state.parentAudioRecording.status != RecordingStatus.Recording && state.parentAudioRecording.status != RecordingStatus.RecordingPause) {
+            console.log("Recording is not in recording or paused state. Ignoring stopRecording call.")
+            return
+        }
+
+        console.log("Recording stopped.")
+
+        isRecordingActive = false
+        dispatch(parentAudioRecordingSlice.actions.setRecordingStatus(RecordingStatus.Stopping))
+
+        let uri: string | undefined
+        try {
+            uri = await recorder.get().stopRecorder()
             console.log("audio file recorded at: ", uri)
-            if(cancel){
+
+            if (cancel) {
                 console.log("recording was canceled. remove audio file")
-                if(await FileSystem.exists(uri)){
-                    await FileSystem.unlink(uri)
+                try {
+                    if (uri && (await FileSystem.exists(uri))) {
+                        await FileSystem.unlink(uri)
+                    }
+                } catch (e) {
+                    console.log("failed to remove audio file:", e)
+                }
+            } else {
+                // await upload to capture errors / invoke callback on failure
+                try {
+                    if (!uri) throw new Error("No recorded file URI returned")
+                    await submitParentMessageFromAudio(uri, onParentMessageError)(dispatch, getState, extraArgument)
+                } catch (e) {
+                    console.log("upload/processing failed:", e)
+                    onParentMessageError?.(e?.toString?.() ?? String(e))
+                    throw e
                 }
             }
+        } catch (ex) {
+            console.log("Error stopping recording:", ex)
+            onParentMessageError?.(ex?.toString?.() ?? String(ex))
+            throw ex
+        } finally {
+            // ensure cleanup and consistent state even on error
+            try { recorder.get().removeRecordBackListener() } catch { }
+            try { recorder.delete() } catch { }
+            isRecordingActive = false
             dispatch(parentAudioRecordingSlice.actions.setRecordingStatus(RecordingStatus.Initial))
-
-            if(!cancel){
-                submitParentMessageFromAudio(uri, onParentMessageError)(dispatch, getState, extraArgument)
-            }
         }
     }
 }
@@ -168,7 +199,7 @@ function submitParentMessageFromAudio(uri: string, onParentMessageError?:(error:
                 headers,
                 [
                     {name: 'turn_id', data: state.session.currentTurnId},
-                    {name: 'file', filename: fileName, type: 'audio/m4a', data: ReactNativeBlobUtil.wrap(uri)}
+                    { name: 'file', filename: fileName, type: 'audio/wav', data: ReactNativeBlobUtil.wrap(uri) }
                 ])
 
             if(response.info().status == 200){

@@ -7,7 +7,7 @@
     "lock": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry lock --no-update",
+        "command": "uv lock --no-update",
         "cwd": "libs/py_core"
       }
     },
@@ -38,7 +38,7 @@
       "options": {
         "silent": false,
         "args": "",
-        "cacheDir": ".cache/pypoetry",
+        "cacheDir": ".cache/uv",
         "verbose": false,
         "debug": false
       }
@@ -57,63 +57,63 @@
         "{workspaceRoot}/coverage/libs/py_core"
       ],
       "options": {
-        "command": "poetry run pytest tests/",
+        "command": "uv run pytest tests/",
         "cwd": "libs/py_core"
       }
     },
     "cli": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python test_cli.py",
+        "command": "uv run python test_cli.py",
         "cwd": "libs/py_core"
       }
     },
     "inspect_card_translation": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python py_core/processing_tools/inspect_card_translation.py",
+        "command": "uv run python py_core/processing_tools/inspect_card_translation.py",
         "cwd": "libs/py_core"
       }
     },
     "gen_card_desc": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python py_core/processing_tools/generate_image_description.py",
+        "command": "uv run python py_core/processing_tools/generate_image_description.py",
         "cwd": "libs/py_core"
       }
     },
     "test_vector": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python test_vector.py",
+        "command": "uv run python test_vector.py",
         "cwd": "libs/py_core"
       }
     },
     "test_card_image_retrieval": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python test_card_image_retrieval.py",
+        "command": "uv run python test_card_image_retrieval.py",
         "cwd": "libs/py_core"
       }
     },
     "test_clova_voice": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python test_clova_voice.py",
+        "command": "uv run python test_clova_voice.py",
         "cwd": "libs/py_core"
       }
-    }, 
+    },
     "test_asr": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python test_asr.py",
+        "command": "uv run python test_asr.py",
         "cwd": "libs/py_core"
       }
     },
     "test_corpus_download": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "poetry run python test_corpus_download.py",
+        "command": "uv run python test_corpus_download.py",
         "cwd": "libs/py_core"
       }
     }

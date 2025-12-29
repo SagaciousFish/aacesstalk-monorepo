@@ -328,6 +328,7 @@ class ModeratorSession:
                     source_lang="auto",
                     target_lang="en",
                     context="The message is from a parent to their child.",
+                    user_locale=self.locale,
                 )
 
                 print("Translated parent message.")

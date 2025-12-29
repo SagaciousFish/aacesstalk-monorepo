@@ -767,6 +767,21 @@ wheels = [
 ]
 
 [[package]]
+name = "dashscope"
+version = "1.25.5"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "aiohttp" },
+    { name = "certifi" },
+    { name = "cryptography" },
+    { name = "requests" },
+    { name = "websocket-client" },
+]
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/c5/91/60f5353c8752d8ce489f4baeb252999d4cfb1a784c0beda34b5287135d65/dashscope-1.25.5-py3-none-any.whl", hash = "sha256:1be9eebaf1e7327317a22db9233770f4252463b926c84071ffd8805ae06cf998", size = 1323186, upload-time = "2025-12-18T02:15:26.462Z" },
+]
+
+[[package]]
 name = "decorator"
 version = "5.2.1"
 source = { registry = "https://pypi.org/simple" }
@@ -2234,7 +2249,7 @@ wheels = [
 
 [[package]]
 name = "posthog"
-version = "7.0.1"
+version = "5.4.0"
 source = { registry = "https://pypi.org/simple" }
 dependencies = [
     { name = "backoff" },
@@ -2242,11 +2257,10 @@ dependencies = [
     { name = "python-dateutil" },
     { name = "requests" },
     { name = "six" },
-    { name = "typing-extensions" },
 ]
-sdist = { url = "https://files.pythonhosted.org/packages/a2/d4/b9afe855a8a7a1bf4459c28ae4c300b40338122dc850acabefcf2c3df24d/posthog-7.0.1.tar.gz", hash = "sha256:21150562c2630a599c1d7eac94bc5c64eb6f6acbf3ff52ccf1e57345706db05a", size = 126985, upload-time = "2025-11-15T12:44:22.465Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/48/20/60ae67bb9d82f00427946218d49e2e7e80fb41c15dc5019482289ec9ce8d/posthog-5.4.0.tar.gz", hash = "sha256:701669261b8d07cdde0276e5bc096b87f9e200e3b9589c5ebff14df658c5893c", size = 88076, upload-time = "2025-06-20T23:19:23.485Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/05/0c/8b6b20b0be71725e6e8a32dcd460cdbf62fe6df9bc656a650150dc98fedd/posthog-7.0.1-py3-none-any.whl", hash = "sha256:efe212d8d88a9ba80a20c588eab4baf4b1a5e90e40b551160a5603bb21e96904", size = 145234, upload-time = "2025-11-15T12:44:21.247Z" },
+    { url = "https://files.pythonhosted.org/packages/4f/98/e480cab9a08d1c09b1c59a93dade92c1bb7544826684ff2acbfd10fcfbd4/posthog-5.4.0-py3-none-any.whl", hash = "sha256:284dfa302f64353484420b52d4ad81ff5c2c2d1d607c4e2db602ac72761831bd", size = 105364, upload-time = "2025-06-20T23:19:22.001Z" },
 ]
 
 [[package]]
@@ -2366,6 +2380,7 @@ dependencies = [
     { name = "aliyun-python-sdk-core" },
     { name = "chatlib" },
     { name = "chromadb" },
+    { name = "dashscope" },
     { name = "deepl" },
     { name = "diskcache" },
     { name = "en-core-web-sm" },
@@ -2379,6 +2394,7 @@ dependencies = [
     { name = "pandas" },
     { name = "pendulum" },
     { name = "pillow" },
+    { name = "posthog" },
     { name = "pydantic" },
     { name = "pydub" },
     { name = "questionary" },
@@ -2410,6 +2426,7 @@ requires-dist = [
     { name = "aliyun-python-sdk-core" },
     { name = "chatlib", git = "https://github.com/yghokim/chatlib.git?tag=0.7.16" },
     { name = "chromadb" },
+    { name = "dashscope", specifier = ">=1.25.5" },
     { name = "deepl" },
     { name = "diskcache" },
     { name = "en-core-web-sm", url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.6.0/en_core_web_sm-3.6.0.tar.gz" },
@@ -2423,6 +2440,7 @@ requires-dist = [
     { name = "pandas" },
     { name = "pendulum" },
     { name = "pillow" },
+    { name = "posthog", specifier = "<6.0.0" },
     { name = "pydantic" },
     { name = "pydub" },
     { name = "questionary" },

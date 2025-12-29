@@ -1,7 +1,7 @@
 from itertools import groupby
 
 import spacy
-from chatlib.llm.integration import GPTChatCompletionAPI, ChatGPTModel
+from chatlib.llm.integration import GPTChatCompletionAPI
 from chatlib.tool.converter import generate_type_converter
 from chatlib.tool.versatile_mapper import ChatCompletionFewShotMapper, ChatCompletionFewShotMapperParams
 from chatlib.utils.jinja_utils import convert_to_jinja_template
@@ -101,7 +101,7 @@ class CardTranslator:
 
         dictionary_hit_count = 0
         for i, (word, category) in enumerate(word_list):
-            localized = self.__dictionary.lookup(word, category)
+            localized = self.__dictionary.lookup(word, category, user_locale)
             if localized is not None:
                 localized_words[i] = localized
                 dictionary_hit_count += 1
