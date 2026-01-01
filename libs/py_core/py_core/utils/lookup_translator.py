@@ -39,7 +39,9 @@ class LookupTranslator(AbstractContextManager):
                 if self.verbose:
                     print(f"Loading a dictionary file...")
                 t_start = perf_counter()
-                with open(self.__dict_filepath, mode='r', encoding='utf8') as csvfile:
+                with open(
+                    self.__dict_filepath, mode="r", encoding="utf8", newline=""
+                ) as csvfile:
                     reader = csv.DictReader(csvfile, fieldnames=DictionaryRow.field_names())
                     next(reader, None)
 
@@ -70,7 +72,9 @@ class LookupTranslator(AbstractContextManager):
             if self.verbose:
                 print("Write lookup dictionary to file..")
 
-            with open(self.__dict_filepath, mode='w', encoding='utf8') as csvfile:
+            with open(
+                self.__dict_filepath, mode="w", encoding="utf8", newline=""
+            ) as csvfile:
                 writer = csv.DictWriter(csvfile, fieldnames=DictionaryRow.field_names())
                 writer.writeheader()
 
@@ -94,11 +98,14 @@ class LookupTranslator(AbstractContextManager):
     def _parse_localized(self, localized: str, locale: UserLocale) -> str:
         import orjson
 
-        parsed = orjson.loads(localized)
-        if isinstance(parsed, dict) and locale in parsed:
-            return parsed[locale]
-        else:
-            return f"localized string parse error:{localized}"
+        try:
+            parsed = orjson.loads(localized)
+            if isinstance(parsed, dict) and locale in parsed:
+                return parsed[locale]
+            else:
+                return f"localized string parse error:{localized}"
+        except Exception as e:
+            return f"localized string parse error:{localized} ({e})"
 
     def lookup(self, english: str, category: str, locale: UserLocale) -> str | None:
         key = (english, category)

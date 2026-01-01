@@ -1,21 +1,928 @@
 id,category,english,localized,inspected
-core_cards/yes.png,core,Yes,"{""en"":""Yes"",""ko"":""네"",""zh"":""是"",""yue"":""係""}",True
-core_cards/no.png,core,No,"{""en"":""No"",""ko"":""아니오"",""zh"":""不是"",""yue"":""唔係""}",True
-core_cards/idk.png,core,I don't know,"{""en"":""I don't know"",""ko"":""모르겠어요"",""zh"":""我不知道"",""yue"":""我唔知""}",True
-core_cards/ask.png,core,Ask,"{""en"":""Ask"",""ko"":""물어보다"",""zh"":""提问"",""yue"":""問""}",True
-core_cards/how_are_you.png,core,How are you?,"{""en"":""How are you?"",""ko"":""어떻게 지내세요?"",""zh"":""你感觉怎么样？"",""yue"":""你點呀？""}",True
-core_cards/happy.png,emotion,Happy,"{""en"":""Happy"",""ko"":""행복해요"",""zh"":""快乐"",""yue"":""開心""}",True
-core_cards/sad.png,emotion,Sad,"{""en"":""Sad"",""ko"":""슬퍼요"",""zh"":""伤心"",""yue"":""傷心""}",True
-core_cards/cry.png,emotion,Gloomy,"{""en"":""Gloomy"",""ko"":""우울해요"",""zh"":""悲伤"",""yue"":""悲傷""}",True
-core_cards/bored.png,emotion,Bored,"{""en"":""Bored"",""ko"":""지루해요"",""zh"":""无聊"",""yue"":""無聊""}",True
-core_cards/tired.png,emotion,Tired,"{""en"":""Tired"",""ko"":""피곤해요"",""zh"":""疲惫"",""yue"":""疲憊""}",True
-core_cards/angry.png,emotion,Angry,"{""en"":""Angry"",""ko"":""화나요"",""zh"":""生气"",""yue"":""生氣""}",True
-core_cards/glad.png,emotion,Glad,"{""en"":""Glad"",""ko"":""기뻐요"",""zh"":""高兴"",""yue"":""高興""}",True
-core_cards/surprised.png,emotion,Surprised,"{""en"":""Surprised"",""ko"":""놀랐어요"",""zh"":""惊讶"",""yue"":""驚訝""}",True
-core_cards/delighted.png,emotion,Delighted,"{""en"":""Delighted"",""ko"":""매우 기뻐요"",""zh"":""欣喜"",""yue"":""欣喜""}",True
-core_cards/confused.png,emotion,Confused,"{""en"":""Confused"",""ko"":""혼란스러워요"",""zh"":""困惑"",""yue"":""困惑""}",True
-core_cards/scared.png,emotion,Scared,"{""en"":""Scared"",""ko"":""무서워요"",""zh"":""害怕"",""yue"":""害怕""}",True
-core_cards/shy.png,emotion,Shy,"{""en"":""Shy"",""ko"":""수줍어요"",""zh"":""害羞"",""yue"":""害羞""}",True
-core_cards/calm.png,emotion,Calm,"{""en"":""Calm"",""ko"":""차분해요"",""zh"":""平静"",""yue"":""平靜""}",True
-core_cards/fearful.png,emotion,Fearful,"{""en"":""Fearful"",""ko"":""두려워요"",""zh"":""恐惧"",""yue"":""恐懼""}",True
-core_cards/beloved.png,emotion,Beloved,"{""en"":""Beloved"",""ko"":""애정이 충만하다"",""zh"":""充满爱意"",""yue"":""充滿愛意""}",True
+yes,core,Checkmark,체크마크,False
+no,core,No,아니요,False
+idk,core,I don't know,나는 모른다,False
+ask,core,Ask,물어보기,False
+how_are_you,core,Emotion Faces,감정 얼굴,False
+happy,emotion,Happy Face,행복한 얼굴,False
+sad,emotion,Sad Face,슬픈 얼굴,False
+gloomy,emotion,Sad Face,슬픈 얼굴,False
+bored,emotion,Bored,지루함,False
+tired,emotion,Tired,피곤,False
+angry,emotion,Angry Face,화난 얼굴,False
+glad,emotion,Happy Face,행복한 얼굴,False
+surprised,emotion,Surprised Face,놀란 얼굴,False
+delighted,emotion,Delighted,기쁨,False
+confused,emotion,Confused Face,혼란스러운 얼굴,False
+scared,emotion,Scared,무서움,False
+shy,emotion,Shy Face,수줍은 얼굴,False
+calm,emotion,Calm,침착,False
+fearful,emotion,Fearful,두려운,False
+beloved,emotion,Smiling Face,웃는 얼굴,False
+13a-01企,activities,Standing,서기,False
+13a-02行,activities,Walking,걷기,False
+13a-03坐,activities,Sit,앉기,False
+13a-04跳,activities,Jump,점프,False
+13a-05我要,activities,I want,나는 원해,False
+13a-06食,activities,Eating,먹는 중,False
+13a-07飲,activities,Drinking,마시기,False
+13a-08切,activities,Cutting,자르기,False
+13a-09塗,activities,Spreading,바르기,False
+13a-10舀,activities,Scooping,杓기,False
+13a-11買,activities,Shopping,쇼핑,False
+13a-12點頭,activities,Nodding,끄덕이기,False
+13a-13倒,activities,Pouring,부어넣다,False
+13a-14食飯,activities,Eating Meal,식사하기,False
+13a-15睡覺,activities,Sleeping,잠자기,False
+13a-16做功課,activities,Doing Homework,숙제하기,False
+13a-17玩電腦,activities,Playing Computer,컴퓨터 놀이,False
+13a-18看書,activities,Reading a Book,책 읽기,False
+13a-19看報紙,activities,Reading a Newspaper,신문 읽기,False
+13a-20看電視,activities,Watching TV,텔레비전 보기,False
+13a-21聽電話,activities,Answering the Phone,전화 받기,False
+13a-22談話,activities,Conversation,대화,False
+13a-23送禮物,activities,Giving a Gift,선물 주기,False
+13a-24煮飯,activities,Cooking,요리하기,False
+13a-25收拾碗筷,activities,Clearing the Table,식기 정리하기,False
+13a-26洗碗,activities,Washing Dishes,접시 씻기,False
+13a-27抹檯,activities,Wiping the Table,테이블 닦기,False
+13a-28掃地,activities,Sweeping the floor,바닥 청소,False
+13a-29吸塵,activities,Vacuuming,진공 청소,False
+13a-30拋垃圾,activities,Throwing Trash,쓰레기 버리기,False
+13a-31收拾玩具,activities,Putting Away Toys,장난감 정리하기,False
+13a-32收拾書包,activities,Packing a School Bag,학교 가방 정리하기,False
+13a-33洗衣服,activities,Washing Clothes,옷 세탁하기,False
+13a-34上班,activities,Going to Work,출근,False
+13a-35上街,activities,Going to the Street,거리에 나가기,False
+13a-36排隊等車,activities,Waiting in Line for the Bus,버스를 기다리는 줄 서기,False
+13a-37排隊玩,activities,Line Up to Play,줄서서 놀기,False
+13a-38飲茶,activities,Drinking Tea,차 마시기,False
+13a-39寄信,activities,Sending a Letter,편지 보내기,False
+13a-40看醫生,activities,Seeing a Doctor,의사 보러 가기,False
+13a-41食藥,activities,Taking Medicine,약 먹기,False
+13a-42戴口罩,activities,Wearing a Mask,마스크 착용,False
+13b-01刷牙,activities,Brushing Teeth,이빨 닦기,False
+13b-02洗_抹面_1_,activities,Washing / Wiping Face,얼굴 씻기 / 닦기,False
+13b-03抹嘴,activities,Wiping Mouth,입 닦기,False
+13b-04洗手,activities,Washing Hands,손 씻기,False
+13b-05抹手,activities,Wiping Hands,손 닦기,False
+13b-06梳頭,activities,Brushing Hair,머리 정리하기,False
+13b-07洗澡,activities,Taking a shower,목욕하기,False
+13b-08洗髮,activities,Washing Hair,머리 감기,False
+13b-09穿衣服,activities,Putting on Clothes,옷 입기,False
+13b-10除掉衣服,activities,Take off clothes,옷 벗기기,False
+13b-11穿外套,activities,Putting on a jacket,자켓 입기,False
+13b-12除掉外套,activities,Take off the jacket,자켓 벗기기,False
+13b-13穿褲,activities,Putting on pants,바지 입기,False
+13b-14除掉褲,activities,Take off pants,바지를 벗기다,False
+13b-15穿襪,activities,Putting on Socks,양말 신기,False
+13b-16除掉襪,activities,Take off socks,양말 벗기기,False
+13b-17穿鞋,activities,Putting on Shoes,신발 신기,False
+13b-18除掉鞋,activities,Take off Shoes,신발 벗기기,False
+13b-19扣鈕,activities,Buttoning Clothes,옷 단추 죄기,False
+13b-20拉拉鍊,activities,Zip up jacket,잠금장치를 당기다,False
+13b-21換衣服,activities,Changing Clothes,옷 갈아입기,False
+13b-22照鏡,activities,Looking in the Mirror,거울을 보다,False
+13b-23剪髮,activities,Haircut,머리 자르기,False
+13b-24剪指甲,activities,Cutting Nails,손톱 깎기,False
+13b-25剪腳甲,activities,Cutting Toenails,발톱 자르기,False
+13b-26吹髮,activities,Blow-drying hair,머리 말리기,False
+13c-01玩玩具,activities,Playing with Toys,장난감 놀이,False
+13c-02踏單車_1_,activities,Riding a Bicycle,자전거 타기,False
+13c-03玩滑梯,activities,Playing on a slide,미끄럼틀 놀이,False
+13c-04打鞦韆,activities,Swinging,鞦韆 타기,False
+13c-05玩__轉,activities,Playing on a Spinning Carousel,회전목마 놀이,False
+13c-06玩搖搖馬,activities,Playing on a Rocking Horse,흔드는 말 놀이,False
+13c-07做運動,activities,Doing Exercise,운동하기,False
+13c-08跑步,activities,Running,달리기,False
+13c-09跳繩,activities,Jump Rope,줄넘기,False
+13c-10踢波,activities,Playing Soccer,축구하기,False
+13c-11打羽毛球,activities,Playing Badminton,배드민턴 치기,False
+13c-12打籃球,activities,Playing Basketball,농구하기,False
+13c-13打乒乓球,activities,Playing Table Tennis,테이블 테니스하기,False
+13c-14游泳,activities,Swimming,수영,False
+13c-15跳舞,activities,Dancing,춤추기,False
+13c-16唱歌,activities,Singing,노래 부르기,False
+13c-17聽歌,activities,Listening to Music,음악 듣기,False
+13c-18彈琴,activities,Playing the Piano,피아노 연주,False
+13c-19畫畫,activities,Drawing,그림 그리기,False
+13c-20旅行,activities,Travel,여행,False
+13c-21燒烤,activities,Barbecue,바비큐,False
+13c-22在圖書館看書,activities,Reading in the Library,도서관에서 책 읽기,False
+13d-01上學,activities,Going to School,학교에 가다,False
+13d-02上課,activities,Class,수업,False
+13d-03小息,activities,Break Time,휴식 시간,False
+13d-04玩遊戲,activities,Playing Games,게임하기,False
+13d-05放學,activities,After School,하교,False
+13d-06校車,activities,Taking the School Bus,학교 버스 타기,False
+13d-07運動會,activities,Sports Day,운동회,False
+13d-08水運會,activities,Aquatic Sports Day,수영 대회,False
+13d-09開學日,activities,First Day of School,등교 첫날,False
+13d-10聖誕慶祝會,activities,Christmas Celebration,크리스마스 축하회,False
+13d-11家長日,activities,Parent-Teacher Day,부모일,False
+13d-12畢業典禮,activities,Graduation Ceremony,졸업식,False
+13d-13暑假,activities,Summer Vacation,여름방학,False
+activities,activities,Activities,활동,False
+art-1,activities,Art Palette,색상 팔레트,False
+art,activities,Art,미술,False
+assembly-1,activities,Assembling a Bed,침대 조립,False
+assembly,activities,Assembly,모임,False
+assessment-1,activities,Children Taking a Test,아이들이 시험을 보는 중,False
+bath,activities,Taking a Bath,목욕하기,False
+bedtime1,activities,Sleeping,잠자기,False
+bedtime2,activities,Sleeping,잠자기,False
+big_writing,activities,Writing,쓰기,False
+breakfast1,activities,Eating Breakfast,아침 식사하기,False
+breakfast2,activities,Eating Breakfast,아침 식사하기,False
+brush_teeth1,activities,Brushing Teeth,이빨 닦기,False
+brush_teeth2,activities,Brushing Teeth,이빨 닦기,False
+bus_time,activities,Bus,버스,False
+calendar-1,activities,Calendar,달력,False
+carpet_time,activities,Carpet Time,카펫 시간,False
+church,activities,Church,교회,False
+climb-4603,activities,Climbing,오르다,False
+close-4706,activities,Closing the Door,문 닫기,False
+computer,activities,Computer,컴퓨터,False
+computerlab-1,activities,Computer Lab,컴퓨터 실습실,False
+computers,activities,Computer Time,컴퓨터 시간,False
+conference-1,activities,Having a Conference,회의하기,False
+cook-4604,activities,Cooking,조리,False
+cooking__2_,activities,Cooking Class,요리 수업,False
+cooking-1,activities,Cooking,요리,False
+cooking,activities,Cooking,요리하기,False
+cry-4601,activities,Crying,울다,False
+cut-4812,activities,Cutting Paper,종이 자르기,False
+D_T,activities,Home Economics,가사 수업,False
+dance-4509,activities,Dancing,춤추기,False
+dance,activities,Dance Class,무용 수업,False
+dinner1,activities,Eating Dinner,저녁 식사하기,False
+dinner2,activities,Eating dinner,저녁을 먹다,False
+doingdishes,activities,Doing Dishes,접시 씻기,False
+doinghomework__1_,activities,Doing Homework,숙제하기,False
+doinghomework__2_,activities,Doing Homework,숙제하기,False
+doinghomework,activities,Doing Homework,숙제하기,False
+dressingclothes,activities,Putting on a shirt,셔츠 입기,False
+drink-4701,activities,Drinking,마시다,False
+eat-4702,activities,Eating,먹기,False
+eating,activities,Eating,식사,False
+english-1,activities,ABC Book,ABC 책,False
+exercise-1,activities,Jumping Rope,줄넘기,False
+feedingcat,activities,Feeding the Cat,고양이에게 먹이 주기,False
+firstaid-1,activities,First Aid Kit,응급처치 키트,False
+Geography,activities,Geography,지리,False
+get_up1,activities,Get up,일어나기,False
+get_up2,activities,Get up,일어나기,False
+give-4805,activities,Giving a Gift,선물 주기,False
+gym-1,activities,Gymnastics Exercise,체조 운동,False
+gymnastics,activities,Gymnastics,체조,False
+havingdinner,activities,Having Dinner,저녁 식사하기,False
+history,activities,History,역사,False
+home_time,activities,Going Home After School,학교 끝나고 집에 가기,False
+homework__1_,activities,Doing Homework,숙제하기,False
+homework,activities,Doing Homework,숙제하기,False
+journal-1,activities,Journal,일기장,False
+jump-4507,activities,Jump,점프,False
+language-1,activities,Writing at a Desk,책상에서 글 쓰기,False
+laugh-4602,activities,Laugh,웃기,False
+library-1,activities,Library Bookshelf,도서관 책장,False
+library,activities,Library,도서실,False
+listen-4703,activities,Listen,들으세요,False
+lunch_time,activities,Lunch,점심,False
+lunch-1,activities,Lunchbox,점심 상자,False
+lunch1,activities,Eating Lunch,점심 먹기,False
+lunch2,activities,Eating Lunch,점심 먹기,False
+makingbed,activities,Making the Bed,침대 정리하기,False
+math-1,activities,Adding Apples,사과 더하기,False
+maths,activities,Mathematics,수학,False
+mental_maths,activities,Mental Math,심산,False
+music,activities,Music Class,음악 수업,False
+open-4704,activities,Opening a Door,문 열기,False
+outdoor_activities,activities,Outdoor Activities,실외 활동,False
+painting,activities,Painting,그림 그리기,False
+park,activities,Hiking,등산,False
+pe-1,activities,Jumping,점프,False
+pe,activities,Physical Education Class,체육수업,False
+pickuptoys,activities,Pick Up Toys,장난감 정리하기,False
+planners-1,activities,Planner and Pen,플래너와 펜,False
+play_outside,activities,Go Outside to Play,외부에서 놀기,False
+play-4503,activities,Playing with a toy car,장난감 차량 놀이,False
+playground,activities,Go to the park to play,공원에서 놀러가기,False
+playtime_1,activities,Playtime - Rings and Jump Rope,놀이 시간 - 고리와 점프로프,False
+playtime_2,activities,Recess Time,하교 시간,False
+pull-4801,activities,Pulling a Rope,줄 당기기,False
+push-4802,activities,Pushing a Cabinet,장식장 밀기,False
+read-4505,activities,Reading,읽기,False
+readabook,activities,Read a Book,책 읽기,False
+reading-1,activities,Reading,읽기,False
+reading,activities,Reading,읽기,False
+recess-1,activities,Playground Slide,놀이터 미끄럼틀,False
+ride-4508,activities,Riding a Bicycle,자전거 타기,False
+run-4502,activities,Running,달리기,False
+science,activities,Nature Exploration,자연 탐구,False
+settable,activities,Setting the Table,식탁 정리하기,False
+shopping,activities,Shopping,쇼핑,False
+shower,activities,Shower,샤워,False
+sing-4709,activities,Singing,노래 부르기,False
+singing,activities,Singing,노래 부르기,False
+sit-4809,activities,Sit,앉기,False
+sleep-4504,activities,Sleeping,잠자기,False
+sleep-boy,activities,Sleeping Boy,잠자는 소년,False
+sleep-girl,activities,Girl Sleeping and Dreaming,여자아이가 잠자고 꿈을 꾸는 모습,False
+snack_time,activities,Snack Time,간식 시간,False
+speech-1,activities,Reading a Book,책 읽기,False
+stand-4810,activities,Standing,서기,False
+story__2_,activities,Tell a Story,이야기하기,False
+story,activities,Telling Stories,이야기하기,False
+swimming__2_,activities,Swimming Lesson,수영 수업,False
+swimming,activities,Swimming,수영,False
+talk-4509,activities,Talking on the Phone,전화 통화하기,False
+tea_time,activities,Afternoon Tea Time,오후 차 시간,False
+television,activities,Watching Television,텔레비전 보기,False
+think-4803,activities,Thinking,생각하기,False
+throwaway-4706,activities,Throwing away trash,버리다,False
+tidy_time,activities,Cleaning,청소,False
+toilet_break,activities,Go to the bathroom,화장실 가기,False
+toilet,activities,Using the Toilet,화장실 사용,False
+toys,activities,Toys,장난감,False
+trip_out,activities,Double-decker bus,이층 버스,False
+vacuumfloor,activities,Vacuuming the Floor,바닥 청소하기,False
+video_time,activities,Video Time,영상 시간,False
+wait-4605,activities,Waiting for the Bus,버스 기다리기,False
+wakingup,activities,Waking Up,기상,False
+walk_the_dog,activities,Walk the Dog,개 산책,False
+walk-4501,activities,Walking,걷기,False
+walkdog,activities,Walking a Dog,개 산책하기,False
+wash_and_brush_teeth1,activities,Washing Face and Brushing Teeth,얼굴 씻기와 칫솔질,False
+wash_and_brush_teeth2,activities,Washing Face and Brushing Teeth,얼굴 씻기와 칫솔질,False
+wash-4806,activities,Washing Hands,손 씻기,False
+write-4506,activities,Writing,글쓰기,False
+10-01電話,appliances,Telephone,전화,False
+10-02手提電話,appliances,Mobile Phone,휴대전화,False
+10-03電視,appliances,Television,텔레비전,False
+10-04電腦,appliances,Computer,컴퓨터,False
+10-05風扇,appliances,Electric Fan,전기 선풍기,False
+10-06冷氣機,appliances,Air Conditioner,에어컨,False
+10-07洗衣機,appliances,Washing Machine,세탁기,False
+10-08雪櫃,appliances,Refrigerator,냉장고,False
+10-09電飯煲,appliances,Electric Rice Cooker,전기밥솥,False
+10-10微波爐,appliances,Microwave Oven,전자레인지,False
+10-11電水壼,appliances,Electric Kettle,전기 주전자,False
+10-12鐘,appliances,Clock,시계,False
+10-13燈,appliances,Ceiling Lamp,천장등,False
+10-14檯燈,appliances,Desk Lamp,책상등,False
+10-15熨斗,appliances,Iron,다리미,False
+10-16風筒,appliances,Hair Dryer,헤어드라이어,False
+10-17吸塵機,appliances,Vacuum Cleaner,청소기,False
+10-18相機,appliances,Camera,카메라,False
+10-19收音機,appliances,Radio,라디오,False
+10-20音響組合,appliances,Stereo System,스테레오 시스템,False
+10-21錄影機,appliances,VCR,비디오 레코더,False
+10-22DVD機,appliances,DVD Player,DVD 플레이어,False
+7-01狗,beings,Dog,개,False
+7-02貓,beings,Cat,고양이,False
+7-03雞,beings,Chicken,닭,False
+7-04豬,beings,Pig,돼지,False
+7-05羊,beings,Goat,양,False
+7-06牛,beings,Ox,소,False
+7-07馬,beings,Horse,말,False
+7-08白兔,beings,White Rabbit,흰 토끼,False
+7-09魚,beings,Fish,물고기,False
+7-10鳥,beings,Bird,새,False
+7-11象,beings,Elephant,코끼리,False
+7-12獅子,beings,Lion,사자,False
+7-13老虎,beings,Tiger,호랑이,False
+7-14猴子,beings,Monkey,원숭이,False
+7-15長頸鹿,beings,Giraffe, żyrafa,False
+7-16老鼠,beings,Mouse,쥐,False
+7-17龜,beings,Turtle,거북이,False
+7-18海豚,beings,Dolphin,돌고래,False
+7-19鯨魚,beings,Whale,고래,False
+7-20草,beings,Grass,풀,False
+7-21樹,beings,Tree,나무,False
+7-22花,beings,Rose,장미,False
+5-01短袖衫,clothes,Short-sleeved shirt,반팔 셔츠,False
+5-02長袖衫,clothes,Long-sleeve shirt,긴팔 셔츠,False
+5-03恤衫,clothes,Shirt,셔츠,False
+5-04短褲,clothes,Shorts,반바지,False
+5-05長褲,clothes,Long pants,긴 바지,False
+5-06裙,clothes,Skirt,스커트,False
+5-07運動衫,clothes,Sports Uniform,운동복,False
+5-08冷衫,clothes,Sweater,니트 스웨터,False
+5-09褸,clothes,Jacket,자켓,False
+5-10校服,clothes,School Uniform,학교 제복,False
+5-11內褲,clothes,Underwear,내의,False
+5-12襪,clothes,Socks,양말,False
+5-13拖鞋,clothes,Slippers,슬리퍼,False
+5-14波鞋,clothes,Sneakers,운동화,False
+5-15水鞋,clothes,Rain Boots,비옷 신발,False
+5-16帽,clothes,Cap,모자,False
+5-17書包,clothes,Backpack,등산용 가방,False
+5-18頸巾,clothes,Scarf,목도리,False
+5-19手襪,clothes,Gloves,장갑,False
+5-20泳衣,clothes,Swimsuit,수영복,False
+5-21泳褲,clothes,Swim Trunks,수영복,False
+apron,clothes,Apron, 앞치마,False
+belt,clothes,Belt,벨트,False
+blouse,clothes,Blouse,블라우스,False
+boots,clothes,Rain Boots,비옷 부츠,False
+cap,clothes,Beach Ball Cap,비치볼 모자,False
+coat,clothes,Coat,코트,False
+gloves,clothes,Gloves,장갑,False
+jacket,clothes,Jacket,자켓,False
+pajama,clothes,Pajamas,잠옷,False
+pants,clothes,Pants,바지,False
+raincoat,clothes,Raincoat,비옷,False
+scarf,clothes,Scarf,목도리,False
+cold,emotions,Cold,추운,False
+cry,emotions,Sadness,슬픔,False
+donotdoit,emotions,Do Not Do It,하지 마세요,False
+happy-2,emotions,Happy,행복,False
+hot,emotions,Hot,뜨겁다,False
+hungry,emotions,Hungry,배고픔,False
+iammad,emotions,I am angry,나는 화가 나 있음,False
+idonotlikeit,emotions,I Don't Like It,나는 좋아하지 않아요,False
+idonotwantit,emotions,I don't want this,이걸 원하지 않아요,False
+iforgot,emotions,I Forgot,나는 잊어버렸어,False
+mad,emotions,Angry,화가 나다,False
+sick,emotions,Sick,병에 걸렸어요,False
+thirsty,emotions,Thirsty,목마름,False
+toonoisy,emotions,Too Noisy,너무 시끄러워,False
+ukastonished-1,emotions,Surprised,놀라움,False
+ukcold-1,emotions,Feeling Cold,추운 기분,False
+ukconfused-1,emotions,Confused,혼란스러움,False
+ukembarassed-1,emotions,Embarrassed,부끄러움,False
+ukhappy-1,emotions,Happy Girl,행복한 소녀,False
+ukhot-1,emotions,Sweating Face,땀 흘리는 얼굴,False
+uksad-1,emotions,Sad Face,슬픈 얼굴,False
+uksleepy-1,emotions,Sleepy,졸린,False
+ukworries-1,emotions,Worried Boy,걱정하는 소년,False
+urdrivingmecrazy,emotions,You're Driving Me Crazy,너는 나를 미치게 해,False
+yell,emotions,Yelling,외치다,False
+14-01聖誕節,festivals,Christmas,크리스마스,False
+14-02聖誕老人,festivals,Santa Claus,산타클로스,False
+14-03聖誕咭,festivals,Christmas Card,크리스마스 카드,False
+14-04聖誕樹,festivals,Christmas Tree,크리스마스 트리,False
+14-05聖誕襪,festivals,Christmas Stocking,크리스마스 양말,False
+14-06禮物,festivals,Gifts,선물,False
+14-07聖誕花,festivals,Poinsettia,성탄화,False
+14-08聖誕鐘,festivals,Christmas Bells,크리스마스 종,False
+14-09聖誕星,festivals,Christmas Star,크리스마스 별,False
+14-10聖誕帽,festivals,Santa Hat,산타 모자,False
+14-11燈飾,festivals,Christmas Light Decoration,크리스마스 조명 장식,False
+14-12新年,festivals,New Year,새해,False
+14-13農曆新年,festivals,Lunar New Year,음력 새해,False
+14-14大掃除,festivals,Spring Cleaning,대청소,False
+14-15全盒,festivals,Full Box,전상자,False
+14-16利是,festivals,Red Envelope (Lai See),빨간 봉투 (라이 시),False
+14-17揮春,festivals,Spring Festival Couplets,춘聯,False
+14-18水仙,festivals,Narcissus,수선화,False
+14-19桔,festivals,Mandarin Orange Plant,귤 식물,False
+14-20桃花,festivals,Peach Blossom,복숭아 꽃,False
+14-21財神,festivals,God of Wealth,재신,False
+14-22舞獅,festivals,Lion Dance,사자춤,False
+14-23爆竹,festivals,Firecrackers,화약놀이,False
+14-24煙花,festivals,Fireworks,불꽃놀이,False
+14-25拜年,festivals,New Year Greetings,새해 인사,False
+14-26年宵市場,festivals,Lunar New Year Market,설날 시장,False
+14-27中秋節,festivals,Mid-Autumn Festival,중추절,False
+14-28燈籠,festivals,Lantern,등롱,False
+14-29端午節,festivals,Dragon Boat Festival,단오절,False
+14-30清明節,festivals,Qingming Festival,청명절,False
+14-31復活節,festivals,Easter,부활절,False
+14-32重陽節,festivals,Double Ninth Festival,중양절,False
+14-33國慶日,festivals,National Day,국경일,False
+14-34回歸紀念日,festivals,Hong Kong Return Anniversary,홍콩 반환 기념일,False
+14-35勞動節,festivals,Labor Day,노동절,False
+14-36佛誕,festivals,Buddha's Birthday,석가탄신일,False
+14-37兒童節,festivals,Children's Day,어린이날,False
+14-38母親節,festivals,Mother's Day,어머니의 날,False
+14-39父親節,festivals,Father's Day,어버이날,False
+14-40生日會,festivals,Birthday Party,생일 파티,False
+14-41敬師節,festivals,Teachers' Day,교사의 날,False
+14-42萬聖節,festivals,Halloween,할로윈,False
+candycane-1_1_,festivals,Candy Cane,キャン디케인,False
+candycane-2,festivals,Candy Canes,キャン디캔,False
+fireplace-1,festivals,Christmas Fireplace with Stockings,크리스마스 벽난로와 양말,False
+gingerbread-1,festivals,Gingerbread Man,진저브레드맨,False
+jinglebell-1,festivals,Jingle Bell with Green Bow,녹색 리본이 달린 종,False
+mrsclaus-1,festivals,Mrs. Claus,클라우스 부인,False
+poinsettia-1,festivals,Poinsettia,포인세티아,False
+santa-1,festivals,Santa Claus Writing a List,산타클로스가 리스트를 쓰고 있음,False
+xmasbells-1,festivals,Christmas Bells,크리스마스 종,False
+xmaslight-1,festivals,Christmas Lights,크리스마스 불빛,False
+xmastree-1,festivals,Christmas Tree,크리스마스 트리,False
+jelly,food,Jelly,젤리,False
+三文治,food,Sandwich,샌드위치,False
+乳酪,food,Yogurt,요거트,False
+冬菇,food,Shiitake Mushroom,표고버섯,False
+叉燒,food,Char Siu,차슈,False
+叉燒包,food,Char Siu Bao,차수바오,False
+可樂,food,Coca-Cola,코카콜라,False
+士多啤梨,food,Strawberry,딸기,False
+壽司,food,Sushi,수시,False
+奇異果,food,Kiwi fruit,키위 과일,False
+年糕,food,Rice Cake,년고,False
+意大利粉,food,Spaghetti,스파게티,False
+提子,food,Green Grapes,포도,False
+春卷,food,Spring Roll,봄말,False
+月餅,food,Mooncake,달콤한 달걀 케이크,False
+木瓜,food,Papaya,파파야,False
+朱古力,food,Chocolate,초콜릿,False
+朱古力金幣,food,Chocolate Coins,초콜릿 동전,False
+果醬,food,Jam,과자,False
+柑,food,Tangerine,귤,False
+柚子,food,Pomelo,유자,False
+柿,food,Persimmon,감,False
+梨,food,Pear,배,False
+棉花糖,food,Marshmallow,마시멜로,False
+楊桃,food,Carambola,양파과일,False
+榴槤,food,Durian,두리안,False
+橙,food,Orange,오렌지,False
+橙汁,food,Orange Juice,오렌지 주스,False
+檸檬,food,Lemon,레몬,False
+檸檬茶,food,Lemon Tea,레몬차,False
+水,food,Water,물,False
+汽水,food,Soda,탄산음료,False
+油角,food,Fried dumpling,유각,False
+洋蔥,food,Onion,양파,False
+湯,food,Soup,국,False
+漢堡包,food,Hamburger,햄버거,False
+火腿,food,Ham,햄,False
+燒賣,food,Shumai,샤오마이,False
+牛奶,food,Milk,우유,False
+牛油,food,Butter,버터,False
+牛肉,food,Beef,소고기,False
+瓜,food,Cucumber,오이,False
+瓜子,food,Pumpkin Seeds,참깨,False
+生日蛋糕,food,Birthday Cake,생일 케이크,False
+百力滋,food,Biscuit Sticks,백리지,False
+益力多,food,Yakult,야쿠르트,False
+粟米,food,Corn,옥수수,False
+粥,food,Congee,죽,False
+粽,food,Zongzi,장자,False
+糖,food,Candy,사탕,False
+糖冬瓜,food,Candied Winter Melon,당겨울호박,False
+紙包果汁,food,Carton Juice,종이팩 과일주스,False
+紫菜,food,Nori,미역,False
+維他奶,food,Vitasoy,비타밀크,False
+罐頭,food,Canned Food,캔 음식,False
+肉,food,Meat,고기,False
+腸粉,food,Rice Noodle Roll,장분,False
+芒果,food,Mango,망고,False
+芝士,food,Cheese,치즈,False
+花生醬,food,Peanut Butter,피넛버터,False
+茄子,food,Eggplant,가지,False
+茶,food,Tea,차,False
+荔枝,food,Lychee,리치,False
+菊花茶,food,Chrysanthemum Tea,국화차,False
+菜,food,Chinese Cabbage,배추,False
+菠蘿,food,Pineapple,파인애플,False
+蕃茄,food,Tomato,토마토,False
+薄餅,food,Pizza,피자,False
+薯仔,food,Potato,감자,False
+薯條,food,French Fries,프렌치 프라이,False
+薯片,food,Potato Chips,감자칩,False
+蘋果,food,Apple,사과,False
+蘋果汁,food,Apple Juice,사과주스,False
+蘿蔔,food,Carrot,당근,False
+蛋卷,food,Egg Roll,계란말이,False
+蛋撻,food,Egg Tart,달걀 파이,False
+蛋糕,food,Cake,케이크,False
+蛋糕仔,food,Cupcakes,케이크,False
+蝦,food,Shrimp,새우,False
+蝦條,food,Shrimp Crackers,새우 스낵,False
+蝦片,food,Shrimp Crackers,새우 조각,False
+蝦餃,food,Shrimp Dumplings,새우饺,False
+蟹,food,Crab,게,False
+西瓜,food,Watermelon,수박,False
+豆,food,Pea Pod,완두,False
+豆腐,food,Tofu,두부,False
+車厘子,food,Cherry,체리,False
+通心粉,food,Macaroni,마카로니,False
+雞翼,food,Chicken Wings,닭 날개,False
+雞脾,food,Chicken Thigh,닭다리,False
+雞蛋,food,Eggs,계란,False
+雪條,food,Popsicle,아이스크림,False
+雪糕,food,Ice Cream,아이스크림,False
+食送,food,Bento Box,弁당,False
+飯,food,Steamed Rice,밥,False
+餅乾,food,Cookies,쿠키,False
+香口膠,food,Gum,사탕,False
+香腸,food,Sausage,소시지,False
+香蕉,food,Banana,바나나,False
+魚,food,Fish,물고기,False
+魚蛋,food,Fish Balls,어란,False
+魷魚絲,food,Dried Squid Strips,건조 오징어 조각,False
+麥精,food,Malt Milk,말트우유,False
+麵,food,Noodles,국수,False
+麵包,food,Bread,빵,False
+點心麵,food,Snack Noodles,간식 국수,False
+龍眼,food,Longan,용안,False
+11-01檯,furniture,Table,테이블,False
+11-02椅子,furniture,Chair,의자,False
+11-03梳化,furniture,Sofa,소파,False
+11-04床,furniture,Bed,침대,False
+11-05書檯,furniture,Desk,책상,False
+11-06櫃,furniture,Cabinet,장식대,False
+11-07垃圾桶,furniture,Trash Can,쓰레기통,False
+11-08門,furniture,Door,문,False
+11-09窗,furniture,Window,창문,False
+11-10便盆,furniture,Bedpan,침대용 변기,False
+11-11廁所,furniture,Toilet,화장실,False
+量匙_一汤匙_,measuring,Measuring Spoon (1 Tablespoon),측정 숟가락 (1 큰술),False
+量匙_一茶匙_,measuring,Measuring Spoon (1 Teaspoon),측정 숟가락 (1 티스푼),False
+量匙_半茶匙_,measuring,Measuring Spoon (Half Teaspoon),측정 숟가락 (반 티스푼),False
+量匙_四分之一茶匙_,measuring,1/4 Teaspoon Measuring Spoon,1/4 티스푼 측정 스푼,False
+量杯_一杯_,measuring,Measuring Cup,측량컵,False
+量杯_三份之一杯_,measuring,Measuring Cup (One-Third Cup),측정 컵 (세분의 일 컵),False
+量杯_半杯_,measuring,Measuring Cup (Half Cup),측정컵 (반 컵),False
+量杯_四份之一杯_,measuring,Quarter Cup Measuring Cup,사분의 일 컵 측량컵,False
+量杯,measuring,Measuring Cups,측정 컵,False
+8-01爸爸,people,Father,아빠,False
+8-02媽媽,people,Mother,엄마,False
+baby-1,people,Baby wrapped in a blanket,이불에 싸인 아기,False
+boy-1,people,Boy holding a book and waving,책을 들고 손을 흔드는 소년,False
+boy-2,people,Boy in Red Shirt,빨간 셔츠를 입은 소년,False
+boy-3,people,Boy with Glasses,안경을 낀 소년,False
+brotherandsister-1,people,Brother and Sister,형제자매,False
+father-1,people,Father holding a baby,아빠가 아기를 안고 있음,False
+friends-1,people,Friends Standing Together Saying 'Go Green!',친구들이 함께 서서 '녹색으로 가자!'라고 말하고 있음,False
+girl-1,people,Girl with pigtails wearing a purple dress,쌍다리 머리에 보라색 드레스를 입은 소녀,False
+girl-2,people,Girl in Pink Sweater,분홍색 스웨터를 입은 소녀,False
+girl-3,people,Girl in School Uniform,학교 제복 입은 소녀,False
+girl-4,people,Girl in Pink Dress,분홍색 드레스를 입은 소녀,False
+girl-5,people,Girl with red curly hair wearing an orange shirt and green shorts,붉은 곱슬머리 소녀가 주황색 셔츠와 초록색 반바지를 입고 있음,False
+grandparents-1,people,Grandparents,할아버지와 할머니,False
+mother-1,people,Mother holding a baby,어머니가 아기를 안고 있음,False
+oldman-1,people,Old Man with Cane,지팡이를 짚고 있는 노인,False
+parents-1,people,Parents,부모,False
+厨师,people,Chef,주방장,False
+12-01廳,places,Living Room,거실,False
+12-02睡房,places,Bedroom,침실,False
+12-03廚房,places,Kitchen,주방,False
+12-04洗手間,places,Restroom,화장실,False
+12-05學校,places,School,학교,False
+12-06公園,places,Park,공원,False
+12-07廁所,places,Toilet,화장실,False
+12-08傷殘人士廁所,places,Accessible Toilet for People with Disabilities,장애인 화장실,False
+12-09超級市場,places,Supermarket,슈퍼마켓,False
+12-10歡樂天地,places,Fun Land,즐거운 땅,False
+12-11百貨公司,places,Department Store,백화점,False
+12-12文具店,places,Stationery Store,문구점,False
+12-13玩具店,places,Toy Store,장난감 가게,False
+12-14服裝店,places,Clothing Store,의류점,False
+12-15鞋店,places,Shoe Store,신발 가게,False
+12-16街市,places,Market,시장,False
+12-17商場,places,Shopping Mall,쇼핑몰,False
+12-18圖書館,places,Library,도서관,False
+12-19泳池,places,Swimming Pool,수영장,False
+12-20沙灘,places,Beach,해변,False
+12-21郊野公園,places,Country Park,야외공원,False
+12-22燒烤場,places,Barbecue Area,바비큐장,False
+12-23醫院,places,Hospital,병원,False
+12-24診所,places,Clinic,진료소,False
+12-25郵局,places,Post Office,우체국,False
+12-26消防局,places,Fire Station,소방서,False
+12-27戲院,places,Theater,극장,False
+12-28酒樓,places,Restaurant,식당,False
+12-29餐廳,places,Dining Room,식당,False
+12-30快餐店,places,Fast Food Restaurant,패스트푸드 식당,False
+12-31美食廣場,places,Food Court,음식 코트,False
+12-32太空館,places,Planetarium,천문관,False
+12-33科學館,places,Science Museum,과학관,False
+12-34文化中心,places,Cultural Center,문화센터,False
+12-35機場,places,Airport,공항,False
+12-36海洋公園,places,Ocean Park,오션 파크,False
+12-37山頂,places,The Peak Tower,피크 타워,False
+12-38天壇大佛,places,Tian Tan Buddha,천단대불,False
+12-39青馬大橋,places,Tsing Ma Bridge,청마대교,False
+15-01坐好,rituals,Sit Properly,제대로 앉기,False
+15-02安靜,rituals,Quiet,조용히,False
+15-03留心聽,rituals,Pay Attention and Listen,주의해서 듣기,False
+15-04望著,rituals,Looking at Each Other,서로 바라보기,False
+15-05舉手,rituals,Raise Hand,손을 들어올리기,False
+15-06排隊,rituals,Line Up,줄 서기,False
+15-07慢慢行,rituals,Walk Slowly,천천히 걷기,False
+15-08返回座位,rituals,Return to Seat,자리로 돌아가기,False
+15-09給老師,rituals,Giving to the Teacher,선생님께 주기,False
+15-10放好玩具,rituals,Put Away Toys,장난감 정리하기,False
+15-11一起玩耍,rituals,Playing Together,함께 놀기,False
+15-12拜拜,rituals,Goodbye,안녕히 가세요,False
+15-13打招呼,rituals,Greeting,인사하기,False
+15-14握手,rituals,Handshake,손을 맞잡다,False
+15-15幫忙,rituals,Helping,도와주기,False
+15-16戴安全帶,rituals,Wear Seatbelt,안전벨트 착용,False
+15-17用紙巾抹鼻涕,rituals,Use a tissue to wipe nose,면巾으로 코를 닦기,False
+15-18放低手,rituals,Lower Hands,손 내리기,False
+不要打开,rituals,Do Not Open,열지 마세요,False
+书要拿好,rituals,Hands in Front,손을 앞에 둬요,False
+休息一下,rituals,Take a Break,잠시 쉬어보기,False
+停,rituals,Stop,정지,False
+发脾气,rituals,Throwing a Tantrum,화를 내다,False
+坐好,rituals,Sit Properly,제대로 앉기,False
+安静,rituals,Quiet,조용히,False
+手放前面,rituals,Hands in Front,손을 앞에 둬요,False
+手要放好,rituals,Hands should be placed properly,손을 제대로 놓아야 해요,False
+等,rituals,Sit down,앉기,False
+等一下,rituals,Wait a Moment,잠시 기다려,False
+请帮忙,rituals,I Need Help,도움이 필요해요,False
+走开,rituals,Walk Away,멀어지기,False
+过来这边,rituals,Come over here,여기로 와,False
+year_of_dog,shengxiao,Year of the Dog,개년,False
+year_of_dragon,shengxiao,Dragon,용,False
+year_of_goat,shengxiao,Year of the Goat,염소 해,False
+year_of_horse,shengxiao,Horse,말,False
+year_of_monkey,shengxiao,Year of the Monkey,원숭이 해,False
+year_of_ox,shengxiao,Ox,소,False
+year_of_pig,shengxiao,Year of the Pig,돼지 해,False
+year_of_rabbit,shengxiao,Rabbit,토끼,False
+year_of_rat,shengxiao,Year of the Rat,쥐해,False
+year_of_rooster,shengxiao,Year of the Rooster,닭 해,False
+year_of_snake,shengxiao,Snake,뱀,False
+year_of_tiger,shengxiao,Tiger,호랑이,False
+asteroid-1,space,Asteroid,소행성,False
+comet-1,space,Comet,혜성,False
+earth-1,space,Earth,지구,False
+jupiter-1,space,Jupiter,목성,False
+mars-1,space,Mars,화성,False
+mercury-1,space,Mercury,수성,False
+moon-1,space,Moon,달,False
+neptune-1,space,Neptune,해왕성,False
+pluto-1,space,Pluto,플루토,False
+saturn-1,space,Saturn,토성,False
+sun-1,space,Sun,태양,False
+uranus-1,space,Uranus,천왕성,False
+venus-1,space,Venus,금성,False
+3-01鉛筆,stationery,Pencil,연필,False
+3-02原子筆,stationery,Ballpoint Pen,볼펜,False
+3-03顏色筆,stationery,Colored Pencils,색연필,False
+3-04擦膠,stationery,Eraser,지우개,False
+3-05間尺,stationery,Ruler,자,False
+3-06較剪,stationery,Scissors,가위,False
+3-07膠水,stationery,Glue,풀,False
+3-08紙,stationery,Paper,종이,False
+3-09簿,stationery,Notebook,노트북,False
+3-10鉛筆刨,stationery,Pencil Sharpener,연필깎이,False
+3-11筆盒_筆袋,stationery,Pencil Case / Pencil Pouch,연필盒／연필가방,False
+Address_book,stationery,Address Book,주소록,False
+Book1,stationery,Open Book,열린 책,False
+Book2,stationery,Open Bible with Red Edges,빨간 가장자리의 열린 성경,False
+Book3,stationery,Open Dictionary Book,열린 사전 책,False
+Book4,stationery,Communication Book,소통 책,False
+Book5,stationery,Book,책,False
+Book6,stationery,The Book of Answers,답변의 책,False
+Book7,stationery,Red Hardcover Book,빨간색 하드커버 책,False
+Books,stationery,Stack of Books,책 더미,False
+Bulldog_clips,stationery,Bulldog clips,불독 클립,False
+Clippers,stationery,Scissors,가위,False
+Color_pencils,stationery,Color Pencils,색연필,False
+Color_pencils2,stationery,Color Pencils,색연필,False
+Color_pencils3,stationery,Color Pencils,색연필,False
+Color_pencils4,stationery,Color Pencils,색연필,False
+Compass,stationery,Compass,컴퍼스,False
+Compass2,stationery,Compass,컴퍼스,False
+Connector_pens,stationery,Connector Pens,연결 펜,False
+Correction_fluid,stationery,Correction Fluid,정정액,False
+Crayons1,stationery,Crayons and Drawing Paper,색연필과 그림지,False
+Crayons2,stationery,Crayons,색연필,False
+Crayons3,stationery,Crayons,색연필,False
+Crayons4,stationery,Crayons in a Tray,ถาดข้างในมีเทียนสี,False
+Crayons5,stationery,Crayons,색연필,False
+Crayons6,stationery,Crayons,색연필,False
+Crayons7,stationery,Crayons,색연필,False
+Date_stamp,stationery,Communication Card Date Stamp,소통 카드 날짜 도장,False
+Diary1,stationery,Diary,일기장,False
+Diary2,stationery,Diary,일기장,False
+Diary3,stationery,Diary,일기장,False
+Diary4,stationery,Desk Calendar with Notepad,메모장이 달린 책상 캘린더,False
+Diary5,stationery,Desk Diary,책상 다이어리,False
+Diary6,stationery,Diary,일기장,False
+Diary7,stationery,Diary Planner,다이어리 플래너,False
+Diary8,stationery,Daily Planner Diary,매일 계획 다이어리,False
+Drawing_pins,stationery,Colorful Drawing Pins,다채로운 그림 핀,False
+Drawing_pins2,stationery,Colorful Drawing Pins,다채로운 그림 핀,False
+Envelope,stationery,Air Mail Envelope,항공 우편 봉투,False
+Envelopes1,stationery,Air Mail Envelope,항공 우편 봉투,False
+Envelopes2,stationery,Air Mail Envelope,항공 우편 봉투,False
+Eraser,stationery,Eraser,지우개,False
+Erasers1,stationery,Erasers,지우개,False
+Erasers2,stationery,Erasers,지우개,False
+Face_paints,stationery,Face Paints,얼굴 페인트,False
+Felt_marker,stationery,Felt Marker,모직 마커,False
+Felt_pens,stationery,Felt Pens,페인트 펜,False
+Fibretip_pen1,stationery,Fibre-tip pen,섬유심 펜,False
+Fibretip_pens2,stationery,Fibretip pens,섬유심 펜,False
+Fountain_pen,stationery,Fountain Pen,펜,False
+Globe,stationery,Globe,지구본,False
+Globe2,stationery,Globe,지구본,False
+Glue_pen,stationery,Clear Glue Pen,투명 접착제 펜,False
+Glue1,stationery,Glue Bottle,풀 병,False
+Glue2,stationery,Glue Bottle,풀 병,False
+Glue3,stationery,Glue Dropper,풀 방울기,False
+Glue4,stationery,Kid's Glue,아이용 접착제,False
+Glue5,stationery,Glue Bottle with Applicator,앱리케이터가 달린 접착제 병,False
+Glue6,stationery,Glue Bottle,풀 병,False
+Gluestick1,stationery,Glue Stick,풀 스틱,False
+Gluestick2,stationery,Glue Stick,풀 스틱,False
+Gluestick3,stationery,Glue Stick,풀 스틱,False
+Gluestick4,stationery,Gluestick,풀스틱,False
+Guillotine1,stationery,Paper Cutter,용지 절단기,False
+Guillotine2,stationery,Paper Cutter,종이 절단기,False
+Highlighter,stationery,Highlighter,蛍광펜,False
+Hole_punch1,stationery,Hole Punch,홀펀치,False
+Hole_Punch2,stationery,Hole Punch,홀펀치,False
+Hole_Punch3,stationery,Hole Punch,홀펀치,False
+Hole_Punch4,stationery,Communication Card Holder,소통 카드 홀더,False
+Hole_Punch5,stationery,Communication Card Holder,소통 카드 홀더,False
+Hole_Punch6,stationery,Hole Punch,홀펀치,False
+Hole_Punch7,stationery,Hole Punch,홀펀치,False
+Ink_bottle,stationery,Ink bottle,잉크병,False
+Label_maker,stationery,Label Maker Tape Cartridges,라벨 메이커 테이프 카트리지,False
+Letter_opener,stationery,Letter Opener,편지 열기,False
+Lever_arch_binder,stationery,Lever Arch Binder,레버 아치 바인더,False
+Lever_arch_binder2,stationery,Lever Arch Binder,레버 아치 바인더,False
+Lever_arch_binder3,stationery,Lever Arch Binder,레버 아치 바인더,False
+Lever_arch_binder4,stationery,Lever Arch Binder,레버 아치 바인더,False
+Magnifying_glass,stationery,Magnifying glass,확대경,False
+Magnifying_glass2,stationery,Magnifying Glass,확대경,False
+Notebook2,stationery,Notebook,노트북,False
+Notebook3,stationery,Notebook with Contact Information for Autistic Children,자폐증 아동을 위한 연락처 정보 노트북,False
+Packing_tape_applicator,stationery,Packing Tape Applicator,포장 테이프 적용기,False
+Packing_tape,stationery,Packing Tape,포장 테이프,False
+Paintbrush,stationery,Blue Plastic Paintbrush,파란색 플라스틱 붓,False
+Paintbrush2,stationery,Paintbrush,물감 브러시,False
+Paintbrush3,stationery,Paintbrush,물감 붓,False
+Paintbrushes2,stationery,Paintbrushes,화필,False
+Paintbrushes3,stationery,Paintbrushes,화필,False
+Paints1,stationery,Watercolor Paint Set,물감 세트,False
+Paints2,stationery,Paints,페인트,False
+Paints3,stationery,Paints,페인트,False
+Paints4,stationery,Colorful Paint Set,다채로운 물감 세트,False
+Paints5,stationery,Watercolor Paint Set,물감 세트,False
+Paints6,stationery,Watercolor Paint Set,물감 세트,False
+Paints7,stationery,Paints and Brush,페인트와 브러시,False
+Paints8,stationery,Paints,페인트,False
+Paints9,stationery,Paint Palette with Brushes,브러시가 달린 물감 팔레트,False
+Paper_clips,stationery,Paper clips,종이 클립,False
+Paper_roll,stationery,Paper Roll,종이 롤,False
+Pen_Holder,stationery,Pen Holder,펜홀더,False
+Pen01,stationery,Pen,펜,False
+Pen02,stationery,Waterproof Pen,방수 펜,False
+Pen03,stationery,Mechanical Pencil,기계식 연필,False
+Pen04,stationery,Blue Transparent Ballpoint Pen,파란 투명 볼펜,False
+Pen05,stationery,Pen,펜,False
+Pen06,stationery,Blue Ballpoint Pen,파란 볼펜,False
+Pen07,stationery,Mechanical Pencil,기계식 연필,False
+Pen08,stationery,Metallic Ballpoint Pen,금속 볼펜,False
+Pen09,stationery,Permanent Marker Pen,영구 마커 펜,False
+Pen10,stationery,Blue Mechanical Pencil,파란색 기계식 연필,False
+Pen11,stationery,Red Mechanical Pencil,빨간색 기계식 연필,False
+Pen12,stationery,Pen,펜,False
+Pen13,stationery,Orange Transparent Ballpoint Pen,오렌지 투명 볼펜,False
+Pen14,stationery,Pen,펜,False
+Pen15,stationery,Green Ballpoint Pen,녹색 볼펜,False
+Pencil_and_sharpener,stationery,Pencil and Sharpener,연필과 날카로운 연필깎이,False
+Pencil_case1,stationery,Pencil Case with Writing Instruments,문구류가 담긴 연필케이스,False
+Pencil_holder,stationery,Pencil Holder,연필통,False
+Pencil_sharpener,stationery,Pencil Sharpener,연필 날카롭게 만드는 기계,False
+Pencil1,stationery,Pencil,연필,False
+Pencil2,stationery,Pencil,연필,False
+Pencil3,stationery,Pencil,연필,False
+Pencil4,stationery,Pencil,연필,False
+Pencil5,stationery,Pencil,연필,False
+Pencil6,stationery,Green Pencil,초록색 연필,False
+Pens,stationery,Colorful Pens,다채로운 펜,False
+Post-it_notes,stationery,Post-it Note,포스트잇,False
+Protractor,stationery,Protractor,각도계,False
+Register,stationery,Communication Register for Autistic Children,자폐증 아동을 위한 커뮤니케이션 등록부,False
+Rubber_bands,stationery,Rubber bands,고무줄,False
+Rubber_stamp,stationery,Rubber Stamp Set,고무 도장 세트,False
+Rubber_thimble,stationery,Rubber Thimble,고무 손가락 커버,False
+Ruler,stationery,Ruler,자,False
+Ruler2,stationery,Ruler,자,False
+Ruler3,stationery,Ruler,자,False
+Ruler4,stationery,Ruler,자,False
+Ruler5,stationery,Wooden Ruler,목재 자루,False
+Scissors1,stationery,Scissors,가위,False
+Scissors10,stationery,Scissors,가위,False
+Scissors11,stationery,Scissors,가위,False
+Scissors12,stationery,Scissors,가위,False
+Scissors13,stationery,Scissors,가위,False
+Scissors14,stationery,Scissors,가위,False
+Scissors2,stationery,Scissors,가위,False
+Scissors3,stationery,Scissors,가위,False
+Scissors4,stationery,Scissors,가위,False
+Scissors5,stationery,Scissors,가위,False
+Scissors6,stationery,Scissors,가위,False
+Scissors7,stationery,Scissors,가위,False
+Scissors8,stationery,Scissors,가위,False
+Scissors9,stationery,Scissors,가위,False
+Set_square,stationery,Set Square and Pencil,삼각자와 연필,False
+Set_square2,stationery,Set Square,삼각자,False
+Stapler1,stationery,Stapler,스테이플러,False
+Stapler2,stationery,Stapler,스테이플러,False
+Stapler3,stationery,Stapler,스테이플러,False
+Stapler4,stationery,Stapler,스테이플러,False
+Stapler5,stationery,Stapler,스테이플러,False
+Stapler6,stationery,Stapler,스테이플러,False
+Stapler7,stationery,Stapler,스테이플러,False
+Staples,stationery,Staples,스테이플,False
+Stencil_ruler,stationery,Stencil Ruler,스텐실 자,False
+Stencil,stationery,Communication Stencil Ruler,소통 스텐실 자,False
+Stencil2,stationery,Love Theme Stencil,사랑 테마 스텐실,False
+Sticky_tape1,stationery,Adhesive Tape,접착 테이프,False
+Sticky_tape2,stationery,Sticky Tape,테이프,False
+Sticky_tape3,stationery,Tape Dispenser,테이프 디스펜서,False
+Sticky_tape4,stationery,Adhesive Tape,접착 테이프,False
+Sticky_tape5,stationery,Tape Dispenser,테이프 디스펜서,False
+Sticky_tape6,stationery,Electrical Tape,전기 테이프,False
+Sticky_tape7,stationery,Clear adhesive tape,투명 접착 테이프,False
+Super_glue,stationery,Super Glue,슈퍼 글루,False
+Super_glue2,stationery,Super Glue,슈퍼 글루,False
+Utility_knife,stationery,Utility Knife,유틸리티 칼,False
+Whiteboard_eraser,stationery,Whiteboard Eraser,화이트보드 지우개,False
+Whiteboard_eraser2,stationery,Whiteboard Eraser,화이트보드 지우개,False
+Whiteboard_marker2,stationery,Whiteboard Marker,화이트보드 마커,False
+Whiteboard_marker3,stationery,Whiteboard Marker,화이트보드 마커,False
+Whiteboard_marker4,stationery,Whiteboard Marker,화이트보드 마커,False
+Whiteboard_marker5,stationery,Whiteboard Marker,화이트보드 마커,False
+Whiteboard_markers,stationery,Whiteboard markers,화이트보드 마커,False
+Whiteboard_markers2,stationery,Whiteboard Markers,화이트보드 마커,False
+Whiteboard_markers3,stationery,Whiteboard markers,화이트보드 마커,False
+2-01杯,supplies,Cup,컵,False
+2-02碗,supplies,Bowl,그릇,False
+2-03碟,supplies,Plate,접시,False
+2-04匙羹,supplies,Spoon,스푼,False
+2-05湯羹,supplies,Soup Spoon,국수저,False
+2-06筷子,supplies,Chopsticks,젓가락,False
+2-07刀,supplies,Knife,칼,False
+2-08叉,supplies,Fork,포크,False
+2-09毛巾,supplies,Towel,수건,False
+2-10梳,supplies,Comb,빗,False
+2-11牙刷,supplies,Toothbrush,칫솔,False
+2-12牙膏,supplies,Toothpaste,치약,False
+2-13廁紙,supplies,Toilet Paper,화장지,False
+2-14紙巾,supplies,Tissue,면봉,False
+2-15鏡,supplies,Mirror,거울,False
+2-16眼鏡,supplies,Glasses,안경,False
+2-17手錶,supplies,Wristwatch,시계,False
+2-18鎖匙,supplies,Key,열쇠,False
+2-19八達通咭,supplies,Octopus Card,옥토퍼스 카드,False
+2-20錢,supplies,Money,돈,False
+2-21雨傘,supplies,Umbrella,우산,False
+2-22雨衣,supplies,Raincoat,비옷,False
+2-23木見液,supplies,Hand Soap,손세정제,False
+2-24潤唇膏,supplies,Lip Balm,입술 보습제,False
+2-25膠布,supplies,Band-Aid,붕대,False
+2-26探熱針,supplies,Thermometer,체온계,False
+2-27藥,supplies,Medicine,약,False
+ax,supplies,Axe,도끼,False
+hammer,supplies,Hammer,🔨 망치,False
+hoe,supplies,Hoe,耬,False
+rake,supplies,Rake,갈퀴,False
+saw,supplies,Saw,톱,False
+screwdriver,supplies,Screwdriver,드라이버,False
+tapemeasure,supplies,Tape Measure,테이프 미터,False
+wrench,supplies,Wrench,렌치,False
+battery-aa,technologies,AA Battery,AA 배터리,False
+battery-aaa_1_,technologies,AAA Battery,AAA 배터리,False
+calculator,technologies,Calculator,계산기,False
+cellphone,technologies,Cellphone,휴대폰,False
+computer-1,technologies,Laptop Computer,노트북 컴퓨터,False
+computer-2,technologies,Computer,컴퓨터,False
+flashlight,technologies,Flashlight,손전등,False
+lightbulb,technologies,Lightbulb,전구,False
+outlet,technologies,Electrical Outlet,전기 소켓,False
+plug,technologies,Electrical Plug,전기 플러그,False
+switch-off,technologies,Light Switch Off,등 스위치 꺼짐,False
+switch-on,technologies,Light Switch,전등 스위치,False
+4-01車,toy,Toy Car,장난감 차,False
+4-02飛機,toy,Airplane,비행기,False
+4-03波,toy,Beach Ball,비치볼,False
+4-04波波水,toy,Bubble Solution,버블 수용액,False
+4-05公仔,toy,Doll,인형,False
+4-06熊,toy,Teddy Bear,테디베어,False
+4-07煮飯仔,toy,Cooking Playset,요리 장난감,False
+4-08積木,toy,Building Blocks,블록,False
+4-09圖書,toy,Picture Book,그림책,False
+4-10砌圖,toy,Puzzle,퍼즐,False
+4-11電話,toy,Telephone,전화,False
+4-12玩具槍,toy,Toy Gun,장난감 총,False
+4-13機械人,toy,Robot,로봇,False
+4-14遊戲機,toy,Game Boy,게임보이,False
+4-15棋,toy,Board Game,보드게임,False
+4-16印仔,toy,Stamp,스탬프,False
+4-17貼紙,toy,Stickers,스티커,False
+6-01私家車,transportation,Private Car,개인 차량,False
+6-02船,transportation,Ship,배,False
+6-03飛機,transportation,Airplane,비행기,False
+6-04巴士,transportation,Double-decker Bus,이층 버스,False
+6-05的士,transportation,Taxi,택시,False
+6-06小巴,transportation,Minibus,마이크로버스,False
+6-07校車,transportation,School Bus,학교 버스,False
+6-08單車,transportation,Bicycle,자전거,False
+6-09地鐵,transportation,Subway,지하철,False
+6-10火車,transportation,Train,기차,False
+6-11電車,transportation,Electric Train,전차,False
+6-12輕鐵,transportation,Light Rail,경전철,False
+6-13山頂纜車,transportation,Peak Tram,피크 트램,False

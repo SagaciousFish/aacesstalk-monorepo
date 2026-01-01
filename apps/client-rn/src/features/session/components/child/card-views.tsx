@@ -30,7 +30,7 @@ export const CardCategoryView = (props: {
 }) => {
     const {t} = useTranslation()
 
-    const [_, lightTopicColor] = useMemo(()=>getTopicColorClassNames(props.topicCategory), [props.topicCategory])   
+    const [_, lightTopicColor] = useMemo(()=>getTopicColorClassNames(props.topicCategory), [props.topicCategory])
 
     const cardIds = useSelector(childCardSessionSelectors[props.cardCategory].selectIds)
     const cardEntities = useSelector(childCardSessionSelectors[props.cardCategory].selectEntities)
@@ -44,14 +44,14 @@ export const CardCategoryView = (props: {
     }, [cardIds])
 
     return <View className={`${lightTopicColor} rounded-2xl p-2`} style={props.style}>
-        <Text style={styleTemplates.withBoldFont} className="text-lg text-center">{t(`Session.Cards.Category.${props.cardCategory}`)}</Text>        
-        
+        <Text style={styleTemplates.withBoldFont} className="text-lg text-center">{t(`Session.Cards.Category.${props.cardCategory}`)}</Text>
+
 
             {
                 slicedCardIds.map((row, rowIndex) => <View key={rowIndex} className="flex-row">{
                     row.map((id,index) => {
                         const actualIndex = rowIndex * 2 + index
-                        return <Animated.View 
+                        return <Animated.View
                                     key={id}
                                     entering={FlipInYLeft.duration(500).easing(Easing.elastic(0.7)).delay(200 + 200*actualIndex)}
                                     exiting={FlipOutEasyY.duration(200).delay(200*actualIndex)}>
@@ -111,9 +111,9 @@ export const ChildCardView = React.memo((props:{
         } : {
             elevation: interpolate(pressAnimProgress.value, [0, 1], [styles.cardFrame.elevation, 1]),
         }
-        
+
         return {
-            ...shadowStyle,            
+            ...shadowStyle,
             transform: [
                 {scale: interpolate(pressAnimProgress.value, [0, 1], [1, 0.95])},
                 {translateY: interpolate(pressAnimProgress.value, [0, 1], [0, 10])}
@@ -150,7 +150,7 @@ export const ChildCardView = React.memo((props:{
     return <Pressable accessible={false} disabled={props.disabled} onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}><Animated.View
         style={cardFrameAnimStyle} className={`rounded-xl border-2 border-slate-200 pt-1 pb-[3px] bg-white w-[11vw] h-[11vw] m-1.5 ${props.cardClassName}`}>
         <FasterImageView style={styles.imageView} source={imageSource}/>
-        
+
         <Text className="self-center mt-2 text-black/80 text-center" style={styleTemplates.withBoldFont}>{props.label}</Text>
     </Animated.View></Pressable>
 })

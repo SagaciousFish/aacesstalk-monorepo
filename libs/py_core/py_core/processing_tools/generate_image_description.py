@@ -77,7 +77,7 @@ def _create_info_row_from_file(file: DirEntry[str], category_name: str, dir_name
 
 def scan_card_images():
     with open(AACessTalkConfig.card_image_table_path, "w") as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=CardImageInfo.model_fields)
+        writer: DictWriter[Unknown] = csv.DictWriter(csvfile, fieldnames=CardImageInfo.model_fields)
         writer.writeheader()
         for dir_name in listdir(AACessTalkConfig.card_image_directory_path):
             if dir_name.startswith("card_"):

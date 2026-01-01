@@ -49,6 +49,7 @@ template = convert_to_jinja_template("""
 def _generate_prompt(input, params: ChildCardTranslationParams) -> str:
     return template.render(
         similar_cards=params.similar_cards,
+        UserLocale=UserLocale,
         stringify=_stringify_english_word,
         user_locale=params.user_locale,
     )
