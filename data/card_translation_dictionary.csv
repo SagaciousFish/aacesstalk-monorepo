@@ -1,928 +1,932 @@
 id,category,english,localized,inspected
-yes,core,Checkmark,체크마크,False
-no,core,No,아니요,False
-idk,core,I don't know,나는 모른다,False
-ask,core,Ask,물어보기,False
-how_are_you,core,Emotion Faces,감정 얼굴,False
-happy,emotion,Happy Face,행복한 얼굴,False
-sad,emotion,Sad Face,슬픈 얼굴,False
-gloomy,emotion,Sad Face,슬픈 얼굴,False
-bored,emotion,Bored,지루함,False
-tired,emotion,Tired,피곤,False
-angry,emotion,Angry Face,화난 얼굴,False
-glad,emotion,Happy Face,행복한 얼굴,False
-surprised,emotion,Surprised Face,놀란 얼굴,False
-delighted,emotion,Delighted,기쁨,False
-confused,emotion,Confused Face,혼란스러운 얼굴,False
-scared,emotion,Scared,무서움,False
-shy,emotion,Shy Face,수줍은 얼굴,False
-calm,emotion,Calm,침착,False
-fearful,emotion,Fearful,두려운,False
-beloved,emotion,Smiling Face,웃는 얼굴,False
-13a-01企,activities,Standing,서기,False
-13a-02行,activities,Walking,걷기,False
-13a-03坐,activities,Sit,앉기,False
-13a-04跳,activities,Jump,점프,False
-13a-05我要,activities,I want,나는 원해,False
-13a-06食,activities,Eating,먹는 중,False
-13a-07飲,activities,Drinking,마시기,False
-13a-08切,activities,Cutting,자르기,False
-13a-09塗,activities,Spreading,바르기,False
-13a-10舀,activities,Scooping,杓기,False
-13a-11買,activities,Shopping,쇼핑,False
-13a-12點頭,activities,Nodding,끄덕이기,False
-13a-13倒,activities,Pouring,부어넣다,False
-13a-14食飯,activities,Eating Meal,식사하기,False
-13a-15睡覺,activities,Sleeping,잠자기,False
-13a-16做功課,activities,Doing Homework,숙제하기,False
-13a-17玩電腦,activities,Playing Computer,컴퓨터 놀이,False
-13a-18看書,activities,Reading a Book,책 읽기,False
-13a-19看報紙,activities,Reading a Newspaper,신문 읽기,False
-13a-20看電視,activities,Watching TV,텔레비전 보기,False
-13a-21聽電話,activities,Answering the Phone,전화 받기,False
-13a-22談話,activities,Conversation,대화,False
-13a-23送禮物,activities,Giving a Gift,선물 주기,False
-13a-24煮飯,activities,Cooking,요리하기,False
-13a-25收拾碗筷,activities,Clearing the Table,식기 정리하기,False
-13a-26洗碗,activities,Washing Dishes,접시 씻기,False
-13a-27抹檯,activities,Wiping the Table,테이블 닦기,False
-13a-28掃地,activities,Sweeping the floor,바닥 청소,False
-13a-29吸塵,activities,Vacuuming,진공 청소,False
-13a-30拋垃圾,activities,Throwing Trash,쓰레기 버리기,False
-13a-31收拾玩具,activities,Putting Away Toys,장난감 정리하기,False
-13a-32收拾書包,activities,Packing a School Bag,학교 가방 정리하기,False
-13a-33洗衣服,activities,Washing Clothes,옷 세탁하기,False
-13a-34上班,activities,Going to Work,출근,False
-13a-35上街,activities,Going to the Street,거리에 나가기,False
-13a-36排隊等車,activities,Waiting in Line for the Bus,버스를 기다리는 줄 서기,False
-13a-37排隊玩,activities,Line Up to Play,줄서서 놀기,False
-13a-38飲茶,activities,Drinking Tea,차 마시기,False
-13a-39寄信,activities,Sending a Letter,편지 보내기,False
-13a-40看醫生,activities,Seeing a Doctor,의사 보러 가기,False
-13a-41食藥,activities,Taking Medicine,약 먹기,False
-13a-42戴口罩,activities,Wearing a Mask,마스크 착용,False
-13b-01刷牙,activities,Brushing Teeth,이빨 닦기,False
-13b-02洗_抹面_1_,activities,Washing / Wiping Face,얼굴 씻기 / 닦기,False
-13b-03抹嘴,activities,Wiping Mouth,입 닦기,False
-13b-04洗手,activities,Washing Hands,손 씻기,False
-13b-05抹手,activities,Wiping Hands,손 닦기,False
-13b-06梳頭,activities,Brushing Hair,머리 정리하기,False
-13b-07洗澡,activities,Taking a shower,목욕하기,False
-13b-08洗髮,activities,Washing Hair,머리 감기,False
-13b-09穿衣服,activities,Putting on Clothes,옷 입기,False
-13b-10除掉衣服,activities,Take off clothes,옷 벗기기,False
-13b-11穿外套,activities,Putting on a jacket,자켓 입기,False
-13b-12除掉外套,activities,Take off the jacket,자켓 벗기기,False
-13b-13穿褲,activities,Putting on pants,바지 입기,False
-13b-14除掉褲,activities,Take off pants,바지를 벗기다,False
-13b-15穿襪,activities,Putting on Socks,양말 신기,False
-13b-16除掉襪,activities,Take off socks,양말 벗기기,False
-13b-17穿鞋,activities,Putting on Shoes,신발 신기,False
-13b-18除掉鞋,activities,Take off Shoes,신발 벗기기,False
-13b-19扣鈕,activities,Buttoning Clothes,옷 단추 죄기,False
-13b-20拉拉鍊,activities,Zip up jacket,잠금장치를 당기다,False
-13b-21換衣服,activities,Changing Clothes,옷 갈아입기,False
-13b-22照鏡,activities,Looking in the Mirror,거울을 보다,False
-13b-23剪髮,activities,Haircut,머리 자르기,False
-13b-24剪指甲,activities,Cutting Nails,손톱 깎기,False
-13b-25剪腳甲,activities,Cutting Toenails,발톱 자르기,False
-13b-26吹髮,activities,Blow-drying hair,머리 말리기,False
-13c-01玩玩具,activities,Playing with Toys,장난감 놀이,False
-13c-02踏單車_1_,activities,Riding a Bicycle,자전거 타기,False
-13c-03玩滑梯,activities,Playing on a slide,미끄럼틀 놀이,False
-13c-04打鞦韆,activities,Swinging,鞦韆 타기,False
-13c-05玩__轉,activities,Playing on a Spinning Carousel,회전목마 놀이,False
-13c-06玩搖搖馬,activities,Playing on a Rocking Horse,흔드는 말 놀이,False
-13c-07做運動,activities,Doing Exercise,운동하기,False
-13c-08跑步,activities,Running,달리기,False
-13c-09跳繩,activities,Jump Rope,줄넘기,False
-13c-10踢波,activities,Playing Soccer,축구하기,False
-13c-11打羽毛球,activities,Playing Badminton,배드민턴 치기,False
-13c-12打籃球,activities,Playing Basketball,농구하기,False
-13c-13打乒乓球,activities,Playing Table Tennis,테이블 테니스하기,False
-13c-14游泳,activities,Swimming,수영,False
-13c-15跳舞,activities,Dancing,춤추기,False
-13c-16唱歌,activities,Singing,노래 부르기,False
-13c-17聽歌,activities,Listening to Music,음악 듣기,False
-13c-18彈琴,activities,Playing the Piano,피아노 연주,False
-13c-19畫畫,activities,Drawing,그림 그리기,False
-13c-20旅行,activities,Travel,여행,False
-13c-21燒烤,activities,Barbecue,바비큐,False
-13c-22在圖書館看書,activities,Reading in the Library,도서관에서 책 읽기,False
-13d-01上學,activities,Going to School,학교에 가다,False
-13d-02上課,activities,Class,수업,False
-13d-03小息,activities,Break Time,휴식 시간,False
-13d-04玩遊戲,activities,Playing Games,게임하기,False
-13d-05放學,activities,After School,하교,False
-13d-06校車,activities,Taking the School Bus,학교 버스 타기,False
-13d-07運動會,activities,Sports Day,운동회,False
-13d-08水運會,activities,Aquatic Sports Day,수영 대회,False
-13d-09開學日,activities,First Day of School,등교 첫날,False
-13d-10聖誕慶祝會,activities,Christmas Celebration,크리스마스 축하회,False
-13d-11家長日,activities,Parent-Teacher Day,부모일,False
-13d-12畢業典禮,activities,Graduation Ceremony,졸업식,False
-13d-13暑假,activities,Summer Vacation,여름방학,False
-activities,activities,Activities,활동,False
-art-1,activities,Art Palette,색상 팔레트,False
-art,activities,Art,미술,False
-assembly-1,activities,Assembling a Bed,침대 조립,False
-assembly,activities,Assembly,모임,False
-assessment-1,activities,Children Taking a Test,아이들이 시험을 보는 중,False
-bath,activities,Taking a Bath,목욕하기,False
-bedtime1,activities,Sleeping,잠자기,False
-bedtime2,activities,Sleeping,잠자기,False
-big_writing,activities,Writing,쓰기,False
-breakfast1,activities,Eating Breakfast,아침 식사하기,False
-breakfast2,activities,Eating Breakfast,아침 식사하기,False
-brush_teeth1,activities,Brushing Teeth,이빨 닦기,False
-brush_teeth2,activities,Brushing Teeth,이빨 닦기,False
-bus_time,activities,Bus,버스,False
-calendar-1,activities,Calendar,달력,False
-carpet_time,activities,Carpet Time,카펫 시간,False
-church,activities,Church,교회,False
-climb-4603,activities,Climbing,오르다,False
-close-4706,activities,Closing the Door,문 닫기,False
-computer,activities,Computer,컴퓨터,False
-computerlab-1,activities,Computer Lab,컴퓨터 실습실,False
-computers,activities,Computer Time,컴퓨터 시간,False
-conference-1,activities,Having a Conference,회의하기,False
-cook-4604,activities,Cooking,조리,False
-cooking__2_,activities,Cooking Class,요리 수업,False
-cooking-1,activities,Cooking,요리,False
-cooking,activities,Cooking,요리하기,False
-cry-4601,activities,Crying,울다,False
-cut-4812,activities,Cutting Paper,종이 자르기,False
-D_T,activities,Home Economics,가사 수업,False
-dance-4509,activities,Dancing,춤추기,False
-dance,activities,Dance Class,무용 수업,False
-dinner1,activities,Eating Dinner,저녁 식사하기,False
-dinner2,activities,Eating dinner,저녁을 먹다,False
-doingdishes,activities,Doing Dishes,접시 씻기,False
-doinghomework__1_,activities,Doing Homework,숙제하기,False
-doinghomework__2_,activities,Doing Homework,숙제하기,False
-doinghomework,activities,Doing Homework,숙제하기,False
-dressingclothes,activities,Putting on a shirt,셔츠 입기,False
-drink-4701,activities,Drinking,마시다,False
-eat-4702,activities,Eating,먹기,False
-eating,activities,Eating,식사,False
-english-1,activities,ABC Book,ABC 책,False
-exercise-1,activities,Jumping Rope,줄넘기,False
-feedingcat,activities,Feeding the Cat,고양이에게 먹이 주기,False
-firstaid-1,activities,First Aid Kit,응급처치 키트,False
-Geography,activities,Geography,지리,False
-get_up1,activities,Get up,일어나기,False
-get_up2,activities,Get up,일어나기,False
-give-4805,activities,Giving a Gift,선물 주기,False
-gym-1,activities,Gymnastics Exercise,체조 운동,False
-gymnastics,activities,Gymnastics,체조,False
-havingdinner,activities,Having Dinner,저녁 식사하기,False
-history,activities,History,역사,False
-home_time,activities,Going Home After School,학교 끝나고 집에 가기,False
-homework__1_,activities,Doing Homework,숙제하기,False
-homework,activities,Doing Homework,숙제하기,False
-journal-1,activities,Journal,일기장,False
-jump-4507,activities,Jump,점프,False
-language-1,activities,Writing at a Desk,책상에서 글 쓰기,False
-laugh-4602,activities,Laugh,웃기,False
-library-1,activities,Library Bookshelf,도서관 책장,False
-library,activities,Library,도서실,False
-listen-4703,activities,Listen,들으세요,False
-lunch_time,activities,Lunch,점심,False
-lunch-1,activities,Lunchbox,점심 상자,False
-lunch1,activities,Eating Lunch,점심 먹기,False
-lunch2,activities,Eating Lunch,점심 먹기,False
-makingbed,activities,Making the Bed,침대 정리하기,False
-math-1,activities,Adding Apples,사과 더하기,False
-maths,activities,Mathematics,수학,False
-mental_maths,activities,Mental Math,심산,False
-music,activities,Music Class,음악 수업,False
-open-4704,activities,Opening a Door,문 열기,False
-outdoor_activities,activities,Outdoor Activities,실외 활동,False
-painting,activities,Painting,그림 그리기,False
-park,activities,Hiking,등산,False
-pe-1,activities,Jumping,점프,False
-pe,activities,Physical Education Class,체육수업,False
-pickuptoys,activities,Pick Up Toys,장난감 정리하기,False
-planners-1,activities,Planner and Pen,플래너와 펜,False
-play_outside,activities,Go Outside to Play,외부에서 놀기,False
-play-4503,activities,Playing with a toy car,장난감 차량 놀이,False
-playground,activities,Go to the park to play,공원에서 놀러가기,False
-playtime_1,activities,Playtime - Rings and Jump Rope,놀이 시간 - 고리와 점프로프,False
-playtime_2,activities,Recess Time,하교 시간,False
-pull-4801,activities,Pulling a Rope,줄 당기기,False
-push-4802,activities,Pushing a Cabinet,장식장 밀기,False
-read-4505,activities,Reading,읽기,False
-readabook,activities,Read a Book,책 읽기,False
-reading-1,activities,Reading,읽기,False
-reading,activities,Reading,읽기,False
-recess-1,activities,Playground Slide,놀이터 미끄럼틀,False
-ride-4508,activities,Riding a Bicycle,자전거 타기,False
-run-4502,activities,Running,달리기,False
-science,activities,Nature Exploration,자연 탐구,False
-settable,activities,Setting the Table,식탁 정리하기,False
-shopping,activities,Shopping,쇼핑,False
-shower,activities,Shower,샤워,False
-sing-4709,activities,Singing,노래 부르기,False
-singing,activities,Singing,노래 부르기,False
-sit-4809,activities,Sit,앉기,False
-sleep-4504,activities,Sleeping,잠자기,False
-sleep-boy,activities,Sleeping Boy,잠자는 소년,False
-sleep-girl,activities,Girl Sleeping and Dreaming,여자아이가 잠자고 꿈을 꾸는 모습,False
-snack_time,activities,Snack Time,간식 시간,False
-speech-1,activities,Reading a Book,책 읽기,False
-stand-4810,activities,Standing,서기,False
-story__2_,activities,Tell a Story,이야기하기,False
-story,activities,Telling Stories,이야기하기,False
-swimming__2_,activities,Swimming Lesson,수영 수업,False
-swimming,activities,Swimming,수영,False
-talk-4509,activities,Talking on the Phone,전화 통화하기,False
-tea_time,activities,Afternoon Tea Time,오후 차 시간,False
-television,activities,Watching Television,텔레비전 보기,False
-think-4803,activities,Thinking,생각하기,False
-throwaway-4706,activities,Throwing away trash,버리다,False
-tidy_time,activities,Cleaning,청소,False
-toilet_break,activities,Go to the bathroom,화장실 가기,False
-toilet,activities,Using the Toilet,화장실 사용,False
-toys,activities,Toys,장난감,False
-trip_out,activities,Double-decker bus,이층 버스,False
-vacuumfloor,activities,Vacuuming the Floor,바닥 청소하기,False
-video_time,activities,Video Time,영상 시간,False
-wait-4605,activities,Waiting for the Bus,버스 기다리기,False
-wakingup,activities,Waking Up,기상,False
-walk_the_dog,activities,Walk the Dog,개 산책,False
-walk-4501,activities,Walking,걷기,False
-walkdog,activities,Walking a Dog,개 산책하기,False
-wash_and_brush_teeth1,activities,Washing Face and Brushing Teeth,얼굴 씻기와 칫솔질,False
-wash_and_brush_teeth2,activities,Washing Face and Brushing Teeth,얼굴 씻기와 칫솔질,False
-wash-4806,activities,Washing Hands,손 씻기,False
-write-4506,activities,Writing,글쓰기,False
-10-01電話,appliances,Telephone,전화,False
-10-02手提電話,appliances,Mobile Phone,휴대전화,False
-10-03電視,appliances,Television,텔레비전,False
-10-04電腦,appliances,Computer,컴퓨터,False
-10-05風扇,appliances,Electric Fan,전기 선풍기,False
-10-06冷氣機,appliances,Air Conditioner,에어컨,False
-10-07洗衣機,appliances,Washing Machine,세탁기,False
-10-08雪櫃,appliances,Refrigerator,냉장고,False
-10-09電飯煲,appliances,Electric Rice Cooker,전기밥솥,False
-10-10微波爐,appliances,Microwave Oven,전자레인지,False
-10-11電水壼,appliances,Electric Kettle,전기 주전자,False
-10-12鐘,appliances,Clock,시계,False
-10-13燈,appliances,Ceiling Lamp,천장등,False
-10-14檯燈,appliances,Desk Lamp,책상등,False
-10-15熨斗,appliances,Iron,다리미,False
-10-16風筒,appliances,Hair Dryer,헤어드라이어,False
-10-17吸塵機,appliances,Vacuum Cleaner,청소기,False
-10-18相機,appliances,Camera,카메라,False
-10-19收音機,appliances,Radio,라디오,False
-10-20音響組合,appliances,Stereo System,스테레오 시스템,False
-10-21錄影機,appliances,VCR,비디오 레코더,False
-10-22DVD機,appliances,DVD Player,DVD 플레이어,False
-7-01狗,beings,Dog,개,False
-7-02貓,beings,Cat,고양이,False
-7-03雞,beings,Chicken,닭,False
-7-04豬,beings,Pig,돼지,False
-7-05羊,beings,Goat,양,False
-7-06牛,beings,Ox,소,False
-7-07馬,beings,Horse,말,False
-7-08白兔,beings,White Rabbit,흰 토끼,False
-7-09魚,beings,Fish,물고기,False
-7-10鳥,beings,Bird,새,False
-7-11象,beings,Elephant,코끼리,False
-7-12獅子,beings,Lion,사자,False
-7-13老虎,beings,Tiger,호랑이,False
-7-14猴子,beings,Monkey,원숭이,False
-7-15長頸鹿,beings,Giraffe, żyrafa,False
-7-16老鼠,beings,Mouse,쥐,False
-7-17龜,beings,Turtle,거북이,False
-7-18海豚,beings,Dolphin,돌고래,False
-7-19鯨魚,beings,Whale,고래,False
-7-20草,beings,Grass,풀,False
-7-21樹,beings,Tree,나무,False
-7-22花,beings,Rose,장미,False
-5-01短袖衫,clothes,Short-sleeved shirt,반팔 셔츠,False
-5-02長袖衫,clothes,Long-sleeve shirt,긴팔 셔츠,False
-5-03恤衫,clothes,Shirt,셔츠,False
-5-04短褲,clothes,Shorts,반바지,False
-5-05長褲,clothes,Long pants,긴 바지,False
-5-06裙,clothes,Skirt,스커트,False
-5-07運動衫,clothes,Sports Uniform,운동복,False
-5-08冷衫,clothes,Sweater,니트 스웨터,False
-5-09褸,clothes,Jacket,자켓,False
-5-10校服,clothes,School Uniform,학교 제복,False
-5-11內褲,clothes,Underwear,내의,False
-5-12襪,clothes,Socks,양말,False
-5-13拖鞋,clothes,Slippers,슬리퍼,False
-5-14波鞋,clothes,Sneakers,운동화,False
-5-15水鞋,clothes,Rain Boots,비옷 신발,False
-5-16帽,clothes,Cap,모자,False
-5-17書包,clothes,Backpack,등산용 가방,False
-5-18頸巾,clothes,Scarf,목도리,False
-5-19手襪,clothes,Gloves,장갑,False
-5-20泳衣,clothes,Swimsuit,수영복,False
-5-21泳褲,clothes,Swim Trunks,수영복,False
-apron,clothes,Apron, 앞치마,False
-belt,clothes,Belt,벨트,False
-blouse,clothes,Blouse,블라우스,False
-boots,clothes,Rain Boots,비옷 부츠,False
-cap,clothes,Beach Ball Cap,비치볼 모자,False
-coat,clothes,Coat,코트,False
-gloves,clothes,Gloves,장갑,False
-jacket,clothes,Jacket,자켓,False
-pajama,clothes,Pajamas,잠옷,False
-pants,clothes,Pants,바지,False
-raincoat,clothes,Raincoat,비옷,False
-scarf,clothes,Scarf,목도리,False
-cold,emotions,Cold,추운,False
-cry,emotions,Sadness,슬픔,False
-donotdoit,emotions,Do Not Do It,하지 마세요,False
-happy-2,emotions,Happy,행복,False
-hot,emotions,Hot,뜨겁다,False
-hungry,emotions,Hungry,배고픔,False
-iammad,emotions,I am angry,나는 화가 나 있음,False
-idonotlikeit,emotions,I Don't Like It,나는 좋아하지 않아요,False
-idonotwantit,emotions,I don't want this,이걸 원하지 않아요,False
-iforgot,emotions,I Forgot,나는 잊어버렸어,False
-mad,emotions,Angry,화가 나다,False
-sick,emotions,Sick,병에 걸렸어요,False
-thirsty,emotions,Thirsty,목마름,False
-toonoisy,emotions,Too Noisy,너무 시끄러워,False
-ukastonished-1,emotions,Surprised,놀라움,False
-ukcold-1,emotions,Feeling Cold,추운 기분,False
-ukconfused-1,emotions,Confused,혼란스러움,False
-ukembarassed-1,emotions,Embarrassed,부끄러움,False
-ukhappy-1,emotions,Happy Girl,행복한 소녀,False
-ukhot-1,emotions,Sweating Face,땀 흘리는 얼굴,False
-uksad-1,emotions,Sad Face,슬픈 얼굴,False
-uksleepy-1,emotions,Sleepy,졸린,False
-ukworries-1,emotions,Worried Boy,걱정하는 소년,False
-urdrivingmecrazy,emotions,You're Driving Me Crazy,너는 나를 미치게 해,False
-yell,emotions,Yelling,외치다,False
-14-01聖誕節,festivals,Christmas,크리스마스,False
-14-02聖誕老人,festivals,Santa Claus,산타클로스,False
-14-03聖誕咭,festivals,Christmas Card,크리스마스 카드,False
-14-04聖誕樹,festivals,Christmas Tree,크리스마스 트리,False
-14-05聖誕襪,festivals,Christmas Stocking,크리스마스 양말,False
-14-06禮物,festivals,Gifts,선물,False
-14-07聖誕花,festivals,Poinsettia,성탄화,False
-14-08聖誕鐘,festivals,Christmas Bells,크리스마스 종,False
-14-09聖誕星,festivals,Christmas Star,크리스마스 별,False
-14-10聖誕帽,festivals,Santa Hat,산타 모자,False
-14-11燈飾,festivals,Christmas Light Decoration,크리스마스 조명 장식,False
-14-12新年,festivals,New Year,새해,False
-14-13農曆新年,festivals,Lunar New Year,음력 새해,False
-14-14大掃除,festivals,Spring Cleaning,대청소,False
-14-15全盒,festivals,Full Box,전상자,False
-14-16利是,festivals,Red Envelope (Lai See),빨간 봉투 (라이 시),False
-14-17揮春,festivals,Spring Festival Couplets,춘聯,False
-14-18水仙,festivals,Narcissus,수선화,False
-14-19桔,festivals,Mandarin Orange Plant,귤 식물,False
-14-20桃花,festivals,Peach Blossom,복숭아 꽃,False
-14-21財神,festivals,God of Wealth,재신,False
-14-22舞獅,festivals,Lion Dance,사자춤,False
-14-23爆竹,festivals,Firecrackers,화약놀이,False
-14-24煙花,festivals,Fireworks,불꽃놀이,False
-14-25拜年,festivals,New Year Greetings,새해 인사,False
-14-26年宵市場,festivals,Lunar New Year Market,설날 시장,False
-14-27中秋節,festivals,Mid-Autumn Festival,중추절,False
-14-28燈籠,festivals,Lantern,등롱,False
-14-29端午節,festivals,Dragon Boat Festival,단오절,False
-14-30清明節,festivals,Qingming Festival,청명절,False
-14-31復活節,festivals,Easter,부활절,False
-14-32重陽節,festivals,Double Ninth Festival,중양절,False
-14-33國慶日,festivals,National Day,국경일,False
-14-34回歸紀念日,festivals,Hong Kong Return Anniversary,홍콩 반환 기념일,False
-14-35勞動節,festivals,Labor Day,노동절,False
-14-36佛誕,festivals,Buddha's Birthday,석가탄신일,False
-14-37兒童節,festivals,Children's Day,어린이날,False
-14-38母親節,festivals,Mother's Day,어머니의 날,False
-14-39父親節,festivals,Father's Day,어버이날,False
-14-40生日會,festivals,Birthday Party,생일 파티,False
-14-41敬師節,festivals,Teachers' Day,교사의 날,False
-14-42萬聖節,festivals,Halloween,할로윈,False
-candycane-1_1_,festivals,Candy Cane,キャン디케인,False
-candycane-2,festivals,Candy Canes,キャン디캔,False
-fireplace-1,festivals,Christmas Fireplace with Stockings,크리스마스 벽난로와 양말,False
-gingerbread-1,festivals,Gingerbread Man,진저브레드맨,False
-jinglebell-1,festivals,Jingle Bell with Green Bow,녹색 리본이 달린 종,False
-mrsclaus-1,festivals,Mrs. Claus,클라우스 부인,False
-poinsettia-1,festivals,Poinsettia,포인세티아,False
-santa-1,festivals,Santa Claus Writing a List,산타클로스가 리스트를 쓰고 있음,False
-xmasbells-1,festivals,Christmas Bells,크리스마스 종,False
-xmaslight-1,festivals,Christmas Lights,크리스마스 불빛,False
-xmastree-1,festivals,Christmas Tree,크리스마스 트리,False
-jelly,food,Jelly,젤리,False
-三文治,food,Sandwich,샌드위치,False
-乳酪,food,Yogurt,요거트,False
-冬菇,food,Shiitake Mushroom,표고버섯,False
-叉燒,food,Char Siu,차슈,False
-叉燒包,food,Char Siu Bao,차수바오,False
-可樂,food,Coca-Cola,코카콜라,False
-士多啤梨,food,Strawberry,딸기,False
-壽司,food,Sushi,수시,False
-奇異果,food,Kiwi fruit,키위 과일,False
-年糕,food,Rice Cake,년고,False
-意大利粉,food,Spaghetti,스파게티,False
-提子,food,Green Grapes,포도,False
-春卷,food,Spring Roll,봄말,False
-月餅,food,Mooncake,달콤한 달걀 케이크,False
-木瓜,food,Papaya,파파야,False
-朱古力,food,Chocolate,초콜릿,False
-朱古力金幣,food,Chocolate Coins,초콜릿 동전,False
-果醬,food,Jam,과자,False
-柑,food,Tangerine,귤,False
-柚子,food,Pomelo,유자,False
-柿,food,Persimmon,감,False
-梨,food,Pear,배,False
-棉花糖,food,Marshmallow,마시멜로,False
-楊桃,food,Carambola,양파과일,False
-榴槤,food,Durian,두리안,False
-橙,food,Orange,오렌지,False
-橙汁,food,Orange Juice,오렌지 주스,False
-檸檬,food,Lemon,레몬,False
-檸檬茶,food,Lemon Tea,레몬차,False
-水,food,Water,물,False
-汽水,food,Soda,탄산음료,False
-油角,food,Fried dumpling,유각,False
-洋蔥,food,Onion,양파,False
-湯,food,Soup,국,False
-漢堡包,food,Hamburger,햄버거,False
-火腿,food,Ham,햄,False
-燒賣,food,Shumai,샤오마이,False
-牛奶,food,Milk,우유,False
-牛油,food,Butter,버터,False
-牛肉,food,Beef,소고기,False
-瓜,food,Cucumber,오이,False
-瓜子,food,Pumpkin Seeds,참깨,False
-生日蛋糕,food,Birthday Cake,생일 케이크,False
-百力滋,food,Biscuit Sticks,백리지,False
-益力多,food,Yakult,야쿠르트,False
-粟米,food,Corn,옥수수,False
-粥,food,Congee,죽,False
-粽,food,Zongzi,장자,False
-糖,food,Candy,사탕,False
-糖冬瓜,food,Candied Winter Melon,당겨울호박,False
-紙包果汁,food,Carton Juice,종이팩 과일주스,False
-紫菜,food,Nori,미역,False
-維他奶,food,Vitasoy,비타밀크,False
-罐頭,food,Canned Food,캔 음식,False
-肉,food,Meat,고기,False
-腸粉,food,Rice Noodle Roll,장분,False
-芒果,food,Mango,망고,False
-芝士,food,Cheese,치즈,False
-花生醬,food,Peanut Butter,피넛버터,False
-茄子,food,Eggplant,가지,False
-茶,food,Tea,차,False
-荔枝,food,Lychee,리치,False
-菊花茶,food,Chrysanthemum Tea,국화차,False
-菜,food,Chinese Cabbage,배추,False
-菠蘿,food,Pineapple,파인애플,False
-蕃茄,food,Tomato,토마토,False
-薄餅,food,Pizza,피자,False
-薯仔,food,Potato,감자,False
-薯條,food,French Fries,프렌치 프라이,False
-薯片,food,Potato Chips,감자칩,False
-蘋果,food,Apple,사과,False
-蘋果汁,food,Apple Juice,사과주스,False
-蘿蔔,food,Carrot,당근,False
-蛋卷,food,Egg Roll,계란말이,False
-蛋撻,food,Egg Tart,달걀 파이,False
-蛋糕,food,Cake,케이크,False
-蛋糕仔,food,Cupcakes,케이크,False
-蝦,food,Shrimp,새우,False
-蝦條,food,Shrimp Crackers,새우 스낵,False
-蝦片,food,Shrimp Crackers,새우 조각,False
-蝦餃,food,Shrimp Dumplings,새우饺,False
-蟹,food,Crab,게,False
-西瓜,food,Watermelon,수박,False
-豆,food,Pea Pod,완두,False
-豆腐,food,Tofu,두부,False
-車厘子,food,Cherry,체리,False
-通心粉,food,Macaroni,마카로니,False
-雞翼,food,Chicken Wings,닭 날개,False
-雞脾,food,Chicken Thigh,닭다리,False
-雞蛋,food,Eggs,계란,False
-雪條,food,Popsicle,아이스크림,False
-雪糕,food,Ice Cream,아이스크림,False
-食送,food,Bento Box,弁당,False
-飯,food,Steamed Rice,밥,False
-餅乾,food,Cookies,쿠키,False
-香口膠,food,Gum,사탕,False
-香腸,food,Sausage,소시지,False
-香蕉,food,Banana,바나나,False
-魚,food,Fish,물고기,False
-魚蛋,food,Fish Balls,어란,False
-魷魚絲,food,Dried Squid Strips,건조 오징어 조각,False
-麥精,food,Malt Milk,말트우유,False
-麵,food,Noodles,국수,False
-麵包,food,Bread,빵,False
-點心麵,food,Snack Noodles,간식 국수,False
-龍眼,food,Longan,용안,False
-11-01檯,furniture,Table,테이블,False
-11-02椅子,furniture,Chair,의자,False
-11-03梳化,furniture,Sofa,소파,False
-11-04床,furniture,Bed,침대,False
-11-05書檯,furniture,Desk,책상,False
-11-06櫃,furniture,Cabinet,장식대,False
-11-07垃圾桶,furniture,Trash Can,쓰레기통,False
-11-08門,furniture,Door,문,False
-11-09窗,furniture,Window,창문,False
-11-10便盆,furniture,Bedpan,침대용 변기,False
-11-11廁所,furniture,Toilet,화장실,False
-量匙_一汤匙_,measuring,Measuring Spoon (1 Tablespoon),측정 숟가락 (1 큰술),False
-量匙_一茶匙_,measuring,Measuring Spoon (1 Teaspoon),측정 숟가락 (1 티스푼),False
-量匙_半茶匙_,measuring,Measuring Spoon (Half Teaspoon),측정 숟가락 (반 티스푼),False
-量匙_四分之一茶匙_,measuring,1/4 Teaspoon Measuring Spoon,1/4 티스푼 측정 스푼,False
-量杯_一杯_,measuring,Measuring Cup,측량컵,False
-量杯_三份之一杯_,measuring,Measuring Cup (One-Third Cup),측정 컵 (세분의 일 컵),False
-量杯_半杯_,measuring,Measuring Cup (Half Cup),측정컵 (반 컵),False
-量杯_四份之一杯_,measuring,Quarter Cup Measuring Cup,사분의 일 컵 측량컵,False
-量杯,measuring,Measuring Cups,측정 컵,False
-8-01爸爸,people,Father,아빠,False
-8-02媽媽,people,Mother,엄마,False
-baby-1,people,Baby wrapped in a blanket,이불에 싸인 아기,False
-boy-1,people,Boy holding a book and waving,책을 들고 손을 흔드는 소년,False
-boy-2,people,Boy in Red Shirt,빨간 셔츠를 입은 소년,False
-boy-3,people,Boy with Glasses,안경을 낀 소년,False
-brotherandsister-1,people,Brother and Sister,형제자매,False
-father-1,people,Father holding a baby,아빠가 아기를 안고 있음,False
-friends-1,people,Friends Standing Together Saying 'Go Green!',친구들이 함께 서서 '녹색으로 가자!'라고 말하고 있음,False
-girl-1,people,Girl with pigtails wearing a purple dress,쌍다리 머리에 보라색 드레스를 입은 소녀,False
-girl-2,people,Girl in Pink Sweater,분홍색 스웨터를 입은 소녀,False
-girl-3,people,Girl in School Uniform,학교 제복 입은 소녀,False
-girl-4,people,Girl in Pink Dress,분홍색 드레스를 입은 소녀,False
-girl-5,people,Girl with red curly hair wearing an orange shirt and green shorts,붉은 곱슬머리 소녀가 주황색 셔츠와 초록색 반바지를 입고 있음,False
-grandparents-1,people,Grandparents,할아버지와 할머니,False
-mother-1,people,Mother holding a baby,어머니가 아기를 안고 있음,False
-oldman-1,people,Old Man with Cane,지팡이를 짚고 있는 노인,False
-parents-1,people,Parents,부모,False
-厨师,people,Chef,주방장,False
-12-01廳,places,Living Room,거실,False
-12-02睡房,places,Bedroom,침실,False
-12-03廚房,places,Kitchen,주방,False
-12-04洗手間,places,Restroom,화장실,False
-12-05學校,places,School,학교,False
-12-06公園,places,Park,공원,False
-12-07廁所,places,Toilet,화장실,False
-12-08傷殘人士廁所,places,Accessible Toilet for People with Disabilities,장애인 화장실,False
-12-09超級市場,places,Supermarket,슈퍼마켓,False
-12-10歡樂天地,places,Fun Land,즐거운 땅,False
-12-11百貨公司,places,Department Store,백화점,False
-12-12文具店,places,Stationery Store,문구점,False
-12-13玩具店,places,Toy Store,장난감 가게,False
-12-14服裝店,places,Clothing Store,의류점,False
-12-15鞋店,places,Shoe Store,신발 가게,False
-12-16街市,places,Market,시장,False
-12-17商場,places,Shopping Mall,쇼핑몰,False
-12-18圖書館,places,Library,도서관,False
-12-19泳池,places,Swimming Pool,수영장,False
-12-20沙灘,places,Beach,해변,False
-12-21郊野公園,places,Country Park,야외공원,False
-12-22燒烤場,places,Barbecue Area,바비큐장,False
-12-23醫院,places,Hospital,병원,False
-12-24診所,places,Clinic,진료소,False
-12-25郵局,places,Post Office,우체국,False
-12-26消防局,places,Fire Station,소방서,False
-12-27戲院,places,Theater,극장,False
-12-28酒樓,places,Restaurant,식당,False
-12-29餐廳,places,Dining Room,식당,False
-12-30快餐店,places,Fast Food Restaurant,패스트푸드 식당,False
-12-31美食廣場,places,Food Court,음식 코트,False
-12-32太空館,places,Planetarium,천문관,False
-12-33科學館,places,Science Museum,과학관,False
-12-34文化中心,places,Cultural Center,문화센터,False
-12-35機場,places,Airport,공항,False
-12-36海洋公園,places,Ocean Park,오션 파크,False
-12-37山頂,places,The Peak Tower,피크 타워,False
-12-38天壇大佛,places,Tian Tan Buddha,천단대불,False
-12-39青馬大橋,places,Tsing Ma Bridge,청마대교,False
-15-01坐好,rituals,Sit Properly,제대로 앉기,False
-15-02安靜,rituals,Quiet,조용히,False
-15-03留心聽,rituals,Pay Attention and Listen,주의해서 듣기,False
-15-04望著,rituals,Looking at Each Other,서로 바라보기,False
-15-05舉手,rituals,Raise Hand,손을 들어올리기,False
-15-06排隊,rituals,Line Up,줄 서기,False
-15-07慢慢行,rituals,Walk Slowly,천천히 걷기,False
-15-08返回座位,rituals,Return to Seat,자리로 돌아가기,False
-15-09給老師,rituals,Giving to the Teacher,선생님께 주기,False
-15-10放好玩具,rituals,Put Away Toys,장난감 정리하기,False
-15-11一起玩耍,rituals,Playing Together,함께 놀기,False
-15-12拜拜,rituals,Goodbye,안녕히 가세요,False
-15-13打招呼,rituals,Greeting,인사하기,False
-15-14握手,rituals,Handshake,손을 맞잡다,False
-15-15幫忙,rituals,Helping,도와주기,False
-15-16戴安全帶,rituals,Wear Seatbelt,안전벨트 착용,False
-15-17用紙巾抹鼻涕,rituals,Use a tissue to wipe nose,면巾으로 코를 닦기,False
-15-18放低手,rituals,Lower Hands,손 내리기,False
-不要打开,rituals,Do Not Open,열지 마세요,False
-书要拿好,rituals,Hands in Front,손을 앞에 둬요,False
-休息一下,rituals,Take a Break,잠시 쉬어보기,False
-停,rituals,Stop,정지,False
-发脾气,rituals,Throwing a Tantrum,화를 내다,False
-坐好,rituals,Sit Properly,제대로 앉기,False
-安静,rituals,Quiet,조용히,False
-手放前面,rituals,Hands in Front,손을 앞에 둬요,False
-手要放好,rituals,Hands should be placed properly,손을 제대로 놓아야 해요,False
-等,rituals,Sit down,앉기,False
-等一下,rituals,Wait a Moment,잠시 기다려,False
-请帮忙,rituals,I Need Help,도움이 필요해요,False
-走开,rituals,Walk Away,멀어지기,False
-过来这边,rituals,Come over here,여기로 와,False
-year_of_dog,shengxiao,Year of the Dog,개년,False
-year_of_dragon,shengxiao,Dragon,용,False
-year_of_goat,shengxiao,Year of the Goat,염소 해,False
-year_of_horse,shengxiao,Horse,말,False
-year_of_monkey,shengxiao,Year of the Monkey,원숭이 해,False
-year_of_ox,shengxiao,Ox,소,False
-year_of_pig,shengxiao,Year of the Pig,돼지 해,False
-year_of_rabbit,shengxiao,Rabbit,토끼,False
-year_of_rat,shengxiao,Year of the Rat,쥐해,False
-year_of_rooster,shengxiao,Year of the Rooster,닭 해,False
-year_of_snake,shengxiao,Snake,뱀,False
-year_of_tiger,shengxiao,Tiger,호랑이,False
-asteroid-1,space,Asteroid,소행성,False
-comet-1,space,Comet,혜성,False
-earth-1,space,Earth,지구,False
-jupiter-1,space,Jupiter,목성,False
-mars-1,space,Mars,화성,False
-mercury-1,space,Mercury,수성,False
-moon-1,space,Moon,달,False
-neptune-1,space,Neptune,해왕성,False
-pluto-1,space,Pluto,플루토,False
-saturn-1,space,Saturn,토성,False
-sun-1,space,Sun,태양,False
-uranus-1,space,Uranus,천왕성,False
-venus-1,space,Venus,금성,False
-3-01鉛筆,stationery,Pencil,연필,False
-3-02原子筆,stationery,Ballpoint Pen,볼펜,False
-3-03顏色筆,stationery,Colored Pencils,색연필,False
-3-04擦膠,stationery,Eraser,지우개,False
-3-05間尺,stationery,Ruler,자,False
-3-06較剪,stationery,Scissors,가위,False
-3-07膠水,stationery,Glue,풀,False
-3-08紙,stationery,Paper,종이,False
-3-09簿,stationery,Notebook,노트북,False
-3-10鉛筆刨,stationery,Pencil Sharpener,연필깎이,False
-3-11筆盒_筆袋,stationery,Pencil Case / Pencil Pouch,연필盒／연필가방,False
-Address_book,stationery,Address Book,주소록,False
-Book1,stationery,Open Book,열린 책,False
-Book2,stationery,Open Bible with Red Edges,빨간 가장자리의 열린 성경,False
-Book3,stationery,Open Dictionary Book,열린 사전 책,False
-Book4,stationery,Communication Book,소통 책,False
-Book5,stationery,Book,책,False
-Book6,stationery,The Book of Answers,답변의 책,False
-Book7,stationery,Red Hardcover Book,빨간색 하드커버 책,False
-Books,stationery,Stack of Books,책 더미,False
-Bulldog_clips,stationery,Bulldog clips,불독 클립,False
-Clippers,stationery,Scissors,가위,False
-Color_pencils,stationery,Color Pencils,색연필,False
-Color_pencils2,stationery,Color Pencils,색연필,False
-Color_pencils3,stationery,Color Pencils,색연필,False
-Color_pencils4,stationery,Color Pencils,색연필,False
-Compass,stationery,Compass,컴퍼스,False
-Compass2,stationery,Compass,컴퍼스,False
-Connector_pens,stationery,Connector Pens,연결 펜,False
-Correction_fluid,stationery,Correction Fluid,정정액,False
-Crayons1,stationery,Crayons and Drawing Paper,색연필과 그림지,False
-Crayons2,stationery,Crayons,색연필,False
-Crayons3,stationery,Crayons,색연필,False
-Crayons4,stationery,Crayons in a Tray,ถาดข้างในมีเทียนสี,False
-Crayons5,stationery,Crayons,색연필,False
-Crayons6,stationery,Crayons,색연필,False
-Crayons7,stationery,Crayons,색연필,False
-Date_stamp,stationery,Communication Card Date Stamp,소통 카드 날짜 도장,False
-Diary1,stationery,Diary,일기장,False
-Diary2,stationery,Diary,일기장,False
-Diary3,stationery,Diary,일기장,False
-Diary4,stationery,Desk Calendar with Notepad,메모장이 달린 책상 캘린더,False
-Diary5,stationery,Desk Diary,책상 다이어리,False
-Diary6,stationery,Diary,일기장,False
-Diary7,stationery,Diary Planner,다이어리 플래너,False
-Diary8,stationery,Daily Planner Diary,매일 계획 다이어리,False
-Drawing_pins,stationery,Colorful Drawing Pins,다채로운 그림 핀,False
-Drawing_pins2,stationery,Colorful Drawing Pins,다채로운 그림 핀,False
-Envelope,stationery,Air Mail Envelope,항공 우편 봉투,False
-Envelopes1,stationery,Air Mail Envelope,항공 우편 봉투,False
-Envelopes2,stationery,Air Mail Envelope,항공 우편 봉투,False
-Eraser,stationery,Eraser,지우개,False
-Erasers1,stationery,Erasers,지우개,False
-Erasers2,stationery,Erasers,지우개,False
-Face_paints,stationery,Face Paints,얼굴 페인트,False
-Felt_marker,stationery,Felt Marker,모직 마커,False
-Felt_pens,stationery,Felt Pens,페인트 펜,False
-Fibretip_pen1,stationery,Fibre-tip pen,섬유심 펜,False
-Fibretip_pens2,stationery,Fibretip pens,섬유심 펜,False
-Fountain_pen,stationery,Fountain Pen,펜,False
-Globe,stationery,Globe,지구본,False
-Globe2,stationery,Globe,지구본,False
-Glue_pen,stationery,Clear Glue Pen,투명 접착제 펜,False
-Glue1,stationery,Glue Bottle,풀 병,False
-Glue2,stationery,Glue Bottle,풀 병,False
-Glue3,stationery,Glue Dropper,풀 방울기,False
-Glue4,stationery,Kid's Glue,아이용 접착제,False
-Glue5,stationery,Glue Bottle with Applicator,앱리케이터가 달린 접착제 병,False
-Glue6,stationery,Glue Bottle,풀 병,False
-Gluestick1,stationery,Glue Stick,풀 스틱,False
-Gluestick2,stationery,Glue Stick,풀 스틱,False
-Gluestick3,stationery,Glue Stick,풀 스틱,False
-Gluestick4,stationery,Gluestick,풀스틱,False
-Guillotine1,stationery,Paper Cutter,용지 절단기,False
-Guillotine2,stationery,Paper Cutter,종이 절단기,False
-Highlighter,stationery,Highlighter,蛍광펜,False
-Hole_punch1,stationery,Hole Punch,홀펀치,False
-Hole_Punch2,stationery,Hole Punch,홀펀치,False
-Hole_Punch3,stationery,Hole Punch,홀펀치,False
-Hole_Punch4,stationery,Communication Card Holder,소통 카드 홀더,False
-Hole_Punch5,stationery,Communication Card Holder,소통 카드 홀더,False
-Hole_Punch6,stationery,Hole Punch,홀펀치,False
-Hole_Punch7,stationery,Hole Punch,홀펀치,False
-Ink_bottle,stationery,Ink bottle,잉크병,False
-Label_maker,stationery,Label Maker Tape Cartridges,라벨 메이커 테이프 카트리지,False
-Letter_opener,stationery,Letter Opener,편지 열기,False
-Lever_arch_binder,stationery,Lever Arch Binder,레버 아치 바인더,False
-Lever_arch_binder2,stationery,Lever Arch Binder,레버 아치 바인더,False
-Lever_arch_binder3,stationery,Lever Arch Binder,레버 아치 바인더,False
-Lever_arch_binder4,stationery,Lever Arch Binder,레버 아치 바인더,False
-Magnifying_glass,stationery,Magnifying glass,확대경,False
-Magnifying_glass2,stationery,Magnifying Glass,확대경,False
-Notebook2,stationery,Notebook,노트북,False
-Notebook3,stationery,Notebook with Contact Information for Autistic Children,자폐증 아동을 위한 연락처 정보 노트북,False
-Packing_tape_applicator,stationery,Packing Tape Applicator,포장 테이프 적용기,False
-Packing_tape,stationery,Packing Tape,포장 테이프,False
-Paintbrush,stationery,Blue Plastic Paintbrush,파란색 플라스틱 붓,False
-Paintbrush2,stationery,Paintbrush,물감 브러시,False
-Paintbrush3,stationery,Paintbrush,물감 붓,False
-Paintbrushes2,stationery,Paintbrushes,화필,False
-Paintbrushes3,stationery,Paintbrushes,화필,False
-Paints1,stationery,Watercolor Paint Set,물감 세트,False
-Paints2,stationery,Paints,페인트,False
-Paints3,stationery,Paints,페인트,False
-Paints4,stationery,Colorful Paint Set,다채로운 물감 세트,False
-Paints5,stationery,Watercolor Paint Set,물감 세트,False
-Paints6,stationery,Watercolor Paint Set,물감 세트,False
-Paints7,stationery,Paints and Brush,페인트와 브러시,False
-Paints8,stationery,Paints,페인트,False
-Paints9,stationery,Paint Palette with Brushes,브러시가 달린 물감 팔레트,False
-Paper_clips,stationery,Paper clips,종이 클립,False
-Paper_roll,stationery,Paper Roll,종이 롤,False
-Pen_Holder,stationery,Pen Holder,펜홀더,False
-Pen01,stationery,Pen,펜,False
-Pen02,stationery,Waterproof Pen,방수 펜,False
-Pen03,stationery,Mechanical Pencil,기계식 연필,False
-Pen04,stationery,Blue Transparent Ballpoint Pen,파란 투명 볼펜,False
-Pen05,stationery,Pen,펜,False
-Pen06,stationery,Blue Ballpoint Pen,파란 볼펜,False
-Pen07,stationery,Mechanical Pencil,기계식 연필,False
-Pen08,stationery,Metallic Ballpoint Pen,금속 볼펜,False
-Pen09,stationery,Permanent Marker Pen,영구 마커 펜,False
-Pen10,stationery,Blue Mechanical Pencil,파란색 기계식 연필,False
-Pen11,stationery,Red Mechanical Pencil,빨간색 기계식 연필,False
-Pen12,stationery,Pen,펜,False
-Pen13,stationery,Orange Transparent Ballpoint Pen,오렌지 투명 볼펜,False
-Pen14,stationery,Pen,펜,False
-Pen15,stationery,Green Ballpoint Pen,녹색 볼펜,False
-Pencil_and_sharpener,stationery,Pencil and Sharpener,연필과 날카로운 연필깎이,False
-Pencil_case1,stationery,Pencil Case with Writing Instruments,문구류가 담긴 연필케이스,False
-Pencil_holder,stationery,Pencil Holder,연필통,False
-Pencil_sharpener,stationery,Pencil Sharpener,연필 날카롭게 만드는 기계,False
-Pencil1,stationery,Pencil,연필,False
-Pencil2,stationery,Pencil,연필,False
-Pencil3,stationery,Pencil,연필,False
-Pencil4,stationery,Pencil,연필,False
-Pencil5,stationery,Pencil,연필,False
-Pencil6,stationery,Green Pencil,초록색 연필,False
-Pens,stationery,Colorful Pens,다채로운 펜,False
-Post-it_notes,stationery,Post-it Note,포스트잇,False
-Protractor,stationery,Protractor,각도계,False
-Register,stationery,Communication Register for Autistic Children,자폐증 아동을 위한 커뮤니케이션 등록부,False
-Rubber_bands,stationery,Rubber bands,고무줄,False
-Rubber_stamp,stationery,Rubber Stamp Set,고무 도장 세트,False
-Rubber_thimble,stationery,Rubber Thimble,고무 손가락 커버,False
-Ruler,stationery,Ruler,자,False
-Ruler2,stationery,Ruler,자,False
-Ruler3,stationery,Ruler,자,False
-Ruler4,stationery,Ruler,자,False
-Ruler5,stationery,Wooden Ruler,목재 자루,False
-Scissors1,stationery,Scissors,가위,False
-Scissors10,stationery,Scissors,가위,False
-Scissors11,stationery,Scissors,가위,False
-Scissors12,stationery,Scissors,가위,False
-Scissors13,stationery,Scissors,가위,False
-Scissors14,stationery,Scissors,가위,False
-Scissors2,stationery,Scissors,가위,False
-Scissors3,stationery,Scissors,가위,False
-Scissors4,stationery,Scissors,가위,False
-Scissors5,stationery,Scissors,가위,False
-Scissors6,stationery,Scissors,가위,False
-Scissors7,stationery,Scissors,가위,False
-Scissors8,stationery,Scissors,가위,False
-Scissors9,stationery,Scissors,가위,False
-Set_square,stationery,Set Square and Pencil,삼각자와 연필,False
-Set_square2,stationery,Set Square,삼각자,False
-Stapler1,stationery,Stapler,스테이플러,False
-Stapler2,stationery,Stapler,스테이플러,False
-Stapler3,stationery,Stapler,스테이플러,False
-Stapler4,stationery,Stapler,스테이플러,False
-Stapler5,stationery,Stapler,스테이플러,False
-Stapler6,stationery,Stapler,스테이플러,False
-Stapler7,stationery,Stapler,스테이플러,False
-Staples,stationery,Staples,스테이플,False
-Stencil_ruler,stationery,Stencil Ruler,스텐실 자,False
-Stencil,stationery,Communication Stencil Ruler,소통 스텐실 자,False
-Stencil2,stationery,Love Theme Stencil,사랑 테마 스텐실,False
-Sticky_tape1,stationery,Adhesive Tape,접착 테이프,False
-Sticky_tape2,stationery,Sticky Tape,테이프,False
-Sticky_tape3,stationery,Tape Dispenser,테이프 디스펜서,False
-Sticky_tape4,stationery,Adhesive Tape,접착 테이프,False
-Sticky_tape5,stationery,Tape Dispenser,테이프 디스펜서,False
-Sticky_tape6,stationery,Electrical Tape,전기 테이프,False
-Sticky_tape7,stationery,Clear adhesive tape,투명 접착 테이프,False
-Super_glue,stationery,Super Glue,슈퍼 글루,False
-Super_glue2,stationery,Super Glue,슈퍼 글루,False
-Utility_knife,stationery,Utility Knife,유틸리티 칼,False
-Whiteboard_eraser,stationery,Whiteboard Eraser,화이트보드 지우개,False
-Whiteboard_eraser2,stationery,Whiteboard Eraser,화이트보드 지우개,False
-Whiteboard_marker2,stationery,Whiteboard Marker,화이트보드 마커,False
-Whiteboard_marker3,stationery,Whiteboard Marker,화이트보드 마커,False
-Whiteboard_marker4,stationery,Whiteboard Marker,화이트보드 마커,False
-Whiteboard_marker5,stationery,Whiteboard Marker,화이트보드 마커,False
-Whiteboard_markers,stationery,Whiteboard markers,화이트보드 마커,False
-Whiteboard_markers2,stationery,Whiteboard Markers,화이트보드 마커,False
-Whiteboard_markers3,stationery,Whiteboard markers,화이트보드 마커,False
-2-01杯,supplies,Cup,컵,False
-2-02碗,supplies,Bowl,그릇,False
-2-03碟,supplies,Plate,접시,False
-2-04匙羹,supplies,Spoon,스푼,False
-2-05湯羹,supplies,Soup Spoon,국수저,False
-2-06筷子,supplies,Chopsticks,젓가락,False
-2-07刀,supplies,Knife,칼,False
-2-08叉,supplies,Fork,포크,False
-2-09毛巾,supplies,Towel,수건,False
-2-10梳,supplies,Comb,빗,False
-2-11牙刷,supplies,Toothbrush,칫솔,False
-2-12牙膏,supplies,Toothpaste,치약,False
-2-13廁紙,supplies,Toilet Paper,화장지,False
-2-14紙巾,supplies,Tissue,면봉,False
-2-15鏡,supplies,Mirror,거울,False
-2-16眼鏡,supplies,Glasses,안경,False
-2-17手錶,supplies,Wristwatch,시계,False
-2-18鎖匙,supplies,Key,열쇠,False
-2-19八達通咭,supplies,Octopus Card,옥토퍼스 카드,False
-2-20錢,supplies,Money,돈,False
-2-21雨傘,supplies,Umbrella,우산,False
-2-22雨衣,supplies,Raincoat,비옷,False
-2-23木見液,supplies,Hand Soap,손세정제,False
-2-24潤唇膏,supplies,Lip Balm,입술 보습제,False
-2-25膠布,supplies,Band-Aid,붕대,False
-2-26探熱針,supplies,Thermometer,체온계,False
-2-27藥,supplies,Medicine,약,False
-ax,supplies,Axe,도끼,False
-hammer,supplies,Hammer,🔨 망치,False
-hoe,supplies,Hoe,耬,False
-rake,supplies,Rake,갈퀴,False
-saw,supplies,Saw,톱,False
-screwdriver,supplies,Screwdriver,드라이버,False
-tapemeasure,supplies,Tape Measure,테이프 미터,False
-wrench,supplies,Wrench,렌치,False
-battery-aa,technologies,AA Battery,AA 배터리,False
-battery-aaa_1_,technologies,AAA Battery,AAA 배터리,False
-calculator,technologies,Calculator,계산기,False
-cellphone,technologies,Cellphone,휴대폰,False
-computer-1,technologies,Laptop Computer,노트북 컴퓨터,False
-computer-2,technologies,Computer,컴퓨터,False
-flashlight,technologies,Flashlight,손전등,False
-lightbulb,technologies,Lightbulb,전구,False
-outlet,technologies,Electrical Outlet,전기 소켓,False
-plug,technologies,Electrical Plug,전기 플러그,False
-switch-off,technologies,Light Switch Off,등 스위치 꺼짐,False
-switch-on,technologies,Light Switch,전등 스위치,False
-4-01車,toy,Toy Car,장난감 차,False
-4-02飛機,toy,Airplane,비행기,False
-4-03波,toy,Beach Ball,비치볼,False
-4-04波波水,toy,Bubble Solution,버블 수용액,False
-4-05公仔,toy,Doll,인형,False
-4-06熊,toy,Teddy Bear,테디베어,False
-4-07煮飯仔,toy,Cooking Playset,요리 장난감,False
-4-08積木,toy,Building Blocks,블록,False
-4-09圖書,toy,Picture Book,그림책,False
-4-10砌圖,toy,Puzzle,퍼즐,False
-4-11電話,toy,Telephone,전화,False
-4-12玩具槍,toy,Toy Gun,장난감 총,False
-4-13機械人,toy,Robot,로봇,False
-4-14遊戲機,toy,Game Boy,게임보이,False
-4-15棋,toy,Board Game,보드게임,False
-4-16印仔,toy,Stamp,스탬프,False
-4-17貼紙,toy,Stickers,스티커,False
-6-01私家車,transportation,Private Car,개인 차량,False
-6-02船,transportation,Ship,배,False
-6-03飛機,transportation,Airplane,비행기,False
-6-04巴士,transportation,Double-decker Bus,이층 버스,False
-6-05的士,transportation,Taxi,택시,False
-6-06小巴,transportation,Minibus,마이크로버스,False
-6-07校車,transportation,School Bus,학교 버스,False
-6-08單車,transportation,Bicycle,자전거,False
-6-09地鐵,transportation,Subway,지하철,False
-6-10火車,transportation,Train,기차,False
-6-11電車,transportation,Electric Train,전차,False
-6-12輕鐵,transportation,Light Rail,경전철,False
-6-13山頂纜車,transportation,Peak Tram,피크 트램,False
+core_cards/yes.png,core,Yes,"{""en"":""Yes"",""zh"":""是"",""yue"":""係"",""ko"":""예""}",False
+core_cards/cry.png,emotion,Gloomy,"{""en"":""Gloomy"",""zh"":""忧郁"",""yue"":""憂鬱"",""ko"":""우울한""}",False
+core_cards/happy.png,emotion,Happy,"{""en"":""Happy"",""zh"":""开心"",""yue"":""開心"",""ko"":""행복""}",False
+core_cards/ask.png,core,Ask,"{""en"":""Ask"",""zh"":""询问"",""yue"":""問"",""ko"":""물어보기""}",False
+core_cards/idk.png,core,I don't know,"{""en"":""I don't know"",""zh"":""我不知道"",""yue"":""我唔知"",""ko"":""모르겠어요""}",False
+core_cards/beloved.png,emotion,Beloved,"{""en"":""Beloved"",""zh"":""心爱的"",""yue"":""心愛的"",""ko"":""사랑하는""}",False
+core_cards/scared.png,emotion,Scared,"{""en"":""Scared"",""zh"":""害怕"",""yue"":""驚嚇"",""ko"":""두려움""}",False
+core_cards/tired.png,emotion,Tired,"{""en"":""Tired"",""zh"":""疲倦"",""yue"":""好攰"",""ko"":""피곤함""}",False
+core_cards/no.png,core,No,"{""en"":""No"",""zh"":""不"",""yue"":""唔"",""ko"":""아니요""}",False
+core_cards/sad.png,emotion,Sad,"{""en"":""Sad"",""zh"":""伤心"",""yue"":""傷心"",""ko"":""슬픔""}",False
+core_cards/surprised.png,emotion,Surprised,"{""en"":""Surprised"",""zh"":""惊讶"",""yue"":""驚訝"",""ko"":""놀람""}",False
+core_cards/calm.png,emotion,Calm,"{""en"":""Calm"",""zh"":""平静"",""yue"":""平靜"",""ko"":""차분함""}",False
+core_cards/bored.png,emotion,Bored,"{""en"":""Bored"",""zh"":""无聊"",""yue"":""無聊"",""ko"":""지루함""}",False
+core_cards/delighted.png,emotion,Delighted,"{""en"":""Delighted"",""zh"":""欣喜"",""yue"":""開心"",""ko"":""기쁨""}",False
+core_cards/glad.png,emotion,Glad,"{""en"":""Glad"",""zh"":""高兴"",""yue"":""開心"",""ko"":""기쁨""}",False
+core_cards/angry.png,emotion,Angry,"{""en"":""Angry"",""zh"":""生气"",""yue"":""生氣"",""ko"":""화남""}",False
+core_cards/fearful.png,emotion,Fearful,"{""en"":""Fearful"",""zh"":""害怕的"",""yue"":""驚嚇"",""ko"":""두려운""}",False
+core_cards/how_are_you.png,core,How are you?,"{""en"":""How are you?"",""zh"":""你感觉怎么样？"",""yue"":""你感覺點樣？"",""ko"":""기분이 어때요?""}",False
+core_cards/confused.png,emotion,Confused,"{""en"":""Confused"",""zh"":""困惑"",""yue"":""困惑"",""ko"":""혼란스러움""}",False
+core_cards/shy.png,emotion,Shy,"{""en"":""Shy"",""zh"":""害羞"",""yue"":""害羞"",""ko"":""수줍은""}",False
+extra_cards/activities/climb-4603.jpg,activities,climb,"{""en"":""climb"",""zh"":""爬"",""yue"":""爬"",""ko"":""기어오르다""}",False
+extra_cards/food/豆腐.jpg,food,Tofu,"{""en"":""Tofu"",""zh"":""豆腐"",""yue"":""豆腐"",""ko"":""두부""}",False
+extra_cards/appliances/10-05風扇.jpg,appliances,Fan,"{""en"":""Fan"",""zh"":""风扇"",""yue"":""風扇"",""ko"":""선풍기""}",False
+extra_cards/festivals/14-20桃花.jpg,festivals,Peach Blossom,"{""en"":""Peach Blossom"",""zh"":""桃花"",""yue"":""桃花"",""ko"":""복숭아꽃""}",False
+extra_cards/stationery/Ink bottle.jpg,stationery,Ink bottle,"{""en"":""Ink bottle"",""zh"":""墨水瓶"",""yue"":""墨水瓶"",""ko"":""잉크 병""}",False
+extra_cards/activities/13a-21聽電話.jpg,activities,Answering the phone,"{""en"":""Answering the phone"",""zh"":""接电话"",""yue"":""聽電話"",""ko"":""전화 받기""}",False
+extra_cards/stationery/Label maker.jpg,stationery,Label maker,"{""en"":""Label maker"",""zh"":""标签机"",""yue"":""標籤機"",""ko"":""라벨 기계""}",False
+extra_cards/activities/close-4706.jpg,activities,close-4706,"{""en"":""close-4706"",""zh"":""关"",""yue"":""關"",""ko"":""닫기""}",False
+extra_cards/appliances/10-06冷氣機.jpg,appliances,Air conditioner,"{""en"":""Air conditioner"",""zh"":""空调"",""yue"":""冷氣機"",""ko"":""에어컨""}",False
+extra_cards/supplies/2-09毛巾.jpg,supplies,Towel,"{""en"":""Towel"",""zh"":""毛巾"",""yue"":""毛巾"",""ko"":""수건""}",False
+extra_cards/rituals/休息一下.jpg,rituals,Take a break,"{""en"":""Take a break"",""zh"":""休息一下"",""yue"":""休息一陣"",""ko"":""쉬는 시간""}",False
+extra_cards/activities/13c-12打籃球.jpg,activities,Playing basketball,"{""en"":""Playing basketball"",""zh"":""打篮球"",""yue"":""打籃球"",""ko"":""농구하기""}",False
+extra_cards/food/車厘子.jpg,food,Cherry,"{""en"":""Cherry"",""zh"":""樱桃"",""yue"":""車厘子"",""ko"":""체리""}",False
+extra_cards/supplies/2-08叉.jpg,supplies,Fork,"{""en"":""Fork"",""zh"":""叉子"",""yue"":""叉"",""ko"":""포크""}",False
+extra_cards/festivals/14-19桔.jpg,festivals,Kumquat plant,"{""en"":""Kumquat plant"",""zh"":""金桔盆栽"",""yue"":""金桔盆栽"",""ko"":""금귤 화분""}",False
+extra_cards/activities/13d-06校車.jpg,activities,Riding the school bus,"{""en"":""Riding the school bus"",""zh"":""坐校车"",""yue"":""搭校車"",""ko"":""학교 버스 타기""}",False
+extra_cards/rituals/停.jpg,rituals,Stop,"{""en"":""Stop"",""zh"":""停"",""yue"":""停"",""ko"":""정지""}",False
+extra_cards/activities/13a-22談話.jpg,activities,Talking,"{""en"":""Talking"",""zh"":""谈话"",""yue"":""傾偈"",""ko"":""대화""}",False
+extra_cards/supplies/2-10梳.jpg,supplies,Comb,"{""en"":""Comb"",""zh"":""梳子"",""yue"":""梳"",""ko"":""빗""}",False
+extra_cards/appliances/10-07洗衣機.jpg,appliances,Washing machine,"{""en"":""Washing machine"",""zh"":""洗衣机"",""yue"":""洗衣機"",""ko"":""세탁기""}",False
+extra_cards/activities/13a-01企.jpg,activities,Stand,"{""en"":""Stand"",""zh"":""站"",""yue"":""企"",""ko"":""서 있다""}",False
+extra_cards/appliances/10-08雪櫃.jpg,appliances,Refrigerator,"{""en"":""Refrigerator"",""zh"":""冰箱"",""yue"":""雪櫃"",""ko"":""냉장고""}",False
+extra_cards/stationery/Letter opener.jpg,stationery,Letter opener,"{""en"":""Letter opener"",""zh"":""拆信刀"",""yue"":""拆信刀"",""ko"":""편지 봉투 열기 도구""}",False
+extra_cards/supplies/2-11牙刷.jpg,supplies,Toothbrush,"{""en"":""Toothbrush"",""zh"":""牙刷"",""yue"":""牙刷"",""ko"":""칫솔""}",False
+extra_cards/activities/computerlab-1.jpg,activities,computerlab-1,"{""en"":""computerlab-1"",""zh"":""电脑室-1"",""yue"":""電腦室-1"",""ko"":""컴퓨터실-1""}",False
+extra_cards/activities/13d-13暑假.jpg,activities,Summer Vacation,"{""en"":""Summer Vacation"",""zh"":""暑假"",""yue"":""暑假"",""ko"":""여름 방학""}",False
+extra_cards/food/通心粉.jpg,food,Macaroni,"{""en"":""Macaroni"",""zh"":""通心粉"",""yue"":""通心粉"",""ko"":""마카로니""}",False
+extra_cards/rituals/坐好.jpg,rituals,Sit Properly,"{""en"":""Sit Properly"",""zh"":""坐好"",""yue"":""坐好"",""ko"":""바르게 앉기""}",False
+extra_cards/activities/13d-10聖誕慶祝會.jpg,activities,Christmas Party,"{""en"":""Christmas Party"",""zh"":""圣诞庆祝会"",""yue"":""聖誕慶祝會"",""ko"":""크리스마스 파티""}",False
+extra_cards/festivals/14-21財神.jpg,festivals,Wealth God,"{""en"":""Wealth God"",""zh"":""财神"",""yue"":""財神"",""ko"":""재신""}",False
+extra_cards/festivals/14-22舞獅.jpg,festivals,Lion Dance,"{""en"":""Lion Dance"",""zh"":""舞狮"",""yue"":""舞獅"",""ko"":""사자춤""}",False
+extra_cards/food/雞翼.jpg,food,Chicken wings,"{""en"":""Chicken wings"",""zh"":""鸡翅"",""yue"":""雞翼"",""ko"":""닭 날개""}",False
+extra_cards/activities/computer.jpg,activities,computer,"{""en"":""computer"",""zh"":""电脑"",""yue"":""電腦"",""ko"":""컴퓨터""}",False
+extra_cards/stationery/Lever arch binder.jpg,stationery,Lever arch binder,"{""en"":""Lever arch binder"",""zh"":""杠杆式活页夹"",""yue"":""槓桿式活頁夾"",""ko"":""레버 아치 바인더""}",False
+extra_cards/rituals/发脾气.jpg,rituals,Throwing a tantrum,"{""en"":""Throwing a tantrum"",""zh"":""发脾气"",""yue"":""發脾氣"",""ko"":""화내기""}",False
+extra_cards/activities/activities.jpg,activities,Activities,"{""en"":""Activities"",""zh"":""活动"",""yue"":""活動"",""ko"":""활동""}",False
+extra_cards/activities/computers.jpg,activities,Computer Time,"{""en"":""Computer Time"",""zh"":""电脑时间"",""yue"":""電腦時間"",""ko"":""컴퓨터 시간""}",False
+extra_cards/food/雞脾.jpg,food,Chicken thigh,"{""en"":""Chicken thigh"",""zh"":""鸡腿"",""yue"":""雞髀"",""ko"":""닭다리""}",False
+extra_cards/stationery/Lever arch binder2.jpg,stationery,Lever arch binder,"{""en"":""Lever arch binder"",""zh"":""杠杆式活页夹"",""yue"":""槓桿式活頁夾"",""ko"":""레버 아치 바인더""}",False
+extra_cards/supplies/2-12牙膏.jpg,supplies,Toothpaste,"{""en"":""Toothpaste"",""zh"":""牙膏"",""yue"":""牙膏"",""ko"":""치약""}",False
+extra_cards/festivals/14-23爆竹.jpg,festivals,Firecrackers,"{""en"":""Firecrackers"",""zh"":""爆竹"",""yue"":""爆竹"",""ko"":""폭죽""}",False
+extra_cards/rituals/安静.jpg,rituals,Quiet,"{""en"":""Quiet"",""zh"":""安静"",""yue"":""安靜"",""ko"":""조용히""}",False
+extra_cards/activities/art-1.jpg,activities,art-1,"{""en"":""art-1"",""zh"":""艺术-1"",""yue"":""藝術-1"",""ko"":""예술-1""}",False
+extra_cards/food/雞蛋.jpg,food,Eggs,"{""en"":""Eggs"",""zh"":""鸡蛋"",""yue"":""雞蛋"",""ko"":""계란""}",False
+extra_cards/activities/conference-1.jpg,activities,conference-1,"{""en"":""conference-1"",""zh"":""会议-1"",""yue"":""會議-1"",""ko"":""회의-1""}",False
+extra_cards/stationery/Lever arch binder3.jpg,stationery,Lever arch binder,"{""en"":""Lever arch binder"",""zh"":""杠杆式活页夹"",""yue"":""槓桿式活頁夾"",""ko"":""레버 아치 바인더""}",False
+extra_cards/festivals/14-24煙花.jpg,festivals,Fireworks,"{""en"":""Fireworks"",""zh"":""烟花"",""yue"":""煙花"",""ko"":""불꽃놀이""}",False
+extra_cards/activities/cook-4604.jpg,activities,cook-4604,"{""en"":""cook-4604"",""zh"":""煮"",""yue"":""煮"",""ko"":""요리하기""}",False
+extra_cards/appliances/10-10微波爐.jpg,appliances,Microwave oven,"{""en"":""Microwave oven"",""zh"":""微波炉"",""yue"":""微波爐"",""ko"":""전자레인지""}",False
+extra_cards/appliances/10-09電飯煲.jpg,appliances,Rice cooker,"{""en"":""Rice cooker"",""zh"":""电饭煲"",""yue"":""電飯煲"",""ko"":""전기밥솥""}",False
+extra_cards/supplies/2-13廁紙.jpg,supplies,Toilet paper,"{""en"":""Toilet paper"",""zh"":""厕纸"",""yue"":""廁紙"",""ko"":""화장지""}",False
+extra_cards/rituals/手放前面.jpg,rituals,Hands in Front,"{""en"":""Hands in Front"",""zh"":""手放前面"",""yue"":""手放前面"",""ko"":""앞에 손을 놓기""}",False
+extra_cards/activities/assessment-1.jpg,activities,assessment-1,"{""en"":""assessment-1"",""zh"":""评估-1"",""yue"":""評估-1"",""ko"":""평가-1""}",False
+extra_cards/activities/13a-20看電視.jpg,activities,Watching TV,"{""en"":""Watching TV"",""zh"":""看电视"",""yue"":""睇電視"",""ko"":""텔레비전 보기""}",False
+extra_cards/food/雪條.jpg,food,Popsicle,"{""en"":""Popsicle"",""zh"":""雪糕"",""yue"":""雪條"",""ko"":""얼음과자""}",False
+extra_cards/activities/13b-18除掉鞋.jpg,activities,Take off shoes,"{""en"":""Take off shoes"",""zh"":""除掉鞋"",""yue"":""除鞋"",""ko"":""신발 벗기""}",False
+extra_cards/supplies/2-14紙巾.jpg,supplies,Tissue,"{""en"":""Tissue"",""zh"":""纸巾"",""yue"":""紙巾"",""ko"":""티슈""}",False
+extra_cards/activities/13d-07運動會.jpg,activities,Sports Day,"{""en"":""Sports Day"",""zh"":""运动会"",""yue"":""運動會"",""ko"":""운동회""}",False
+extra_cards/stationery/Lever arch binder4.jpg,stationery,Lever arch binder,"{""en"":""Lever arch binder"",""zh"":""杠杆式活页夹"",""yue"":""槓桿式活頁夾"",""ko"":""레버 아치 바인더""}",False
+extra_cards/festivals/14-25拜年.jpg,festivals,New Year Greeting,"{""en"":""New Year Greeting"",""zh"":""拜年"",""yue"":""拜年"",""ko"":""새해 인사""}",False
+extra_cards/food/雪糕.jpg,food,Ice cream,"{""en"":""Ice cream"",""zh"":""雪糕"",""yue"":""雪糕"",""ko"":""아이스크림""}",False
+extra_cards/rituals/手要放好.jpg,rituals,Hands Should Be Placed Properly,"{""en"":""Hands Should Be Placed Properly"",""zh"":""手要放好"",""yue"":""手要放好"",""ko"":""손을 제자리에 놓아야 해요""}",False
+extra_cards/stationery/Magnifying glass.jpg,stationery,Magnifying glass,"{""en"":""Magnifying glass"",""zh"":""放大镜"",""yue"":""放大鏡"",""ko"":""확대경""}",False
+extra_cards/appliances/10-12鐘.jpg,appliances,Clock,"{""en"":""Clock"",""zh"":""钟"",""yue"":""鐘"",""ko"":""시계""}",False
+extra_cards/supplies/2-15鏡.jpg,supplies,Mirror,"{""en"":""Mirror"",""zh"":""镜子"",""yue"":""鏡"",""ko"":""거울""}",False
+extra_cards/rituals/等.jpg,rituals,Sit down,"{""en"":""Sit down"",""zh"":""坐下"",""yue"":""坐低"",""ko"":""앉아""}",False
+extra_cards/appliances/10-11電水壼.jpg,appliances,Electric kettle,"{""en"":""Electric kettle"",""zh"":""电水壶"",""yue"":""電水壺"",""ko"":""전기 주전자""}",False
+extra_cards/appliances/10-13燈.jpg,appliances,Light,"{""en"":""Light"",""zh"":""灯"",""yue"":""燈"",""ko"":""등""}",False
+extra_cards/festivals/14-26年宵市場.jpg,festivals,Lunar New Year Flower Market,"{""en"":""Lunar New Year Flower Market"",""zh"":""年宵市场"",""yue"":""年宵市場"",""ko"":""설날 꽃 시장""}",False
+extra_cards/activities/13d-08水運會.jpg,activities,Swimming Meet,"{""en"":""Swimming Meet"",""zh"":""水运会"",""yue"":""水運會"",""ko"":""수영 대회""}",False
+extra_cards/activities/13a-23送禮物.jpg,activities,Giving a gift,"{""en"":""Giving a gift"",""zh"":""送礼物"",""yue"":""送禮物"",""ko"":""선물 주기""}",False
+extra_cards/activities/cooking (2).jpg,activities,cooking (2),"{""en"":""cooking (2)"",""zh"":""烹饪课"",""yue"":""烹飪課"",""ko"":""요리 수업""}",False
+extra_cards/activities/cooking-1.jpg,activities,cooking-1,"{""en"":""cooking-1"",""zh"":""烹饪-1"",""yue"":""煮食-1"",""ko"":""요리-1""}",False
+extra_cards/food/食送.jpg,food,Ramen with egg and vegetables,"{""en"":""Ramen with egg and vegetables"",""zh"":""带鸡蛋和蔬菜的拉面"",""yue"":""有蛋同菜嘅拉麵"",""ko"":""계란과 채소가 들어간 라멘""}",False
+extra_cards/supplies/2-16眼鏡.jpg,supplies,Glasses,"{""en"":""Glasses"",""zh"":""眼镜"",""yue"":""眼鏡"",""ko"":""안경""}",False
+extra_cards/festivals/14-27中秋節.jpg,festivals,Mid-Autumn Festival,"{""en"":""Mid-Autumn Festival"",""zh"":""中秋节"",""yue"":""中秋節"",""ko"":""추석""}",False
+extra_cards/food/飯.jpg,food,Rice,"{""en"":""Rice"",""zh"":""米饭"",""yue"":""飯"",""ko"":""밥""}",False
+extra_cards/activities/cooking.jpg,activities,cooking,"{""en"":""cooking"",""zh"":""煮菜"",""yue"":""煮菜"",""ko"":""요리하기""}",False
+extra_cards/appliances/10-14檯燈.jpg,appliances,Desk lamp,"{""en"":""Desk lamp"",""zh"":""台灯"",""yue"":""檯燈"",""ko"":""책상등""}",False
+extra_cards/stationery/Magnifying glass2.jpg,stationery,Magnifying glass,"{""en"":""Magnifying glass"",""zh"":""放大镜"",""yue"":""放大鏡"",""ko"":""확대경""}",False
+extra_cards/rituals/等一下.jpg,rituals,Wait a moment,"{""en"":""Wait a moment"",""zh"":""等一下"",""yue"":""等一等"",""ko"":""잠시만 기다려 주세요""}",False
+extra_cards/activities/13d-09開學日.jpg,activities,First Day of School,"{""en"":""First Day of School"",""zh"":""开学日"",""yue"":""開學日"",""ko"":""개학일""}",False
+extra_cards/activities/13a-32收拾書包.jpg,activities,Pack the backpack,"{""en"":""Pack the backpack"",""zh"":""收拾书包"",""yue"":""收拾書包"",""ko"":""가방 정리하기""}",False
+extra_cards/activities/13c-22在圖書館看書.jpg,activities,Reading in the library,"{""en"":""Reading in the library"",""zh"":""在图书馆看书"",""yue"":""喺圖書館睇書"",""ko"":""도서관에서 책 읽기""}",False
+extra_cards/supplies/2-17手錶.jpg,supplies,Watch,"{""en"":""Watch"",""zh"":""手表"",""yue"":""手錶"",""ko"":""시계""}",False
+extra_cards/appliances/10-15熨斗.jpg,appliances,Iron,"{""en"":""Iron"",""zh"":""熨斗"",""yue"":""熨斗"",""ko"":""다리미""}",False
+extra_cards/stationery/Notebook2.jpg,stationery,Notebook2,"{""en"":""Notebook2"",""zh"":""笔记本2"",""yue"":""筆記簿2"",""ko"":""노트북2""}",False
+extra_cards/festivals/14-28燈籠.jpg,festivals,Lantern,"{""en"":""Lantern"",""zh"":""灯笼"",""yue"":""燈籠"",""ko"":""등불""}",False
+extra_cards/rituals/请帮忙.jpg,rituals,Please Help,"{""en"":""Please Help"",""zh"":""请帮忙"",""yue"":""請幫忙"",""ko"":""도와주세요""}",False
+extra_cards/activities/cry-4601.jpg,activities,cry,"{""en"":""cry"",""zh"":""哭"",""yue"":""喊"",""ko"":""울다""}",False
+extra_cards/food/餅乾.jpg,food,Cookies,"{""en"":""Cookies"",""zh"":""饼干"",""yue"":""餅乾"",""ko"":""과자""}",False
+extra_cards/activities/13a-31收拾玩具.jpg,activities,Putting away toys,"{""en"":""Putting away toys"",""zh"":""收拾玩具"",""yue"":""收玩具"",""ko"":""장난감 정리하기""}",False
+extra_cards/festivals/14-29端午節.jpg,festivals,Dragon Boat Festival,"{""en"":""Dragon Boat Festival"",""zh"":""端午节"",""yue"":""端午節"",""ko"":""단오절""}",False
+extra_cards/rituals/走开.jpg,rituals,Leave,"{""en"":""Leave"",""zh"":""走开"",""yue"":""走開"",""ko"":""가다""}",False
+extra_cards/activities/13d-01上學.jpg,activities,Going to school,"{""en"":""Going to school"",""zh"":""上学"",""yue"":""返學"",""ko"":""등교""}",False
+extra_cards/stationery/Notebook3.jpg,stationery,Notebook3,"{""en"":""Notebook3"",""zh"":""笔记本3"",""yue"":""筆記本3"",""ko"":""노트북3""}",False
+extra_cards/supplies/2-18鎖匙.jpg,supplies,Key,"{""en"":""Key"",""zh"":""钥匙"",""yue"":""鎖匙"",""ko"":""열쇠""}",False
+extra_cards/appliances/10-16風筒.jpg,appliances,Hair dryer,"{""en"":""Hair dryer"",""zh"":""吹风机"",""yue"":""風筒"",""ko"":""헤어드라이어""}",False
+extra_cards/activities/cut-4812.jpg,activities,cut-4812,"{""en"":""cut-4812"",""zh"":""剪-4812"",""yue"":""剪-4812"",""ko"":""자르기-4812""}",False
+extra_cards/festivals/14-30清明節.jpg,festivals,Qingming Festival,"{""en"":""Qingming Festival"",""zh"":""清明节"",""yue"":""清明節"",""ko"":""청명절""}",False
+extra_cards/food/香口膠.jpg,food,Chewing Gum,"{""en"":""Chewing Gum"",""zh"":""口香糖"",""yue"":""香口膠"",""ko"":""껌""}",False
+extra_cards/supplies/2-19八達通咭.jpg,supplies,Octopus Card,"{""en"":""Octopus Card"",""zh"":""八达通卡"",""yue"":""八達通咭"",""ko"":""옥토퍼스 카드""}",False
+extra_cards/rituals/过来这边.jpg,rituals,Come Here,"{""en"":""Come Here"",""zh"":""过来这边"",""yue"":""過來呢邊"",""ko"":""여기로 와""}",False
+extra_cards/activities/13d-02上課.jpg,activities,Classroom Lesson,"{""en"":""Classroom Lesson"",""zh"":""上课"",""yue"":""上課"",""ko"":""수업""}",False
+extra_cards/activities/D&T.jpg,activities,Home Economics,"{""en"":""Home Economics"",""zh"":""家事课"",""yue"":""家政課"",""ko"":""가정과""}",False
+extra_cards/shengxiao/year of dog.jpg,shengxiao,Year of the Dog,"{""en"":""Year of the Dog"",""zh"":""狗年"",""yue"":""狗年"",""ko"":""개의 해""}",False
+extra_cards/food/香腸.jpg,food,Sausage,"{""en"":""Sausage"",""zh"":""香肠"",""yue"":""香腸"",""ko"":""소시지""}",False
+extra_cards/stationery/Packing tape applicator.jpg,stationery,Packing tape applicator,"{""en"":""Packing tape applicator"",""zh"":""封箱胶带切割器"",""yue"":""封箱膠帶切割器"",""ko"":""포장 테이프 적용기""}",False
+extra_cards/appliances/10-17吸塵機.jpg,appliances,Vacuum cleaner,"{""en"":""Vacuum cleaner"",""zh"":""吸尘器"",""yue"":""吸塵機"",""ko"":""진공 청소기""}",False
+extra_cards/festivals/14-31復活節.jpg,festivals,Easter,"{""en"":""Easter"",""zh"":""复活节"",""yue"":""復活節"",""ko"":""부활절""}",False
+extra_cards/activities/13c-04打鞦韆.jpg,activities,Swinging on a swing,"{""en"":""Swinging on a swing"",""zh"":""荡秋千"",""yue"":""打鞦韆"",""ko"":""그네 타기""}",False
+extra_cards/activities/13a-34上班.jpg,activities,Going to work,"{""en"":""Going to work"",""zh"":""上班"",""yue"":""返工"",""ko"":""출근하기""}",False
+extra_cards/stationery/Packing tape.jpg,stationery,Packing tape,"{""en"":""Packing tape"",""zh"":""包装胶带"",""yue"":""包裝膠帶"",""ko"":""포장 테이프""}",False
+extra_cards/appliances/10-18相機.jpg,appliances,Camera,"{""en"":""Camera"",""zh"":""相机"",""yue"":""相機"",""ko"":""카메라""}",False
+extra_cards/activities/dance-4509.jpg,activities,dance-4509,"{""en"":""dance-4509"",""zh"":""跳舞"",""yue"":""跳舞"",""ko"":""춤추기""}",False
+extra_cards/supplies/2-20錢.jpg,supplies,Money,"{""en"":""Money"",""zh"":""钱"",""yue"":""錢"",""ko"":""돈""}",False
+extra_cards/festivals/14-32重陽節.jpg,festivals,Double Ninth Festival,"{""en"":""Double Ninth Festival"",""zh"":""重阳节"",""yue"":""重陽節"",""ko"":""중양절""}",False
+extra_cards/supplies/2-21雨傘.jpg,supplies,Umbrella,"{""en"":""Umbrella"",""zh"":""雨伞"",""yue"":""雨傘"",""ko"":""우산""}",False
+extra_cards/activities/13a-33洗衣服.jpg,activities,Washing clothes,"{""en"":""Washing clothes"",""zh"":""洗衣服"",""yue"":""洗衫"",""ko"":""빨래하기""}",False
+extra_cards/shengxiao/year of dragon.jpg,shengxiao,Year of the Dragon,"{""en"":""Year of the Dragon"",""zh"":""龙年"",""yue"":""龍年"",""ko"":""용의 해""}",False
+extra_cards/food/香蕉.jpg,food,Banana,"{""en"":""Banana"",""zh"":""香蕉"",""yue"":""香蕉"",""ko"":""바나나""}",False
+extra_cards/stationery/Paintbrush.jpg,stationery,Paintbrush,"{""en"":""Paintbrush"",""zh"":""画笔"",""yue"":""畫筆"",""ko"":""물감 붓""}",False
+extra_cards/activities/13c-05玩__轉.jpg,activities,Playing on the merry-go-round,"{""en"":""Playing on the merry-go-round"",""zh"":""玩旋转木马"",""yue"":""玩旋轉木馬"",""ko"":""회전목마 타기""}",False
+extra_cards/activities/dance.jpg,activities,Dance Class,"{""en"":""Dance Class"",""zh"":""舞蹈课"",""yue"":""舞蹈課"",""ko"":""댄스 수업""}",False
+extra_cards/food/魚.jpg,food,Fish,"{""en"":""Fish"",""zh"":""鱼"",""yue"":""魚"",""ko"":""물고기""}",False
+extra_cards/supplies/2-22雨衣.jpg,supplies,Raincoat,"{""en"":""Raincoat"",""zh"":""雨衣"",""yue"":""雨衣"",""ko"":""비옷""}",False
+extra_cards/shengxiao/year of goat.jpg,shengxiao,Year of the Goat,"{""en"":""Year of the Goat"",""zh"":""羊年"",""yue"":""羊年"",""ko"":""양의 해""}",False
+extra_cards/activities/dinner1.jpg,activities,Eating dinner,"{""en"":""Eating dinner"",""zh"":""吃晚餐"",""yue"":""食晚飯"",""ko"":""저녁 식사하기""}",False
+extra_cards/appliances/10-19收音機.jpg,appliances,Radio,"{""en"":""Radio"",""zh"":""收音机"",""yue"":""收音機"",""ko"":""라디오""}",False
+extra_cards/festivals/14-33國慶日.jpg,festivals,National Day,"{""en"":""National Day"",""zh"":""国庆日"",""yue"":""國慶日"",""ko"":""국경일""}",False
+extra_cards/festivals/14-34回歸紀念日.jpg,festivals,Hong Kong Reunification Day,"{""en"":""Hong Kong Reunification Day"",""zh"":""香港回归纪念日"",""yue"":""回歸紀念日"",""ko"":""홍콩 반환 기념일""}",False
+extra_cards/stationery/Paintbrush2.jpg,stationery,Paintbrush2,"{""en"":""Paintbrush2"",""zh"":""画笔2"",""yue"":""畫筆2"",""ko"":""물감 붓2""}",False
+extra_cards/activities/13c-06玩搖搖馬.jpg,activities,Riding a rocking horse,"{""en"":""Riding a rocking horse"",""zh"":""玩摇摇马"",""yue"":""玩搖搖馬"",""ko"":""흔들목마 타기""}",False
+extra_cards/shengxiao/year of horse.jpg,shengxiao,Year of the Horse,"{""en"":""Year of the Horse"",""zh"":""马年"",""yue"":""馬年"",""ko"":""말의 해""}",False
+extra_cards/stationery/Paintbrush3.jpg,stationery,Paintbrush3,"{""en"":""Paintbrush3"",""zh"":""画笔3"",""yue"":""畫筆3"",""ko"":""물감 붓3""}",False
+extra_cards/food/魚蛋.jpg,food,Fish balls on a stick,"{""en"":""Fish balls on a stick"",""zh"":""鱼蛋"",""yue"":""魚蛋"",""ko"":""어묵 공""}",False
+extra_cards/activities/dinner2.jpg,activities,Eating dinner,"{""en"":""Eating dinner"",""zh"":""吃晚餐"",""yue"":""食晚飯"",""ko"":""저녁 식사하기""}",False
+extra_cards/food/魷魚絲.jpg,food,Squid Strips,"{""en"":""Squid Strips"",""zh"":""鱿鱼丝"",""yue"":""魷魚絲"",""ko"":""오징어 스트립""}",False
+extra_cards/supplies/2-24潤唇膏.jpg,supplies,Lip balm,"{""en"":""Lip balm"",""zh"":""润唇膏"",""yue"":""潤唇膏"",""ko"":""립밤""}",False
+extra_cards/appliances/10-21錄影機.jpg,appliances,VCR,"{""en"":""VCR"",""zh"":""录像机"",""yue"":""錄影機"",""ko"":""비디오 녹화기""}",False
+extra_cards/festivals/14-35勞動節.jpg,festivals,Labor Day,"{""en"":""Labor Day"",""zh"":""劳动节"",""yue"":""勞動節"",""ko"":""노동절""}",False
+extra_cards/activities/13a-35上街.jpg,activities,Going to the street,"{""en"":""Going to the street"",""zh"":""上街"",""yue"":""上街"",""ko"":""거리를 걷기""}",False
+extra_cards/appliances/10-20音響組合.jpg,appliances,Stereo System,"{""en"":""Stereo System"",""zh"":""音响组合"",""yue"":""音響組合"",""ko"":""스테레오 시스템""}",False
+extra_cards/shengxiao/year of monkey.jpg,shengxiao,Year of the Monkey,"{""en"":""Year of the Monkey"",""zh"":""猴年"",""yue"":""猴年"",""ko"":""원숭이 해""}",False
+extra_cards/stationery/Paintbrushes2.jpg,stationery,Paintbrushes2,"{""en"":""Paintbrushes2"",""zh"":""画笔2"",""yue"":""畫筆2"",""ko"":""물감 붓2""}",False
+extra_cards/activities/doingdishes.png,activities,doing dishes,"{""en"":""doing dishes"",""zh"":""洗碗"",""yue"":""洗碗碟"",""ko"":""그릇 씻기""}",False
+extra_cards/appliances/10-22DVD機.jpg,appliances,DVD player,"{""en"":""DVD player"",""zh"":""DVD机"",""yue"":""DVD機"",""ko"":""DVD 플레이어""}",False
+extra_cards/festivals/14-36佛誕.jpg,festivals,Buddha's Birthday,"{""en"":""Buddha's Birthday"",""zh"":""佛诞"",""yue"":""佛誕"",""ko"":""부처님 오신 날""}",False
+extra_cards/activities/13d-03小息.jpg,activities,Break Time,"{""en"":""Break Time"",""zh"":""小息"",""yue"":""小息"",""ko"":""휴식 시간""}",False
+extra_cards/food/麥精.jpg,food,Malt Extract,"{""en"":""Malt Extract"",""zh"":""麦精"",""yue"":""麥精"",""ko"":""맥아추출물""}",False
+extra_cards/activities/13c-21燒烤.jpg,activities,Barbecue,"{""en"":""Barbecue"",""zh"":""烧烤"",""yue"":""燒烤"",""ko"":""바베큐""}",False
+extra_cards/supplies/2-23木見液.jpg,supplies,Wood liquid,"{""en"":""Wood liquid"",""zh"":""枧液"",""yue"":""枧液"",""ko"":""비누액""}",False
+extra_cards/stationery/Paintbrushes3.jpg,stationery,Paintbrushes3,"{""en"":""Paintbrushes3"",""zh"":""画笔3"",""yue"":""畫筆3"",""ko"":""물감 붓3""}",False
+extra_cards/shengxiao/year of ox.jpg,shengxiao,Year of the Ox,"{""en"":""Year of the Ox"",""zh"":""牛年"",""yue"":""牛年"",""ko"":""소의 해""}",False
+extra_cards/supplies/2-25膠布.jpg,supplies,Bandage,"{""en"":""Bandage"",""zh"":""胶布"",""yue"":""膠布"",""ko"":""반창고""}",False
+extra_cards/food/麵.jpg,food,Noodles,"{""en"":""Noodles"",""zh"":""面条"",""yue"":""麵"",""ko"":""국수""}",False
+extra_cards/beings/7-01狗.jpg,beings,Dog,"{""en"":""Dog"",""zh"":""狗"",""yue"":""狗"",""ko"":""개""}",False
+extra_cards/activities/13c-13打乒乓球.jpg,activities,Playing table tennis,"{""en"":""Playing table tennis"",""zh"":""打乒乓球"",""yue"":""打乒乓球"",""ko"":""탁구 치기""}",False
+extra_cards/festivals/14-37兒童節.jpg,festivals,Children's Day,"{""en"":""Children's Day"",""zh"":""儿童节"",""yue"":""兒童節"",""ko"":""어린이날""}",False
+extra_cards/activities/doinghomework (1).png,activities,doinghomework,"{""en"":""doinghomework"",""zh"":""做作业"",""yue"":""做功課"",""ko"":""숙제하기""}",False
+extra_cards/beings/7-02貓.jpg,beings,Cat,"{""en"":""Cat"",""zh"":""猫"",""yue"":""貓"",""ko"":""고양이""}",False
+extra_cards/stationery/Paints1.jpg,stationery,Paints1,"{""en"":""Paints1"",""zh"":""颜料1"",""yue"":""顏料1"",""ko"":""물감1""}",False
+extra_cards/supplies/2-26探熱針.jpg,supplies,Thermometer,"{""en"":""Thermometer"",""zh"":""温度计"",""yue"":""探熱針"",""ko"":""체온계""}",False
+extra_cards/food/麵包.jpg,food,Bread,"{""en"":""Bread"",""zh"":""面包"",""yue"":""麵包"",""ko"":""빵""}",False
+extra_cards/festivals/14-38母親節.jpg,festivals,Mother's Day,"{""en"":""Mother's Day"",""zh"":""母亲节"",""yue"":""母親節"",""ko"":""어머니의 날""}",False
+extra_cards/shengxiao/year of pig.jpg,shengxiao,Year of the Pig,"{""en"":""Year of the Pig"",""zh"":""猪年"",""yue"":""豬年"",""ko"":""돼지해""}",False
+extra_cards/shengxiao/year of rabbit.jpg,shengxiao,Year of the Rabbit,"{""en"":""Year of the Rabbit"",""zh"":""兔年"",""yue"":""兔年"",""ko"":""토끼해""}",False
+extra_cards/activities/doinghomework (2).png,activities,doinghomework (2),"{""en"":""doinghomework (2)"",""zh"":""做作业（2）"",""yue"":""做功課（2）"",""ko"":""숙제하기 (2)""}",False
+extra_cards/activities/13c-14游泳.jpg,activities,Swimming,"{""en"":""Swimming"",""zh"":""游泳"",""yue"":""游水"",""ko"":""수영""}",False
+extra_cards/festivals/14-39父親節.jpg,festivals,Father's Day,"{""en"":""Father's Day"",""zh"":""父亲节"",""yue"":""父親節"",""ko"":""아버지의 날""}",False
+extra_cards/stationery/Paints2.jpg,stationery,Paints2,"{""en"":""Paints2"",""zh"":""颜料2"",""yue"":""顏料2"",""ko"":""페인트2""}",False
+extra_cards/activities/doinghomework.png,activities,doinghomework,"{""en"":""doinghomework"",""zh"":""做作业"",""yue"":""做功課"",""ko"":""숙제하기""}",False
+extra_cards/food/點心麵.jpg,food,Snack Noodles,"{""en"":""Snack Noodles"",""zh"":""点心面"",""yue"":""點心麵"",""ko"":""간식면""}",False
+extra_cards/supplies/ax.jpg,supplies,ax,"{""en"":""ax"",""zh"":""斧头"",""yue"":""斧頭"",""ko"":""도끼""}",False
+extra_cards/beings/7-04豬.jpg,beings,Pig,"{""en"":""Pig"",""zh"":""猪"",""yue"":""豬"",""ko"":""돼지""}",False
+extra_cards/supplies/2-27藥.jpg,supplies,Medicine,"{""en"":""Medicine"",""zh"":""药"",""yue"":""藥"",""ko"":""약""}",False
+extra_cards/beings/7-03雞.jpg,beings,Chicken,"{""en"":""Chicken"",""zh"":""鸡"",""yue"":""雞"",""ko"":""닭""}",False
+extra_cards/activities/13c-15跳舞.jpg,activities,Dancing,"{""en"":""Dancing"",""zh"":""跳舞"",""yue"":""跳舞"",""ko"":""춤추기""}",False
+extra_cards/stationery/Paints3.jpg,stationery,Paints3,"{""en"":""Paints3"",""zh"":""颜料3"",""yue"":""顏料3"",""ko"":""물감3""}",False
+extra_cards/shengxiao/year of rat.jpg,shengxiao,Year of the Rat,"{""en"":""Year of the Rat"",""zh"":""鼠年"",""yue"":""鼠年"",""ko"":""쥐의 해""}",False
+extra_cards/food/龍眼.jpg,food,Longan,"{""en"":""Longan"",""zh"":""龙眼"",""yue"":""龍眼"",""ko"":""용안""}",False
+extra_cards/activities/dressingclothes.png,activities,dressingclothes,"{""en"":""dressingclothes"",""zh"":""穿衣服"",""yue"":""穿衫"",""ko"":""옷 입기""}",False
+extra_cards/festivals/14-40生日會.jpg,festivals,Birthday Party,"{""en"":""Birthday Party"",""zh"":""生日会"",""yue"":""生日會"",""ko"":""생일 파티""}",False
+extra_cards/supplies/hammer.jpg,supplies,hammer,"{""en"":""hammer"",""zh"":""锤子"",""yue"":""錘"",""ko"":""해머""}",False
+extra_cards/stationery/Paints4.jpg,stationery,Paints4,"{""en"":""Paints4"",""zh"":""颜料4"",""yue"":""顏料4"",""ko"":""페인트4""}",False
+extra_cards/shengxiao/year of rooster.jpg,shengxiao,Year of the Rooster,"{""en"":""Year of the Rooster"",""zh"":""鸡年"",""yue"":""雞年"",""ko"":""닭의 해""}",False
+extra_cards/furniture/11-01檯.jpg,furniture,Table,"{""en"":""Table"",""zh"":""桌子"",""yue"":""檯"",""ko"":""테이블""}",False
+extra_cards/activities/13a-40看醫生.jpg,activities,See the doctor,"{""en"":""See the doctor"",""zh"":""看医生"",""yue"":""睇醫生"",""ko"":""의사 보기""}",False
+extra_cards/festivals/14-41敬師節.jpg,festivals,Teachers' Day,"{""en"":""Teachers' Day"",""zh"":""教师节"",""yue"":""敬師節"",""ko"":""스승의 날""}",False
+extra_cards/beings/7-05羊.jpg,beings,Goat,"{""en"":""Goat"",""zh"":""羊"",""yue"":""羊"",""ko"":""염소""}",False
+extra_cards/activities/drink-4701.jpg,activities,drink-4701,"{""en"":""drink-4701"",""zh"":""喝-4701"",""yue"":""飲-4701"",""ko"":""마시기-4701""}",False
+extra_cards/activities/13a-36排隊等車.jpg,activities,Waiting in line for the bus,"{""en"":""Waiting in line for the bus"",""zh"":""排队等车"",""yue"":""排隊等車"",""ko"":""버스를 기다리며 줄 서기""}",False
+extra_cards/activities/13c-08跑步.jpg,activities,Running,"{""en"":""Running"",""zh"":""跑步"",""yue"":""跑步"",""ko"":""달리기""}",False
+extra_cards/shengxiao/year of snake.jpg,shengxiao,Year of the Snake,"{""en"":""Year of the Snake"",""zh"":""蛇年"",""yue"":""蛇年"",""ko"":""뱀의 해""}",False
+extra_cards/activities/13a-42戴口罩.jpg,activities,Wearing a mask,"{""en"":""Wearing a mask"",""zh"":""戴口罩"",""yue"":""戴口罩"",""ko"":""마스크 착용""}",False
+extra_cards/stationery/Paints5.jpg,stationery,Paints5,"{""en"":""Paints5"",""zh"":""颜料5"",""yue"":""顏料5"",""ko"":""물감5""}",False
+extra_cards/activities/eat-4702.jpg,activities,eat,"{""en"":""eat"",""zh"":""吃"",""yue"":""食"",""ko"":""먹다""}",False
+extra_cards/supplies/hoe.jpg,supplies,hoe,"{""en"":""hoe"",""zh"":""锄头"",""yue"":""鋤頭"",""ko"":""호미""}",False
+extra_cards/activities/13c-09跳繩.jpg,activities,Jumping rope,"{""en"":""Jumping rope"",""zh"":""跳绳"",""yue"":""跳繩"",""ko"":""줄넘기""}",False
+extra_cards/stationery/Paints6.jpg,stationery,Paints6,"{""en"":""Paints6"",""zh"":""颜料6"",""yue"":""顏料6"",""ko"":""물감6""}",False
+extra_cards/beings/7-06牛.jpg,beings,Cow,"{""en"":""Cow"",""zh"":""牛"",""yue"":""牛"",""ko"":""소""}",False
+extra_cards/furniture/11-02椅子.jpg,furniture,Chair,"{""en"":""Chair"",""zh"":""椅子"",""yue"":""椅子"",""ko"":""의자""}",False
+extra_cards/supplies/rake.jpg,supplies,rake,"{""en"":""rake"",""zh"":""耙子"",""yue"":""耙"",""ko"":""갈퀴""}",False
+extra_cards/activities/13a-41食藥.jpg,activities,Taking medicine,"{""en"":""Taking medicine"",""zh"":""吃药"",""yue"":""食藥"",""ko"":""약 먹기""}",False
+extra_cards/festivals/14-42萬聖節.jpg,festivals,Halloween,"{""en"":""Halloween"",""zh"":""万圣节"",""yue"":""萬聖節"",""ko"":""할로윈""}",False
+extra_cards/activities/13c-10踢波.jpg,activities,Playing soccer,"{""en"":""Playing soccer"",""zh"":""踢足球"",""yue"":""踢波"",""ko"":""축구하기""}",False
+extra_cards/shengxiao/year of tiger.jpg,shengxiao,Year of the Tiger,"{""en"":""Year of the Tiger"",""zh"":""虎年"",""yue"":""虎年"",""ko"":""호랑이해""}",False
+extra_cards/festivals/candycane-1(1).jpg,festivals,Candy cane,"{""en"":""Candy cane"",""zh"":""拐杖糖"",""yue"":""糖果手杖"",""ko"":""캔디 케인""}",False
+extra_cards/activities/eating.png,activities,eating,"{""en"":""eating"",""zh"":""吃饭"",""yue"":""食飯"",""ko"":""먹기""}",False
+extra_cards/furniture/11-03梳化.jpg,furniture,Sofa,"{""en"":""Sofa"",""zh"":""沙发"",""yue"":""梳化"",""ko"":""소파""}",False
+extra_cards/activities/13b-08洗髮.jpg,activities,Washing hair,"{""en"":""Washing hair"",""zh"":""洗头发"",""yue"":""洗頭"",""ko"":""머리 감기""}",False
+extra_cards/space/asteroid-1.jpg,space,Asteroid,"{""en"":""Asteroid"",""zh"":""小行星"",""yue"":""小行星"",""ko"":""소행성""}",False
+extra_cards/supplies/saw.jpg,supplies,saw,"{""en"":""saw"",""zh"":""锯子"",""yue"":""鋸"",""ko"":""톱""}",False
+extra_cards/stationery/Paints7.jpg,stationery,Paints7,"{""en"":""Paints7"",""zh"":""颜料7"",""yue"":""顏料7"",""ko"":""물감7""}",False
+extra_cards/beings/7-07馬.jpg,beings,Horse,"{""en"":""Horse"",""zh"":""马"",""yue"":""馬"",""ko"":""말""}",False
+extra_cards/furniture/11-04床.jpg,furniture,Bed,"{""en"":""Bed"",""zh"":""床"",""yue"":""床"",""ko"":""침대""}",False
+extra_cards/space/comet-1.jpg,space,Comet,"{""en"":""Comet"",""zh"":""彗星"",""yue"":""彗星"",""ko"":""혜성""}",False
+extra_cards/beings/7-08白兔.jpg,beings,White Rabbit,"{""en"":""White Rabbit"",""zh"":""白兔"",""yue"":""白兔"",""ko"":""흰 토끼""}",False
+extra_cards/activities/13a-02行.jpg,activities,Walk,"{""en"":""Walk"",""zh"":""行"",""yue"":""行"",""ko"":""걷기""}",False
+extra_cards/activities/13b-23剪髮.jpg,activities,Haircut,"{""en"":""Haircut"",""zh"":""剪发"",""yue"":""剪髮"",""ko"":""이발""}",False
+extra_cards/activities/english-1.jpg,activities,English book with ABC letters,"{""en"":""English book with ABC letters"",""zh"":""带有ABC字母的英语书"",""yue"":""有ABC字母的英文書"",""ko"":""ABC 글자가 있는 영어 책""}",False
+extra_cards/supplies/screwdriver.jpg,supplies,screwdriver,"{""en"":""screwdriver"",""zh"":""螺丝刀"",""yue"":""螺絲批"",""ko"":""스크루드라이버""}",False
+extra_cards/activities/exercise-1.jpg,activities,Jumping rope,"{""en"":""Jumping rope"",""zh"":""跳绳"",""yue"":""跳繩"",""ko"":""줄넘기""}",False
+extra_cards/stationery/Paints8.jpg,stationery,Paints8,"{""en"":""Paints8"",""zh"":""颜料8"",""yue"":""顏料8"",""ko"":""페인트8""}",False
+extra_cards/space/earth-1.jpg,space,Earth,"{""en"":""Earth"",""zh"":""地球"",""yue"":""地球"",""ko"":""지구""}",False
+extra_cards/activities/13b-09穿衣服.jpg,activities,Putting on clothes,"{""en"":""Putting on clothes"",""zh"":""穿衣服"",""yue"":""穿衫"",""ko"":""옷 입기""}",False
+extra_cards/festivals/candycane-2.jpg,festivals,Candy Canes with Green Bow,"{""en"":""Candy Canes with Green Bow"",""zh"":""带绿色蝴蝶结的拐杖糖"",""yue"":""綠絲帶拐杖糖"",""ko"":""녹색 리본이 달린 캔디케인""}",False
+extra_cards/beings/7-09魚.jpg,beings,Fish,"{""en"":""Fish"",""zh"":""鱼"",""yue"":""魚"",""ko"":""물고기""}",False
+extra_cards/stationery/Paints9.jpg,stationery,Paints9,"{""en"":""Paints9"",""zh"":""颜料9"",""yue"":""顏料9"",""ko"":""페인트9""}",False
+extra_cards/activities/13b-10除掉衣服.jpg,activities,Take off clothes,"{""en"":""Take off clothes"",""zh"":""除掉衣服"",""yue"":""除衫"",""ko"":""옷 벗기""}",False
+extra_cards/activities/13a-03坐.jpg,activities,Sit,"{""en"":""Sit"",""zh"":""坐"",""yue"":""坐"",""ko"":""앉다""}",False
+extra_cards/supplies/tapemeasure.jpg,supplies,tape measure,"{""en"":""tape measure"",""zh"":""卷尺"",""yue"":""捲尺"",""ko"":""테이프 자""}",False
+extra_cards/activities/13c-03玩滑梯.jpg,activities,Playing on the slide,"{""en"":""Playing on the slide"",""zh"":""玩滑梯"",""yue"":""玩滑梯"",""ko"":""미끄럼틀 타기""}",False
+extra_cards/activities/feedingcat.png,activities,feedingcat,"{""en"":""feedingcat"",""zh"":""喂猫"",""yue"":""餵貓"",""ko"":""고양이에게 먹이주기""}",False
+extra_cards/furniture/11-05書檯.jpg,furniture,Desk,"{""en"":""Desk"",""zh"":""书桌"",""yue"":""書檯"",""ko"":""책상""}",False
+extra_cards/festivals/gingerbread-1.jpg,festivals,Gingerbread Man,"{""en"":""Gingerbread Man"",""zh"":""姜饼人"",""yue"":""薑餅人"",""ko"":""진저브레드맨""}",False
+extra_cards/festivals/fireplace-1.jpg,festivals,Fireplace with stockings and candles,"{""en"":""Fireplace with stockings and candles"",""zh"":""壁炉、袜子和蜡烛"",""yue"":""壁爐、襪子同蠟燭"",""ko"":""부엌난로, 양말, 촛불""}",False
+extra_cards/beings/7-10鳥.jpg,beings,Bird,"{""en"":""Bird"",""zh"":""鸟"",""yue"":""鳥"",""ko"":""새""}",False
+extra_cards/activities/bedtime1.jpg,activities,bedtime1,"{""en"":""bedtime1"",""zh"":""睡觉"",""yue"":""睡覺"",""ko"":""잠자리""}",False
+extra_cards/stationery/Paper clips.jpg,stationery,Paper clips,"{""en"":""Paper clips"",""zh"":""回形针"",""yue"":""曲別針"",""ko"":""종이クリ프""}",False
+extra_cards/supplies/wrench.jpg,supplies,wrench,"{""en"":""wrench"",""zh"":""扳手"",""yue"":""扳手"",""ko"":""렌치""}",False
+extra_cards/activities/13c-01玩玩具.jpg,activities,Playing with toys,"{""en"":""Playing with toys"",""zh"":""玩玩具"",""yue"":""玩玩具"",""ko"":""장난감 놀이""}",False
+extra_cards/activities/firstaid-1.jpg,activities,First Aid Kit,"{""en"":""First Aid Kit"",""zh"":""急救箱"",""yue"":""急救箱"",""ko"":""응급처치함""}",False
+extra_cards/furniture/11-06櫃.jpg,furniture,Cabinet,"{""en"":""Cabinet"",""zh"":""柜子"",""yue"":""櫃"",""ko"":""장""}",False
+extra_cards/festivals/jinglebell-1.jpg,festivals,Jingle Bell with Green Bow,"{""en"":""Jingle Bell with Green Bow"",""zh"":""带绿色蝴蝶结的铃铛"",""yue"":""綠色蝴蝶結鈴鐺"",""ko"":""초록 리본이 달린 종""}",False
+extra_cards/space/jupiter-1.jpg,space,Jupiter,"{""en"":""Jupiter"",""zh"":""木星"",""yue"":""木星"",""ko"":""목성""}",False
+extra_cards/beings/7-11象.jpg,beings,Elephant,"{""en"":""Elephant"",""zh"":""象"",""yue"":""象"",""ko"":""코끼리""}",False
+extra_cards/furniture/11-07垃圾桶.jpg,furniture,Trash can,"{""en"":""Trash can"",""zh"":""垃圾桶"",""yue"":""垃圾桶"",""ko"":""쓰레기통""}",False
+extra_cards/space/mars-1.jpg,space,Mars,"{""en"":""Mars"",""zh"":""火星"",""yue"":""火星"",""ko"":""화성""}",False
+extra_cards/stationery/Paper roll.jpg,stationery,Paper roll,"{""en"":""Paper roll"",""zh"":""纸卷"",""yue"":""紙卷"",""ko"":""종이 롤""}",False
+extra_cards/activities/13c-02踏單車(1).jpg,activities,Riding a bicycle,"{""en"":""Riding a bicycle"",""zh"":""骑自行车"",""yue"":""踩單車"",""ko"":""자전거 타기""}",False
+extra_cards/activities/Geography.jpg,activities,Geography,"{""en"":""Geography"",""zh"":""地理"",""yue"":""地理"",""ko"":""지리""}",False
+extra_cards/beings/7-12獅子.jpg,beings,Lion,"{""en"":""Lion"",""zh"":""狮子"",""yue"":""獅子"",""ko"":""사자""}",False
+extra_cards/technologies/battery-aa.jpg,technologies,AA battery,"{""en"":""AA battery"",""zh"":""AA电池"",""yue"":""AA電池"",""ko"":""AA 배터리""}",False
+extra_cards/furniture/11-08門.jpg,furniture,Door,"{""en"":""Door"",""zh"":""门"",""yue"":""門"",""ko"":""문""}",False
+extra_cards/festivals/mrsclaus-1.jpg,festivals,Mrs. Claus holding cookies,"{""en"":""Mrs. Claus holding cookies"",""zh"":""圣诞夫人拿着饼干"",""yue"":""聖誕夫人拿住曲奇"",""ko"":""쿠키를 들고 있는 산타 부인""}",False
+extra_cards/space/mercury-1.jpg,space,Mercury,"{""en"":""Mercury"",""zh"":""水星"",""yue"":""水星"",""ko"":""수성""}",False
+extra_cards/technologies/battery-aaa(1).jpg,technologies,AAA battery,"{""en"":""AAA battery"",""zh"":""AAA电池"",""yue"":""AAA電池"",""ko"":""AAA 배터리""}",False
+extra_cards/stationery/Pen Holder.jpg,stationery,Pen Holder,"{""en"":""Pen Holder"",""zh"":""笔筒"",""yue"":""筆筒"",""ko"":""펜 홀더""}",False
+extra_cards/activities/get up1.jpg,activities,get up,"{""en"":""get up"",""zh"":""起床"",""yue"":""起身"",""ko"":""일어나기""}",False
+extra_cards/furniture/11-09窗.jpg,furniture,Window,"{""en"":""Window"",""zh"":""窗"",""yue"":""窗"",""ko"":""창문""}",False
+extra_cards/activities/13b-26吹髮.jpg,activities,Blow drying hair,"{""en"":""Blow drying hair"",""zh"":""吹头发"",""yue"":""吹頭髮"",""ko"":""헤어드라이어로 말리기""}",False
+extra_cards/festivals/poinsettia-1.jpg,festivals,Poinsettia,"{""en"":""Poinsettia"",""zh"":""一品红"",""yue"":""聖誕紅"",""ko"":""포인세티아""}",False
+extra_cards/beings/7-13老虎.jpg,beings,Tiger,"{""en"":""Tiger"",""zh"":""老虎"",""yue"":""老虎"",""ko"":""호랑이""}",False
+extra_cards/stationery/Pen01.jpg,stationery,Pen01,"{""en"":""Pen01"",""zh"":""笔01"",""yue"":""筆01"",""ko"":""펜01""}",False
+extra_cards/activities/13b-11穿外套.jpg,activities,Putting on a jacket,"{""en"":""Putting on a jacket"",""zh"":""穿外套"",""yue"":""穿外套"",""ko"":""자켓 입기""}",False
+extra_cards/space/moon-1.jpg,space,moon,"{""en"":""moon"",""zh"":""月亮"",""yue"":""月亮"",""ko"":""달""}",False
+extra_cards/activities/13c-19畫畫.jpg,activities,Drawing,"{""en"":""Drawing"",""zh"":""画画"",""yue"":""畫畫"",""ko"":""그리기""}",False
+extra_cards/technologies/calculator.jpg,technologies,calculator,"{""en"":""calculator"",""zh"":""计算器"",""yue"":""計算機"",""ko"":""계산기""}",False
+extra_cards/activities/13a-04跳.jpg,activities,Jump,"{""en"":""Jump"",""zh"":""跳"",""yue"":""跳"",""ko"":""뛰기""}",False
+extra_cards/beings/7-14猴子.jpg,beings,Monkey,"{""en"":""Monkey"",""zh"":""猴子"",""yue"":""猴子"",""ko"":""원숭이""}",False
+extra_cards/space/neptune-1.jpg,space,Neptune,"{""en"":""Neptune"",""zh"":""海王星"",""yue"":""海王星"",""ko"":""해왕성""}",False
+extra_cards/activities/get up2.jpg,activities,get up,"{""en"":""get up"",""zh"":""起床"",""yue"":""起身"",""ko"":""일어나기""}",False
+extra_cards/activities/13a-05我要.jpg,activities,I want,"{""en"":""I want"",""zh"":""我要"",""yue"":""我要"",""ko"":""내가 원해""}",False
+extra_cards/furniture/11-10便盆.jpg,furniture,Potty,"{""en"":""Potty"",""zh"":""便盆"",""yue"":""便盆"",""ko"":""변기""}",False
+extra_cards/stationery/Pen02.jpg,stationery,Pen02,"{""en"":""Pen02"",""zh"":""笔02"",""yue"":""筆02"",""ko"":""펜02""}",False
+extra_cards/festivals/santa-1.jpg,festivals,Santa Claus holding a list and pen,"{""en"":""Santa Claus holding a list and pen"",""zh"":""圣诞老人拿着清单和笔"",""yue"":""聖誕老人拿住清單同筆"",""ko"":""리스트와 펜을 든 산타클로스""}",False
+extra_cards/activities/give-4805.jpg,activities,give-4805,"{""en"":""give-4805"",""zh"":""给-4805"",""yue"":""給-4805"",""ko"":""주기-4805""}",False
+extra_cards/activities/13b-25剪腳甲.jpg,activities,Trimming toenails,"{""en"":""Trimming toenails"",""zh"":""剪脚甲"",""yue"":""剪腳甲"",""ko"":""발톱 깎기""}",False
+extra_cards/beings/7-15長頸鹿.jpg,beings,Giraffe,"{""en"":""Giraffe"",""zh"":""长颈鹿"",""yue"":""長頸鹿"",""ko"":""기린""}",False
+extra_cards/activities/13a-06食.jpg,activities,Eating,"{""en"":""Eating"",""zh"":""吃"",""yue"":""食"",""ko"":""먹기""}",False
+extra_cards/activities/13b-19扣鈕.jpg,activities,Buttoning,"{""en"":""Buttoning"",""zh"":""扣钮"",""yue"":""扣鈕"",""ko"":""단추 채우기""}",False
+extra_cards/technologies/cellphone.jpg,technologies,cellphone,"{""en"":""cellphone"",""zh"":""手机"",""yue"":""手機"",""ko"":""휴대폰""}",False
+extra_cards/festivals/xmasbells-1.jpg,festivals,Christmas Bells,"{""en"":""Christmas Bells"",""zh"":""圣诞铃铛"",""yue"":""聖誕鈴鐺"",""ko"":""크리스마스 종""}",False
+extra_cards/space/pluto-1.jpg,space,Pluto,"{""en"":""Pluto"",""zh"":""冥王星"",""yue"":""冥王星"",""ko"":""명왕성""}",False
+extra_cards/furniture/11-11廁所.jpg,furniture,Toilet,"{""en"":""Toilet"",""zh"":""厕所"",""yue"":""廁所"",""ko"":""화장실""}",False
+extra_cards/activities/gym-1.jpg,activities,gym-1,"{""en"":""gym-1"",""zh"":""体操-1"",""yue"":""體操-1"",""ko"":""체조-1""}",False
+extra_cards/stationery/Pen03.jpg,stationery,Pen03,"{""en"":""Pen03"",""zh"":""笔03"",""yue"":""筆03"",""ko"":""펜03""}",False
+extra_cards/activities/13a-07飲.jpg,activities,Drink,"{""en"":""Drink"",""zh"":""喝"",""yue"":""飲"",""ko"":""마시기""}",False
+extra_cards/activities/13b-20拉拉鍊.jpg,activities,Zipper,"{""en"":""Zipper"",""zh"":""拉拉链"",""yue"":""拉拉鍊"",""ko"":""지퍼""}",False
+extra_cards/beings/7-16老鼠.jpg,beings,Mouse,"{""en"":""Mouse"",""zh"":""老鼠"",""yue"":""老鼠"",""ko"":""쥐""}",False
+extra_cards/technologies/computer-1.jpg,technologies,computer-1,"{""en"":""computer-1"",""zh"":""电脑-1"",""yue"":""電腦-1"",""ko"":""컴퓨터-1""}",False
+extra_cards/activities/13b-24剪指甲.jpg,activities,Cutting nails,"{""en"":""Cutting nails"",""zh"":""剪指甲"",""yue"":""剪指甲"",""ko"":""손톱 깎기""}",False
+extra_cards/festivals/xmaslight-1.jpg,festivals,Christmas lights,"{""en"":""Christmas lights"",""zh"":""圣诞灯"",""yue"":""聖誕燈"",""ko"":""크리스마스 전구""}",False
+extra_cards/stationery/Pen04.jpg,stationery,Blue pen,"{""en"":""Blue pen"",""zh"":""蓝色笔"",""yue"":""藍色筆"",""ko"":""파란색 펜""}",False
+extra_cards/activities/13a-08切.jpg,activities,Cutting,"{""en"":""Cutting"",""zh"":""切"",""yue"":""切"",""ko"":""자르기""}",False
+extra_cards/technologies/computer-2.jpg,technologies,computer-2,"{""en"":""computer-2"",""zh"":""电脑-2"",""yue"":""電腦-2"",""ko"":""컴퓨터-2""}",False
+extra_cards/space/saturn-1.jpg,space,Saturn,"{""en"":""Saturn"",""zh"":""土星"",""yue"":""土星"",""ko"":""토성""}",False
+extra_cards/activities/gymnastics.jpg,activities,gymnastics,"{""en"":""gymnastics"",""zh"":""体操"",""yue"":""體操"",""ko"":""체조""}",False
+extra_cards/measuring/量匙(一汤匙).jpg,measuring,Tablespoon (15 ml),"{""en"":""Tablespoon (15 ml)"",""zh"":""量匙（一汤匙）"",""yue"":""量匙（一湯匙）"",""ko"":""계량 스푼 (15ml)""}",False
+extra_cards/activities/13a-19看報紙.jpg,activities,Reading newspaper,"{""en"":""Reading newspaper"",""zh"":""看报纸"",""yue"":""睇報紙"",""ko"":""신문 읽기""}",False
+extra_cards/activities/bedtime2.jpg,activities,bedtime2,"{""en"":""bedtime2"",""zh"":""睡觉"",""yue"":""睡覺"",""ko"":""잠자리""}",False
+extra_cards/beings/7-17龜.jpg,beings,Turtle,"{""en"":""Turtle"",""zh"":""龟"",""yue"":""龜"",""ko"":""거북이""}",False
+extra_cards/festivals/xmastree-1.jpg,festivals,Christmas tree,"{""en"":""Christmas tree"",""zh"":""圣诞树"",""yue"":""聖誕樹"",""ko"":""크리스마스 트리""}",False
+extra_cards/space/sun-1.jpg,space,Sun,"{""en"":""Sun"",""zh"":""太阳"",""yue"":""太陽"",""ko"":""태양""}",False
+extra_cards/activities/bath.jpg,activities,bath,"{""en"":""bath"",""zh"":""洗澡"",""yue"":""衝涼"",""ko"":""목욕""}",False
+extra_cards/technologies/flashlight.jpg,technologies,flashlight,"{""en"":""flashlight"",""zh"":""手电筒"",""yue"":""電筒"",""ko"":""손전등""}",False
+extra_cards/activities/13b-01刷牙.jpg,activities,Brushing teeth,"{""en"":""Brushing teeth"",""zh"":""刷牙"",""yue"":""刷牙"",""ko"":""이 зуб 닦기""}",False
+extra_cards/measuring/量匙(一茶匙).jpg,measuring,Teaspoon (1 teaspoon = 5 ml),"{""en"":""Teaspoon (1 teaspoon = 5 ml)"",""zh"":""量匙（一茶匙）"",""yue"":""量匙（一茶匙）"",""ko"":""계량 스푼 (1티스푼 = 5ml)""}",False
+extra_cards/activities/13a-09塗.jpg,activities,Spreading,"{""en"":""Spreading"",""zh"":""涂抹"",""yue"":""塗抹"",""ko"":""발라주기""}",False
+extra_cards/beings/7-18海豚.jpg,beings,Dolphin,"{""en"":""Dolphin"",""zh"":""海豚"",""yue"":""海豚"",""ko"":""돌고래""}",False
+extra_cards/space/uranus-1.jpg,space,Uranus,"{""en"":""Uranus"",""zh"":""天王星"",""yue"":""天王星"",""ko"":""천왕성""}",False
+extra_cards/beings/7-19鯨魚.jpg,beings,Whale,"{""en"":""Whale"",""zh"":""鲸鱼"",""yue"":""鯨魚"",""ko"":""고래""}",False
+extra_cards/stationery/Pen05.jpg,stationery,Pen05,"{""en"":""Pen05"",""zh"":""笔05"",""yue"":""筆05"",""ko"":""펜05""}",False
+extra_cards/activities/havingdinner.png,activities,having dinner,"{""en"":""having dinner"",""zh"":""吃晚餐"",""yue"":""食晚飯"",""ko"":""저녁 식사하기""}",False
+extra_cards/food/jelly.jpg,food,jelly,"{""en"":""jelly"",""zh"":""果冻"",""yue"":""啫喱"",""ko"":""젤리""}",False
+extra_cards/activities/13b-02洗／抹面(1).jpg,activities,Wash face,"{""en"":""Wash face"",""zh"":""洗／抹面"",""yue"":""洗／抺面"",""ko"":""얼굴 닦기""}",False
+extra_cards/technologies/lightbulb.jpg,technologies,lightbulb,"{""en"":""lightbulb"",""zh"":""灯泡"",""yue"":""燈泡"",""ko"":""전구""}",False
+extra_cards/measuring/量匙(半茶匙).jpg,measuring,Half Teaspoon,"{""en"":""Half Teaspoon"",""zh"":""半茶匙"",""yue"":""半茶匙"",""ko"":""반 티스푼""}",False
+extra_cards/activities/history.jpg,activities,History,"{""en"":""History"",""zh"":""历史"",""yue"":""歷史"",""ko"":""역사""}",False
+extra_cards/activities/assembly.jpg,activities,assembly,"{""en"":""assembly"",""zh"":""集会"",""yue"":""集會"",""ko"":""모임""}",False
+extra_cards/stationery/Pen06.jpg,stationery,Blue Pen,"{""en"":""Blue Pen"",""zh"":""蓝色笔"",""yue"":""藍色筆"",""ko"":""파란색 펜""}",False
+extra_cards/space/venus-1.jpg,space,Venus,"{""en"":""Venus"",""zh"":""金星"",""yue"":""金星"",""ko"":""금성""}",False
+extra_cards/food/三文治.jpg,food,Sandwich,"{""en"":""Sandwich"",""zh"":""三明治"",""yue"":""三文治"",""ko"":""샌드위치""}",False
+extra_cards/activities/home time.jpg,activities,Home time,"{""en"":""Home time"",""zh"":""放学回家"",""yue"":""放學返屋企"",""ko"":""집에 가기""}",False
+extra_cards/technologies/outlet.jpg,technologies,outlet,"{""en"":""outlet"",""zh"":""插座"",""yue"":""插座"",""ko"":""콘센트""}",False
+extra_cards/stationery/Pen07.jpg,stationery,Pen07,"{""en"":""Pen07"",""zh"":""笔07"",""yue"":""筆07"",""ko"":""펜07""}",False
+extra_cards/activities/13b-03抹嘴.jpg,activities,Wipe mouth,"{""en"":""Wipe mouth"",""zh"":""抹嘴"",""yue"":""抺嘴"",""ko"":""입 닦기""}",False
+extra_cards/stationery/Pen08.jpg,stationery,Pen08,"{""en"":""Pen08"",""zh"":""笔08"",""yue"":""筆08"",""ko"":""펜08""}",False
+extra_cards/stationery/3-01鉛筆.jpg,stationery,Pencil,"{""en"":""Pencil"",""zh"":""铅笔"",""yue"":""鉛筆"",""ko"":""연필""}",False
+extra_cards/food/乳酪.jpg,food,Cheese,"{""en"":""Cheese"",""zh"":""乳酪"",""yue"":""乳酪"",""ko"":""치즈""}",False
+extra_cards/measuring/量匙(四分之一茶匙).jpg,measuring,1/4 teaspoon measuring spoon,"{""en"":""1/4 teaspoon measuring spoon"",""zh"":""四分之一茶匙量匙"",""yue"":""四分一茶匙量匙"",""ko"":""1/4 티스푼 측정 스푼""}",False
+extra_cards/activities/13a-37排隊玩.jpg,activities,Take turns playing,"{""en"":""Take turns playing"",""zh"":""排队玩"",""yue"":""排隊玩"",""ko"":""차례로 놀기""}",False
+extra_cards/activities/art.jpg,activities,art,"{""en"":""art"",""zh"":""美术"",""yue"":""美術"",""ko"":""미술""}",False
+extra_cards/beings/7-20草.jpg,beings,Grass,"{""en"":""Grass"",""zh"":""草"",""yue"":""草"",""ko"":""풀""}",False
+extra_cards/activities/homework (1).jpg,activities,Homework,"{""en"":""Homework"",""zh"":""写作业"",""yue"":""寫功課"",""ko"":""숙제하기""}",False
+extra_cards/measuring/量杯(一杯).jpg,measuring,Measuring cup (1 cup),"{""en"":""Measuring cup (1 cup)"",""zh"":""量杯（一杯）"",""yue"":""量杯（一杯）"",""ko"":""계량컵 (1컵)""}",False
+extra_cards/activities/assembly-1.jpg,activities,assembly-1,"{""en"":""assembly-1"",""zh"":""集会-1"",""yue"":""集會-1"",""ko"":""모임-1""}",False
+extra_cards/technologies/plug.jpg,technologies,plug,"{""en"":""plug"",""zh"":""插头"",""yue"":""插頭"",""ko"":""플러그""}",False
+extra_cards/food/冬菇.jpg,food,Winter mushroom,"{""en"":""Winter mushroom"",""zh"":""冬菇"",""yue"":""冬菇"",""ko"":""동고버섯""}",False
+extra_cards/beings/7-21樹.jpg,beings,Tree,"{""en"":""Tree"",""zh"":""树"",""yue"":""樹"",""ko"":""나무""}",False
+extra_cards/activities/13d-04玩遊戲.jpg,activities,Playing Games,"{""en"":""Playing Games"",""zh"":""玩游戏"",""yue"":""玩遊戲"",""ko"":""게임하기""}",False
+extra_cards/technologies/switch-off.jpg,technologies,switch-off,"{""en"":""switch-off"",""zh"":""关闭开关"",""yue"":""關閉開關"",""ko"":""스위치 끄기""}",False
+extra_cards/stationery/3-02原子筆.jpg,stationery,Ballpoint pen,"{""en"":""Ballpoint pen"",""zh"":""原子笔"",""yue"":""原子筆"",""ko"":""볼펜""}",False
+extra_cards/measuring/量杯(三份之一杯).jpg,measuring,1/3 cup measuring cup,"{""en"":""1/3 cup measuring cup"",""zh"":""三分之一杯量杯"",""yue"":""三分之一杯量杯"",""ko"":""1/3 컵 측정컵""}",False
+extra_cards/activities/homework.jpg,activities,Doing homework,"{""en"":""Doing homework"",""zh"":""写作业"",""yue"":""做功課"",""ko"":""숙제하기""}",False
+extra_cards/stationery/Pen09.jpg,stationery,Permanent marker with red cap,"{""en"":""Permanent marker with red cap"",""zh"":""带红色盖子的永久性记号笔"",""yue"":""帶紅色筆蓋的永久性記號筆"",""ko"":""빨간 뚜껑이 달린 영구 마커""}",False
+extra_cards/measuring/量杯(半杯).jpg,measuring,Measuring cup (half cup),"{""en"":""Measuring cup (half cup)"",""zh"":""量杯（半杯）"",""yue"":""量杯（半杯）"",""ko"":""계량컵 (반 컵)""}",False
+extra_cards/technologies/switch-on.jpg,technologies,switch-on,"{""en"":""switch-on"",""zh"":""开关-开"",""yue"":""開關-開"",""ko"":""스위치-켜기""}",False
+extra_cards/stationery/Pen10.jpg,stationery,Blue Pen,"{""en"":""Blue Pen"",""zh"":""蓝色笔"",""yue"":""藍色筆"",""ko"":""파란색 펜""}",False
+extra_cards/activities/13a-38飲茶.jpg,activities,Having tea,"{""en"":""Having tea"",""zh"":""饮茶"",""yue"":""飲茶"",""ko"":""차 마시기""}",False
+extra_cards/beings/7-22花.jpg,beings,Flower,"{""en"":""Flower"",""zh"":""花"",""yue"":""花"",""ko"":""꽃""}",False
+extra_cards/stationery/3-03顏色筆.jpg,stationery,Colored pencils,"{""en"":""Colored pencils"",""zh"":""彩色铅笔"",""yue"":""顏色筆"",""ko"":""색연필""}",False
+extra_cards/food/叉燒.jpg,food,Char Siu,"{""en"":""Char Siu"",""zh"":""叉烧"",""yue"":""叉燒"",""ko"":""차슈""}",False
+extra_cards/activities/13a-39寄信.jpg,activities,Sending a letter,"{""en"":""Sending a letter"",""zh"":""寄信"",""yue"":""寄信"",""ko"":""편지 보내기""}",False
+extra_cards/activities/journal-1.jpg,activities,Journal with pencils,"{""en"":""Journal with pencils"",""zh"":""带铅笔的日记本"",""yue"":""帶鉛筆嘅日記本"",""ko"":""연필이 있는 일기장""}",False
+extra_cards/stationery/3-04擦膠.jpg,stationery,Eraser,"{""en"":""Eraser"",""zh"":""橡皮擦"",""yue"":""擦膠"",""ko"":""지우개""}",False
+extra_cards/toy/4-01車.jpg,toy,Car,"{""en"":""Car"",""zh"":""车"",""yue"":""車"",""ko"":""자동차""}",False
+extra_cards/activities/13b-22照鏡.jpg,activities,Looking in the mirror,"{""en"":""Looking in the mirror"",""zh"":""照镜子"",""yue"":""照鏡"",""ko"":""거울 보기""}",False
+extra_cards/clothes/5-01短袖衫.jpg,clothes,T-shirt,"{""en"":""T-shirt"",""zh"":""短袖衫"",""yue"":""短袖衫"",""ko"":""반팔 티셔츠""}",False
+extra_cards/food/叉燒包.jpg,food,Char Siu Bao,"{""en"":""Char Siu Bao"",""zh"":""叉烧包"",""yue"":""叉燒包"",""ko"":""차슈바오""}",False
+extra_cards/measuring/量杯(四份之一杯).jpg,measuring,1/4 cup measuring spoon,"{""en"":""1/4 cup measuring spoon"",""zh"":""四分之一杯量杯"",""yue"":""四份之一杯量杯"",""ko"":""1/4컵 측정 숟가락""}",False
+extra_cards/activities/jump-4507.jpg,activities,jump,"{""en"":""jump"",""zh"":""跳"",""yue"":""跳"",""ko"":""뛰다""}",False
+extra_cards/stationery/Pen11.jpg,stationery,Red pen with black grip,"{""en"":""Red pen with black grip"",""zh"":""带黑色握把的红色笔"",""yue"":""有黑色握把嘅紅色筆"",""ko"":""검은색 그립이 있는 빨간 펜""}",False
+extra_cards/activities/13b-21換衣服.jpg,activities,Changing clothes,"{""en"":""Changing clothes"",""zh"":""换衣服"",""yue"":""換衣服"",""ko"":""옷 갈아입기""}",False
+extra_cards/activities/13a-29吸塵.jpg,activities,Vacuuming,"{""en"":""Vacuuming"",""zh"":""吸尘"",""yue"":""吸塵"",""ko"":""진공 청소""}",False
+extra_cards/activities/13a-28掃地.jpg,activities,Sweeping the floor,"{""en"":""Sweeping the floor"",""zh"":""扫地"",""yue"":""掃地"",""ko"":""바닥 쓸기""}",False
+extra_cards/stationery/3-05間尺.jpg,stationery,Ruler,"{""en"":""Ruler"",""zh"":""尺子"",""yue"":""間尺"",""ko"":""자""}",False
+extra_cards/clothes/5-02長袖衫.jpg,clothes,Long-sleeve shirt,"{""en"":""Long-sleeve shirt"",""zh"":""长袖衫"",""yue"":""長袖衫"",""ko"":""긴 소매 셔츠""}",False
+extra_cards/stationery/Pen12.jpg,stationery,Pen12,"{""en"":""Pen12"",""zh"":""笔12"",""yue"":""筆12"",""ko"":""펜12""}",False
+extra_cards/clothes/5-03恤衫.jpg,clothes,Shirt,"{""en"":""Shirt"",""zh"":""衬衫"",""yue"":""恤衫"",""ko"":""셔츠""}",False
+extra_cards/toy/4-02飛機.jpg,toy,Airplane,"{""en"":""Airplane"",""zh"":""飞机"",""yue"":""飛機"",""ko"":""비행기""}",False
+extra_cards/food/士多啤梨.jpg,food,Strawberry,"{""en"":""Strawberry"",""zh"":""草莓"",""yue"":""士多啤梨"",""ko"":""딸기""}",False
+extra_cards/food/可樂.jpg,food,Coca-Cola,"{""en"":""Coca-Cola"",""zh"":""可乐"",""yue"":""可樂"",""ko"":""코카콜라""}",False
+extra_cards/activities/language-1.jpg,activities,Two children writing at desks,"{""en"":""Two children writing at desks"",""zh"":""两个孩子在书桌前写字"",""yue"":""兩個小朋友喺書枱寫字"",""ko"":""두 아이가 책상에서 글을 쓰고 있음""}",False
+extra_cards/activities/13d-05放學.jpg,activities,School dismissal,"{""en"":""School dismissal"",""zh"":""放学"",""yue"":""放學"",""ko"":""하교""}",False
+extra_cards/activities/13a-30拋垃圾.jpg,activities,Throwing trash,"{""en"":""Throwing trash"",""zh"":""扔垃圾"",""yue"":""拋垃圾"",""ko"":""쓰레기 버리기""}",False
+extra_cards/stationery/3-06較剪.jpg,stationery,Scissors,"{""en"":""Scissors"",""zh"":""剪刀"",""yue"":""剪刀"",""ko"":""가위""}",False
+extra_cards/stationery/Pen13.jpg,stationery,Pen13,"{""en"":""Pen13"",""zh"":""笔13"",""yue"":""筆13"",""ko"":""펜13""}",False
+extra_cards/stationery/3-07膠水.jpg,stationery,Glue,"{""en"":""Glue"",""zh"":""胶水"",""yue"":""膠水"",""ko"":""접착제""}",False
+extra_cards/measuring/量杯.jpg,measuring,Measuring cups,"{""en"":""Measuring cups"",""zh"":""量杯"",""yue"":""量杯"",""ko"":""계량 컵""}",False
+extra_cards/activities/13c-18彈琴.jpg,activities,Playing piano,"{""en"":""Playing piano"",""zh"":""弹琴"",""yue"":""彈琴"",""ko"":""피아노 치기""}",False
+extra_cards/toy/4-03波.jpg,toy,Beach ball,"{""en"":""Beach ball"",""zh"":""沙滩球"",""yue"":""沙灘波"",""ko"":""비치볼""}",False
+extra_cards/food/壽司.jpg,food,Sushi,"{""en"":""Sushi"",""zh"":""寿司"",""yue"":""壽司"",""ko"":""스시""}",False
+extra_cards/clothes/5-04短褲.jpg,clothes,Shorts,"{""en"":""Shorts"",""zh"":""短裤"",""yue"":""短褲"",""ko"":""반바지""}",False
+extra_cards/activities/laugh-4602.jpg,activities,laugh-4602,"{""en"":""laugh-4602"",""zh"":""笑-4602"",""yue"":""笑-4602"",""ko"":""웃음-4602""}",False
+extra_cards/stationery/Pen14.jpg,stationery,Pen14,"{""en"":""Pen14"",""zh"":""笔14"",""yue"":""筆14"",""ko"":""펜14""}",False
+extra_cards/people/8-02媽媽.jpg,people,Mom,"{""en"":""Mom"",""zh"":""妈妈"",""yue"":""媽媽"",""ko"":""엄마""}",False
+extra_cards/activities/13d-12畢業典禮.jpg,activities,Graduation Ceremony,"{""en"":""Graduation Ceremony"",""zh"":""毕业典礼"",""yue"":""畢業典禮"",""ko"":""졸업식""}",False
+extra_cards/toy/4-04波波水.jpg,toy,Bubble solution,"{""en"":""Bubble solution"",""zh"":""泡泡水"",""yue"":""波波水"",""ko"":""거품 용액""}",False
+extra_cards/activities/13b-15穿襪.jpg,activities,Putting on socks,"{""en"":""Putting on socks"",""zh"":""穿袜子"",""yue"":""穿襪"",""ko"":""양말 신기""}",False
+extra_cards/activities/library-1.jpg,activities,library-1,"{""en"":""library-1"",""zh"":""图书馆-1"",""yue"":""圖書館-1"",""ko"":""도서관-1""}",False
+extra_cards/clothes/5-05長褲.jpg,clothes,Long pants,"{""en"":""Long pants"",""zh"":""长裤"",""yue"":""長褲"",""ko"":""긴 바지""}",False
+extra_cards/stationery/3-08紙.jpg,stationery,Paper,"{""en"":""Paper"",""zh"":""纸"",""yue"":""紙"",""ko"":""종이""}",False
+extra_cards/food/奇異果.jpg,food,Kiwi fruit,"{""en"":""Kiwi fruit"",""zh"":""奇异果"",""yue"":""奇異果"",""ko"":""키위과일""}",False
+extra_cards/people/baby-1.jpg,people,baby-1,"{""en"":""baby-1"",""zh"":""婴儿-1"",""yue"":""嬰兒-1"",""ko"":""아기-1""}",False
+extra_cards/activities/library.jpg,activities,Library,"{""en"":""Library"",""zh"":""图书室"",""yue"":""圖書室"",""ko"":""도서실""}",False
+extra_cards/toy/4-05公仔.jpg,toy,Doll,"{""en"":""Doll"",""zh"":""公仔"",""yue"":""公仔"",""ko"":""인형""}",False
+extra_cards/activities/13b-16除掉襪.jpg,activities,Take off socks,"{""en"":""Take off socks"",""zh"":""脱袜子"",""yue"":""除掉襪"",""ko"":""양말 벗기""}",False
+extra_cards/stationery/3-09簿.jpg,stationery,Notebook,"{""en"":""Notebook"",""zh"":""笔记本"",""yue"":""筆記簿"",""ko"":""노트북""}",False
+extra_cards/people/8-01爸爸.jpg,people,Dad,"{""en"":""Dad"",""zh"":""爸爸"",""yue"":""爸爸"",""ko"":""아빠""}",False
+extra_cards/people/boy-1.jpg,people,boy-1,"{""en"":""boy-1"",""zh"":""男孩-1"",""yue"":""男孩-1"",""ko"":""소년-1""}",False
+extra_cards/toy/4-06熊.jpg,toy,Teddy bear,"{""en"":""Teddy bear"",""zh"":""熊"",""yue"":""熊"",""ko"":""곰인형""}",False
+extra_cards/clothes/5-06裙.jpg,clothes,Skirt,"{""en"":""Skirt"",""zh"":""裙"",""yue"":""裙子"",""ko"":""치마""}",False
+extra_cards/food/年糕.jpg,food,Nian Gao,"{""en"":""Nian Gao"",""zh"":""年糕"",""yue"":""年糕"",""ko"":""연고""}",False
+extra_cards/activities/13c-17聽歌.jpg,activities,Listening to music,"{""en"":""Listening to music"",""zh"":""听歌"",""yue"":""聽歌"",""ko"":""음악 듣기""}",False
+extra_cards/stationery/Pen15.jpg,stationery,Green fine point ballpoint pen,"{""en"":""Green fine point ballpoint pen"",""zh"":""绿色细尖圆珠笔"",""yue"":""綠色幼頭原子筆"",""ko"":""녹색 미세 끝 볼펜""}",False
+extra_cards/stationery/Pencil and sharpener.jpg,stationery,Pencil and sharpener,"{""en"":""Pencil and sharpener"",""zh"":""铅笔和卷笔刀"",""yue"":""鉛筆同卷筆刀"",""ko"":""연필과 연필깎이""}",False
+extra_cards/activities/13d-11家長日.jpg,activities,Parent-Teacher Day,"{""en"":""Parent-Teacher Day"",""zh"":""家长日"",""yue"":""家長日"",""ko"":""학부모의 날""}",False
+extra_cards/activities/13b-17穿鞋.jpg,activities,Putting on shoes,"{""en"":""Putting on shoes"",""zh"":""穿鞋"",""yue"":""穿鞋"",""ko"":""신발 신기""}",False
+extra_cards/clothes/5-07運動衫.jpg,clothes,Track Suit,"{""en"":""Track Suit"",""zh"":""运动衫"",""yue"":""運動衫"",""ko"":""트랙슈트""}",False
+extra_cards/food/意大利粉.jpg,food,Spaghetti,"{""en"":""Spaghetti"",""zh"":""意大利面"",""yue"":""意大利粉"",""ko"":""스파게티""}",False
+extra_cards/people/boy-2.jpg,people,boy-2,"{""en"":""boy-2"",""zh"":""男孩-2"",""yue"":""男孩-2"",""ko"":""소년-2""}",False
+extra_cards/activities/listen-4703.jpg,activities,listen-4703,"{""en"":""listen-4703"",""zh"":""听-4703"",""yue"":""聽-4703"",""ko"":""듣기-4703""}",False
+extra_cards/toy/4-07煮飯仔.jpg,toy,Toy Kitchen Set,"{""en"":""Toy Kitchen Set"",""zh"":""玩具厨房套装"",""yue"":""煮飯仔"",""ko"":""장난감 주방 세트""}",False
+extra_cards/activities/13c-20旅行.jpg,activities,Travel,"{""en"":""Travel"",""zh"":""旅行"",""yue"":""旅行"",""ko"":""여행""}",False
+extra_cards/stationery/Pencil case1.jpg,stationery,Pencil case,"{""en"":""Pencil case"",""zh"":""铅笔盒"",""yue"":""鉛筆袋"",""ko"":""연필 케이스""}",False
+extra_cards/stationery/3-10鉛筆刨.jpg,stationery,Pencil sharpener,"{""en"":""Pencil sharpener"",""zh"":""铅笔刨"",""yue"":""鉛筆刨"",""ko"":""연필 깎는 기계""}",False
+extra_cards/clothes/5-08冷衫.jpg,clothes,Sweater,"{""en"":""Sweater"",""zh"":""毛衣"",""yue"":""冷衫"",""ko"":""스웨터""}",False
+extra_cards/activities/13b-12除掉外套.jpg,activities,Take off jacket,"{""en"":""Take off jacket"",""zh"":""除掉外套"",""yue"":""脫外套"",""ko"":""자켓 벗기""}",False
+extra_cards/food/提子.jpg,food,Grapes,"{""en"":""Grapes"",""zh"":""提子"",""yue"":""提子"",""ko"":""포도""}",False
+extra_cards/activities/lunch time.jpg,activities,Lunch time,"{""en"":""Lunch time"",""zh"":""午餐时间"",""yue"":""午飯時間"",""ko"":""점심 시간""}",False
+extra_cards/people/boy-3.jpg,people,boy-3,"{""en"":""boy-3"",""zh"":""男孩-3"",""yue"":""男孩-3"",""ko"":""소년-3""}",False
+extra_cards/stationery/Pencil holder.jpg,stationery,Pencil holder,"{""en"":""Pencil holder"",""zh"":""铅笔筒"",""yue"":""鉛筆筒"",""ko"":""연필 홀더""}",False
+extra_cards/activities/13b-13穿褲.jpg,activities,Putting on pants,"{""en"":""Putting on pants"",""zh"":""穿裤"",""yue"":""穿褲"",""ko"":""바지 입기""}",False
+extra_cards/toy/4-08積木.jpg,toy,Building Blocks,"{""en"":""Building Blocks"",""zh"":""积木"",""yue"":""積木"",""ko"":""블록""}",False
+extra_cards/stationery/Pencil sharpener.jpg,stationery,Pencil sharpener,"{""en"":""Pencil sharpener"",""zh"":""卷笔刀"",""yue"":""鉛筆刨"",""ko"":""연필깎이""}",False
+extra_cards/activities/13c-11打羽毛球.jpg,activities,Playing badminton,"{""en"":""Playing badminton"",""zh"":""打羽毛球"",""yue"":""打羽毛球"",""ko"":""배드민턴 치기""}",False
+extra_cards/stationery/3-11筆盒／筆袋.jpg,stationery,Pencil case / Pencil pouch,"{""en"":""Pencil case / Pencil pouch"",""zh"":""笔盒／笔袋"",""yue"":""筆盒／筆袋"",""ko"":""연필ケース / 연필 파우치""}",False
+extra_cards/activities/lunch-1.jpg,activities,lunch-1,"{""en"":""lunch-1"",""zh"":""午餐-1"",""yue"":""午飯-1"",""ko"":""점심-1""}",False
+extra_cards/clothes/5-09褸.jpg,clothes,Jacket,"{""en"":""Jacket"",""zh"":""夹克"",""yue"":""褸"",""ko"":""자켓""}",False
+extra_cards/stationery/Address book.jpg,stationery,Address book,"{""en"":""Address book"",""zh"":""地址簿"",""yue"":""通訊錄"",""ko"":""주소록""}",False
+extra_cards/toy/4-09圖書.jpg,toy,Book,"{""en"":""Book"",""zh"":""图书"",""yue"":""圖書"",""ko"":""책""}",False
+extra_cards/food/春卷.jpg,food,Spring Roll,"{""en"":""Spring Roll"",""zh"":""春卷"",""yue"":""春捲"",""ko"":""춘권""}",False
+extra_cards/stationery/Pencil1.jpg,stationery,Red pencil,"{""en"":""Red pencil"",""zh"":""红色铅笔"",""yue"":""紅色鉛筆"",""ko"":""빨간 연필""}",False
+extra_cards/activities/lunch1.jpg,activities,Eating lunch,"{""en"":""Eating lunch"",""zh"":""吃午餐"",""yue"":""食午飯"",""ko"":""점심 먹기""}",False
+extra_cards/people/brotherandsister-1.jpg,people,brotherandsister-1,"{""en"":""brotherandsister-1"",""zh"":""兄妹-1"",""yue"":""兄弟姊妹-1"",""ko"":""남매-1""}",False
+extra_cards/people/father-1.jpg,people,father-1,"{""en"":""father-1"",""zh"":""父亲-1"",""yue"":""爸爸-1"",""ko"":""아빠-1""}",False
+extra_cards/food/月餅.jpg,food,Mooncake,"{""en"":""Mooncake"",""zh"":""月饼"",""yue"":""月餅"",""ko"":""달 bánh""}",False
+extra_cards/stationery/Book1.jpg,stationery,Book1,"{""en"":""Book1"",""zh"":""书1"",""yue"":""書1"",""ko"":""책1""}",False
+extra_cards/activities/13b-14除掉褲.jpg,activities,Take off pants,"{""en"":""Take off pants"",""zh"":""除掉裤"",""yue"":""除掉褲"",""ko"":""바지 벗기""}",False
+extra_cards/activities/13c-07做運動.jpg,activities,Doing exercise,"{""en"":""Doing exercise"",""zh"":""做运动"",""yue"":""做運動"",""ko"":""운동하기""}",False
+extra_cards/activities/13b-07洗澡.jpg,activities,Taking a shower,"{""en"":""Taking a shower"",""zh"":""洗澡"",""yue"":""沖涼"",""ko"":""샤워하기""}",False
+extra_cards/toy/4-10砌圖.jpg,toy,Puzzle,"{""en"":""Puzzle"",""zh"":""拼图"",""yue"":""砌圖"",""ko"":""퍼즐""}",False
+extra_cards/clothes/5-10校服.jpg,clothes,School Uniform,"{""en"":""School Uniform"",""zh"":""校服"",""yue"":""校服"",""ko"":""교복""}",False
+extra_cards/activities/13c-16唱歌.jpg,activities,Singing,"{""en"":""Singing"",""zh"":""唱歌"",""yue"":""唱歌"",""ko"":""노래 부르기""}",False
+extra_cards/people/friends-1.jpg,people,friends-1,"{""en"":""friends-1"",""zh"":""朋友-1"",""yue"":""朋友-1"",""ko"":""친구들-1""}",False
+extra_cards/stationery/Book2.jpg,stationery,Book2,"{""en"":""Book2"",""zh"":""书本2"",""yue"":""書本2"",""ko"":""책2""}",False
+extra_cards/stationery/Pencil2.jpg,stationery,Pencil,"{""en"":""Pencil"",""zh"":""铅笔"",""yue"":""鉛筆"",""ko"":""연필""}",False
+extra_cards/clothes/5-11內褲.jpg,clothes,Underwear,"{""en"":""Underwear"",""zh"":""内裤"",""yue"":""內褲"",""ko"":""속옷""}",False
+extra_cards/toy/4-11電話.jpg,toy,Telephone,"{""en"":""Telephone"",""zh"":""电话"",""yue"":""電話"",""ko"":""전화기""}",False
+extra_cards/activities/lunch2.jpg,activities,Lunch,"{""en"":""Lunch"",""zh"":""吃午餐"",""yue"":""食午飯"",""ko"":""점심 식사""}",False
+extra_cards/food/木瓜.jpg,food,Papaya,"{""en"":""Papaya"",""zh"":""木瓜"",""yue"":""木瓜"",""ko"":""파파야""}",False
+extra_cards/activities/13a-17玩電腦.jpg,activities,Playing on the computer,"{""en"":""Playing on the computer"",""zh"":""玩电脑"",""yue"":""玩電腦"",""ko"":""컴퓨터로 놀기""}",False
+extra_cards/activities/big writing.jpg,activities,Big Writing,"{""en"":""Big Writing"",""zh"":""大写字"",""yue"":""大寫字"",""ko"":""큰 글씨 쓰기""}",False
+extra_cards/activities/makingbed.png,activities,makingbed,"{""en"":""makingbed"",""zh"":""整理床铺"",""yue"":""整理床鋪"",""ko"":""침대 정리하기""}",False
+extra_cards/activities/13a-10舀.jpg,activities,Scooping,"{""en"":""Scooping"",""zh"":""舀"",""yue"":""舀"",""ko"":""떠내기""}",False
+extra_cards/food/朱古力.jpg,food,Chocolate,"{""en"":""Chocolate"",""zh"":""巧克力"",""yue"":""朱古力"",""ko"":""초콜릿""}",False
+extra_cards/clothes/5-12襪.jpg,clothes,Socks,"{""en"":""Socks"",""zh"":""袜子"",""yue"":""襪"",""ko"":""양말""}",False
+extra_cards/people/girl-1.jpg,people,girl-1,"{""en"":""girl-1"",""zh"":""女孩-1"",""yue"":""女孩-1"",""ko"":""여자아이-1""}",False
+extra_cards/stationery/Pencil3.jpg,stationery,Pencil3,"{""en"":""Pencil3"",""zh"":""铅笔3"",""yue"":""鉛筆3"",""ko"":""연필3""}",False
+extra_cards/toy/4-12玩具槍.jpg,toy,Toy Gun,"{""en"":""Toy Gun"",""zh"":""玩具枪"",""yue"":""玩具槍"",""ko"":""장난감 총""}",False
+extra_cards/clothes/5-13拖鞋.jpg,clothes,Slippers,"{""en"":""Slippers"",""zh"":""拖鞋"",""yue"":""拖鞋"",""ko"":""슬리퍼""}",False
+extra_cards/stationery/Pencil4.jpg,stationery,Pencil,"{""en"":""Pencil"",""zh"":""铅笔"",""yue"":""鉛筆"",""ko"":""연필""}",False
+extra_cards/activities/breakfast1.jpg,activities,Eating breakfast,"{""en"":""Eating breakfast"",""zh"":""吃早餐"",""yue"":""食早餐"",""ko"":""아침 식사하기""}",False
+extra_cards/stationery/Book4.jpg,stationery,Book4,"{""en"":""Book4"",""zh"":""书4"",""yue"":""書4"",""ko"":""책4""}",False
+extra_cards/activities/13a-18看書.jpg,activities,Reading a book,"{""en"":""Reading a book"",""zh"":""看书"",""yue"":""睇書"",""ko"":""책 읽기""}",False
+extra_cards/food/朱古力金幣.jpg,food,Chocolate Gold Coins,"{""en"":""Chocolate Gold Coins"",""zh"":""巧克力金币"",""yue"":""朱古力金幣"",""ko"":""초콜릿 금화""}",False
+extra_cards/stationery/Book3.jpg,stationery,Book3,"{""en"":""Book3"",""zh"":""书3"",""yue"":""書3"",""ko"":""책3""}",False
+extra_cards/clothes/5-14波鞋.jpg,clothes,Sneakers,"{""en"":""Sneakers"",""zh"":""运动鞋"",""yue"":""波鞋"",""ko"":""스니커즈""}",False
+extra_cards/people/girl-2.jpg,people,girl-2,"{""en"":""girl-2"",""zh"":""女孩-2"",""yue"":""女孩-2"",""ko"":""여자아이-2""}",False
+extra_cards/activities/math-1.jpg,activities,math-1,"{""en"":""math-1"",""zh"":""数学-1"",""yue"":""數學-1"",""ko"":""수학-1""}",False
+extra_cards/toy/4-13機械人.jpg,toy,Robot,"{""en"":""Robot"",""zh"":""机器人"",""yue"":""機械人"",""ko"":""로봇""}",False
+extra_cards/activities/maths.jpg,activities,Maths,"{""en"":""Maths"",""zh"":""数学"",""yue"":""數學"",""ko"":""수학""}",False
+extra_cards/activities/breakfast2.jpg,activities,Eating breakfast,"{""en"":""Eating breakfast"",""zh"":""吃早餐"",""yue"":""食早餐"",""ko"":""아침 식사하기""}",False
+extra_cards/clothes/5-15水鞋.jpg,clothes,Rain boots,"{""en"":""Rain boots"",""zh"":""雨靴"",""yue"":""水鞋"",""ko"":""장화""}",False
+extra_cards/activities/13a-16做功課.jpg,activities,Doing homework,"{""en"":""Doing homework"",""zh"":""做功课"",""yue"":""做功課"",""ko"":""숙제하기""}",False
+extra_cards/activities/13b-04洗手.jpg,activities,Wash hands,"{""en"":""Wash hands"",""zh"":""洗手"",""yue"":""洗手"",""ko"":""손 씻기""}",False
+extra_cards/toy/4-14遊戲機.jpg,toy,Game Boy,"{""en"":""Game Boy"",""zh"":""游戏机"",""yue"":""遊戲機"",""ko"":""게임기""}",False
+extra_cards/food/果醬.jpg,food,Jam,"{""en"":""Jam"",""zh"":""果酱"",""yue"":""果醬"",""ko"":""잼""}",False
+extra_cards/activities/brush teeth1.jpg,activities,brush teeth,"{""en"":""brush teeth"",""zh"":""刷牙"",""yue"":""刷牙"",""ko"":""이를 닦다""}",False
+extra_cards/activities/13b-05抹手.jpg,activities,Wipe hands,"{""en"":""Wipe hands"",""zh"":""抹手"",""yue"":""抺手"",""ko"":""손 닦기""}",False
+extra_cards/stationery/Pencil5.jpg,stationery,Pencil5,"{""en"":""Pencil5"",""zh"":""铅笔5"",""yue"":""鉛筆5"",""ko"":""연필5""}",False
+extra_cards/people/girl-3.jpg,people,girl-3,"{""en"":""girl-3"",""zh"":""女孩-3"",""yue"":""女孩-3"",""ko"":""여자아이-3""}",False
+extra_cards/stationery/Book5.jpg,stationery,Red dictionary book,"{""en"":""Red dictionary book"",""zh"":""红色字典书"",""yue"":""紅色字典書"",""ko"":""빨간 사전 책""}",False
+extra_cards/activities/mental maths.jpg,activities,mental maths,"{""en"":""mental maths"",""zh"":""心算"",""yue"":""心算"",""ko"":""암산""}",False
+extra_cards/people/girl-4.jpg,people,girl-4,"{""en"":""girl-4"",""zh"":""女孩-4"",""yue"":""女孩-4"",""ko"":""여자아이-4""}",False
+extra_cards/activities/13b-06梳頭.jpg,activities,Combing hair,"{""en"":""Combing hair"",""zh"":""梳头"",""yue"":""梳頭"",""ko"":""머리 빗기""}",False
+extra_cards/activities/music.jpg,activities,Music Class,"{""en"":""Music Class"",""zh"":""音乐课"",""yue"":""音樂課"",""ko"":""음악 수업""}",False
+extra_cards/toy/4-15棋.jpg,toy,Board Game,"{""en"":""Board Game"",""zh"":""棋盘游戏"",""yue"":""棋盤遊戲"",""ko"":""보드 게임""}",False
+extra_cards/activities/13a-15睡覺.jpg,activities,Sleeping,"{""en"":""Sleeping"",""zh"":""睡觉"",""yue"":""睡覺"",""ko"":""잠자기""}",False
+extra_cards/food/柑.jpg,food,Tangerine,"{""en"":""Tangerine"",""zh"":""柑"",""yue"":""柑"",""ko"":""귤""}",False
+extra_cards/food/柚子.jpg,food,Pomelo,"{""en"":""Pomelo"",""zh"":""柚子"",""yue"":""柚子"",""ko"":""포멜로""}",False
+extra_cards/stationery/Pencil6.jpg,stationery,Pencil6,"{""en"":""Pencil6"",""zh"":""铅笔6"",""yue"":""鉛筆6"",""ko"":""연필6""}",False
+extra_cards/stationery/Book6.jpg,stationery,The Book of Answers by Carol Bolt,"{""en"":""The Book of Answers by Carol Bolt"",""zh"":""卡罗尔·博尔特的《答案之书》"",""yue"":""卡羅爾·博爾特嘅《答案之書》"",""ko"":""캐롤 볼트의 '답변의 책'""}",False
+extra_cards/activities/brush teeth2.jpg,activities,brush teeth,"{""en"":""brush teeth"",""zh"":""刷牙"",""yue"":""刷牙"",""ko"":""이를 닦다""}",False
+extra_cards/toy/4-16印仔.jpg,toy,Stamp,"{""en"":""Stamp"",""zh"":""印章"",""yue"":""印仔"",""ko"":""도장""}",False
+extra_cards/stationery/Pens.jpg,stationery,Pens,"{""en"":""Pens"",""zh"":""笔"",""yue"":""筆"",""ko"":""펜""}",False
+extra_cards/stationery/Book7.jpg,stationery,Book7,"{""en"":""Book7"",""zh"":""书7"",""yue"":""書7"",""ko"":""책7""}",False
+extra_cards/clothes/5-17書包.jpg,clothes,Backpack,"{""en"":""Backpack"",""zh"":""书包"",""yue"":""書包"",""ko"":""가방""}",False
+extra_cards/clothes/5-16帽.jpg,clothes,Hat,"{""en"":""Hat"",""zh"":""帽"",""yue"":""帽"",""ko"":""모자""}",False
+extra_cards/people/girl-5.jpg,people,girl-5,"{""en"":""girl-5"",""zh"":""女孩-5"",""yue"":""女孩-5"",""ko"":""소녀-5""}",False
+extra_cards/activities/13a-27抹檯.jpg,activities,Wipe table,"{""en"":""Wipe table"",""zh"":""擦桌子"",""yue"":""抹檯"",""ko"":""테이블 닦기""}",False
+extra_cards/activities/13a-14食飯.jpg,activities,Eating meal,"{""en"":""Eating meal"",""zh"":""吃饭"",""yue"":""食飯"",""ko"":""식사하기""}",False
+extra_cards/people/grandparents-1.jpg,people,grandparents-1,"{""en"":""grandparents-1"",""zh"":""祖父母-1"",""yue"":""爺爺奶奶-1"",""ko"":""할아버지 할머니-1""}",False
+extra_cards/activities/open-4704.jpg,activities,open,"{""en"":""open"",""zh"":""开"",""yue"":""開"",""ko"":""열기""}",False
+extra_cards/stationery/Books.jpg,stationery,Books,"{""en"":""Books"",""zh"":""书本"",""yue"":""書本"",""ko"":""책""}",False
+extra_cards/toy/4-17貼紙.jpg,toy,Stickers,"{""en"":""Stickers"",""zh"":""贴纸"",""yue"":""貼紙"",""ko"":""스티커""}",False
+extra_cards/stationery/Post-it notes.jpg,stationery,Post-it notes,"{""en"":""Post-it notes"",""zh"":""便利贴"",""yue"":""便利貼"",""ko"":""포스트잇""}",False
+extra_cards/food/梨.jpg,food,Pear,"{""en"":""Pear"",""zh"":""梨"",""yue"":""梨"",""ko"":""배""}",False
+extra_cards/activities/bus time.jpg,activities,bus,"{""en"":""bus"",""zh"":""巴士"",""yue"":""巴士"",""ko"":""버스""}",False
+extra_cards/activities/13a-11買.jpg,activities,Buy,"{""en"":""Buy"",""zh"":""买"",""yue"":""買"",""ko"":""구매""}",False
+extra_cards/activities/13a-26洗碗.jpg,activities,Washing dishes,"{""en"":""Washing dishes"",""zh"":""洗碗"",""yue"":""洗碗"",""ko"":""그릇 씻기""}",False
+extra_cards/people/mother-1.jpg,people,mother-1,"{""en"":""mother-1"",""zh"":""妈妈-1"",""yue"":""媽媽-1"",""ko"":""엄마-1""}",False
+extra_cards/activities/calendar-1.jpg,activities,calendar-1,"{""en"":""calendar-1"",""zh"":""日历-1"",""yue"":""月曆-1"",""ko"":""달력-1""}",False
+extra_cards/activities/outdoor activities.jpg,activities,Outdoor Activities,"{""en"":""Outdoor Activities"",""zh"":""户外活动"",""yue"":""戶外活動"",""ko"":""외부 활동""}",False
+extra_cards/clothes/5-18頸巾.jpg,clothes,Scarf,"{""en"":""Scarf"",""zh"":""围巾"",""yue"":""頸巾"",""ko"":""목도리""}",False
+extra_cards/transportation/6-01私家車.jpg,transportation,Private car,"{""en"":""Private car"",""zh"":""私家车"",""yue"":""私家車"",""ko"":""승용차""}",False
+extra_cards/food/柿.jpg,food,Persimmon,"{""en"":""Persimmon"",""zh"":""柿子"",""yue"":""柿子"",""ko"":""감""}",False
+extra_cards/stationery/Bulldog clips.jpg,stationery,Bulldog clips,"{""en"":""Bulldog clips"",""zh"":""长尾夹"",""yue"":""長尾夾"",""ko"":""클립""}",False
+extra_cards/stationery/Protractor.jpg,stationery,Protractor,"{""en"":""Protractor"",""zh"":""量角器"",""yue"":""量角器"",""ko"":""각도기""}",False
+extra_cards/people/oldman-1.jpg,people,oldman-1,"{""en"":""oldman-1"",""zh"":""老人-1"",""yue"":""老人-1"",""ko"":""노인-1""}",False
+extra_cards/activities/13a-13倒.jpg,activities,Pouring,"{""en"":""Pouring"",""zh"":""倒"",""yue"":""倒"",""ko"":""부어 넣기""}",False
+extra_cards/activities/carpet time.jpg,activities,Carpet Time,"{""en"":""Carpet Time"",""zh"":""地毯时间"",""yue"":""地毯時間"",""ko"":""카펫 타임""}",False
+extra_cards/activities/13a-12點頭.jpg,activities,Nodding head,"{""en"":""Nodding head"",""zh"":""点头"",""yue"":""點頭"",""ko"":""고개 끄덕이기""}",False
+extra_cards/stationery/Clippers.jpg,stationery,Scissors,"{""en"":""Scissors"",""zh"":""剪刀"",""yue"":""剪刀"",""ko"":""가위""}",False
+extra_cards/clothes/5-19手襪.jpg,clothes,Gloves,"{""en"":""Gloves"",""zh"":""手套"",""yue"":""手套"",""ko"":""장갑""}",False
+extra_cards/activities/church.jpg,activities,church,"{""en"":""church"",""zh"":""教堂"",""yue"":""教堂"",""ko"":""교회""}",False
+extra_cards/activities/painting.jpg,activities,painting,"{""en"":""painting"",""zh"":""画画"",""yue"":""畫畫"",""ko"":""그림 그리기""}",False
+extra_cards/stationery/Register.jpg,stationery,Register,"{""en"":""Register"",""zh"":""登记簿"",""yue"":""登記冊"",""ko"":""등록부""}",False
+extra_cards/food/棉花糖.jpg,food,Cotton candy,"{""en"":""Cotton candy"",""zh"":""棉花糖"",""yue"":""棉花糖"",""ko"":""솜사탕""}",False
+extra_cards/transportation/6-02船.jpg,transportation,Boat,"{""en"":""Boat"",""zh"":""船"",""yue"":""船"",""ko"":""배""}",False
+extra_cards/food/楊桃.jpg,food,Starfruit,"{""en"":""Starfruit"",""zh"":""杨桃"",""yue"":""楊桃"",""ko"":""스타프루트""}",False
+extra_cards/stationery/Color pencils.jpg,stationery,Color pencils,"{""en"":""Color pencils"",""zh"":""彩色铅笔"",""yue"":""彩色鉛筆"",""ko"":""색연필""}",False
+extra_cards/activities/13a-24煮飯.jpg,activities,Cooking rice,"{""en"":""Cooking rice"",""zh"":""煮饭"",""yue"":""煮飯"",""ko"":""밥을 짓다""}",False
+extra_cards/activities/park.jpg,activities,Hiking,"{""en"":""Hiking"",""zh"":""爬山"",""yue"":""行山"",""ko"":""등산""}",False
+extra_cards/transportation/6-03飛機.jpg,transportation,Airplane,"{""en"":""Airplane"",""zh"":""飞机"",""yue"":""飛機"",""ko"":""비행기""}",False
+extra_cards/clothes/5-20泳衣.jpg,clothes,Swimsuit,"{""en"":""Swimsuit"",""zh"":""泳衣"",""yue"":""泳衣"",""ko"":""수영복""}",False
+extra_cards/people/parents-1.jpg,people,parents-1,"{""en"":""parents-1"",""zh"":""父母-1"",""yue"":""父母-1"",""ko"":""부모-1""}",False
+extra_cards/clothes/5-21泳褲.jpg,clothes,Swim trunks,"{""en"":""Swim trunks"",""zh"":""泳裤"",""yue"":""泳褲"",""ko"":""수영복 바지""}",False
+extra_cards/stationery/Rubber bands.jpg,stationery,Rubber bands,"{""en"":""Rubber bands"",""zh"":""橡皮筋"",""yue"":""橡皮筋"",""ko"":""고무 밴드""}",False
+extra_cards/activities/pe.jpg,activities,Physical Education Class,"{""en"":""Physical Education Class"",""zh"":""体育课"",""yue"":""體育課"",""ko"":""체육 수업""}",False
+extra_cards/food/榴槤.jpg,food,Durian,"{""en"":""Durian"",""zh"":""榴莲"",""yue"":""榴槤"",""ko"":""두리안""}",False
+extra_cards/clothes/apron.jpg,clothes,apron,"{""en"":""apron"",""zh"":""围裙"",""yue"":""圍裙"",""ko"":""앞치마""}",False
+extra_cards/activities/pe-1.jpg,activities,Two children jumping with arms up,"{""en"":""Two children jumping with arms up"",""zh"":""两个孩子举着手跳跃"",""yue"":""兩個小朋友舉手跳高"",""ko"":""팔을 들어 올리고 뛰는 두 아이""}",False
+extra_cards/stationery/Color pencils2.jpg,stationery,Color pencils,"{""en"":""Color pencils"",""zh"":""彩色铅笔"",""yue"":""彩色鉛筆"",""ko"":""색연필""}",False
+extra_cards/people/厨师.jpg,people,Chef,"{""en"":""Chef"",""zh"":""厨师"",""yue"":""廚師"",""ko"":""요리사""}",False
+extra_cards/transportation/6-04巴士.jpg,transportation,Bus,"{""en"":""Bus"",""zh"":""巴士"",""yue"":""巴士"",""ko"":""버스""}",False
+extra_cards/food/橙.jpg,food,Orange,"{""en"":""Orange"",""zh"":""橙"",""yue"":""橙"",""ko"":""오렌지""}",False
+extra_cards/stationery/Rubber stamp.jpg,stationery,Rubber stamp,"{""en"":""Rubber stamp"",""zh"":""橡皮印章"",""yue"":""橡皮圖章"",""ko"":""고무 도장""}",False
+extra_cards/activities/13a-25收拾碗筷.jpg,activities,Clearing dishes and chopsticks,"{""en"":""Clearing dishes and chopsticks"",""zh"":""收拾碗筷"",""yue"":""收拾碗筷"",""ko"":""그릇과 젓가락 정리하기""}",False
+extra_cards/stationery/Rubber thimble.jpg,stationery,Rubber thimble,"{""en"":""Rubber thimble"",""zh"":""橡胶顶针"",""yue"":""橡膠頂針"",""ko"":""고무 손가락 보호대""}",False
+extra_cards/places/12-01廳.jpg,places,Living Room,"{""en"":""Living Room"",""zh"":""客厅"",""yue"":""廳"",""ko"":""거실""}",False
+extra_cards/transportation/6-05的士.jpg,transportation,Taxi,"{""en"":""Taxi"",""zh"":""出租车"",""yue"":""的士"",""ko"":""택시""}",False
+extra_cards/stationery/Color pencils3.jpg,stationery,Color pencils,"{""en"":""Color pencils"",""zh"":""彩色铅笔"",""yue"":""彩色鉛筆"",""ko"":""색연필""}",False
+extra_cards/clothes/belt.jpg,clothes,belt,"{""en"":""belt"",""zh"":""皮带"",""yue"":""皮帶"",""ko"":""벨트""}",False
+extra_cards/places/12-02睡房.jpg,places,Bedroom,"{""en"":""Bedroom"",""zh"":""睡房"",""yue"":""睡房"",""ko"":""침실""}",False
+extra_cards/food/橙汁.jpg,food,Orange juice,"{""en"":""Orange juice"",""zh"":""橙汁"",""yue"":""橙汁"",""ko"":""오렌지 주스""}",False
+extra_cards/activities/pickuptoys.png,activities,pickuptoys,"{""en"":""pickuptoys"",""zh"":""收拾玩具"",""yue"":""收玩具"",""ko"":""장난감 정리하기""}",False
+extra_cards/stationery/Ruler.jpg,stationery,Ruler,"{""en"":""Ruler"",""zh"":""尺子"",""yue"":""尺"",""ko"":""자""}",False
+extra_cards/clothes/blouse.jpg,clothes,blouse,"{""en"":""blouse"",""zh"":""女式衬衫"",""yue"":""女裝襯衫"",""ko"":""블라우스""}",False
+extra_cards/food/檸檬.jpg,food,Lemon,"{""en"":""Lemon"",""zh"":""柠檬"",""yue"":""檸檬"",""ko"":""레몬""}",False
+extra_cards/stationery/Color pencils4.jpg,stationery,Color pencils,"{""en"":""Color pencils"",""zh"":""彩色铅笔"",""yue"":""彩色鉛筆"",""ko"":""색연필""}",False
+extra_cards/transportation/6-06小巴.jpg,transportation,Minibus,"{""en"":""Minibus"",""zh"":""小巴"",""yue"":""小巴"",""ko"":""마이크로버스""}",False
+extra_cards/activities/planners-1.jpg,activities,Planner and Pen,"{""en"":""Planner and Pen"",""zh"":""计划本和笔"",""yue"":""計劃簿同筆"",""ko"":""플래너와 펜""}",False
+extra_cards/stationery/Compass.jpg,stationery,Compass,"{""en"":""Compass"",""zh"":""圆规"",""yue"":""圓規"",""ko"":""컴퍼스""}",False
+extra_cards/transportation/6-07校車.jpg,transportation,School Bus,"{""en"":""School Bus"",""zh"":""校车"",""yue"":""校車"",""ko"":""학교 버스""}",False
+extra_cards/food/檸檬茶.jpg,food,Lemon Tea,"{""en"":""Lemon Tea"",""zh"":""柠檬茶"",""yue"":""檸檬茶"",""ko"":""레몬차""}",False
+extra_cards/activities/play outside.jpg,activities,Play Outside,"{""en"":""Play Outside"",""zh"":""去外面玩"",""yue"":""去外面玩"",""ko"":""밖에 놀기""}",False
+extra_cards/stationery/Ruler2.jpg,stationery,Ruler2,"{""en"":""Ruler2"",""zh"":""尺子2"",""yue"":""尺子2"",""ko"":""자2""}",False
+extra_cards/clothes/boots.jpg,clothes,boots,"{""en"":""boots"",""zh"":""靴子"",""yue"":""靴"",""ko"":""부츠""}",False
+extra_cards/stationery/Compass2.jpg,stationery,Compass2,"{""en"":""Compass2"",""zh"":""圆规2"",""yue"":""圓規2"",""ko"":""컴퍼스2""}",False
+extra_cards/food/水.jpg,food,Water,"{""en"":""Water"",""zh"":""水"",""yue"":""水"",""ko"":""물""}",False
+extra_cards/places/12-04洗手間.jpg,places,Bathroom,"{""en"":""Bathroom"",""zh"":""洗手间"",""yue"":""洗手間"",""ko"":""화장실""}",False
+extra_cards/stationery/Ruler3.jpg,stationery,Ruler3,"{""en"":""Ruler3"",""zh"":""尺子3"",""yue"":""尺3"",""ko"":""자3""}",False
+extra_cards/clothes/cap.jpg,clothes,cap,"{""en"":""cap"",""zh"":""帽子"",""yue"":""帽"",""ko"":""모자""}",False
+extra_cards/clothes/coat.jpg,clothes,coat,"{""en"":""coat"",""zh"":""外套"",""yue"":""外套"",""ko"":""코트""}",False
+extra_cards/stationery/Ruler4.jpg,stationery,Ruler4,"{""en"":""Ruler4"",""zh"":""尺子4"",""yue"":""尺4"",""ko"":""자4""}",False
+extra_cards/transportation/6-08單車.jpg,transportation,Bicycle,"{""en"":""Bicycle"",""zh"":""自行车"",""yue"":""單車"",""ko"":""자전거""}",False
+extra_cards/stationery/Ruler5.jpg,stationery,Ruler,"{""en"":""Ruler"",""zh"":""尺子"",""yue"":""尺"",""ko"":""자""}",False
+extra_cards/transportation/6-09地鐵.jpg,transportation,Subway,"{""en"":""Subway"",""zh"":""地铁"",""yue"":""地鐵"",""ko"":""지하철""}",False
+extra_cards/stationery/Correction fluid.jpg,stationery,Correction fluid,"{""en"":""Correction fluid"",""zh"":""修正液"",""yue"":""修正液"",""ko"":""수정액""}",False
+extra_cards/places/12-05學校.jpg,places,School,"{""en"":""School"",""zh"":""学校"",""yue"":""學校"",""ko"":""학교""}",False
+extra_cards/transportation/6-10火車.jpg,transportation,Train,"{""en"":""Train"",""zh"":""火车"",""yue"":""火車"",""ko"":""기차""}",False
+extra_cards/activities/playground.jpg,activities,Playground,"{""en"":""Playground"",""zh"":""游乐场"",""yue"":""公園玩樂"",""ko"":""놀이터""}",False
+extra_cards/food/汽水.jpg,food,Soda,"{""en"":""Soda"",""zh"":""汽水"",""yue"":""汽水"",""ko"":""사이다""}",False
+extra_cards/stationery/Connector pens.jpg,stationery,Connector pens,"{""en"":""Connector pens"",""zh"":""连接笔"",""yue"":""連接筆"",""ko"":""연결 펜""}",False
+extra_cards/food/油角.jpg,food,Yau Gok,"{""en"":""Yau Gok"",""zh"":""油角"",""yue"":""油角"",""ko"":""유각""}",False
+extra_cards/places/12-06公園.jpg,places,Park,"{""en"":""Park"",""zh"":""公园"",""yue"":""公園"",""ko"":""공원""}",False
+extra_cards/places/12-07廁所.jpg,places,Toilet,"{""en"":""Toilet"",""zh"":""厕所"",""yue"":""廁所"",""ko"":""화장실""}",False
+extra_cards/activities/playtime 1.jpg,activities,Playtime 1,"{""en"":""Playtime 1"",""zh"":""休息时间 1"",""yue"":""休息時間 1"",""ko"":""놀이시간 1""}",False
+extra_cards/clothes/gloves.jpg,clothes,gloves,"{""en"":""gloves"",""zh"":""手套"",""yue"":""手套"",""ko"":""장갑""}",False
+extra_cards/stationery/Crayons1.jpg,stationery,Crayons1,"{""en"":""Crayons1"",""zh"":""蜡笔1"",""yue"":""蠟筆1"",""ko"":""크레용1""}",False
+extra_cards/food/洋蔥.jpg,food,Onion,"{""en"":""Onion"",""zh"":""洋葱"",""yue"":""洋蔥"",""ko"":""양파""}",False
+extra_cards/stationery/Scissors1.jpg,stationery,Scissors1,"{""en"":""Scissors1"",""zh"":""剪刀1"",""yue"":""剪刀1"",""ko"":""가위1""}",False
+extra_cards/stationery/Scissors10.jpg,stationery,Scissors10,"{""en"":""Scissors10"",""zh"":""剪刀10"",""yue"":""剪刀10"",""ko"":""가위10""}",False
+extra_cards/clothes/jacket.jpg,clothes,jacket,"{""en"":""jacket"",""zh"":""夹克"",""yue"":""外套"",""ko"":""자켓""}",False
+extra_cards/transportation/6-12輕鐵.jpg,transportation,Light Rail,"{""en"":""Light Rail"",""zh"":""轻轨"",""yue"":""輕鐵"",""ko"":""경전철""}",False
+extra_cards/places/12-08傷殘人士廁所.jpg,places,Accessible Toilet,"{""en"":""Accessible Toilet"",""zh"":""无障碍厕所"",""yue"":""傷殘人士廁所"",""ko"":""장애인 화장실""}",False
+extra_cards/transportation/6-11電車.jpg,transportation,Tram,"{""en"":""Tram"",""zh"":""电车"",""yue"":""電車"",""ko"":""전차""}",False
+extra_cards/activities/playtime 2.jpg,activities,playtime 2,"{""en"":""playtime 2"",""zh"":""课间活动 2"",""yue"":""小息時間 2"",""ko"":""놀이시간 2""}",False
+extra_cards/stationery/Crayons2.jpg,stationery,Crayons2,"{""en"":""Crayons2"",""zh"":""蜡笔2"",""yue"":""蠟筆2"",""ko"":""크레용2""}",False
+extra_cards/activities/pull-4801.jpg,activities,pull,"{""en"":""pull"",""zh"":""拉"",""yue"":""拉"",""ko"":""당기기""}",False
+extra_cards/food/湯.jpg,food,Soup,"{""en"":""Soup"",""zh"":""汤"",""yue"":""湯"",""ko"":""국""}",False
+extra_cards/stationery/Crayons3.jpg,stationery,Crayons,"{""en"":""Crayons"",""zh"":""蜡笔"",""yue"":""蠟筆"",""ko"":""크레용""}",False
+extra_cards/clothes/pajama.jpg,clothes,pajama,"{""en"":""pajama"",""zh"":""睡衣"",""yue"":""睡衣"",""ko"":""잠옷""}",False
+extra_cards/transportation/6-13山頂纜車.jpg,transportation,Peak Tram,"{""en"":""Peak Tram"",""zh"":""山顶缆车"",""yue"":""山頂纜車"",""ko"":""피크 트램""}",False
+extra_cards/stationery/Scissors11.jpg,stationery,Scissors11,"{""en"":""Scissors11"",""zh"":""剪刀11"",""yue"":""剪刀11"",""ko"":""가위11""}",False
+extra_cards/places/12-09超級市場.jpg,places,Supermarket,"{""en"":""Supermarket"",""zh"":""超级市场"",""yue"":""超級市場"",""ko"":""슈퍼마켓""}",False
+extra_cards/activities/push-4802.jpg,activities,push,"{""en"":""push"",""zh"":""推"",""yue"":""推"",""ko"":""밀기""}",False
+extra_cards/clothes/pants.jpg,clothes,pants,"{""en"":""pants"",""zh"":""裤子"",""yue"":""褲子"",""ko"":""바지""}",False
+extra_cards/food/漢堡包.jpg,food,Hamburger,"{""en"":""Hamburger"",""zh"":""汉堡包"",""yue"":""漢堡包"",""ko"":""햄버거""}",False
+extra_cards/stationery/Scissors12.jpg,stationery,Scissors,"{""en"":""Scissors"",""zh"":""剪刀"",""yue"":""剪刀"",""ko"":""가위""}",False
+extra_cards/food/火腿.jpg,food,Ham,"{""en"":""Ham"",""zh"":""火腿"",""yue"":""火腿"",""ko"":""햄""}",False
+extra_cards/activities/readabook.jpg,activities,read a book,"{""en"":""read a book"",""zh"":""看书"",""yue"":""睇書"",""ko"":""책 읽기""}",False
+extra_cards/activities/read-4505.jpg,activities,read-4505,"{""en"":""read-4505"",""zh"":""念书"",""yue"":""唸書"",""ko"":""읽기""}",False
+extra_cards/clothes/raincoat.jpg,clothes,raincoat,"{""en"":""raincoat"",""zh"":""雨衣"",""yue"":""雨衣"",""ko"":""비옷""}",False
+extra_cards/places/12-11百貨公司.jpg,places,Department Store,"{""en"":""Department Store"",""zh"":""百货公司"",""yue"":""百貨公司"",""ko"":""백화점""}",False
+extra_cards/places/12-10歡樂天地.jpg,places,Funland,"{""en"":""Funland"",""zh"":""欢乐天地"",""yue"":""歡樂天地"",""ko"":""즐거운 세상""}",False
+extra_cards/stationery/Scissors14.jpg,stationery,Scissors,"{""en"":""Scissors"",""zh"":""剪刀"",""yue"":""剪刀"",""ko"":""가위""}",False
+extra_cards/stationery/Crayons5.jpg,stationery,Crayons5,"{""en"":""Crayons5"",""zh"":""蜡笔5"",""yue"":""蠟筆5"",""ko"":""크레용5""}",False
+extra_cards/stationery/Scissors13.jpg,stationery,Scissors13,"{""en"":""Scissors13"",""zh"":""剪刀13"",""yue"":""剪刀13"",""ko"":""가위13""}",False
+extra_cards/stationery/Crayons4.jpg,stationery,Crayons4,"{""en"":""Crayons4"",""zh"":""蜡笔4"",""yue"":""蠟筆4"",""ko"":""크레용4""}",False
+extra_cards/places/12-03廚房.jpg,places,Kitchen,"{""en"":""Kitchen"",""zh"":""厨房"",""yue"":""廚房"",""ko"":""주방""}",False
+extra_cards/clothes/scarf.jpg,clothes,scarf,"{""en"":""scarf"",""zh"":""围巾"",""yue"":""圍巾"",""ko"":""스카프""}",False
+extra_cards/food/燒賣.jpg,food,Shumai,"{""en"":""Shumai"",""zh"":""烧卖"",""yue"":""燒賣"",""ko"":""샤오마이""}",False
+extra_cards/stationery/Crayons6.jpg,stationery,Crayons6,"{""en"":""Crayons6"",""zh"":""蜡笔6"",""yue"":""蠟筆6"",""ko"":""크레용6""}",False
+extra_cards/stationery/Crayons7.jpg,stationery,Crayons7,"{""en"":""Crayons7"",""zh"":""蜡笔7支"",""yue"":""蠟筆7支"",""ko"":""크레용 7개""}",False
+extra_cards/activities/reading.jpg,activities,reading,"{""en"":""reading"",""zh"":""阅读"",""yue"":""閱讀"",""ko"":""읽기""}",False
+extra_cards/places/12-12文具店.jpg,places,Stationery Store,"{""en"":""Stationery Store"",""zh"":""文具店"",""yue"":""文具店"",""ko"":""문구점""}",False
+extra_cards/emotions/cry.jpg,emotions,cry,"{""en"":""cry"",""zh"":""哭"",""yue"":""喊"",""ko"":""울다""}",False
+extra_cards/activities/reading-1.jpg,activities,reading-1,"{""en"":""reading-1"",""zh"":""阅读-1"",""yue"":""閱讀-1"",""ko"":""읽기-1""}",False
+extra_cards/places/12-13玩具店.jpg,places,Toy Store,"{""en"":""Toy Store"",""zh"":""玩具店"",""yue"":""玩具店"",""ko"":""장난감 가게""}",False
+extra_cards/stationery/Scissors2.jpg,stationery,Scissors2,"{""en"":""Scissors2"",""zh"":""剪刀2"",""yue"":""剪刀2"",""ko"":""가위2""}",False
+extra_cards/emotions/cold.jpg,emotions,cold,"{""en"":""cold"",""zh"":""冷"",""yue"":""凍"",""ko"":""추움""}",False
+extra_cards/food/牛油.jpg,food,Butter,"{""en"":""Butter"",""zh"":""牛油"",""yue"":""牛油"",""ko"":""버터""}",False
+extra_cards/places/12-14服裝店.jpg,places,Clothing Store,"{""en"":""Clothing Store"",""zh"":""服装店"",""yue"":""服裝店"",""ko"":""옷가게""}",False
+extra_cards/stationery/Scissors3.jpg,stationery,Scissors,"{""en"":""Scissors"",""zh"":""剪刀"",""yue"":""剪刀"",""ko"":""가위""}",False
+extra_cards/food/牛奶.jpg,food,Milk,"{""en"":""Milk"",""zh"":""牛奶"",""yue"":""牛奶"",""ko"":""우유""}",False
+extra_cards/emotions/donotdoit.jpg,emotions,donotdoit,"{""en"":""donotdoit"",""zh"":""不可以"",""yue"":""唔可以"",""ko"":""하지 마세요""}",False
+extra_cards/activities/recess-1.jpg,activities,recess-1,"{""en"":""recess-1"",""zh"":""课间休息-1"",""yue"":""小息-1"",""ko"":""점심시간-1""}",False
+extra_cards/food/牛肉.jpg,food,Beef,"{""en"":""Beef"",""zh"":""牛肉"",""yue"":""牛肉"",""ko"":""소고기""}",False
+extra_cards/stationery/Date stamp.jpg,stationery,Date stamp,"{""en"":""Date stamp"",""zh"":""日期印章"",""yue"":""日期印"",""ko"":""날짜 도장""}",False
+extra_cards/stationery/Diary1.jpg,stationery,Diary1,"{""en"":""Diary1"",""zh"":""日记本1"",""yue"":""日記簿1"",""ko"":""일기장1""}",False
+extra_cards/food/瓜.jpg,food,Cucumber,"{""en"":""Cucumber"",""zh"":""黄瓜"",""yue"":""黃瓜"",""ko"":""오이""}",False
+extra_cards/emotions/happy.jpg,emotions,happy,"{""en"":""happy"",""zh"":""高兴"",""yue"":""高興"",""ko"":""행복한""}",False
+extra_cards/stationery/Scissors4.jpg,stationery,Scissors,"{""en"":""Scissors"",""zh"":""剪刀"",""yue"":""剪刀"",""ko"":""가위""}",False
+extra_cards/places/12-15鞋店.jpg,places,Shoe Store,"{""en"":""Shoe Store"",""zh"":""鞋店"",""yue"":""鞋店"",""ko"":""신발 가게""}",False
+extra_cards/places/12-16街市.jpg,places,Market,"{""en"":""Market"",""zh"":""街市"",""yue"":""街市"",""ko"":""시장""}",False
+extra_cards/food/瓜子.jpg,food,Sunflower Seeds,"{""en"":""Sunflower Seeds"",""zh"":""瓜子"",""yue"":""瓜子"",""ko"":""해바라기 씨""}",False
+extra_cards/activities/ride-4508.jpg,activities,ride a bike,"{""en"":""ride a bike"",""zh"":""骑自行车"",""yue"":""踩單車"",""ko"":""자전거 타기""}",False
+extra_cards/emotions/hot.jpg,emotions,hot,"{""en"":""hot"",""zh"":""热"",""yue"":""熱"",""ko"":""더워요""}",False
+extra_cards/stationery/Scissors5.jpg,stationery,Scissors5,"{""en"":""Scissors5"",""zh"":""剪刀5"",""yue"":""剪刀5"",""ko"":""가위5""}",False
+extra_cards/emotions/happy-2.jpg,emotions,happy-2,"{""en"":""happy-2"",""zh"":""快乐-2"",""yue"":""開心-2"",""ko"":""행복-2""}",False
+extra_cards/stationery/Diary3.jpg,stationery,Diary3,"{""en"":""Diary3"",""zh"":""日记本3"",""yue"":""日記簿3"",""ko"":""일기장3""}",False
+extra_cards/stationery/Scissors6.jpg,stationery,Scissors,"{""en"":""Scissors"",""zh"":""剪刀"",""yue"":""剪刀"",""ko"":""가위""}",False
+extra_cards/places/12-17商場.jpg,places,Shopping Mall,"{""en"":""Shopping Mall"",""zh"":""商场"",""yue"":""商場"",""ko"":""쇼핑몰""}",False
+extra_cards/stationery/Diary2.jpg,stationery,Diary2,"{""en"":""Diary2"",""zh"":""日记本2"",""yue"":""日記簿2"",""ko"":""일기장2""}",False
+extra_cards/activities/run-4502.jpg,activities,run-4502,"{""en"":""run-4502"",""zh"":""跑步"",""yue"":""跑步"",""ko"":""달리기""}",False
+extra_cards/activities/science.jpg,activities,Nature Exploration,"{""en"":""Nature Exploration"",""zh"":""自然探索"",""yue"":""自然探索"",""ko"":""자연 탐험""}",False
+extra_cards/places/12-18圖書館.jpg,places,Library,"{""en"":""Library"",""zh"":""图书馆"",""yue"":""圖書館"",""ko"":""도서관""}",False
+extra_cards/places/12-19泳池.jpg,places,Swimming Pool,"{""en"":""Swimming Pool"",""zh"":""泳池"",""yue"":""泳池"",""ko"":""수영장""}",False
+extra_cards/food/生日蛋糕.jpg,food,Birthday Cake,"{""en"":""Birthday Cake"",""zh"":""生日蛋糕"",""yue"":""生日蛋糕"",""ko"":""생일 케이크""}",False
+extra_cards/stationery/Scissors8.jpg,stationery,Scissors8,"{""en"":""Scissors8"",""zh"":""剪刀8"",""yue"":""剪刀8"",""ko"":""가위8""}",False
+extra_cards/emotions/hungry.jpg,emotions,hungry,"{""en"":""hungry"",""zh"":""饿"",""yue"":""肚餓"",""ko"":""배고픔""}",False
+extra_cards/activities/settable.png,activities,settable,"{""en"":""settable"",""zh"":""摆桌子"",""yue"":""擺台"",""ko"":""식탁 세팅""}",False
+extra_cards/stationery/Diary5.jpg,stationery,Diary5,"{""en"":""Diary5"",""zh"":""日记本5"",""yue"":""日記簿5"",""ko"":""다이어리5""}",False
+extra_cards/stationery/Scissors7.jpg,stationery,Scissors7,"{""en"":""Scissors7"",""zh"":""剪刀7"",""yue"":""剪刀7"",""ko"":""가위7""}",False
+extra_cards/activities/shopping.jpg,activities,shopping,"{""en"":""shopping"",""zh"":""买东西"",""yue"":""買東西"",""ko"":""쇼핑""}",False
+extra_cards/food/百力滋.jpg,food,Pocky,"{""en"":""Pocky"",""zh"":""百力滋"",""yue"":""百力滋"",""ko"":""포키""}",False
+extra_cards/stationery/Diary4.jpg,stationery,Diary4,"{""en"":""Diary4"",""zh"":""日记本4"",""yue"":""日記簿4"",""ko"":""다이어리4""}",False
+extra_cards/stationery/Diary6.jpg,stationery,Diary6,"{""en"":""Diary6"",""zh"":""日记本6"",""yue"":""日記簿6"",""ko"":""일기장6""}",False
+extra_cards/places/12-20沙灘.jpg,places,Beach,"{""en"":""Beach"",""zh"":""沙滩"",""yue"":""沙灘"",""ko"":""해변""}",False
+extra_cards/emotions/iammad.jpg,emotions,I am mad,"{""en"":""I am mad"",""zh"":""我在生气"",""yue"":""我好嬲"",""ko"":""나 화났어""}",False
+extra_cards/stationery/Scissors9.jpg,stationery,Scissors9,"{""en"":""Scissors9"",""zh"":""剪刀9"",""yue"":""剪刀9"",""ko"":""가위9""}",False
+extra_cards/food/粟米.jpg,food,Corn,"{""en"":""Corn"",""zh"":""玉米"",""yue"":""粟米"",""ko"":""옥수수""}",False
+extra_cards/activities/shower.jpg,activities,shower,"{""en"":""shower"",""zh"":""洗澡"",""yue"":""沖涼"",""ko"":""샤워""}",False
+extra_cards/food/益力多.jpg,food,Yakult,"{""en"":""Yakult"",""zh"":""益力多"",""yue"":""益力多"",""ko"":""야쿠르트""}",False
+extra_cards/stationery/Diary7.jpg,stationery,Diary7,"{""en"":""Diary7"",""zh"":""日记本7"",""yue"":""日記簿7"",""ko"":""다이어리7""}",False
+extra_cards/places/12-21郊野公園.jpg,places,Country Park,"{""en"":""Country Park"",""zh"":""郊野公园"",""yue"":""郊野公園"",""ko"":""자연공원""}",False
+extra_cards/food/粥.jpg,food,Porridge,"{""en"":""Porridge"",""zh"":""粥"",""yue"":""粥"",""ko"":""죽""}",False
+extra_cards/stationery/Set square2.jpg,stationery,Set square,"{""en"":""Set square"",""zh"":""三角尺"",""yue"":""三角尺"",""ko"":""자""}",False
+extra_cards/emotions/idonotlikeit.jpg,emotions,I don't like it,"{""en"":""I don't like it"",""zh"":""我不喜欢"",""yue"":""我唔鍾意"",""ko"":""나는 좋아하지 않아요""}",False
+extra_cards/emotions/idonotwantit.jpg,emotions,I don't want this,"{""en"":""I don't want this"",""zh"":""我不要这个"",""yue"":""我唔要呢個"",""ko"":""이건 원하지 않아요""}",False
+extra_cards/places/12-22燒烤場.jpg,places,Barbecue Area,"{""en"":""Barbecue Area"",""zh"":""烧烤场"",""yue"":""燒烤場"",""ko"":""바베큐장""}",False
+extra_cards/stationery/Set square.jpg,stationery,Set square,"{""en"":""Set square"",""zh"":""三角尺"",""yue"":""三角尺"",""ko"":""자""}",False
+extra_cards/food/粽.jpg,food,Zongzi,"{""en"":""Zongzi"",""zh"":""粽子"",""yue"":""糉子"",""ko"":""종자""}",False
+extra_cards/places/12-23醫院.jpg,places,Hospital,"{""en"":""Hospital"",""zh"":""医院"",""yue"":""醫院"",""ko"":""병원""}",False
+extra_cards/stationery/Drawing pins.jpg,stationery,Drawing pins,"{""en"":""Drawing pins"",""zh"":""图钉"",""yue"":""圖釘"",""ko"":""핀""}",False
+extra_cards/emotions/iforgot.jpg,emotions,I forgot,"{""en"":""I forgot"",""zh"":""我忘了"",""yue"":""我唔記得"",""ko"":""나는 잊었어요""}",False
+extra_cards/stationery/Stapler1.jpg,stationery,Stapler,"{""en"":""Stapler"",""zh"":""订书机"",""yue"":""訂書機"",""ko"":""스테플러""}",False
+extra_cards/stationery/Drawing pins2.jpg,stationery,Drawing pins,"{""en"":""Drawing pins"",""zh"":""图钉"",""yue"":""圖釘"",""ko"":""핀""}",False
+extra_cards/emotions/mad.jpg,emotions,mad,"{""en"":""mad"",""zh"":""生气"",""yue"":""生氣"",""ko"":""화남""}",False
+extra_cards/activities/sit-4809.jpg,activities,sit-4809,"{""en"":""sit-4809"",""zh"":""坐-4809"",""yue"":""坐-4809"",""ko"":""앉기-4809""}",False
+extra_cards/food/糖.jpg,food,Candy,"{""en"":""Candy"",""zh"":""糖"",""yue"":""糖"",""ko"":""사탕""}",False
+extra_cards/stationery/Stapler2.jpg,stationery,Stapler,"{""en"":""Stapler"",""zh"":""订书机"",""yue"":""訂書機"",""ko"":""스테플러""}",False
+extra_cards/activities/singing.jpg,activities,singing,"{""en"":""singing"",""zh"":""唱歌"",""yue"":""唱歌"",""ko"":""노래 부르기""}",False
+extra_cards/places/12-24診所.jpg,places,Clinic,"{""en"":""Clinic"",""zh"":""诊所"",""yue"":""診所"",""ko"":""진료소""}",False
+extra_cards/stationery/Diary8.jpg,stationery,Diary8,"{""en"":""Diary8"",""zh"":""日记本8"",""yue"":""日記簿8"",""ko"":""다이어리8""}",False
+extra_cards/activities/sleep-4504.jpg,activities,sleep,"{""en"":""sleep"",""zh"":""睡觉"",""yue"":""睡覺"",""ko"":""잠자기""}",False
+extra_cards/food/糖冬瓜.jpg,food,Candied Winter Melon,"{""en"":""Candied Winter Melon"",""zh"":""糖冬瓜"",""yue"":""糖冬瓜"",""ko"":""당근과""}",False
+extra_cards/stationery/Stapler3.jpg,stationery,Stapler,"{""en"":""Stapler"",""zh"":""订书机"",""yue"":""訂書機"",""ko"":""스테플러""}",False
+extra_cards/emotions/sad.jpg,emotions,sad,"{""en"":""sad"",""zh"":""失望"",""yue"":""失望"",""ko"":""실망""}",False
+extra_cards/places/12-25郵局.jpg,places,Post Office,"{""en"":""Post Office"",""zh"":""邮局"",""yue"":""郵局"",""ko"":""우체국""}",False
+extra_cards/stationery/Envelope.jpg,stationery,Envelope,"{""en"":""Envelope"",""zh"":""信封"",""yue"":""信封"",""ko"":""봉투""}",False
+extra_cards/activities/sleep-boy.png,activities,sleep-boy,"{""en"":""sleep-boy"",""zh"":""睡觉的男孩"",""yue"":""睡覺的男孩"",""ko"":""잠자는 소년""}",False
+extra_cards/stationery/Stapler4.jpg,stationery,Stapler,"{""en"":""Stapler"",""zh"":""订书机"",""yue"":""訂書機"",""ko"":""스테플러""}",False
+extra_cards/emotions/scared.jpg,emotions,scared,"{""en"":""scared"",""zh"":""害怕"",""yue"":""驚嚇"",""ko"":""두려움""}",False
+extra_cards/activities/sleep-girl.png,activities,sleep-girl,"{""en"":""sleep-girl"",""zh"":""睡觉的女孩"",""yue"":""睡覺的女孩"",""ko"":""잠자는 소녀""}",False
+extra_cards/stationery/Envelopes1.jpg,stationery,Air Mail Envelope,"{""en"":""Air Mail Envelope"",""zh"":""航空邮件信封"",""yue"":""航空郵件信封"",""ko"":""항공우편 봉투""}",False
+extra_cards/stationery/Stapler5.jpg,stationery,Stapler,"{""en"":""Stapler"",""zh"":""订书机"",""yue"":""訂書機"",""ko"":""스테플러""}",False
+extra_cards/emotions/sick.jpg,emotions,sick,"{""en"":""sick"",""zh"":""生病了"",""yue"":""生病"",""ko"":""아파요""}",False
+extra_cards/places/12-27戲院.jpg,places,Theater,"{""en"":""Theater"",""zh"":""剧院"",""yue"":""戲院"",""ko"":""극장""}",False
+extra_cards/places/12-26消防局.jpg,places,Fire Station,"{""en"":""Fire Station"",""zh"":""消防局"",""yue"":""消防局"",""ko"":""소방서""}",False
+extra_cards/stationery/Envelopes2.jpg,stationery,Envelopes2,"{""en"":""Envelopes2"",""zh"":""信封2"",""yue"":""信封2"",""ko"":""봉투2""}",False
+extra_cards/food/紙包果汁.jpg,food,Paper-pack juice,"{""en"":""Paper-pack juice"",""zh"":""纸包果汁"",""yue"":""紙包果汁"",""ko"":""종이팩 주스""}",False
+extra_cards/emotions/thirsty.jpg,emotions,thirsty,"{""en"":""thirsty"",""zh"":""口渴"",""yue"":""口渴"",""ko"":""목이 말라요""}",False
+extra_cards/stationery/Eraser.jpg,stationery,Eraser,"{""en"":""Eraser"",""zh"":""橡皮擦"",""yue"":""橡皮擦"",""ko"":""지우개""}",False
+extra_cards/places/12-28酒樓.jpg,places,Restaurant,"{""en"":""Restaurant"",""zh"":""酒楼"",""yue"":""酒樓"",""ko"":""식당""}",False
+extra_cards/food/維他奶.jpg,food,Vitasoy,"{""en"":""Vitasoy"",""zh"":""维他奶"",""yue"":""維他奶"",""ko"":""비타소이""}",False
+extra_cards/food/紫菜.jpg,food,Seaweed,"{""en"":""Seaweed"",""zh"":""紫菜"",""yue"":""紫菜"",""ko"":""김""}",False
+extra_cards/stationery/Stapler6.jpg,stationery,Stapler,"{""en"":""Stapler"",""zh"":""订书机"",""yue"":""訂書機"",""ko"":""스테이플러""}",False
+extra_cards/activities/snack time.jpg,activities,Snack Time,"{""en"":""Snack Time"",""zh"":""点心时间"",""yue"":""點心時間"",""ko"":""간식 시간""}",False
+extra_cards/emotions/tired.jpg,emotions,tired,"{""en"":""tired"",""zh"":""累了"",""yue"":""攰咗"",""ko"":""피곤함""}",False
+extra_cards/stationery/Stapler7.jpg,stationery,Stapler,"{""en"":""Stapler"",""zh"":""订书机"",""yue"":""訂書機"",""ko"":""스테플러""}",False
+extra_cards/activities/play-4503.jpg,activities,play,"{""en"":""play"",""zh"":""玩"",""yue"":""玩"",""ko"":""놀이""}",False
+extra_cards/stationery/Erasers1.jpg,stationery,Erasers,"{""en"":""Erasers"",""zh"":""橡皮擦"",""yue"":""橡皮擦"",""ko"":""지우개""}",False
+extra_cards/activities/stand-4810.jpg,activities,stand,"{""en"":""stand"",""zh"":""站"",""yue"":""企"",""ko"":""서 있다""}",False
+extra_cards/places/12-30快餐店.jpg,places,Fast Food Restaurant,"{""en"":""Fast Food Restaurant"",""zh"":""快餐店"",""yue"":""快餐店"",""ko"":""패스트푸드점""}",False
+extra_cards/food/肉.jpg,food,Meat,"{""en"":""Meat"",""zh"":""肉"",""yue"":""肉"",""ko"":""고기""}",False
+extra_cards/activities/speech-1.jpg,activities,Reading a book with a child,"{""en"":""Reading a book with a child"",""zh"":""和孩子一起读书"",""yue"":""同小朋友一齊睇書"",""ko"":""아이와 함께 책 읽기""}",False
+extra_cards/stationery/Staples.jpg,stationery,Staples,"{""en"":""Staples"",""zh"":""订书钉"",""yue"":""訂書釘"",""ko"":""스테이플러 핀""}",False
+extra_cards/places/12-29餐廳.jpg,places,Restaurant,"{""en"":""Restaurant"",""zh"":""餐厅"",""yue"":""餐廳"",""ko"":""식당""}",False
+extra_cards/activities/story (2).jpg,activities,Story,"{""en"":""Story"",""zh"":""说故事"",""yue"":""講故事"",""ko"":""이야기하기""}",False
+extra_cards/emotions/toonoisy.jpg,emotions,too noisy,"{""en"":""too noisy"",""zh"":""太吵了"",""yue"":""好大聲"",""ko"":""너무 시끄러워요""}",False
+extra_cards/stationery/Erasers2.jpg,stationery,Erasers2,"{""en"":""Erasers2"",""zh"":""橡皮擦2"",""yue"":""橡皮擦2"",""ko"":""지우개2""}",False
+extra_cards/food/腸粉.jpg,food,Rice noodle roll,"{""en"":""Rice noodle roll"",""zh"":""肠粉"",""yue"":""腸粉"",""ko"":""쌀국수 롤""}",False
+extra_cards/places/12-31美食廣場.jpg,places,Food Court,"{""en"":""Food Court"",""zh"":""美食广场"",""yue"":""美食廣場"",""ko"":""푸드코트""}",False
+extra_cards/activities/sing-4709.jpg,activities,sing-4709,"{""en"":""sing-4709"",""zh"":""唱歌"",""yue"":""唱歌"",""ko"":""노래 부르기""}",False
+extra_cards/food/罐頭.jpg,food,Canned food,"{""en"":""Canned food"",""zh"":""罐头"",""yue"":""罐頭"",""ko"":""캔 음식""}",False
+extra_cards/emotions/ukastonished-1.jpg,emotions,Astonished,"{""en"":""Astonished"",""zh"":""惊讶"",""yue"":""驚訝"",""ko"":""놀람""}",False
+extra_cards/emotions/ukcold-1.jpg,emotions,Cold,"{""en"":""Cold"",""zh"":""冷"",""yue"":""凍"",""ko"":""추움""}",False
+extra_cards/stationery/Face paints.jpg,stationery,Face paints,"{""en"":""Face paints"",""zh"":""面部彩绘颜料"",""yue"":""臉部彩繪顏料"",""ko"":""얼굴 그리기 물감""}",False
+extra_cards/food/芒果.jpg,food,Mango,"{""en"":""Mango"",""zh"":""芒果"",""yue"":""芒果"",""ko"":""망고""}",False
+extra_cards/activities/story.jpg,activities,Story,"{""en"":""Story"",""zh"":""故事"",""yue"":""講故事"",""ko"":""이야기""}",False
+extra_cards/places/12-32太空館.jpg,places,Planetarium,"{""en"":""Planetarium"",""zh"":""太空馆"",""yue"":""太空館"",""ko"":""천문관""}",False
+extra_cards/stationery/Stencil ruler.jpg,stationery,Stencil ruler,"{""en"":""Stencil ruler"",""zh"":""模板尺子"",""yue"":""模板尺"",""ko"":""스텐실 자""}",False
+extra_cards/food/芝士.jpg,food,Cheese,"{""en"":""Cheese"",""zh"":""芝士"",""yue"":""芝士"",""ko"":""치즈""}",False
+extra_cards/stationery/Felt marker.jpg,stationery,Felt marker,"{""en"":""Felt marker"",""zh"":""毡尖笔"",""yue"":""毡筆"",""ko"":""펜 마커""}",False
+extra_cards/activities/swimming (2).jpg,activities,Swimming Lesson,"{""en"":""Swimming Lesson"",""zh"":""游泳课"",""yue"":""游水課"",""ko"":""수영 수업""}",False
+extra_cards/stationery/Felt pens.jpg,stationery,Felt pens,"{""en"":""Felt pens"",""zh"":""毡尖笔"",""yue"":""毡筆"",""ko"":""펜""}",False
+extra_cards/places/12-33科學館.jpg,places,Science Museum,"{""en"":""Science Museum"",""zh"":""科学馆"",""yue"":""科學館"",""ko"":""과학관""}",False
+extra_cards/stationery/Stencil.jpg,stationery,Stencil,"{""en"":""Stencil"",""zh"":""模板"",""yue"":""模板"",""ko"":""스텐실""}",False
+extra_cards/emotions/ukembarassed-1.jpg,emotions,ukembarassed-1,"{""en"":""ukembarassed-1"",""zh"":""害羞-1"",""yue"":""害羞-1"",""ko"":""당황-1""}",False
+extra_cards/emotions/ukconfused-1.jpg,emotions,Confused face,"{""en"":""Confused face"",""zh"":""困惑的脸"",""yue"":""困惑的臉"",""ko"":""혼란스러운 표정""}",False
+extra_cards/places/12-34文化中心.jpg,places,Cultural Center,"{""en"":""Cultural Center"",""zh"":""文化中心"",""yue"":""文化中心"",""ko"":""문화센터""}",False
+extra_cards/food/花生醬.jpg,food,Peanut Butter,"{""en"":""Peanut Butter"",""zh"":""花生酱"",""yue"":""花生醬"",""ko"":""땅콩버터""}",False
+extra_cards/stationery/Sticky tape1.jpg,stationery,Sticky tape,"{""en"":""Sticky tape"",""zh"":""胶带"",""yue"":""膠帶"",""ko"":""테이프""}",False
+extra_cards/activities/talk-4509.jpg,activities,talk-4509,"{""en"":""talk-4509"",""zh"":""讲"",""yue"":""講"",""ko"":""말하기""}",False
+extra_cards/stationery/Fibretip pen1.jpg,stationery,Fibretip pen,"{""en"":""Fibretip pen"",""zh"":""纤维笔"",""yue"":""纖維筆"",""ko"":""펜촉 펜""}",False
+extra_cards/stationery/Stencil2.jpg,stationery,Stencil2,"{""en"":""Stencil2"",""zh"":""模板2"",""yue"":""模板2"",""ko"":""스텐실2""}",False
+extra_cards/activities/swimming.jpg,activities,swimming,"{""en"":""swimming"",""zh"":""游泳"",""yue"":""游水"",""ko"":""수영""}",False
+extra_cards/stationery/Sticky tape2.jpg,stationery,Sticky tape,"{""en"":""Sticky tape"",""zh"":""透明胶带"",""yue"":""透明膠帶"",""ko"":""테이프""}",False
+extra_cards/emotions/ukhappy-1.jpg,emotions,Happy Girl with Pigtails,"{""en"":""Happy Girl with Pigtails"",""zh"":""扎双马尾的快乐女孩"",""yue"":""紮雙馬尾嘅開心女孩"",""ko"":""꼬리머리의 행복한 소녀""}",False
+extra_cards/places/12-35機場.jpg,places,Airport,"{""en"":""Airport"",""zh"":""机场"",""yue"":""機場"",""ko"":""공항""}",False
+extra_cards/stationery/Fountain pen.jpg,stationery,Fountain pen,"{""en"":""Fountain pen"",""zh"":""钢笔"",""yue"":""鋼筆"",""ko"":""만년필""}",False
+extra_cards/stationery/Sticky tape3.jpg,stationery,Sticky tape,"{""en"":""Sticky tape"",""zh"":""透明胶带"",""yue"":""透明膠紙"",""ko"":""테이프""}",False
+extra_cards/activities/tea time.jpg,activities,Tea Time,"{""en"":""Tea Time"",""zh"":""下午茶时间"",""yue"":""下午茶時間"",""ko"":""티타임""}",False
+extra_cards/food/荔枝.jpg,food,Lychee,"{""en"":""Lychee"",""zh"":""荔枝"",""yue"":""荔枝"",""ko"":""리치""}",False
+extra_cards/food/茶.jpg,food,Tea,"{""en"":""Tea"",""zh"":""茶"",""yue"":""茶"",""ko"":""차""}",False
+extra_cards/food/茄子.jpg,food,Eggplant,"{""en"":""Eggplant"",""zh"":""茄子"",""yue"":""茄子"",""ko"":""가지""}",False
+extra_cards/activities/television.jpg,activities,watching television,"{""en"":""watching television"",""zh"":""看电视"",""yue"":""睇電視"",""ko"":""텔레비전 보기""}",False
+extra_cards/places/12-36海洋公園.jpg,places,Ocean Park,"{""en"":""Ocean Park"",""zh"":""海洋公园"",""yue"":""海洋公園"",""ko"":""오션 파크""}",False
+extra_cards/activities/think-4803.jpg,activities,think,"{""en"":""think"",""zh"":""想"",""yue"":""想"",""ko"":""생각하다""}",False
+extra_cards/emotions/ukhot-1.jpg,emotions,Sweating with a smile,"{""en"":""Sweating with a smile"",""zh"":""流汗但微笑"",""yue"":""流汗但笑住"",""ko"":""웃으면서 땀을 흘리는 모습""}",False
+extra_cards/stationery/Globe.jpg,stationery,Globe,"{""en"":""Globe"",""zh"":""地球仪"",""yue"":""地球儀"",""ko"":""지구본""}",False
+extra_cards/places/12-37山頂.jpg,places,The Peak Tower,"{""en"":""The Peak Tower"",""zh"":""山顶"",""yue"":""山頂"",""ko"":""피크 타워""}",False
+extra_cards/emotions/uksad-1.jpg,emotions,Sad Girl with Tear,"{""en"":""Sad Girl with Tear"",""zh"":""流泪的悲伤女孩"",""yue"":""流淚的難過女孩"",""ko"":""눈물 흘리는 슬픈 소녀""}",False
+extra_cards/stationery/Fibretip pens2.jpg,stationery,Fibretip pens,"{""en"":""Fibretip pens"",""zh"":""纤维笔"",""yue"":""纖維筆"",""ko"":""펜촉 펜""}",False
+extra_cards/emotions/uksleepy-1.jpg,emotions,Sleepy Face,"{""en"":""Sleepy Face"",""zh"":""困倦的脸"",""yue"":""睏倦嘅臉"",""ko"":""졸린 얼굴""}",False
+extra_cards/stationery/Sticky tape4.jpg,stationery,Sticky tape,"{""en"":""Sticky tape"",""zh"":""透明胶带"",""yue"":""透明膠帶"",""ko"":""테이프""}",False
+extra_cards/food/菊花茶.jpg,food,Chrysanthemum Tea,"{""en"":""Chrysanthemum Tea"",""zh"":""菊花茶"",""yue"":""菊花茶"",""ko"":""국화차""}",False
+extra_cards/places/12-38天壇大佛.jpg,places,Tian Tan Buddha,"{""en"":""Tian Tan Buddha"",""zh"":""天坛大佛"",""yue"":""天壇大佛"",""ko"":""천탄대불""}",False
+extra_cards/activities/throwaway-4706.jpg,activities,Throw away trash,"{""en"":""Throw away trash"",""zh"":""丢掉垃圾"",""yue"":""丟垃圾"",""ko"":""쓰레기 버리기""}",False
+extra_cards/places/12-39青馬大橋.jpg,places,Tsing Ma Bridge,"{""en"":""Tsing Ma Bridge"",""zh"":""青马大桥"",""yue"":""青馬大橋"",""ko"":""칭마대교""}",False
+extra_cards/stationery/Sticky tape5.jpg,stationery,Sticky tape,"{""en"":""Sticky tape"",""zh"":""透明胶带"",""yue"":""透明膠紙"",""ko"":""테이프""}",False
+extra_cards/food/菜.jpg,food,Bok choy,"{""en"":""Bok choy"",""zh"":""白菜"",""yue"":""小白菜"",""ko"":""배추""}",False
+extra_cards/stationery/Glue pen.jpg,stationery,Glue pen,"{""en"":""Glue pen"",""zh"":""胶水笔"",""yue"":""膠水筆"",""ko"":""접착제 펜""}",False
+extra_cards/stationery/Globe2.jpg,stationery,Globe2,"{""en"":""Globe2"",""zh"":""地球仪2"",""yue"":""地球儀2"",""ko"":""지구본2""}",False
+extra_cards/activities/tidy time.jpg,activities,tidy time,"{""en"":""tidy time"",""zh"":""打扫时间"",""yue"":""打掃時間"",""ko"":""정리 시간""}",False
+extra_cards/stationery/Sticky tape6.jpg,stationery,Sticky tape,"{""en"":""Sticky tape"",""zh"":""胶带"",""yue"":""膠帶"",""ko"":""테이프""}",False
+extra_cards/emotions/ukworries-1.jpg,emotions,Worried Face,"{""en"":""Worried Face"",""zh"":""担心的脸"",""yue"":""擔心的臉"",""ko"":""걱정하는 얼굴""}",False
+extra_cards/activities/toilet break.jpg,activities,toilet break,"{""en"":""toilet break"",""zh"":""上厕所"",""yue"":""去廁所"",""ko"":""화장실 가기""}",False
+extra_cards/rituals/15-01坐好.jpg,rituals,Sit properly,"{""en"":""Sit properly"",""zh"":""坐好"",""yue"":""坐好"",""ko"":""바르게 앉기""}",False
+extra_cards/emotions/urdrivingmecrazy.jpg,emotions,You're driving me crazy,"{""en"":""You're driving me crazy"",""zh"":""你让我非常生气"",""yue"":""你令我好攰"",""ko"":""너 때문에 미치겠어""}",False
+extra_cards/stationery/Sticky tape7.jpg,stationery,Sticky tape,"{""en"":""Sticky tape"",""zh"":""透明胶带"",""yue"":""透明膠紙"",""ko"":""투명 테이프""}",False
+extra_cards/activities/toilet.jpg,activities,toilet,"{""en"":""toilet"",""zh"":""厕所"",""yue"":""廁所"",""ko"":""화장실""}",False
+extra_cards/stationery/Glue2.jpg,stationery,Glue2,"{""en"":""Glue2"",""zh"":""胶水2"",""yue"":""膠水2"",""ko"":""접착제2""}",False
+extra_cards/stationery/Super glue.jpg,stationery,Super glue,"{""en"":""Super glue"",""zh"":""超级胶水"",""yue"":""超級膠水"",""ko"":""슈퍼 글루""}",False
+extra_cards/food/薄餅.jpg,food,Pizza,"{""en"":""Pizza"",""zh"":""披萨"",""yue"":""薄餅"",""ko"":""피자""}",False
+extra_cards/rituals/15-03留心聽.jpg,rituals,Listen Carefully,"{""en"":""Listen Carefully"",""zh"":""留心听"",""yue"":""留心聽"",""ko"":""주의 깊게 듣기""}",False
+extra_cards/rituals/15-02安靜.jpg,rituals,Quiet,"{""en"":""Quiet"",""zh"":""安静"",""yue"":""安靜"",""ko"":""조용히""}",False
+extra_cards/emotions/yell.jpg,emotions,yell,"{""en"":""yell"",""zh"":""喊叫"",""yue"":""大叫"",""ko"":""소리 지르기""}",False
+extra_cards/stationery/Glue3.jpg,stationery,Glue3,"{""en"":""Glue3"",""zh"":""胶水3"",""yue"":""膠水3"",""ko"":""접착제3""}",False
+extra_cards/food/菠蘿.jpg,food,Pineapple,"{""en"":""Pineapple"",""zh"":""菠萝"",""yue"":""菠蘿"",""ko"":""파인애플""}",False
+extra_cards/festivals/14-01聖誕節.jpg,festivals,Christmas,"{""en"":""Christmas"",""zh"":""圣诞节"",""yue"":""聖誕節"",""ko"":""크리스마스""}",False
+extra_cards/rituals/15-04望著.jpg,rituals,Looking at each other,"{""en"":""Looking at each other"",""zh"":""看着对方"",""yue"":""望住對方"",""ko"":""서로 바라보기""}",False
+extra_cards/food/薯仔.jpg,food,Potato,"{""en"":""Potato"",""zh"":""土豆"",""yue"":""薯仔"",""ko"":""감자""}",False
+extra_cards/stationery/Glue1.jpg,stationery,Glue,"{""en"":""Glue"",""zh"":""胶水"",""yue"":""膠水"",""ko"":""접착제""}",False
+extra_cards/activities/trip out.jpg,activities,trip out,"{""en"":""trip out"",""zh"":""旅行"",""yue"":""出遊"",""ko"":""여행""}",False
+extra_cards/stationery/Utility knife.jpg,stationery,Utility knife,"{""en"":""Utility knife"",""zh"":""美工刀"",""yue"":""美工刀"",""ko"":""실용 칼""}",False
+extra_cards/festivals/14-02聖誕老人.jpg,festivals,Santa Claus,"{""en"":""Santa Claus"",""zh"":""圣诞老人"",""yue"":""聖誕老人"",""ko"":""산타 클로스""}",False
+extra_cards/activities/toys.jpg,activities,toys,"{""en"":""toys"",""zh"":""玩具"",""yue"":""玩具"",""ko"":""장난감""}",False
+extra_cards/stationery/Glue5.jpg,stationery,Glue5,"{""en"":""Glue5"",""zh"":""胶水5号"",""yue"":""膠水5號"",""ko"":""접착제5""}",False
+extra_cards/food/薯條.jpg,food,French fries,"{""en"":""French fries"",""zh"":""薯条"",""yue"":""薯條"",""ko"":""프렌치 프라이""}",False
+extra_cards/rituals/15-05舉手.jpg,rituals,Raise hand,"{""en"":""Raise hand"",""zh"":""举手"",""yue"":""舉手"",""ko"":""손 들기""}",False
+extra_cards/stationery/Whiteboard eraser.jpg,stationery,Whiteboard eraser,"{""en"":""Whiteboard eraser"",""zh"":""白板擦"",""yue"":""白板擦"",""ko"":""화이트보드 지우개""}",False
+extra_cards/festivals/14-04聖誕樹.jpg,festivals,Christmas Tree,"{""en"":""Christmas Tree"",""zh"":""圣诞树"",""yue"":""聖誕樹"",""ko"":""크리스마스 트리""}",False
+extra_cards/stationery/Glue4.jpg,stationery,Kids Glue,"{""en"":""Kids Glue"",""zh"":""儿童胶水"",""yue"":""兒童膠水"",""ko"":""어린이용 접착제""}",False
+extra_cards/festivals/14-03聖誕咭.jpg,festivals,Christmas Card,"{""en"":""Christmas Card"",""zh"":""圣诞贺卡"",""yue"":""聖誕咭"",""ko"":""크리스마스 카드""}",False
+extra_cards/stationery/Glue6.jpg,stationery,Glue,"{""en"":""Glue"",""zh"":""胶水"",""yue"":""膠水"",""ko"":""접착제""}",False
+extra_cards/rituals/15-06排隊.jpg,rituals,Line up,"{""en"":""Line up"",""zh"":""排队"",""yue"":""排隊"",""ko"":""줄 서기""}",False
+extra_cards/food/薯片.jpg,food,Potato Chips,"{""en"":""Potato Chips"",""zh"":""薯片"",""yue"":""薯片"",""ko"":""감자칩""}",False
+extra_cards/food/蘋果.jpg,food,Apple,"{""en"":""Apple"",""zh"":""苹果"",""yue"":""蘋果"",""ko"":""사과""}",False
+extra_cards/activities/vacuumfloor.png,activities,vacuumfloor,"{""en"":""vacuumfloor"",""zh"":""吸尘地板"",""yue"":""吸塵地板"",""ko"":""바닥 청소기""}",False
+extra_cards/stationery/Gluestick1.jpg,stationery,Gluestick1,"{""en"":""Gluestick1"",""zh"":""胶棒1"",""yue"":""膠棒1"",""ko"":""접착제 스틱1""}",False
+extra_cards/stationery/Whiteboard eraser2.jpg,stationery,Whiteboard eraser,"{""en"":""Whiteboard eraser"",""zh"":""白板擦"",""yue"":""白板擦"",""ko"":""화이트보드 지우개""}",False
+extra_cards/festivals/14-05聖誕襪.jpg,festivals,Christmas Stocking,"{""en"":""Christmas Stocking"",""zh"":""圣诞袜"",""yue"":""聖誕襪"",""ko"":""크리스마스 양말""}",False
+extra_cards/rituals/15-07慢慢行.jpg,rituals,Walk slowly,"{""en"":""Walk slowly"",""zh"":""慢慢行"",""yue"":""慢慢行"",""ko"":""천천히 걷기""}",False
+extra_cards/stationery/Whiteboard marker2.jpg,stationery,Whiteboard marker,"{""en"":""Whiteboard marker"",""zh"":""白板笔"",""yue"":""白板筆"",""ko"":""화이트보드 마커""}",False
+extra_cards/festivals/14-06禮物.jpg,festivals,Gifts,"{""en"":""Gifts"",""zh"":""礼物"",""yue"":""禮物"",""ko"":""선물""}",False
+extra_cards/activities/wait-4605.jpg,activities,Wait for the bus,"{""en"":""Wait for the bus"",""zh"":""等公交车"",""yue"":""等巴士"",""ko"":""버스 기다리기""}",False
+extra_cards/food/蘋果汁.jpg,food,Apple juice,"{""en"":""Apple juice"",""zh"":""苹果汁"",""yue"":""蘋果汁"",""ko"":""사과주스""}",False
+extra_cards/rituals/15-08返回座位.jpg,rituals,Return to Seat,"{""en"":""Return to Seat"",""zh"":""返回座位"",""yue"":""返座位"",""ko"":""자리로 돌아가기""}",False
+extra_cards/stationery/Whiteboard marker3.jpg,stationery,Whiteboard marker,"{""en"":""Whiteboard marker"",""zh"":""白板笔"",""yue"":""白板筆"",""ko"":""화이트보드 마커""}",False
+extra_cards/festivals/14-07聖誕花.jpg,festivals,Poinsettia,"{""en"":""Poinsettia"",""zh"":""一品红"",""yue"":""聖誕紅"",""ko"":""크리스마스 별꽃""}",False
+extra_cards/rituals/15-09給老師.jpg,rituals,Give to teacher,"{""en"":""Give to teacher"",""zh"":""给老师"",""yue"":""畀老師"",""ko"":""선생님께 드리기""}",False
+extra_cards/stationery/Gluestick2.jpg,stationery,Gluestick2,"{""en"":""Gluestick2"",""zh"":""胶棒2"",""yue"":""膠棒2"",""ko"":""접착제 스틱2""}",False
+extra_cards/activities/wakingup.png,activities,waking up,"{""en"":""waking up"",""zh"":""醒来"",""yue"":""醒來"",""ko"":""깨어나기""}",False
+extra_cards/food/蘿蔔.jpg,food,Carrot,"{""en"":""Carrot"",""zh"":""胡萝卜"",""yue"":""蘿蔔"",""ko"":""당근""}",False
+extra_cards/stationery/Gluestick3.jpg,stationery,Gluestick3,"{""en"":""Gluestick3"",""zh"":""胶棒3"",""yue"":""膠棒3"",""ko"":""접착제스틱3""}",False
+extra_cards/stationery/Super glue2.jpg,stationery,Super glue,"{""en"":""Super glue"",""zh"":""超级胶水"",""yue"":""超級膠水"",""ko"":""슈퍼글루""}",False
+extra_cards/activities/walk the dog.jpg,activities,walk the dog,"{""en"":""walk the dog"",""zh"":""遛狗"",""yue"":""行狗"",""ko"":""개 산책시키기""}",False
+extra_cards/food/蛋卷.jpg,food,Egg Roll,"{""en"":""Egg Roll"",""zh"":""蛋卷"",""yue"":""蛋卷"",""ko"":""계란말이""}",False
+extra_cards/festivals/14-08聖誕鐘.jpg,festivals,Christmas Bell,"{""en"":""Christmas Bell"",""zh"":""圣诞钟"",""yue"":""聖誕鐘"",""ko"":""크리스마스 종""}",False
+extra_cards/activities/video time.jpg,activities,Video Time,"{""en"":""Video Time"",""zh"":""视听时间"",""yue"":""視聽時間"",""ko"":""시청 시간""}",False
+extra_cards/stationery/Whiteboard marker4.jpg,stationery,Whiteboard marker,"{""en"":""Whiteboard marker"",""zh"":""白板笔"",""yue"":""白板筆"",""ko"":""화이트보드 마커""}",False
+extra_cards/rituals/15-10放好玩具.jpg,rituals,Put away toys,"{""en"":""Put away toys"",""zh"":""放好玩具"",""yue"":""收好玩具"",""ko"":""장난감 정리하기""}",False
+extra_cards/stationery/Whiteboard marker5.jpg,stationery,Whiteboard marker,"{""en"":""Whiteboard marker"",""zh"":""白板笔"",""yue"":""白板筆"",""ko"":""화이트보드 마커""}",False
+extra_cards/festivals/14-09聖誕星.jpg,festivals,Christmas Star,"{""en"":""Christmas Star"",""zh"":""圣诞星"",""yue"":""聖誕星"",""ko"":""크리스마스 별""}",False
+extra_cards/food/蛋撻.jpg,food,Egg tart,"{""en"":""Egg tart"",""zh"":""蛋挞"",""yue"":""蛋撻"",""ko"":""에그 타트""}",False
+extra_cards/stationery/Gluestick4.jpg,stationery,Gluestick,"{""en"":""Gluestick"",""zh"":""胶棒"",""yue"":""膠棒"",""ko"":""풀막대기""}",False
+extra_cards/rituals/15-11一起玩耍.jpg,rituals,Playing Together,"{""en"":""Playing Together"",""zh"":""一起玩耍"",""yue"":""一齊玩"",""ko"":""함께 놀기""}",False
+extra_cards/activities/walkdog.png,activities,walkdog,"{""en"":""walkdog"",""zh"":""遛狗"",""yue"":""行狗"",""ko"":""개 산책""}",False
+extra_cards/rituals/15-12拜拜.jpg,rituals,Bye-bye,"{""en"":""Bye-bye"",""zh"":""拜拜"",""yue"":""拜拜"",""ko"":""안녕""}",False
+extra_cards/stationery/Guillotine1.jpg,stationery,Paper cutter,"{""en"":""Paper cutter"",""zh"":""切纸机"",""yue"":""切紙機"",""ko"":""종이 자르기 기계""}",False
+extra_cards/stationery/Whiteboard markers.jpg,stationery,Whiteboard markers,"{""en"":""Whiteboard markers"",""zh"":""白板笔"",""yue"":""白板筆"",""ko"":""화이트보드 마커""}",False
+extra_cards/food/蛋糕仔.jpg,food,Cupcakes,"{""en"":""Cupcakes"",""zh"":""蛋糕仔"",""yue"":""蛋糕仔"",""ko"":""컵케이크""}",False
+extra_cards/festivals/14-10聖誕帽.jpg,festivals,Santa Hat,"{""en"":""Santa Hat"",""zh"":""圣诞帽"",""yue"":""聖誕帽"",""ko"":""산타 모자""}",False
+extra_cards/festivals/14-11燈飾.jpg,festivals,Light Decoration,"{""en"":""Light Decoration"",""zh"":""灯饰"",""yue"":""燈飾"",""ko"":""등 장식""}",False
+extra_cards/stationery/Highlighter.jpg,stationery,Highlighter,"{""en"":""Highlighter"",""zh"":""荧光笔"",""yue"":""螢光筆"",""ko"":""형광펜""}",False
+extra_cards/food/蛋糕.jpg,food,Cake,"{""en"":""Cake"",""zh"":""蛋糕"",""yue"":""蛋糕"",""ko"":""케이크""}",False
+extra_cards/rituals/15-13打招呼.jpg,rituals,Greeting,"{""en"":""Greeting"",""zh"":""打招呼"",""yue"":""打招呼"",""ko"":""인사하기""}",False
+extra_cards/food/蕃茄.jpg,food,Tomato,"{""en"":""Tomato"",""zh"":""番茄"",""yue"":""番茄"",""ko"":""토마토""}",False
+extra_cards/activities/wash and brush teeth1.jpg,activities,Wash face and brush teeth,"{""en"":""Wash face and brush teeth"",""zh"":""洗脸刷牙"",""yue"":""洗面刷牙"",""ko"":""얼굴 씻고 이 닦기""}",False
+extra_cards/stationery/Whiteboard markers2.jpg,stationery,Whiteboard markers,"{""en"":""Whiteboard markers"",""zh"":""白板笔"",""yue"":""白板筆"",""ko"":""화이트보드 마커""}",False
+extra_cards/festivals/14-12新年.jpg,festivals,New Year,"{""en"":""New Year"",""zh"":""新年"",""yue"":""新年"",""ko"":""새해""}",False
+extra_cards/stationery/Guillotine2.jpg,stationery,Guillotine2,"{""en"":""Guillotine2"",""zh"":""切纸机2"",""yue"":""切紙機2"",""ko"":""자르는 기계 2""}",False
+extra_cards/rituals/15-14握手.jpg,rituals,Handshake,"{""en"":""Handshake"",""zh"":""握手"",""yue"":""握手"",""ko"":""악수""}",False
+extra_cards/stationery/Whiteboard markers3.jpg,stationery,Whiteboard markers,"{""en"":""Whiteboard markers"",""zh"":""白板笔"",""yue"":""白板筆"",""ko"":""화이트보드 마커""}",False
+extra_cards/stationery/Hole punch1.jpg,stationery,Hole punch,"{""en"":""Hole punch"",""zh"":""打孔器"",""yue"":""打孔機"",""ko"":""구멍 뚫는 기계""}",False
+extra_cards/activities/wash and brush teeth2.jpg,activities,Wash face and brush teeth,"{""en"":""Wash face and brush teeth"",""zh"":""洗脸刷牙"",""yue"":""洗面刷牙"",""ko"":""얼굴 씻고 이 닦기""}",False
+extra_cards/food/蝦.jpg,food,Shrimp,"{""en"":""Shrimp"",""zh"":""虾"",""yue"":""蝦"",""ko"":""새우""}",False
+extra_cards/rituals/15-15幫忙.jpg,rituals,Help,"{""en"":""Help"",""zh"":""帮忙"",""yue"":""幫忙"",""ko"":""도움""}",False
+extra_cards/supplies/2-02碗.jpg,supplies,Bowl,"{""en"":""Bowl"",""zh"":""碗"",""yue"":""碗"",""ko"":""그릇""}",False
+extra_cards/food/蝦條.jpg,food,Shrimp sticks,"{""en"":""Shrimp sticks"",""zh"":""虾条"",""yue"":""蝦條"",""ko"":""새우스틱""}",False
+extra_cards/festivals/14-14大掃除.jpg,festivals,Spring Cleaning,"{""en"":""Spring Cleaning"",""zh"":""大扫除"",""yue"":""大掃除"",""ko"":""대청소""}",False
+extra_cards/stationery/Hole Punch3.jpg,stationery,Hole Punch,"{""en"":""Hole Punch"",""zh"":""打孔器"",""yue"":""打孔機"",""ko"":""구멍 뚫는 기계""}",False
+extra_cards/activities/wash-4806.jpg,activities,Wash hands,"{""en"":""Wash hands"",""zh"":""洗手"",""yue"":""洗手"",""ko"":""손 씻기""}",False
+extra_cards/supplies/2-01杯.jpg,supplies,Cup,"{""en"":""Cup"",""zh"":""杯"",""yue"":""杯"",""ko"":""컵""}",False
+extra_cards/festivals/14-13農曆新年.jpg,festivals,Lunar New Year,"{""en"":""Lunar New Year"",""zh"":""农历新年"",""yue"":""農曆新年"",""ko"":""음력 설날""}",False
+extra_cards/stationery/Hole Punch2.jpg,stationery,Hole Punch,"{""en"":""Hole Punch"",""zh"":""打孔器"",""yue"":""打孔機"",""ko"":""구멍 뚫는 기계""}",False
+extra_cards/activities/write-4506.jpg,activities,write-4506,"{""en"":""write-4506"",""zh"":""写字"",""yue"":""寫字"",""ko"":""쓰기""}",False
+extra_cards/rituals/15-16戴安全帶.jpg,rituals,Wear seatbelt,"{""en"":""Wear seatbelt"",""zh"":""戴安全带"",""yue"":""戴安全帶"",""ko"":""안전벨트 착용""}",False
+extra_cards/appliances/10-01電話.jpg,appliances,Telephone,"{""en"":""Telephone"",""zh"":""电话"",""yue"":""電話"",""ko"":""전화기""}",False
+extra_cards/supplies/2-03碟.jpg,supplies,Plate,"{""en"":""Plate"",""zh"":""碟"",""yue"":""碟"",""ko"":""접시""}",False
+extra_cards/food/蝦餃.jpg,food,Shrimp Dumplings,"{""en"":""Shrimp Dumplings"",""zh"":""虾饺"",""yue"":""蝦餃"",""ko"":""새우 만두""}",False
+extra_cards/supplies/2-04匙羹.jpg,supplies,Spoon,"{""en"":""Spoon"",""zh"":""勺子"",""yue"":""匙羹"",""ko"":""스푼""}",False
+extra_cards/festivals/14-15全盒.jpg,festivals,Festival Snack Tray,"{""en"":""Festival Snack Tray"",""zh"":""全盒"",""yue"":""全盒"",""ko"":""전함""}",False
+extra_cards/food/蝦片.jpg,food,Shrimp chips,"{""en"":""Shrimp chips"",""zh"":""虾片"",""yue"":""蝦片"",""ko"":""새우칩""}",False
+extra_cards/supplies/2-05湯羹.jpg,supplies,Soup spoon,"{""en"":""Soup spoon"",""zh"":""汤匙"",""yue"":""湯匙"",""ko"":""국수저""}",False
+extra_cards/stationery/Hole Punch5.jpg,stationery,Hole Punch,"{""en"":""Hole Punch"",""zh"":""打孔器"",""yue"":""打孔機"",""ko"":""구멍 뚫는 기계""}",False
+extra_cards/rituals/15-17用紙巾抹鼻涕.jpg,rituals,Wipe nose with tissue,"{""en"":""Wipe nose with tissue"",""zh"":""用纸巾抹鼻涕"",""yue"":""用紙巾抹鼻涕"",""ko"":""티슈로 코를 닦기""}",False
+extra_cards/food/蟹.jpg,food,Crab,"{""en"":""Crab"",""zh"":""蟹"",""yue"":""蟹"",""ko"":""게""}",False
+extra_cards/appliances/10-02手提電話.jpg,appliances,Cell phone,"{""en"":""Cell phone"",""zh"":""手机"",""yue"":""手提電話"",""ko"":""휴대폰""}",False
+extra_cards/festivals/14-16利是.jpg,festivals,Red envelope with money,"{""en"":""Red envelope with money"",""zh"":""红包和钱"",""yue"":""利是封同錢"",""ko"":""돈이 든 빨간 봉투""}",False
+extra_cards/stationery/Hole Punch4.jpg,stationery,Hole Punch,"{""en"":""Hole Punch"",""zh"":""打孔器"",""yue"":""打孔機"",""ko"":""구멍 뚫는 기계""}",False
+extra_cards/food/西瓜.jpg,food,Watermelon,"{""en"":""Watermelon"",""zh"":""西瓜"",""yue"":""西瓜"",""ko"":""수박""}",False
+extra_cards/festivals/14-17揮春.jpg,festivals,Spring Festival Couplets,"{""en"":""Spring Festival Couplets"",""zh"":""新春对联"",""yue"":""揮春"",""ko"":""춘절 대련""}",False
+extra_cards/stationery/Hole Punch6.jpg,stationery,Hole Punch,"{""en"":""Hole Punch"",""zh"":""打孔器"",""yue"":""打孔機"",""ko"":""구멍 뚫는 기계""}",False
+extra_cards/rituals/不要打开.jpg,rituals,Do Not Open,"{""en"":""Do Not Open"",""zh"":""不要打开"",""yue"":""唔好開"",""ko"":""열지 마세요""}",False
+extra_cards/supplies/2-06筷子.jpg,supplies,Chopsticks,"{""en"":""Chopsticks"",""zh"":""筷子"",""yue"":""筷子"",""ko"":""젓가락""}",False
+extra_cards/rituals/15-18放低手.jpg,rituals,Lower your hands,"{""en"":""Lower your hands"",""zh"":""放低手"",""yue"":""放低手"",""ko"":""손을 내리세요""}",False
+extra_cards/appliances/10-03電視.jpg,appliances,Television,"{""en"":""Television"",""zh"":""电视"",""yue"":""電視"",""ko"":""텔레비전""}",False
+extra_cards/festivals/14-18水仙.jpg,festivals,Daffodil,"{""en"":""Daffodil"",""zh"":""水仙"",""yue"":""水仙"",""ko"":""수선화""}",False
+extra_cards/activities/walk-4501.jpg,activities,walk,"{""en"":""walk"",""zh"":""走路"",""yue"":""行路"",""ko"":""걷기""}",False
+extra_cards/food/豆.jpg,food,Pea,"{""en"":""Pea"",""zh"":""豆"",""yue"":""豆"",""ko"":""콩""}",False
+extra_cards/stationery/Hole Punch7.jpg,stationery,Hole Punch,"{""en"":""Hole Punch"",""zh"":""打孔器"",""yue"":""打孔機"",""ko"":""구멍 뚫는 기계""}",False
+extra_cards/appliances/10-04電腦.jpg,appliances,Computer,"{""en"":""Computer"",""zh"":""电脑"",""yue"":""電腦"",""ko"":""컴퓨터""}",False
+extra_cards/supplies/2-07刀.jpg,supplies,Knife,"{""en"":""Knife"",""zh"":""刀"",""yue"":""刀"",""ko"":""칼""}",False
+extra_cards/rituals/书要拿好.jpg,rituals,Hands in front,"{""en"":""Hands in front"",""zh"":""手放前面"",""yue"":""手放前面"",""ko"":""앞에 손을 놓기""}",False

@@ -44,16 +44,24 @@ class CardImageDBRetriever:
         self.__collection_desc.add(
             ids=[id for id in ids],
             documents=[info.description_brief for info in info_list],
-            metadatas=[info.model_dump(include={"name", "name_ko", "category", "filename"}) for info in info_list],
-            embeddings=[emb.tolist() for emb in desc_embeddings]
+            metadatas=[
+                info.model_dump(include={"name", "category", "filename"})
+                for info in info_list
+            ],
+            embeddings=[emb.tolist() for emb in desc_embeddings],
         )
 
         self.__collection_name = self.__vector_db.get_collection("names")
         self.__collection_name.add(
             ids=[id for id in ids],
             documents=[info.name for info in info_list],
-            metadatas=[info.model_dump(include={"name", "name_ko", "category", "description_brief", "filename"}) for info in info_list],
-            embeddings=[emb.tolist() for emb in name_embeddings]
+            metadatas=[
+                info.model_dump(
+                    include={"name", "category", "description_brief", "filename"}
+                )
+                for info in info_list
+            ],
+            embeddings=[emb.tolist() for emb in name_embeddings],
         )
 
     def get_card_image_info(self, id: str)->CardImageInfo:

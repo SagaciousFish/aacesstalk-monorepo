@@ -40,7 +40,7 @@ class AACessTalkConfig:
     public_base_url: str | None = getenv("PUBLIC_BASE_URL")
 
     embedding_model = "text-embedding-v4"
-    embedding_dimensions = 256
+    embedding_dimensions = 1024
 
     @classmethod
     def get_user_defined_card_dir_path(

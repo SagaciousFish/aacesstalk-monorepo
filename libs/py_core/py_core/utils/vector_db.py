@@ -1,3 +1,4 @@
+from py_core.config import AACessTalkConfig
 import chromadb
 from chromadb import EmbeddingFunction, Documents
 import chromadb.utils.embedding_functions as ef
@@ -29,8 +30,8 @@ class VectorDB:
     def __init__(
         self,
         dir_name: str = "embeddings",
-        embedding_model: str = "text-embedding-v4",
-        embedding_dimensions: int = 256,
+        embedding_model: str = AACessTalkConfig.embedding_model,
+        embedding_dimensions: int = AACessTalkConfig.embedding_dimensions,
     ):
         #self.__client = chromadb.PersistentClient(path.join(AACessTalkConfig.dataset_dir_path, dir_name))
         self.__client = chromadb.Client()
