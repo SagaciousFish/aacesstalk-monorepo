@@ -29,12 +29,12 @@ async def with_db_session() -> AsyncSession:
 async def create_test_dyad() -> bool:
     async with db_sessionmaker() as db:
         async with db.begin():
-            statement = select(DyadORM).where(DyadORM.alias == "test")
+            statement = select(DyadORM).where(DyadORM.alias == "test_wangwangwang")
             result = await db.exec(statement)
             test_dyad = result.one_or_none()
             if test_dyad is None:
                 test_dyad = DyadORM(
-                    alias="wang",
+                    alias="test_wangwangwang",
                     child_name="王汪汪",
                     parent_type=ParentType.Father,
                     child_gender=ChildGender.Boy,

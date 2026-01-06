@@ -36,30 +36,30 @@ logger = logging.getLogger(__name__)
 
 @asynccontextmanager
 async def server_lifespan(app: FastAPI):
-    logger.info("Server launching.")
+    print("Server launching.")
 
     app.state.ready = False
 
     try:
         winuvloop.install()
-        logger.info("Using winuvloop event loop policy.")
+        print("Using winuvloop event loop policy.")
 
         inspect_default_card_images()
-        logger.info("Default card images inspected.")
+        print("Default card images inspected.")
 
         await create_db_and_tables(engine)
-        logger.info("Database tables created.")
+        print("Database tables created.")
 
         await create_test_dyad()
-        logger.info("Test dyad created.")
+        print("Test dyad created.")
 
         await create_test_freetopics()
-        logger.info("Test free topics created.")
+        print("Test free topics created.")
 
         # await FunASRNanoSpeechRecognizer.initialize_service()
 
         app.state.ready = True
-        logger.info("Service initialization complete.")
+        print("Service initialization complete.")
     except Exception as e:
         logger.critical(f"Failed to initialize server: {e}", exc_info=True)
         # Re-raising ensures the server doesn't start in a broken state
@@ -68,7 +68,7 @@ async def server_lifespan(app: FastAPI):
     yield
 
     # Cleanup logic will come below.
-    logger.info("Server shutting down.")
+    print("Server shutting down.")
 
 
 app = FastAPI(lifespan=server_lifespan)
@@ -208,7 +208,7 @@ async def global_middleware(request: Request, call_next):
 
     # 5. Log request summary
     if request.url.path != "/api/v1/ping":
-        logger.info(
+        print(
             f"{request.method} {request.url.path} - {response.status_code} ({process_time:.4f}s) [RID: {request_id}]"
         )
 

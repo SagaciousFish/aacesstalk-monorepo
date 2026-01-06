@@ -76,8 +76,11 @@ def _create_info_row_from_file(file: DirEntry[str], category_name: str, dir_name
         return row
 
 def scan_card_images():
-    with open(AACessTalkConfig.card_image_table_path, "w") as csvfile:
-        writer: DictWriter[Unknown] = csv.DictWriter(csvfile, fieldnames=CardImageInfo.model_fields)
+    # Use explicit fieldnames list and newline='' for CSV compatibility across platforms
+    with open(AACessTalkConfig.card_image_table_path, "w", newline="") as csvfile:
+        writer: DictWriter[Unknown] = csv.DictWriter(
+            csvfile, fieldnames=list(CardImageInfo.model_fields.keys())
+        )
         writer.writeheader()
         for dir_name in listdir(AACessTalkConfig.card_image_directory_path):
             if dir_name.startswith("card_"):
@@ -107,8 +110,11 @@ def _load_card_descriptions() -> list[CardImageInfo]:
 
 
 def _save_card_descriptions(rows: list[CardImageInfo]):
-    with open(AACessTalkConfig.card_image_table_path, "w") as csvfile:
-        writer = csv.DictWriter(csvfile, fieldnames=CardImageInfo.model_fields)
+    # Ensure stable field order and newline handling on Windows
+    with open(AACessTalkConfig.card_image_table_path, "w", newline="") as csvfile:
+        writer = csv.DictWriter(
+            csvfile, fieldnames=list(CardImageInfo.model_fields.keys())
+        )
         writer.writeheader()
         writer.writerows([row.model_dump(exclude={"name"}) for row in rows])
 

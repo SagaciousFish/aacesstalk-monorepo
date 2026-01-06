@@ -40,7 +40,7 @@ template = convert_to_jinja_template("""
 {%-if similar_cards is not none and similar_cards | length > 0 %}
 <Examples>
 {%-for card in similar_cards %}
-{{stringify(card.english, card.category, user_locale)}} => {{card.localized}}
+{{stringify(card.english, card.category)}} => {{card.localized}}
 {%-endfor-%}
 {%-endif-%}
 """)

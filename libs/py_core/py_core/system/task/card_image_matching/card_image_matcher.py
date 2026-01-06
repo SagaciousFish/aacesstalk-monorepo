@@ -51,34 +51,62 @@ class CardImageMatcher:
             custom_card_query_result = await self.__user_storage.query_user_defined_card(card_info.category, card_info.label_localized)
             if custom_card_query_result is not None:
                 result[i] = CardImageMatching(card_info_id=card_info.id, type=CardType.custom, image_id=custom_card_query_result.id)
-        
+
         # Look up default cards
         for i, card_info in enumerate(card_info_list):
             if result[i] is None:
-                default_card = find_default_card(card_info.label_localized, card_info.category, parent_type, locale)
-                print(f"Default card for {card_info.category}, {card_info.label_localized}: {default_card}")
+                default_card = find_default_card(
+                    card_info.label_localized, card_info.category, parent_type, locale
+                )
+                print(
+                    f"Default card for {card_info.category}, {card_info.label_localized}: {default_card}"
+                )
                 if default_card is not None:
-                    image_filename = default_card.get_image_path_for_dyad(parent_type=parent_type, child_gender=child_gender)
+                    image_filename = default_card.get_image_path_for_dyad(
+                        parent_type=parent_type, child_gender=child_gender
+                    )
                     if image_filename is not None:
-                        result[i] = CardImageMatching(card_info_id=card_info.id, type=CardType.static, image_id=default_card.id)
-                        
+                        result[i] = CardImageMatching(
+                            card_info_id=card_info.id,
+                            type=CardType.static,
+                            image_id=default_card.id,
+                        )
 
         # Lookup vector db
 
         idx_to_retrive = [i for i, c in enumerate(card_info_list) if result[i] is None]
 
-        db_card_image_infos: list[list[CardImageInfo]] = await self.__db_retriever.query_nearest_card_image_infos([c for i, c in enumerate(card_info_list) if result[i] is None])
+        db_card_image_infos: list[
+            list[CardImageInfo]
+        ] = await self.__db_retriever.query_nearest_card_image_infos([
+            c for i, c in enumerate(card_info_list) if result[i] is None
+        ])
         for i, cards in enumerate(db_card_image_infos):
-            result[idx_to_retrive[i]] = CardImageMatching(card_info_id=card_info_list[idx_to_retrive[i]].id, type=CardType.stock, image_id=cards[0].id)
-        
+            result[idx_to_retrive[i]] = CardImageMatching(
+                card_info_id=card_info_list[idx_to_retrive[i]].id,
+                type=CardType.stock,
+                image_id=cards[0].id,
+            )
+
         return result
 
     @validate_call
     async def get_card_image_filepath(self, type: CardType, image_id: str, parent_type: ParentType, child_gender: ChildGender)->str:
         if type is CardType.custom:
             info = await self.__user_storage.get_user_defined_card(image_id)
-            return path.join(AACessTalkConfig.get_user_defined_card_dir_path(self.__user_storage.user_id), info.image_filename)
+            image_path = path.join(
+                AACessTalkConfig.get_user_defined_card_dir_path(
+                    self.__user_storage.user_id
+                ),
+                info.image_filename,
+            )
+            return image_path
         elif type is CardType.stock:
-            return path.join(AACessTalkConfig.card_image_directory_path, self.__db_retriever.get_card_image_info(image_id).filename)
+            stock_image_path = path.join(
+                AACessTalkConfig.card_image_directory_path,
+                self.__db_retriever.get_card_image_info(image_id).id,
+            )
+            print(f"Stock image path: {stock_image_path}")
+            return stock_image_path
         elif type is CardType.static:
             return path.join(AACessTalkConfig.card_image_directory_path, find_default_card_by_id(image_id).get_image_path_for_dyad(parent_type, child_gender))

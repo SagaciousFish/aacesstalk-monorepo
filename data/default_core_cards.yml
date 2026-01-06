@@ -34,12 +34,12 @@
     yue: "問"
   category: "core"
   image: "core_cards/ask.png"
-- id: how_are_you
-  label: "How are you?"
+- id: what_about_you
+  label: "What about you?"
   label_localized:
-    en: "How are you?"
-    ko: "어떻게 지내세요?"
-    zh: "你感觉怎么样？"
-    yue: "你點呀？"
+    en: "What about you?"
+    ko: "당신은 어때요?"
+    zh: "你觉得怎么样呢？"
+    yue: "你感覺點樣？"
   category: "core"
-  image: "core_cards/how_are_you.png"
+  image: "core_cards/what_about_you.png"

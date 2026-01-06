@@ -9,7 +9,10 @@ from py_core.utils.speech.aliyun_nls import AliyunSpeechRecognizer
 from fastapi.responses import FileResponse
 
 from py_core.utils.speech.funasr_nano import FunASRNanoSpeechRecognizer
-from py_core.utils.speech.dashscope_audio import DashscopeFunAsrFileRecognizer
+from py_core.utils.speech.dashscope_audio import (
+    DashscopeFunAsrFileRecognizer,
+    DashscopeQwenSpeechRecognizer,
+)
 
 # FunASR import is deferred to avoid heavy startup-time imports (numba/coverage)
 from pydantic import BaseModel
@@ -139,7 +142,7 @@ async def send_parent_message_audio(
         print(f"Dictate parent turn audio... {file.filename}")
         print(f"Audio URL: {audio_url}")
 
-        asr_engine = DashscopeFunAsrFileRecognizer()
+        asr_engine = DashscopeQwenSpeechRecognizer()
 
         print("Start recognizing...")
 

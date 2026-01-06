@@ -9,7 +9,7 @@ if __name__ == "__main__":
             host="0.0.0.0",
             port=3000,
             reload=True,
-            log_level="info",
+            log_level="debug",
             access_log=True,
         )
     except Exception as e:

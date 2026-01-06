@@ -1,3 +1,5 @@
+from thinc.tests.layers.test_layers_api import width
+import json
 import asyncio
 from csv import DictReader
 from time import perf_counter
@@ -12,25 +14,37 @@ from py_core.utils.vector_db import VectorDB
 from py_core.system.model import CardInfo
 
 
-def normalize_korean(text: str) -> str:
-    return re.sub(r'[^\w]|\_', '', text.strip().lower())
-
 class CardImageDBRetriever:
     def __init__(self):
         print("Initialize card image DB retriever.")
         info_list: list[CardImageInfo] = []
-        with open(AACessTalkConfig.card_image_table_path, 'r', encoding='utf-8') as f:
-            reader = DictReader(f, fieldnames=CardImageInfo.model_fields)
-            next(reader)
+        # Read CSV using header row so column names map correctly to CardImageInfo fields.
+        # Previously fieldnames=CardImageInfo.model_fields was passed and the header row was skipped
+        # which caused values to be read positionally and mismatched (e.g., width got description).
+        with open(
+            AACessTalkConfig.card_image_table_path, "r", encoding="utf-8", newline=""
+        ) as f:
+            reader = DictReader(f)
             for row in reader:
-                info_list.append(CardImageInfo(**row))
+                info_list.append(
+                    CardImageInfo(
+                        id=row["id"],
+                        category=row["category"],
+                        name_localized=row["name_localized"],
+                        name_en=json.loads(row["name_localized"])["en"]
+                        if row["name_localized"]
+                        else None,
+                        width=int(row["width"]),
+                        height=int(row["height"]),
+                        description=str(row["description"]),
+                        description_brief=str(row["description_brief"]),
+                        format=row.get("format", None),
+                    )
+                )
 
         self.__card_info_dict = {inf.id: inf for inf in info_list}
 
         self.__card_info_table = DataFrame(data=[inf.model_dump() for inf in info_list])
-        self.__card_info_table["name_localized_nm"] = (
-            self.__card_info_table.name_ko.apply(normalize_korean)
-        )
 
         embedding_store = numpy.load(AACessTalkConfig.card_image_embeddings_path)
         ids = embedding_store["ids"]
@@ -45,8 +59,7 @@ class CardImageDBRetriever:
             ids=[id for id in ids],
             documents=[info.description_brief for info in info_list],
             metadatas=[
-                info.model_dump(include={"name", "category", "filename"})
-                for info in info_list
+                info.model_dump(include={"name", "category"}) for info in info_list
             ],
             embeddings=[emb.tolist() for emb in desc_embeddings],
         )
@@ -56,9 +69,7 @@ class CardImageDBRetriever:
             ids=[id for id in ids],
             documents=[info.name for info in info_list],
             metadatas=[
-                info.model_dump(
-                    include={"name", "category", "description_brief", "filename"}
-                )
+                info.model_dump(include={"name", "category", "description_brief"})
                 for info in info_list
             ],
             embeddings=[emb.tolist() for emb in name_embeddings],
@@ -87,7 +98,7 @@ class CardImageDBRetriever:
         t_start = perf_counter()
 
         names = [c.label for c in card_infos]
-        localized_nm_names = [normalize_korean(c.label_localized) for c in card_infos]
+        localized_labels = [c.label_localized for c in card_infos]
 
         name_result_dict: dict[str, list[CardImageInfo] | None] = {
             name: None for name in names
@@ -96,7 +107,7 @@ class CardImageDBRetriever:
         # Find exact match of Localized labels.
 
         localized_name_match_results = self.__card_info_table[
-            self.__card_info_table["name_localized_nm"].isin(localized_nm_names)
+            self.__card_info_table["name_localized"].isin(localized_labels)
         ]
         for id in localized_name_match_results["id"].tolist():
             match = self.__card_info_dict[id]
@@ -168,10 +179,10 @@ class CardImageDBRetriever:
             for i, name in enumerate(no_name_matched_card_names):
                 if name_query_results[i][0][1] < 0.5:
                     name_result_dict[name] = [name_query_results[i][0][0]]
-                    print(f"Name win - {name} => {name_result_dict[name][0].filename}")
+                    print(f"Name win - {name} => {name_result_dict[name][0].id}")
                 else:
                     name_result_dict[name] = [desc_query_results[i][0][0]]
-                    print(f"Description win - {name} => {name_result_dict[name][0].filename}")
+                    print(f"Description win - {name} => {name_result_dict[name][0].id}")
 
             result = [name_result_dict[name] for name in names]
 

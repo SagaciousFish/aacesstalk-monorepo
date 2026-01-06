@@ -1,20 +1,44 @@
+from chatlib.chatbot import ChatCompletionParams
 from chatlib.tool.converter import generate_pydantic_converter
 from pydantic import BaseModel, ConfigDict
 from time import perf_counter
 
 from chatlib.llm.integration import GPTChatCompletionAPI, ChatGPTModel
-from chatlib.tool.versatile_mapper import ChatCompletionFewShotMapper, ChatCompletionFewShotMapperParams
+from chatlib.tool.versatile_mapper import (
+    ChatCompletionFewShotMapper,
+    ChatCompletionFewShotMapperParams,
+)
 
 from py_core.config import AACessTalkConfig
-from py_core.system.model import Dialogue, CardInfo, ChildCardRecommendationResult, ParentType, UserLocale, id_generator, CardCategory
+from py_core.system.model import (
+    Dialogue,
+    CardInfo,
+    ChildCardRecommendationResult,
+    ParentType,
+    UserLocale,
+    id_generator,
+    CardCategory,
+)
 from py_core.system.session_topic import SessionTopicInfo
-from py_core.system.task.card_recommendation.common import ChildCardRecommendationAPIResult
+from py_core.system.task.card_recommendation.common import (
+    ChildCardRecommendationAPIResult,
+)
 from py_core.system.task.card_recommendation.translator import CardTranslator
-from py_core.system.task.dialogue_conversion import DialogueInput, DialogueInputToStrConversionFunction
-from py_core.utils.default_cards import DEFAULT_CORE_CARDS, DEFAULT_EMOTION_CARDS, DefaultCardInfo
+from py_core.system.task.dialogue_conversion import (
+    DialogueInput,
+    DialogueInputToStrConversionFunction,
+)
+from py_core.utils.default_cards import (
+    DEFAULT_CORE_CARDS,
+    DEFAULT_EMOTION_CARDS,
+    DefaultCardInfo,
+)
 from py_core.utils.vector_db import VectorDB
 
-str_output_converter, output_str_converter = generate_pydantic_converter(ChildCardRecommendationAPIResult, 'yaml')
+str_output_converter, output_str_converter = generate_pydantic_converter(
+    ChildCardRecommendationAPIResult, "yaml"
+)
+
 
 class ChildCardRecommendationParams(ChatCompletionFewShotMapperParams):
     model_config = ConfigDict(frozen=True)
@@ -22,17 +46,21 @@ class ChildCardRecommendationParams(ChatCompletionFewShotMapperParams):
     prev_recommendation: ChildCardRecommendationResult | None = None
     interim_cards: list[CardInfo] | None = None
 
+
 _convert_input_to_str = DialogueInputToStrConversionFunction(include_topic=True)
 
-class ChildCardRecommendationGenerator:
 
+class ChildCardRecommendationGenerator:
     def __init__(self, vector_db: VectorDB | None):
         api = GPTChatCompletionAPI()
-        api.config().verbose = False
+        # Enable verbose logging to capture raw LLM responses for debugging
+        api.config().verbose = True
 
         self.__translator = CardTranslator(vector_db)
 
-        def __prompt_generator(input: DialogueInput, params: ChildCardRecommendationParams) -> str:
+        def __prompt_generator(
+            input: DialogueInput, params: ChildCardRecommendationParams
+        ) -> str:
             prompt = (
                 f"""
 - You are a helpful assistant that serves as an Alternative Augmented Communication tool.
@@ -43,11 +71,28 @@ class ChildCardRecommendationGenerator:
 - Note that the 'emotion' cards must be selected from the given list: {", ".join([f"{c.get_label_for_parent(input.parent_type)}" for c in DEFAULT_EMOTION_CARDS])}
 """
                 """
+- Return ONLY a valid YAML document **inside a fenced code block** (```yaml ... ```) and nothing else. The YAML must contain the following keys with exactly 4 items each: `topics`, `actions`, `emotions`.
 
-- Return an YAML string with variables as in the following:
-    topics: [] // Noun topics that reflect detailed context based on your parents' questions
-    actions: [] // Verb actions that can be matched with the suggested topics
-    emotions: [] // Emotion candidates that may describe the feeling of the child.
+Example:
+```yaml
+topics:
+  - topic1
+  - topic2
+  - topic3
+  - topic4
+actions:
+  - action1
+  - action2
+  - action3
+  - action4
+emotions:
+  - emotion1
+  - emotion2
+  - emotion3
+  - emotion4
+```
+
+Return no explanation or extra text — only the fenced YAML block as shown.
 """
                 f"""
 
@@ -58,24 +103,47 @@ class ChildCardRecommendationGenerator:
             )
             return prompt
 
-        self.__mapper: ChatCompletionFewShotMapper[
-            DialogueInput, ChildCardRecommendationAPIResult, ChildCardRecommendationParams] = (
-            ChatCompletionFewShotMapper(api,
-                                        instruction_generator=__prompt_generator,
-                                        input_str_converter=_convert_input_to_str,
-                                        output_str_converter=output_str_converter,
-                                        str_output_converter=str_output_converter
-                                        ))
+        def _validate_output(
+            input: DialogueInput, output: ChildCardRecommendationAPIResult
+        ) -> bool:
+            try:
+                return (
+                    (isinstance(output.topics, (list, set)) and len(output.topics) == 4)
+                    and (
+                        isinstance(output.actions, (list, set))
+                        and len(output.actions) == 4
+                    )
+                    and (
+                        isinstance(output.emotions, (list, set))
+                        and len(output.emotions) == 4
+                    )
+                )
+            except Exception:
+                return False
 
-    async def generate(self,
-                       turn_id: str,
-                       locale: UserLocale,
-                       parent_type: ParentType,
-                       topic_info: SessionTopicInfo,
-                       dialogue: Dialogue,
-                       interim_cards: list[CardInfo] | None = None,
-                       previous_recommendation: ChildCardRecommendationResult | None = None,
-                       ) -> ChildCardRecommendationResult:
+        self.__mapper: ChatCompletionFewShotMapper[
+            DialogueInput,
+            ChildCardRecommendationAPIResult,
+            ChildCardRecommendationParams,
+        ] = ChatCompletionFewShotMapper(
+            api,
+            instruction_generator=__prompt_generator,
+            input_str_converter=_convert_input_to_str,
+            output_str_converter=output_str_converter,
+            str_output_converter=str_output_converter,
+            output_validator=_validate_output,
+        )
+
+    async def generate(
+        self,
+        turn_id: str,
+        locale: UserLocale,
+        parent_type: ParentType,
+        topic_info: SessionTopicInfo,
+        dialogue: Dialogue,
+        interim_cards: list[CardInfo] | None = None,
+        previous_recommendation: ChildCardRecommendationResult | None = None,
+    ) -> ChildCardRecommendationResult:
         t_start = perf_counter()
 
         recommendation = await self.__mapper.run(
@@ -87,7 +155,7 @@ class ChildCardRecommendationGenerator:
                 prev_recommendation=previous_recommendation,
                 interim_cards=interim_cards,
                 model="qwen3-max",
-                api_params={},
+                api_params=ChatCompletionParams(),
             ),
         )
 
@@ -108,12 +176,17 @@ class ChildCardRecommendationGenerator:
 
         rec_id = id_generator()
 
-        keyword_category_list = [(word, CardCategory.Topic) for word in recommendation.topics] + [
-            (word, CardCategory.Action) for word in recommendation.actions]
+        keyword_category_list = [
+            (word, CardCategory.Topic) for word in recommendation.topics
+        ] + [(word, CardCategory.Action) for word in recommendation.actions]
 
         selected_emotion_cards: list[DefaultCardInfo] = []
         for emotion in recommendation.emotions:
-            matched = [c for c in DEFAULT_EMOTION_CARDS if c.label.lower().strip() == emotion.lower().strip()]
+            matched = [
+                c
+                for c in DEFAULT_EMOTION_CARDS
+                if c.label.lower().strip() == emotion.lower().strip()
+            ]
             if len(matched) > 0:
                 selected_emotion_cards.append(matched[0])
             else:

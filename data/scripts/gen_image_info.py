@@ -18,6 +18,7 @@ from PIL import Image
 import openai
 from dotenv import load_dotenv
 import orjson
+import numpy as np
 
 # Load environment variables
 load_dotenv(Path(__file__).parent / ".env")
@@ -44,6 +45,8 @@ RESULTS_FILE = CACHE_DIR / "results.json"
 
 # Model configuration
 VL_MODEL = "qwen3-vl-plus"
+EMBEDDING_MODEL = "text-embedding-v4"
+EMBEDDING_DIMENSIONS = 1024
 
 
 def setup_cache_dir(resume: bool = False):
@@ -553,6 +556,238 @@ async def retry_need_inspection_cards(
     return results
 
 
+def load_from_csv() -> List[Dict[str, Any]]:
+    """
+    Load card data from existing CSV files.
+    Returns results list compatible with cache_description_embeddings_async.
+    """
+    translation_csv = OUTPUT_DIR / "card_translation_dictionary.csv"
+    image_info_csv = OUTPUT_DIR / "cards_image_info.csv"
+
+    if not translation_csv.exists() or not image_info_csv.exists():
+        raise FileNotFoundError(
+            f"CSV files not found. Please run without --embeddings-only first.\n"
+            f"Expected: {translation_csv}\n"
+            f"Expected: {image_info_csv}"
+        )
+
+    print("Loading data from CSV files...")
+    translation_df = pd.read_csv(translation_csv, encoding="utf-8")
+    image_info_df = pd.read_csv(image_info_csv, encoding="utf-8")
+
+    # Merge dataframes on id/filename
+    merged_df = pd.merge(
+        translation_df,
+        image_info_df,
+        left_on="id",
+        right_on="id",
+        how="inner",
+    )
+
+    # Convert to results format
+    results = []
+    for _, row in merged_df.iterrows():
+        results.append({
+            "translation": {
+                "id": row["id"],
+                "category": row["category_x"] if "category_x" in row else row["category"],
+                "english": row["english"],
+                "localized": row["localized"],
+                "inspected": row.get("inspected", False),
+            },
+            "image_info": {
+                "id": row["id"],
+                "category": row["category_y"] if "category_y" in row else row["category"],
+                "name_localized": row["name_localized"],
+                "format": row["format"],
+                "width": row["width"],
+                "height": row["height"],
+                "description": row["description"],
+                "description_src": row.get("description_src", ""),
+                "description_brief": row["description_brief"],
+                "inspected": row.get("inspected", False),
+                "need_inspection": row.get("need_inspection", False),
+                "inspection_reason": row.get("inspection_reason", ""),
+                "raw_response": row.get("raw_response", ""),
+            },
+        })
+
+    print(f"Loaded {len(results)} cards from CSV files.")
+    return results
+
+
+async def cache_description_embeddings_async(
+    results: List[Dict[str, Any]], chunk_size: int = 10, resume: bool = False
+):
+    """
+    Generate and cache embeddings for card names and descriptions.
+    Saves to BASE_DIR/cards_image_desc_embeddings.npz with 1024-dim text-embedding-v4 model.
+
+    Args:
+        results: List of processed card results
+        chunk_size: Batch size for embedding generation (max 10 for text-embedding-v4)
+        resume: If True, load existing embeddings and only generate new ones
+    """
+    print("\n" + "=" * 60)
+    print("Generating embeddings...")
+    print(f"Model: {EMBEDDING_MODEL} ({EMBEDDING_DIMENSIONS} dimensions)")
+    print("=" * 60)
+
+    # Extract data from results with deduplication
+    card_data = {}  # Use dict to deduplicate by card_id
+
+    for result in results:
+        image_info = result.get("image_info", {})
+        translation = result.get("translation", {})
+
+        card_id = translation.get("id", "")
+        name_en = translation.get("english", "")
+        desc_brief = image_info.get("description_brief", "")
+
+        if card_id and name_en and desc_brief:
+            # Only keep the first occurrence of each card_id
+            if card_id not in card_data:
+                card_data[card_id] = {
+                    "name_en": name_en,
+                    "desc_brief": desc_brief,
+                }
+
+    # Extract deduplicated data
+    ids = list(card_data.keys())
+    names_en = [card_data[card_id]["name_en"] for card_id in ids]
+    descriptions_brief = [card_data[card_id]["desc_brief"] for card_id in ids]
+
+    total_cards = len(ids)
+    print(f"Processing {total_cards} unique cards for embeddings...")
+
+    if total_cards == 0:
+        print("No valid cards to process.")
+        return
+
+    # Load existing embeddings if resume is enabled
+    output_path = OUTPUT_DIR / "cards_image_desc_embeddings.npz"
+    existing_ids = set()
+    existing_name_emb = {}
+    existing_desc_emb = {}
+
+    if resume and output_path.exists():
+        print(f"Loading existing embeddings from {output_path}...")
+        try:
+            existing_data = np.load(output_path)
+            existing_ids_set = set(existing_data["ids"])
+            existing_ids = existing_ids_set
+
+            # Store existing embeddings in dict for easy lookup
+            for idx, card_id in enumerate(existing_data["ids"]):
+                existing_name_emb[card_id] = existing_data["emb_name"][idx]
+                existing_desc_emb[card_id] = existing_data["emb_desc"][idx]
+
+            print(f"Loaded {len(existing_ids)} existing embeddings.")
+        except Exception as e:
+            print(f"Warning: Failed to load existing embeddings: {e}")
+            existing_ids = set()
+
+    # Filter out cards that already have embeddings
+    new_indices = []
+    new_ids = []
+    new_names = []
+    new_descs = []
+
+    for idx, card_id in enumerate(ids):
+        if resume and card_id in existing_ids:
+            continue
+        new_indices.append(idx)
+        new_ids.append(card_id)
+        new_names.append(names_en[idx])
+        new_descs.append(descriptions_brief[idx])
+
+    if resume and len(new_ids) < total_cards:
+        print(f"Skipping {total_cards - len(new_ids)} cards with existing embeddings.")
+        print(f"Generating embeddings for {len(new_ids)} new cards...")
+
+    if len(new_ids) == 0:
+        print("All embeddings already exist. Skipping generation.")
+        return
+
+    # Generate embeddings for new cards in chunks
+    name_embeddings = []
+    description_embeddings = []
+
+    for chunk_i in range(0, len(new_ids), chunk_size):
+        chunk_end = min(chunk_i + chunk_size, len(new_ids))
+        chunk_names = new_names[chunk_i:chunk_end]
+        chunk_descs = new_descs[chunk_i:chunk_end]
+
+        print(
+            f"\rProcessing chunk {chunk_i // chunk_size + 1}/{(len(new_ids) + chunk_size - 1) // chunk_size} "
+            f"(cards {chunk_i + 1}-{chunk_end})...",
+            end="",
+            flush=True,
+        )
+
+        try:
+            # Generate embeddings for names
+            name_emb_response = await client.embeddings.create(
+                input=chunk_names,
+                model=EMBEDDING_MODEL,
+                dimensions=EMBEDDING_DIMENSIONS,
+            )
+            name_embeddings.extend([
+                datum.embedding for datum in name_emb_response.data
+            ])
+
+            # Generate embeddings for descriptions
+            desc_emb_response = await client.embeddings.create(
+                input=chunk_descs,
+                model=EMBEDDING_MODEL,
+                dimensions=EMBEDDING_DIMENSIONS,
+            )
+            description_embeddings.extend([
+                datum.embedding for datum in desc_emb_response.data
+            ])
+
+        except Exception as e:
+            print(f"\nError generating embeddings for chunk {chunk_i}-{chunk_end}: {e}")
+            raise
+
+    print("\nAll embeddings generated successfully.")
+
+    # Merge with existing embeddings if resuming
+    final_ids = []
+    final_name_emb = []
+    final_desc_emb = []
+
+    if resume:
+        # Add existing embeddings first
+        for card_id in ids:
+            if card_id in existing_ids:
+                final_ids.append(card_id)
+                final_name_emb.append(existing_name_emb[card_id])
+                final_desc_emb.append(existing_desc_emb[card_id])
+
+    # Add new embeddings
+    for idx, new_idx in enumerate(new_indices):
+        final_ids.append(new_ids[idx])
+        final_name_emb.append(name_embeddings[idx])
+        final_desc_emb.append(description_embeddings[idx])
+
+    # Save to npz file
+    np.savez_compressed(
+        output_path,
+        ids=np.array(final_ids),
+        emb_name=np.array(final_name_emb),
+        emb_desc=np.array(final_desc_emb),
+    )
+
+    print(f"Embeddings saved to: {output_path}")
+    print(f"  - Total IDs: {len(final_ids)}")
+    print(f"  - Name embeddings shape: {np.array(final_name_emb).shape}")
+    print(f"  - Description embeddings shape: {np.array(final_desc_emb).shape}")
+    if resume and len(new_ids) < total_cards:
+        print(f"  - New embeddings: {len(new_ids)}")
+        print(f"  - Cached embeddings: {len(final_ids) - len(new_ids)}")
+
+
 async def main_async():
     """Main async function."""
     parser = argparse.ArgumentParser()
@@ -563,11 +798,45 @@ async def main_async():
     parser.add_argument(
         "--retry-inspection", action="store_true", help="Retry bad cards"
     )
+    parser.add_argument(
+        "--generate-embeddings",
+        action="store_true",
+        help="Generate embeddings for cards",
+    )
+    parser.add_argument(
+        "--embeddings-only",
+        action="store_true",
+        help="Only generate embeddings from existing CSV (skip card processing)",
+    )
 
     args = parser.parse_args()
 
     total_start_time = time.time()
 
+    # Check if embeddings-only mode
+    if args.embeddings_only:
+        if not args.generate_embeddings:
+            print("Error: --embeddings-only requires --generate-embeddings")
+            exit(1)
+
+        print("=" * 60)
+        print("Embeddings-only mode: Loading from CSV files...")
+        print("=" * 60)
+
+        try:
+            results = load_from_csv()
+        except FileNotFoundError as e:
+            print(f"\nError: {e}")
+            exit(1)
+
+        # Generate embeddings directly
+        await cache_description_embeddings_async(results, resume=args.resume)
+
+        total_time = time.time() - total_start_time
+        print(f"\nDone! Total time: {total_time:.1f}s. Processed {len(results)} cards.")
+        return
+
+    # Normal processing mode
     if args.clear_cache:
         clear_cache()
         setup_cache_dir(resume=False)
@@ -619,6 +888,10 @@ async def main_async():
     pd.DataFrame(image_info_data).to_csv(
         OUTPUT_DIR / "cards_image_info.csv", index=False, encoding="utf-8"
     )
+
+    # Generate embeddings if requested
+    if args.generate_embeddings:
+        await cache_description_embeddings_async(results, resume=args.resume)
 
     total_time = time.time() - total_start_time
     print(f"\nDone! Total time: {total_time:.1f}s. Processed {len(results)} cards.")

@@ -40,8 +40,11 @@ const ParentMessageTextInputView = (props: {
         })
     }), [])
 
-    return <PopupMenuScreenFrame onPop={props.onPopTextInput}
-        backgroundClassName="absolute left-0 right-0 top-0 bottom-0" panelClassName="w-[80vw]">
+    return <PopupMenuScreenFrame
+        onPop={props.onPopTextInput}
+        dismissOnPressOutside={false}
+        backgroundClassName="absolute left-0 right-0 top-0 bottom-0"
+        panelClassName="w-[80vw]">
         <View className="flex-row p-3">
             <TextInput
                 ref={field.ref}

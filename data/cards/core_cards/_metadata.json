@@ -1,242 +1,242 @@
 [
   {
+    "category": "core",
     "id": "yes",
+    "image": "core_cards/yes.png",
     "label": "Yes",
     "label_localized": {
       "en": "Yes",
       "ko": "네",
-      "zh": "是",
-      "yue": "係"
-    },
-    "category": "core",
-    "image": "core_cards/yes.png"
+      "yue": "係",
+      "zh": "是"
+    }
   },
   {
+    "category": "core",
     "id": "no",
+    "image": "core_cards/no.png",
     "label": "No",
     "label_localized": {
       "en": "No",
       "ko": "아니오",
-      "zh": "不是",
-      "yue": "唔係"
-    },
-    "category": "core",
-    "image": "core_cards/no.png"
+      "yue": "唔係",
+      "zh": "不是"
+    }
   },
   {
+    "category": "core",
     "id": "idk",
+    "image": "core_cards/idk.png",
     "label": "I don't know",
     "label_localized": {
       "en": "I don't know",
       "ko": "모르겠어요",
-      "zh": "我不知道",
-      "yue": "我唔知"
-    },
-    "category": "core",
-    "image": "core_cards/idk.png"
+      "yue": "我唔知",
+      "zh": "我不知道"
+    }
   },
   {
+    "category": "core",
     "id": "ask",
+    "image": "core_cards/ask.png",
     "label": "Ask",
     "label_localized": {
       "en": "Ask",
       "ko": "물어보다",
-      "zh": "提问",
-      "yue": "問"
-    },
-    "category": "core",
-    "image": "core_cards/ask.png"
+      "yue": "問",
+      "zh": "提问"
+    }
   },
   {
-    "id": "how_are_you",
-    "label": "How are you?",
+    "category": "core",
+    "id": "what_about_you",
+    "image": "core_cards/what_about_you.png",
+    "label": "What about you?",
     "label_localized": {
-      "en": "How are you?",
+      "en": "What about you?",
       "ko": "어떻게 지내세요?",
-      "zh": "你感觉怎么样？",
-      "yue": "你點呀？"
-    },
-    "category": "core",
-    "image": "core_cards/how_are_you.png"
+      "yue": "你點呀？",
+      "zh": "你觉得怎么样呢？"
+    }
   },
   {
+    "category": "emotion",
     "id": "happy",
+    "image": "core_cards/happy.png",
     "label": "Happy",
     "label_localized": {
       "en": "Happy",
       "ko": "행복해요",
-      "zh": "快乐",
-      "yue": "開心"
-    },
-    "category": "emotion",
-    "image": "core_cards/happy.png"
+      "yue": "開心",
+      "zh": "快乐"
+    }
   },
   {
+    "category": "emotion",
     "id": "sad",
+    "image": "core_cards/sad.png",
     "label": "Sad",
     "label_localized": {
       "en": "Sad",
       "ko": "슬퍼요",
-      "zh": "伤心",
-      "yue": "傷心"
-    },
-    "category": "emotion",
-    "image": "core_cards/sad.png"
+      "yue": "傷心",
+      "zh": "伤心"
+    }
   },
   {
+    "category": "emotion",
     "id": "gloomy",
+    "image": "core_cards/cry.png",
     "label": "Gloomy",
     "label_localized": {
       "en": "Gloomy",
       "ko": "우울해요",
-      "zh": "悲伤",
-      "yue": "悲傷"
-    },
-    "category": "emotion",
-    "image": "core_cards/cry.png"
+      "yue": "悲傷",
+      "zh": "悲伤"
+    }
   },
   {
+    "category": "emotion",
     "id": "bored",
+    "image": "core_cards/bored.png",
     "label": "Bored",
     "label_localized": {
       "en": "Bored",
       "ko": "지루해요",
-      "zh": "无聊",
-      "yue": "無聊"
-    },
-    "category": "emotion",
-    "image": "core_cards/bored.png"
+      "yue": "無聊",
+      "zh": "无聊"
+    }
   },
   {
+    "category": "emotion",
     "id": "tired",
+    "image": "core_cards/tired.png",
     "label": "Tired",
     "label_localized": {
       "en": "Tired",
       "ko": "피곤해요",
-      "zh": "疲惫",
-      "yue": "疲憊"
-    },
-    "category": "emotion",
-    "image": "core_cards/tired.png"
+      "yue": "疲憊",
+      "zh": "疲惫"
+    }
   },
   {
+    "category": "emotion",
     "id": "angry",
+    "image": "core_cards/angry.png",
     "label": "Angry",
     "label_localized": {
       "en": "Angry",
       "ko": "화나요",
-      "zh": "生气",
-      "yue": "生氣"
-    },
-    "category": "emotion",
-    "image": "core_cards/angry.png"
+      "yue": "生氣",
+      "zh": "生气"
+    }
   },
   {
+    "category": "emotion",
     "id": "glad",
+    "image": "core_cards/glad.png",
     "label": "Glad",
     "label_localized": {
       "en": "Glad",
       "ko": "기뻐요",
-      "zh": "高兴",
-      "yue": "高興"
-    },
-    "category": "emotion",
-    "image": "core_cards/glad.png"
+      "yue": "高興",
+      "zh": "高兴"
+    }
   },
   {
+    "category": "emotion",
     "id": "surprised",
+    "image": "core_cards/surprised.png",
     "label": "Surprised",
     "label_localized": {
       "en": "Surprised",
       "ko": "놀랐어요",
-      "zh": "惊讶",
-      "yue": "驚訝"
-    },
-    "category": "emotion",
-    "image": "core_cards/surprised.png"
+      "yue": "驚訝",
+      "zh": "惊讶"
+    }
   },
   {
+    "category": "emotion",
     "id": "delighted",
+    "image": "core_cards/delighted.png",
     "label": "Delighted",
     "label_localized": {
       "en": "Delighted",
       "ko": "매우 기뻐요",
-      "zh": "欣喜",
-      "yue": "欣喜"
-    },
-    "category": "emotion",
-    "image": "core_cards/delighted.png"
+      "yue": "欣喜",
+      "zh": "欣喜"
+    }
   },
   {
+    "category": "emotion",
     "id": "confused",
+    "image": "core_cards/confused.png",
     "label": "Confused",
     "label_localized": {
       "en": "Confused",
       "ko": "혼란스러워요",
-      "zh": "困惑",
-      "yue": "困惑"
-    },
-    "category": "emotion",
-    "image": "core_cards/confused.png"
+      "yue": "困惑",
+      "zh": "困惑"
+    }
   },
   {
+    "category": "emotion",
     "id": "scared",
+    "image": "core_cards/scared.png",
     "label": "Scared",
     "label_localized": {
       "en": "Scared",
       "ko": "무서워요",
-      "zh": "害怕",
-      "yue": "害怕"
-    },
-    "category": "emotion",
-    "image": "core_cards/scared.png"
+      "yue": "害怕",
+      "zh": "害怕"
+    }
   },
   {
+    "category": "emotion",
     "id": "shy",
+    "image": "core_cards/shy.png",
     "label": "Shy",
     "label_localized": {
       "en": "Shy",
       "ko": "수줍어요",
-      "zh": "害羞",
-      "yue": "害羞"
-    },
-    "category": "emotion",
-    "image": "core_cards/shy.png"
+      "yue": "害羞",
+      "zh": "害羞"
+    }
   },
   {
+    "category": "emotion",
     "id": "calm",
+    "image": "core_cards/calm.png",
     "label": "Calm",
     "label_localized": {
       "en": "Calm",
       "ko": "차분해요",
-      "zh": "平静",
-      "yue": "平靜"
-    },
-    "category": "emotion",
-    "image": "core_cards/calm.png"
+      "yue": "平靜",
+      "zh": "平静"
+    }
   },
   {
+    "category": "emotion",
     "id": "fearful",
+    "image": "core_cards/fearful.png",
     "label": "Fearful",
     "label_localized": {
       "en": "Fearful",
       "ko": "두려워요",
-      "zh": "恐惧",
-      "yue": "恐懼"
-    },
-    "category": "emotion",
-    "image": "core_cards/fearful.png"
+      "yue": "恐懼",
+      "zh": "恐惧"
+    }
   },
   {
+    "category": "emotion",
     "id": "beloved",
+    "image": "core_cards/beloved.png",
     "label": "Beloved",
     "label_localized": {
       "en": "Beloved",
       "ko": "애정이 충만하다",
-      "zh": "充满爱意",
-      "yue": "充滿愛意"
-    },
-    "category": "emotion",
-    "image": "core_cards/beloved.png"
+      "yue": "充滿愛意",
+      "zh": "充满爱意"
+    }
   }
 ]

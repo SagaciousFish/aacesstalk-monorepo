@@ -104,21 +104,30 @@ class AliyunTranslator(IntegrationService):
     ) -> List[str]:
         enumerated_text = {k: v for k, v in enumerate(text)}
         translate_general_request = alimt_20181012_models.GetBatchTranslateRequest(
+            api_type="translate_standard",
             source_language=source_lang if source_lang is not None else "auto",
             target_language=target_lang,
             format_type="text",
             source_text=str(enumerated_text),
-            scene="communication",
+            scene="general",
         )
         runtime = util_models.RuntimeOptions()
 
         t_start = perf_counter()
-        awaitable = await to_thread(
-            self.__client.get_batch_translate_with_options_async,
-            translate_general_request,
-            runtime,
-        )
-        result = await awaitable
+        print("Aliyun batch request map:", translate_general_request.to_map())
+        try:
+            awaitable = await to_thread(
+                self.__client.get_batch_translate_with_options_async,
+                translate_general_request,
+                runtime,
+            )
+            result = await awaitable
+        except Exception:
+            print(
+                "Aliyun batch translate request failed. Request map:",
+                translate_general_request.to_map(),
+            )
+            raise
         t_end = perf_counter()
 
         print(f"Aliyun batch translation took {t_end - t_start} sec.")

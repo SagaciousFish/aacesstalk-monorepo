@@ -130,6 +130,8 @@ export const ChildCardView = React.memo((props:{
     const applyCardImage = useCallback(async (matching: CardImageMatching) => {
         const headers = await Http.getSignedInHeaders(token)
 
+        console.log("Applying card image for matching:", matching)
+
         setImageSource({
             headers,
             url: Http.axios.defaults.baseURL + Http.ENDPOINT_DYAD_MEDIA_CARD_IMAGE + "?card_type=" + matching.type + "&image_id=" + matching.image_id,

@@ -34,17 +34,16 @@ class CardImageInfo(BaseModelWithId):
     category: str
     name_localized: str
     name_en: Optional[str] = None
-    filename: str
     format: Optional[str]
     width: int
     height: int
     description: Optional[str] = None
     description_src: Optional[str] = None
-
     description_brief: Optional[str] = None
 
-    inspected: bool = False
-    need_inspection: bool = False
+    inspected: Optional[bool] = False
+    need_inspection: Optional[bool] = False
+    raw_response: Optional[str] = None
 
     @computed_field
     @property
