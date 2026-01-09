@@ -1,26 +1,93 @@
 id,category,english,localized,inspected
+KO461OHgbH,action,ate,吃饭,False
 iICIHqmwSB,action,bake,烘烤,False
+ueMhL88kmc,action,build,建造,False
+vG6yhrNNMa,action,built,建造,False
 -mThUw0dmN,action,celebrate,庆祝,False
 qO5_UpLWcJ,action,chase,追逐,False
+VwKRcbA3En,action,cheer,欢呼,False
+odV6ixFrwR,action,choose,选择,False
+glmeY0Dev7,action,chop,切,False
+hmm7heWYyU,action,climbed,攀爬,False
+_T4L0C2Qk8,action,color,涂色,False
+8FNrmgbTiz,action,colored,涂色,False
 KYVW7q9Xh4,action,cook,烹饪,False
+HGaPp1AEbR,action,counted,数数,False
+vsV8O9Jvq9,action,cut,剪,False
 z8IGs89Io7,action,do,做,False
+uNw7AylW-_,action,draw,绘画,False
+rVqx10bJ_W,action,drew,画画,False
+o9H0FL6OVw,action,drink,喝,False
+TIROWqpGYh,action,eat,进食,False
 n0IjoqLPGx,action,escape,逃脱,False
+gtXgvxjcJE,action,finish,完成,False
+J3hpkNsHhg,action,get ready for,准备,False
+S-pKb4oMoD,action,glued,粘贴,False
+TNqhEGqcGO,action,go,去,False
 senEXInOrK,action,go to,去,False
+Jnvkbcnevd,action,going to,要去,False
 vvJDZyPsxJ,action,have,有,False
+HU81JscFkn,action,have to,必须,False
+UcIF1rsabd,action,heat,加热,False
 AaJCepflih,action,help,帮助,False
+FGuPvi9eI0,action,helped,帮助,False
 _fFS0IDJG0,action,hide,躲藏,False
 8kbNrVjEHC,action,hug,拥抱,False
 RyM7m5kF3Y,action,invent,发明,False
+94gMStjZaV,action,jump,跳跃,False
+_oefG-ccsr,action,jumped,跳跃,False
 dfpmGbDcuI,action,knit,编织,False
 H6FMyaNEdY,action,laugh,笑,False
+QVCKYrbY3o,action,laughed,笑,False
+Mdi2gsHjct,action,learn,学习,False
+YG6MLqviAt,action,learned,学会了,False
+fFl-rbTyww,action,like,喜欢,False
+7HPco04GB0,action,like to,喜欢,False
+VTk4gZk_aE,action,listen,聆听,False
+-nvvKULpJR,action,listen to,倾听,False
+omG-OKpNNe,action,listened,倾听,False
+RpasHxjDxY,action,mix,混合,False
+JhorJ-h79L,action,mixed,混合,False
+xEy5w_sXDm,action,need,需要,False
+70A6KY_YID,action,need to,需要,False
+0Zzo_ET2Jj,action,pack,打包,False
 A3v871-0ub,action,play,玩耍,False
+qN8CCrNZ40,action,play with,玩耍,False
+ywyOl6fBcm,action,played,玩耍,False
+OJQiKRuX2q,action,prepare,准备,False
+f7VW4fWxjM,action,pushed,推,False
+AILY-HeJUU,action,ran,跑步,False
 NbYMlr8pDp,action,read,阅读,False
+mJJ_mtilNQ,action,rest,休息,False
+I-BqigYHnY,action,ride,乘坐,False
+Cdpf0Fp-xC,action,rode,骑,False
 zOXT6LVEFI,action,run,跑步,False
 3q4L4aGSDu,action,save,拯救,False
+5XwlbQlgOt,action,serve,服务,False
 e-yH8sEidu,action,share,分享,False
+lQNq_UpMRV,action,shared,分享,False
+EvrWrRKWd1,action,sing,唱歌,False
+1WOid6wdVt,action,sit,坐,False
+cmyVKl_N_h,action,solve,解决,False
+tLOCu9gSZ-,action,solved,解决,False
+S1xAwte0Vr,action,start,开始,False
 IMDLj_9i0O,action,stir,搅拌,False
+65j-17w2FQ,action,study,学习,False
+sr5JCpRI0I,action,take,拿,False
+g7AA9ce77R,action,take a,拿,False
+9Ioze-Q1O1,action,talked,交谈,False
 uhrppqS1Ea,action,tell a story,讲故事,False
+vEC4M4Rkj5,action,think,思考,False
 pfvbChgg8f,action,trick,欺骗,False
+EN5JgZphrb,action,visit,拜访,False
+Hyia9T2drC,action,wait for,等待,False
+ZuDKCsbPPe,action,walk,走路,False
+F7Nttycc1O,action,walked,行走,False
+uOnZx3--Fu,action,want,想要,False
+1XloGiwOOk,action,want to,想要,False
+htQ5jO6urX,action,watch,观看,False
+C5VZ9GpReG,action,write,书写,False
+kS7GLF9fkS,action,wrote,书写,False
 extra_cards/activities/activities.jpg,activities,Activities,"{""en"":""Activities"",""zh"":""活动"",""yue"":""活動"",""ko"":""활동""}",False
 extra_cards/activities/13a-21聽電話.jpg,activities,Answering the phone,"{""en"":""Answering the phone"",""zh"":""接电话"",""yue"":""聽電話"",""ko"":""전화 받기""}",False
 extra_cards/activities/13c-21燒烤.jpg,activities,Barbecue,"{""en"":""Barbecue"",""zh"":""烧烤"",""yue"":""燒烤"",""ko"":""바베큐""}",False
@@ -873,16 +940,76 @@ hRstMExpjl,topic,Soup Pot,汤锅,False
 yAuoiJp3os,topic,Wolffy,灰太狼,False
 VK-UBZbeKz,topic,Wooly Sheep,毛茸茸的绵羊,False
 nmkdPW_gC-,topic,Wooly Sweater,羊毛衫,False
+299CkTZY3X,topic,adventure,冒险,False
 _REue3yGK1,topic,adventures,冒险,False
+KQqy7btzzx,topic,art,艺术,False
+SpYr3xOb2T,topic,backpack,背包,False
+xuMdEwFZUq,topic,bath,洗澡,False
+NfuCo4Og2q,topic,bath time,洗澡时间,False
+bwSyo-aC_i,topic,bedtime,睡觉时间,False
 6f28Kzrrx0,topic,big Big Wolf,灰太狼,False
+lmLq4mcpcg,topic,book,书,False
+p9iTDu54M8,topic,breakfast,早餐,False
+mBe2HDivzS,topic,bus,公交车,False
+h2fZV7bcrT,topic,cartoon,卡通,False
+6004eJZ7qs,topic,class,教室,False
+3ksGER0lBB,topic,classroom,教室,False
+W7I8FYDcO7,topic,desk,书桌,False
+UlbY6PeThW,topic,dessert,甜点,False
+i3jHdhDYbI,topic,dinner,晚餐,False
+i3iIdx38s5,topic,draw,画画,False
 ihZQMUWKhm,topic,drawing,绘画,False
+OK6Z2aID7M,topic,episodes,剧集,False
+-FFGXFiNfs,topic,food,食物,False
+h4288eK9eR,topic,friends,朋友,False
+OLoUzzwZSV,topic,fruit,水果,False
+_ouCdCb6AO,topic,games,游戏,False
+TVEb3lUJcG,topic,groceries,杂货,False
 GogmRiPhlM,topic,homework,家庭作业,False
+aW2ScP7MJ-,topic,inventions,发明,False
+gJ-nwtCxyO,topic,juice,果汁,False
+ybgeW7p5Si,topic,learning,学习,False
+fzz4ZGsCbZ,topic,library,图书馆,False
+UsNVDHtnMH,topic,lunch,午餐,False
 6qpRNhLL9_,topic,magic potion,魔法药水,False
+ipzCX1w4Gn,topic,math,数学,False
+37OwPVi8c_,topic,meal,餐,False
+D_Y8_b4uLl,topic,movie,电影,False
+fgSFTUWgIx,topic,music,音乐,False
+ocbYdFQXTn,topic,nap,小睡,False
+j4sJAX3z2u,topic,paper,纸,False
 HsxBGCKZQR,topic,park,公园,False
+psRxmJLJ_f,topic,play,玩耍,False
+o79eB1Vtpc,topic,playground,游乐场,False
+km1bfd_VIv,topic,playtime,游戏时间,False
+Jr22IPe7jK,topic,quiet time,安静时间,False
 KCd_JU9KQt,topic,rainbow,彩虹,False
+A1FigV7bcP,topic,read,阅读,False
+0ZuntXCAAj,topic,reading,阅读,False
+7GtjoSga40,topic,recess,课间休息,False
+6TV1MQ_bdO,topic,rest,休息,False
+YKXAu9OmW-,topic,sandbox,沙箱,False
+YIdvA9O-Bt,topic,sandwich,三明治,False
+zOBDo-j8zK,topic,school,学校,False
+Pl8KRr5asG,topic,science,科学,False
+2oCp5cnSnu,topic,slide,滑梯,False
+tJd7WFPJag,topic,snack,零食,False
 JexmnBpXsA,topic,snack time,点心时间,False
 mMD0KrL47L,topic,soccer,足球,False
+mqwBaAPmMA,topic,soup,汤,False
+MsxkGO45Ie,topic,story,故事,False
 63VoJqHIOA,topic,superpower,超能力,False
+TCJWxRipde,topic,swings,秋千,False
+loI6wNbb4M,topic,teacher,老师,False
+rLuqjCgLr_,topic,teamwork,团队合作,False
+w5UmAv005_,topic,toy,玩具,False
+RPaK7HARoN,topic,toys,玩具,False
+1cuGI68ETn,topic,traps,陷阱,False
+i7JwTeFMJK,topic,treasure,宝藏,False
+CyTWyLJ9JW,topic,village,村庄,False
+A8X6OCqHcU,topic,walk,走路,False
+5EbTdXNtJp,topic,wolves,狼,False
+6Hos3JG8rs,topic,喜羊羊,喜羊羊,False
 extra_cards/toy/4-02飛機.jpg,toy,Airplane,"{""en"":""Airplane"",""zh"":""飞机"",""yue"":""飛機"",""ko"":""비행기""}",False
 extra_cards/toy/4-03波.jpg,toy,Beach ball,"{""en"":""Beach ball"",""zh"":""沙滩球"",""yue"":""沙灘波"",""ko"":""비치볼""}",False
 extra_cards/toy/4-15棋.jpg,toy,Board Game,"{""en"":""Board Game"",""zh"":""棋盘游戏"",""yue"":""棋盤遊戲"",""ko"":""보드 게임""}",False
