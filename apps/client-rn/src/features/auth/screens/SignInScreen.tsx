@@ -8,7 +8,10 @@ import { TailwindButton } from "apps/client-rn/src/components/tailwind-component
 import { Control, Controller, useController, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Fragment, useMemo } from "react"
+import { Fragment, useMemo, useState, useEffect } from "react"
+import i18next from "i18next";
+import { MMKV } from "react-native-mmkv";
+import { TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "apps/client-rn/src/redux/hooks"
 import { loginDyadThunk } from "@aacesstalk/libs/ts-core"
 import { twMerge } from "tailwind-merge"
@@ -85,6 +88,30 @@ export const SignInScreen = () => {
     const isAuthorizing = useSelector(state => state.auth.isAuthorizing)
     const authorizationError = useSelector(state => state.auth.error)
 
+    const storage = new MMKV();
+    const LANGS = [
+        { code: 'zh', label: '中文' },
+        { code: 'yue', label: '廣東話' },
+        { code: 'ko', label: '한국어' },
+        { code: 'en', label: 'English' }
+    ];
+    const [lang, setLang] = useState(i18next.language ?? 'zh');
+    useEffect(() => {
+        const saved = storage.getString('app_language');
+        if (saved && saved !== lang) {
+            i18next.changeLanguage(saved);
+            setLang(saved);
+        }
+    }, []);
+    const cycleLang = () => {
+        const codes = LANGS.map(l => l.code);
+        const idx = codes.indexOf(lang);
+        const next = codes[(idx + 1) % codes.length];
+        i18next.changeLanguage(next);
+        storage.set('app_language', next);
+        setLang(next);
+    };
+
     const dispatch = useDispatch()
 
     const schema = useMemo(() => yup.object({
@@ -120,5 +147,10 @@ export const SignInScreen = () => {
             }
 
         </View>
+        <TouchableOpacity onPress={cycleLang} className="absolute right-4 bottom-4 bg-white rounded-full px-3 py-2 shadow">
+            <Text className="text-sm text-slate-700" style={styleTemplates.withSemiboldFont}>
+                {LANGS.find(l => l.code === lang)?.label}
+            </Text>
+        </TouchableOpacity>
     </HillBackgroundView>
 }
