@@ -35,7 +35,7 @@ _prompt_template = convert_to_jinja_template("""
 {%- if dialogue | length > 0 %}
 - Task: Given a dialogue between a {{parent_type}} and a child, suggest a list of guides that can help the {{parent_type}} choose how to respond or ask questions in response to the child's last message. Note that the child always conveys their message through keywords.
 {%else%}
-- Task: With regards to the goal of conversation, suggest a list of guides that can help the {{parent_type}} as starting points of conversation.
+- Task: With regards to the goal of conversation, suggest a list of guides that can help the parent {{parent_type}} as starting points of or continue developing a good conversation with the child. You should guide the parent to be engaging and supportive to the child.
 {%endif%}
 
 

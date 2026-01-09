@@ -62,7 +62,7 @@ class FunASRNanoSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
                     },
                 }
                 device_name = "cuda:0" if cuda_is_available() else "cpu"
-                # device_name = "cpu"  # Force CPU for now
+                device_name = "cpu"  # Force CPU for now
                 print(f"[FunASR-Nano] Loading model on device: {device_name}")
 
                 m = AutoModel(

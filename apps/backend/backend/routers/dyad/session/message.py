@@ -142,7 +142,9 @@ async def send_parent_message_audio(
         print(f"Dictate parent turn audio... {file.filename}")
         print(f"Audio URL: {audio_url}")
 
-        asr_engine = DashscopeQwenSpeechRecognizer()
+        # asr_engine = DashscopeQwenSpeechRecognizer()
+        # asr_engine = DashscopeFunAsrFileRecognizer()
+        asr_engine = FunASRNanoSpeechRecognizer()
 
         print("Start recognizing...")
 

@@ -42,7 +42,24 @@ class CardImageDBRetriever:
                     )
                 )
 
-        self.__card_info_dict = {inf.id: inf for inf in info_list}
+        import unicodedata
+
+        # Build a dict with multiple lookup keys (normalized id, basename, id without extension)
+        self.__card_info_dict: dict[str, CardImageInfo] = {}
+        for inf in info_list:
+            key_norm = unicodedata.normalize("NFC", inf.id)
+            if key_norm not in self.__card_info_dict:
+                self.__card_info_dict[key_norm] = inf
+
+            # basename: e.g., 'bored.png'
+            basename = key_norm.split("/")[-1]
+            if basename not in self.__card_info_dict:
+                self.__card_info_dict[basename] = inf
+
+            # id without extension: e.g., 'core_cards/bored'
+            no_ext = key_norm.rsplit(".", 1)[0]
+            if no_ext not in self.__card_info_dict:
+                self.__card_info_dict[no_ext] = inf
 
         self.__card_info_table = DataFrame(data=[inf.model_dump() for inf in info_list])
 
@@ -84,8 +101,53 @@ class CardImageDBRetriever:
         result = []
         for i in range(list_length):
             if len(query_result["ids"][i]) > 0:
-                objs = [self.__card_info_dict[id] for id in query_result["ids"][i]]
+                # Map returned ids to CardImageInfo objects with robust fallbacks to avoid KeyError
+                objs = []
+                for raw_id in query_result["ids"][i]:
+                    # common cases: exact match, NFC normalized, pipe-sep (id|label), strip extension, basename
+                    if raw_id in self.__card_info_dict:
+                        objs.append(self.__card_info_dict[raw_id])
+                        continue
+
+                    import unicodedata
+
+                    norm_id = unicodedata.normalize("NFC", raw_id)
+                    if norm_id in self.__card_info_dict:
+                        objs.append(self.__card_info_dict[norm_id])
+                        continue
+
+                    if "|" in raw_id:
+                        candidate = raw_id.split("|", 1)[0]
+                        if candidate in self.__card_info_dict:
+                            objs.append(self.__card_info_dict[candidate])
+                            continue
+
+                    if "." in raw_id and "/" in raw_id:
+                        # try removing extension
+                        candidate_no_ext = raw_id.rsplit(".", 1)[0]
+                        if candidate_no_ext in self.__card_info_dict:
+                            objs.append(self.__card_info_dict[candidate_no_ext])
+                            continue
+
+                    # try basename without directory
+                    basename = raw_id.split("/")[-1]
+                    if basename in self.__card_info_dict:
+                        objs.append(self.__card_info_dict[basename])
+                        continue
+
+                    # If we still don't have a match, log a warning and skip this id
+                    print(
+                        f"Warning: card image id '{raw_id}' not found in card info dict."
+                    )
+
                 distances = [s for s in query_result["distances"][i]]
+                # zip will truncate to shortest; ensure objs and distances same length
+                if len(objs) != len(distances):
+                    # truncate or pad distances as necessary
+                    min_len = min(len(objs), len(distances))
+                    objs = objs[:min_len]
+                    distances = distances[:min_len]
+
                 result.append([(o,d) for o,d in zip(objs, distances)])
             else:
                 result.append([])
@@ -177,14 +239,41 @@ class CardImageDBRetriever:
 
 
             for i, name in enumerate(no_name_matched_card_names):
-                if name_query_results[i][0][1] < 0.5:
-                    name_result_dict[name] = [name_query_results[i][0][0]]
-                    print(f"Name win - {name} => {name_result_dict[name][0].id}")
-                else:
-                    name_result_dict[name] = [desc_query_results[i][0][0]]
-                    print(f"Description win - {name} => {name_result_dict[name][0].id}")
+                chosen = None
 
-            result = [name_result_dict[name] for name in names]
+                # Safely check name query result
+                if i < len(name_query_results) and len(name_query_results[i]) > 0:
+                    try:
+                        distance = name_query_results[i][0][1]
+                    except Exception:
+                        distance = None
+
+                    if distance is not None and distance < 0.5:
+                        chosen = name_query_results[i][0][0]
+                        print(f"Name win - {name} => {chosen.id}")
+
+                # Fallback to description query if name query didn't yield a confident result
+                if chosen is None:
+                    if i < len(desc_query_results) and len(desc_query_results[i]) > 0:
+                        chosen = desc_query_results[i][0][0]
+                        print(f"Description win - {name} => {chosen.id}")
+
+                if chosen is None:
+                    # Neither query returned results; log and leave empty
+                    print(
+                        f"Warning: No image match found for '{name}' via name or description queries."
+                    )
+                    name_result_dict[name] = []
+                else:
+                    name_result_dict[name] = [chosen]
+
+            # Ensure result contains a list for every original name
+            result: list[list[CardImageInfo]] = [
+                name_result_dict.get(name)
+                if isinstance(name_result_dict.get(name), list)
+                else []
+                for name in names
+            ]
 
         t_end = perf_counter()
         print(f"Card retrieval took {t_end - t_start} sec.")

@@ -84,7 +84,9 @@ class LookupTranslator(AbstractContextManager):
                         )
                 else:
                     if self.verbose:
-                        print("Dictionary file does not exist. Skip reading.")
+                        print(
+                            f"Dictionary file ({self.__dict_filepath}) does not exist. Skip reading."
+                        )
             else:
                 if self.verbose:
                     print("Dictionary file path was not set.")

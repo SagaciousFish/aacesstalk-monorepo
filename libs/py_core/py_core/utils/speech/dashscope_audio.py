@@ -2,7 +2,11 @@ from http import HTTPStatus
 from dashscope.audio.qwen_omni.omni_realtime import TranscriptionParams
 import pathlib
 import base64
-from dashscope.audio.qwen_omni import OmniRealtimeCallback, OmniRealtimeConversation, MultiModality
+from dashscope.audio.qwen_omni import (
+    OmniRealtimeCallback,
+    OmniRealtimeConversation,
+    MultiModality,
+)
 import json
 
 from py_core.utils.speech.speech_recognizer_base import SpeechRecognizerBase
@@ -377,6 +381,7 @@ class DashscopeQwenTTS(IntegrationService):
         await to_thread(cache.set, cache_params.cache_key, file_path)
         return file_path
 
+
 class DashscopeQwenSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
     def __init__(self):
         super().__init__()
@@ -407,21 +412,27 @@ class DashscopeQwenSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
     ) -> str:
         class MyCallback(OmniRealtimeCallback):
             """实时识别回调处理"""
+
             def __init__(self, conversation, done_event: asyncio.Event):
                 self.conversation = conversation
                 self.done_event = done_event
                 self.final_text: str | None = None
+                self.last_stash: str = ""
                 self.loop = asyncio.get_event_loop()
                 self.handlers = {
-                    'session.created': self._handle_session_created,
-                    'conversation.item.input_audio_transcription.completed': self._handle_final_text,
-                    'conversation.item.input_audio_transcription.text': self._handle_stash_text,
-                    'input_audio_buffer.speech_started': lambda r: print('======Speech Start======'),
-                    'input_audio_buffer.speech_stopped': lambda r: print('======Speech Stop======')
+                    "session.created": self._handle_session_created,
+                    "conversation.item.input_audio_transcription.completed": self._handle_final_text,
+                    "conversation.item.input_audio_transcription.text": self._handle_stash_text,
+                    "input_audio_buffer.speech_started": lambda r: print(
+                        "======Speech Start======"
+                    ),
+                    "input_audio_buffer.speech_stopped": lambda r: print(
+                        "======Speech Stop======"
+                    ),
                 }
 
             def on_open(self):
-                print('Connection opened')
+                print("Connection opened")
 
             def on_close(self, close_status_code, close_msg):
                 print(f"Connection closed, code: {close_status_code}, msg: {close_msg}")
@@ -432,14 +443,14 @@ class DashscopeQwenSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
                     if handler:
                         handler(message)
                 except Exception as e:
-                    print(f'[Error] {e}')
+                    print(f"[Error] {e}")
 
             def _handle_session_created(self, response):
                 print(f"Start session: {response['session']['id']}")
 
             def _handle_final_text(self, response):
                 # store final transcript and notify waiting coroutine
-                self.final_text = response.get('transcript', '')
+                self.final_text = response.get("transcript", "")
                 print(f"Final recognized text: {self.final_text}")
                 # If callback runs in another thread, ensure event is set on the loop thread-safely
                 try:
@@ -449,23 +460,31 @@ class DashscopeQwenSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
                     self.done_event.set()
 
             def _handle_stash_text(self, response):
-                print(f"Got stash result: {response.get('stash')}")
+                stash = response.get("stash")
+                print(f"Got stash result: {stash}")
+                if stash:
+                    # remember last partial transcription; use as fallback when final isn't available
+                    self.last_stash = stash
+                    # if no final text yet, keep the partial transcription available
+                    if not self.final_text:
+                        self.final_text = stash
 
         async def read_audio_chunks(file_path, chunk_size=3200):
             """按块读取音频文件"""
-            async with aiofiles.open(file_path, 'rb') as f:
-                if content_type == 'audio/wav':
+            async with aiofiles.open(file_path, "rb") as f:
+                if content_type == "audio/wav":
                     # 跳过WAV文件头44字节
                     await f.seek(44)
                 while chunk := await f.read(chunk_size):
                     yield chunk
+
         async def send_audio(conversation, file_path, delay=0.1):
             """发送音频数据"""
             if not os.path.exists(file_path):
                 raise FileNotFoundError(f"Audio file {file_path} does not exist.")
 
             async for chunk in read_audio_chunks(file_path):
-                audio_b64 = base64.b64encode(chunk).decode('ascii')
+                audio_b64 = base64.b64encode(chunk).decode("ascii")
                 conversation.append_audio(audio_b64)
                 await asyncio.sleep(delay)
 
@@ -473,14 +492,13 @@ class DashscopeQwenSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
             # conversation.commit()
             # print("Audio commit sent.")
 
-
         async def send_silence_data(conversation, cycles=30, bytes_per_cycle=1024):
             # 创建1024字节的静音数据（全零）
             silence_data = bytes(bytes_per_cycle)
 
             for i in range(cycles):
                 # 将字节数据编码为base64
-                audio_b64 = base64.b64encode(silence_data).decode('ascii')
+                audio_b64 = base64.b64encode(silence_data).decode("ascii")
                 # 发送静音数据
                 conversation.append_audio(audio_b64)
                 await asyncio.sleep(0.01)  # 10毫秒延迟
@@ -533,18 +551,27 @@ class DashscopeQwenSpeechRecognizer(SpeechRecognizerBase, IntegrationService):
         # wait for final transcript (timeout as needed)
         final_text = ""
         try:
-            await asyncio.wait_for(done_event.wait(), timeout=10.0)
+            # wait for final transcript; increase timeout slightly to allow longer audio
+            await asyncio.wait_for(done_event.wait(), timeout=15.0)
             final_text = conversation.callback.final_text or ""
         except asyncio.TimeoutError:
             print(
                 "Timed out waiting for final transcript. Returning partial result if available."
             )
-            final_text = conversation.callback.final_text or ""
+            # prefer final_text but fall back to last stash if available
+            final_text = (
+                conversation.callback.final_text
+                or getattr(conversation.callback, "last_stash", "")
+                or ""
+            )
+            if final_text:
+                print(f"Using partial transcript fallback: {final_text}")
         finally:
             conversation.close()
             print("Audio processing completed.")
 
         return final_text
+
 
 class DashscopeFunAsrFileRecognizer(SpeechRecognizerBase, IntegrationService):
     def __init__(self):
@@ -574,27 +601,22 @@ class DashscopeFunAsrFileRecognizer(SpeechRecognizerBase, IntegrationService):
         child_name: str = "",
         hotwords: list[str] = [],
     ) -> str:
-        raise DeprecationWarning("Dashscope Fun-ASR File Recognizer is deprecated for not fast enough. Use DashscopeQwenSpeechRecognizer instead.")
-        return await DashscopeQwenSpeechRecognizer.recognize_speech(
-            file_url,
-            file,
-            content_type,
-            locale,
-            child_name,
-            hotwords,
+        raise DeprecationWarning(
+            "Dashscope Fun-ASR File Recognizer is deprecated for not fast enough. Use DashscopeQwenSpeechRecognizer instead."
         )
 
         dashscope.base_http_api_url = "https://dashscope.aliyuncs.com/api/v1"
 
         task_response = Transcription.async_call(
-            model='fun-asr',
-            file_urls=[file_url]
+            model="fun-asr-mtl", file_urls=[file_url]
         )
 
         transcribe_response = Transcription.wait(task=task_response.output.task_id)
         if transcribe_response.status_code == HTTPStatus.OK:
-            print('transcription done!')
+            print("transcription done!")
             return transcribe_response.output.transcripts.text
         else:
-            print(f"Transcription failed with status code {transcribe_response.status_code}: {transcribe_response.message}")
+            print(
+                f"Transcription failed with status code {transcribe_response.status_code}: {transcribe_response.message}"
+            )
             return ""

@@ -32,12 +32,82 @@ from py_core.utils.default_cards import (
     DEFAULT_CORE_CARDS,
     DEFAULT_EMOTION_CARDS,
     DefaultCardInfo,
+    DEFAULT_EMOTION_LABELS,
 )
 from py_core.utils.vector_db import VectorDB
 
-str_output_converter, output_str_converter = generate_pydantic_converter(
-    ChildCardRecommendationAPIResult, "yaml"
+# Import converter helper for parsing JSON and typing
+from chatlib.tool.converter import json_str_to_dict_converter
+from typing import Any
+
+
+# Use JSON for structured output to make parsing deterministic
+_, output_str_converter = generate_pydantic_converter(
+    ChildCardRecommendationAPIResult, "json"
 )
+
+# We'll provide a custom string -> model converter that normalizes, dedups and validates
+
+
+def _str_to_normalized_api_result(
+    input_str: str, params: Any
+) -> ChildCardRecommendationAPIResult:
+    """Parse a raw JSON string (possibly fenced with ```json ... ```), normalize items,
+    remove duplicates while preserving order, validate counts and allowed emotions.
+
+    Raises ValueError when the parsed content is invalid.
+    """
+    try:
+        d = json_str_to_dict_converter(input_str, params)
+    except Exception as e:
+        raise ValueError(f"Invalid JSON output: {e}")
+
+    # Expected keys
+    for k in ("topics", "actions", "emotions"):
+        if k not in d:
+            raise ValueError(f"Missing key '{k}' in output: {d}")
+        if not isinstance(d[k], list):
+            raise ValueError(f"Key '{k}' must be a list in output: {d}")
+
+    def normalize_list(lst: list[str]) -> list[str]:
+        seen = set()
+        out = []
+        for v in lst:
+            if not isinstance(v, str):
+                continue
+            s = " ".join(v.split()).strip()  # collapse whitespace
+            if s == "":
+                continue
+            key = s.lower()
+            if key in seen:
+                continue
+            seen.add(key)
+            out.append(s)
+        return out
+
+    topics = normalize_list(d["topics"])
+    actions = normalize_list(d["actions"])
+    emotions = normalize_list(d["emotions"])
+
+    # Validate counts
+    if not (len(topics) == 4 and len(actions) == 4 and len(emotions) == 4):
+        raise ValueError(
+            f"Each category must have 4 unique items after normalization. Got: topics={topics}, actions={actions}, emotions={emotions}"
+        )
+
+    # Validate emotions against allowed list
+    for e in emotions:
+        if e.lower().strip() not in DEFAULT_EMOTION_LABELS:
+            raise ValueError(f"Emotion keyword not allowed: {e}")
+
+    # Convert to sets explicitly to match the API model expectations
+    return ChildCardRecommendationAPIResult(
+        topics=set(topics), actions=set(actions), emotions=set(emotions)
+    )
+
+
+# Override the str_output_converter used by the mapper
+str_output_converter = _str_to_normalized_api_result
 
 
 class ChildCardRecommendationParams(ChatCompletionFewShotMapperParams):
@@ -59,8 +129,27 @@ class ChildCardRecommendationGenerator:
         self.__translator = CardTranslator(vector_db)
 
         def __prompt_generator(
-            input: DialogueInput, params: ChildCardRecommendationParams
+            input: DialogueInput, params: ChildCardRecommendationParams | None
         ) -> str:
+            # Build small safe strings in case params is None
+            prev_recommendation_text = ""
+            interim_cards_text = ""
+            if params is not None:
+                if params.prev_recommendation is not None:
+                    prev_recommendation_text = (
+                        "- The child had previous recommendation: "
+                        + params.prev_recommendation.model_dump_json(
+                            exclude={"id", "timestamp"}
+                        )
+                        + ". Try to generate cards that are distinct to this previous recommendation."
+                    )
+                if params.interim_cards is not None:
+                    interim_cards_text = (
+                        "- The child had selected the following cards: "
+                        + ", ".join([card.label for card in params.interim_cards])
+                        + ". The generated recommendation should be relevant, yet still distinct, to these selections."
+                    )
+
             prompt = (
                 f"""
 - You are a helpful assistant that serves as an Alternative Augmented Communication tool.
@@ -71,33 +160,26 @@ class ChildCardRecommendationGenerator:
 - Note that the 'emotion' cards must be selected from the given list: {", ".join([f"{c.get_label_for_parent(input.parent_type)}" for c in DEFAULT_EMOTION_CARDS])}
 """
                 """
-- Return ONLY a valid YAML document **inside a fenced code block** (```yaml ... ```) and nothing else. The YAML must contain the following keys with exactly 4 items each: `topics`, `actions`, `emotions`.
+- Return ONLY a valid JSON object (no extra text) with keys `topics`, `actions`, `emotions` and each value must be an array of exactly **4 unique** strings. Example:
 
-Example:
-```yaml
-topics:
-  - topic1
-  - topic2
-  - topic3
-  - topic4
-actions:
-  - action1
-  - action2
-  - action3
-  - action4
-emotions:
-  - emotion1
-  - emotion2
-  - emotion3
-  - emotion4
+```json
+{
+  "topics": ["topic1", "topic2", "topic3", "topic4"],
+  "actions": ["action1", "action2", "action3", "action4"],
+  "emotions": ["Happy", "Sad", "Calm", "Glad"]
+}
 ```
+The topics should contain 4 distinct topics/categories/keywords highly relevant to the conversation.
+The actions should contain 4 distinct verbs or action words that the child can perform or express.
+The emotions should contain 4 distinct emotion words from the allowed list.
 
-Return no explanation or extra text — only the fenced YAML block as shown.
+- **Important:** Ensure the arrays contain 4 unique items. Emotions must be one of the following (case-insensitive): {" , ".join([c for c in [c.get_label_for_parent(input.parent_type) for c in DEFAULT_EMOTION_CARDS]]) }.
+- Return no explanation or extra text — only the JSON object as shown.
 """
                 f"""
 
-{"" if params.prev_recommendation is None else "- The child had previous recommendation: " + params.prev_recommendation.model_dump_json(exclude={"id", "timestamp"}) + ". Try to generate cards that are distinct to this previous recommendation."}
-{"" if params.interim_cards is None else "- The child had selected the following cards: " + ", ".join([card.label for card in params.interim_cards]) + ". The generated recommendation should be relevant to these selections."}
+{prev_recommendation_text}
+{interim_cards_text}
 - Provide 4 options for each category.
 """
             )
@@ -146,18 +228,35 @@ Return no explanation or extra text — only the fenced YAML block as shown.
     ) -> ChildCardRecommendationResult:
         t_start = perf_counter()
 
-        recommendation = await self.__mapper.run(
-            None,
-            input=DialogueInput(
-                dialogue=dialogue, topic=topic_info, parent_type=parent_type
-            ),
-            params=ChildCardRecommendationParams(
-                prev_recommendation=previous_recommendation,
-                interim_cards=interim_cards,
-                model="qwen3-max",
-                api_params=ChatCompletionParams(),
-            ),
-        )
+        # Attempt to generate via the LLM mapper. If the mapper fails due to malformed
+        # output after all retries, fallback to a deterministic recommendation to avoid
+        # returning 500 errors to clients.
+        FALLBACK_TOPICS = ["Pleasant Goat", "Wolf", "Adventure", "Friends"]
+        FALLBACK_ACTIONS = ["Play", "Run", "Help", "Laugh"]
+        FALLBACK_EMOTIONS = ["Happy", "Glad", "Surprised", "Delighted"]
+
+        try:
+            recommendation = await self.__mapper.run(
+                None,
+                input=DialogueInput(
+                    dialogue=dialogue, topic=topic_info, parent_type=parent_type
+                ),
+                params=ChildCardRecommendationParams(
+                    prev_recommendation=previous_recommendation,
+                    interim_cards=interim_cards,
+                    model="qwen3-max",
+                    api_params=ChatCompletionParams(),
+                ),
+            )
+        except Exception as e:
+            print(f"Card recommendation generator failed: {e}")
+            print("Falling back to deterministic recommendation.")
+            # Build a ChildCardRecommendationAPIResult fallback (validated)
+            recommendation = ChildCardRecommendationAPIResult(
+                topics=set(FALLBACK_TOPICS),
+                actions=set(FALLBACK_ACTIONS),
+                emotions=set(FALLBACK_EMOTIONS),
+            )
 
         t_trans = perf_counter()
 

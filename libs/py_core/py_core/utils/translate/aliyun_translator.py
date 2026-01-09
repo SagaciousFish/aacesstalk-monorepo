@@ -2,10 +2,19 @@ from asyncio import to_thread
 from time import perf_counter
 from typing import Any, Dict, List, Union, Iterable
 
-from chatlib.utils.integration import (
-    IntegrationService,
-    APIAuthorizationVariableSpec,
-)
+try:
+    from chatlib.utils.integration import (
+        IntegrationService,
+        APIAuthorizationVariableSpec,
+    )
+except Exception:
+    # Minimal fallbacks for test environments where chatlib is not installed
+    class APIAuthorizationVariableSpec:
+        def __init__(self, *args, **kwargs):
+            pass
+
+    class IntegrationService:
+        pass
 
 from py_core.utils.platforms.aliyun import AliyunClient
 from alibabacloud_alimt20181012.client import Client as alimt20181012Client
@@ -101,14 +110,16 @@ class AliyunTranslator(IntegrationService):
         user_locale: UserLocale,
         target_lang: str,
         source_lang: str | None = None,
+        context: str = "",
     ) -> List[str]:
+        import json
         enumerated_text = {k: v for k, v in enumerate(text)}
         translate_general_request = alimt_20181012_models.GetBatchTranslateRequest(
             api_type="translate_standard",
             source_language=source_lang if source_lang is not None else "auto",
             target_language=target_lang,
             format_type="text",
-            source_text=str(enumerated_text),
+            source_text=json.dumps(enumerated_text),
             scene="general",
         )
         runtime = util_models.RuntimeOptions()
@@ -141,6 +152,7 @@ class AliyunTranslator(IntegrationService):
             final_results = list(text)
 
             body = result.body
+            print("Aliyun batch translation response body:", body)
             if (
                 isinstance(body, alimt_20181012_models.GetBatchTranslateResponseBody)
                 and body.translated_list is not None
@@ -148,15 +160,31 @@ class AliyunTranslator(IntegrationService):
                 translate_result: List[Dict[str, Any]] = body.translated_list
 
                 for item in translate_result:
-                    if (
-                        isinstance(item, dict)
-                        and "index" in item
-                        and "translated" in item
-                        and "code" in item
-                        and item["code"] == 200
-                    ):
-                        idx = int(item["index"])
-                        final_results[idx] = item["translated"]
+                    # support both dicts and SDK model objects; accept numeric or string codes
+                    code_value = None
+                    idx = None
+                    translated_text = None
+
+                    if isinstance(item, dict):
+                        code_value = item.get("code")
+                        idx = item.get("index")
+                        translated_text = item.get("translated")
+                    else:
+                        code_value = getattr(item, "code", None)
+                        idx = getattr(item, "index", None)
+                        translated_text = getattr(item, "translated", None)
+
+                    try:
+                        if (
+                            code_value is not None
+                            and int(code_value) == 200
+                            and idx is not None
+                            and translated_text is not None
+                        ):
+                            final_results[int(idx)] = translated_text
+                    except Exception:
+                        # ignore malformed items
+                        continue
 
             return final_results
         else:
@@ -176,6 +204,9 @@ class AliyunTranslator(IntegrationService):
             if not user_locale == UserLocale.TraditionalChinese
             else "yue"
         )
+
+        print(f"Aliyun Translating from {fixed_source_lang} to {target_lang}: {text}")
+
         if isinstance(text, str):
             return await self.translate_single(
                 text,
@@ -186,8 +217,5 @@ class AliyunTranslator(IntegrationService):
             )
         else:
             return await self.translate_batch(
-                text,
-                user_locale,
-                target_lang,
-                fixed_source_lang,
+                text, user_locale, target_lang, fixed_source_lang, context
             )

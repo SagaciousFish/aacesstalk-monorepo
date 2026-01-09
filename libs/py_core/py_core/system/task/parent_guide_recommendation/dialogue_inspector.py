@@ -111,7 +111,18 @@ class DialogueInspector:
         elif dialogue[len(dialogue) - 1].role != DialogueRole.Parent:
             result = None, task_id
         else:
-            result = (await self.__mapper.run(_EXAMPLES, dialogue, ChatCompletionFewShotMapperParams(model="gpt-4o-mini", api_params={}))), task_id
+            result = (
+                (
+                    await self.__mapper.run(
+                        _EXAMPLES,
+                        dialogue,
+                        ChatCompletionFewShotMapperParams(
+                            model="qwen3-max", api_params={}
+                        ),
+                    )
+                ),
+                task_id,
+            )
             if len(result[0].categories) == 0:
                 result = None, task_id
         t_end = perf_counter()

@@ -90,11 +90,18 @@ class ParentExampleMessageGenerator:
     async def generate(self, locale: UserLocale, dialogue: Dialogue, guide: ParentGuideElement,
                        recommendation_id: str) -> ParentExampleMessage:
         t_start = perf_counter()
-        utterance = await self.__mapper.run(_EXAMPLES,
-                                            ParentExampleMessageGenerationInput(dialogue=dialogue, guide=guide),
-                                            ChatCompletionFewShotMapperParams(model=ChatGPTModel.GPT_4_0613,
-                                                                              api_params={}))
-        translated_utterance = None if locale == UserLocale.English else await self.__translator.translate_example(utterance)
+        utterance = await self.__mapper.run(
+            _EXAMPLES,
+            ParentExampleMessageGenerationInput(dialogue=dialogue, guide=guide),
+            ChatCompletionFewShotMapperParams(
+                model="qwen3-max", api_params={"user_locale": locale.value}
+            ),
+        )
+        translated_utterance = (
+            None
+            if locale == UserLocale.English
+            else await self.__translator.translate_example(utterance, locale)
+        )
         t_end = perf_counter()
         # print(f"Example generation took {t_end - t_start} sec - {utterance} ({guide.category} - {guide.guide})")
 

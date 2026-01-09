@@ -1,6 +1,7 @@
 import asyncio
 from dataclasses import dataclass
 from typing import Optional
+import openai
 
 from nanoid import generate
 
@@ -235,13 +236,42 @@ class ModeratorSession:
     async def __parent_example_generate_func(
         self, dialogue: Dialogue, guide: ParentGuideElement, recommendation_id: str
     ) -> ParentExampleMessage:
-        if len(dialogue) == 0:
-            message = self.__static_guide_factory.get_example_message(
-                await self.session_topic(), self.__dyad, guide, recommendation_id
+        # Prefer LLM-based generation (works even if dialogue is empty); fall back to static guides when LLM fails or not available
+        try:
+            try:
+                message = await self.__parent_example_generator.generate(
+                    self.__dyad.locale, dialogue, guide, recommendation_id
+                )
+            except openai.PermissionDeniedError as e:
+                print(
+                    f"Parent example generation permission denied: {e}; falling back to static example."
+                )
+                message = self.__static_guide_factory.get_example_message(
+                    await self.session_topic(), self.__dyad, guide, recommendation_id
+                )
+            except Exception as e:
+                # LLM generation failed for other reasons; try static factory as fallback
+                print(
+                    f"Parent example LLM generation failed: {e}; attempting static example."
+                )
+                message = self.__static_guide_factory.get_example_message(
+                    await self.session_topic(), self.__dyad, guide, recommendation_id
+                )
+        except Exception as e:
+            # If static factory also fails, log and return a safe fallback example message
+            print(
+                f"Both LLM and static example generation failed: {e}; returning fallback message."
             )
-        else:
-            message = await self.__parent_example_generator.generate(
-                self.__dyad.locale, dialogue, guide, recommendation_id
+            # Create a safe fallback ParentExampleMessage using the guide text itself
+            from py_core.system.model import ParentExampleMessage as PEM
+
+            message = PEM(
+                recommendation_id=recommendation_id,
+                guide_id=guide.id,
+                message=guide.guide,
+                message_localized=guide.guide
+                if self.__dyad.locale == UserLocale.English
+                else None,
             )
 
         await self.__storage.add_parent_example_message(message)
@@ -591,4 +621,3 @@ class ModeratorSession:
         ))
 
         return example_message
-
