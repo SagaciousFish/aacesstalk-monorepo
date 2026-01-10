@@ -98,7 +98,18 @@ class AliyunTranslator(IntegrationService):
                 ):
                     return result.body.data.translated
                 else:
-                    return "No translated text found"
+                    # If API returned a successful response but did not include a translated
+                    # field (this can happen when the input language is the same as the
+                    # target language, or the API returns an empty translation), fall back
+                    # to the original text so downstream systems (LLM context) receive
+                    # the actual transcript instead of a placeholder.
+                    if isinstance(text, str) and len(text) > 0:
+                        print(
+                            "Aliyun returned no translated text; using source text as fallback."
+                        )
+                        return text
+                    else:
+                        return "No translated text found"
             else:
                 return f"Failed to translate: {result.status_code} {result.body.message} {result.body.request_id}"
         else:

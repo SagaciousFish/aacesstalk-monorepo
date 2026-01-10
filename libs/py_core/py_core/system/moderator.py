@@ -361,7 +361,7 @@ class ModeratorSession:
                     user_locale=self.locale,
                 )
 
-                print("Translated parent message.")
+                print(f"Translated parent message: {message_eng}")
 
             current_guide = await self.storage.get_latest_parent_guide_recommendation(
                 turn_id=current_turn.id
