@@ -467,20 +467,14 @@ export function submitParentMessageText(message: string): CoreThunk {
 
 export function appendCard(cardInfo: CardInfo): CoreThunk {
     return makeSignedInThunk({
-        loadingFlagKey: 'isProcessingRecommendation',
         runIfSignedIn: async (dispatch, getState, headers) => {
             const state = getState()
 
             dispatch(sessionSlice.actions._appendSelectedCard(cardInfo))
 
-            const resp = await Http.axios.post(Http.getTemplateEndpoint(Http.ENDPOINT_DYAD_MESSAGE_CHILD_APPEND_CARD, { session_id: state.session.id!! }),
+            await Http.axios.post(Http.getTemplateEndpoint(Http.ENDPOINT_DYAD_MESSAGE_CHILD_APPEND_CARD, { session_id: state.session.id!! }),
                 { id: cardInfo.id, recommendation_id: cardInfo.recommendation_id },
                 { headers })
-
-            const { new_recommendation } = resp.data
-
-            dispatch(sessionSlice.actions._storeNewChildCardRecommendation(new_recommendation))
-
         },
         onError: async (ex) => {
             console.log(ex)
@@ -491,20 +485,14 @@ export function appendCard(cardInfo: CardInfo): CoreThunk {
 
 export function removeLastCard(): CoreThunk {
     return makeSignedInThunk({
-        loadingFlagKey: "isProcessingRecommendation",
         runIfSignedIn: async (dispatch, getState, headers) => {
             const state = getState()
 
             dispatch(sessionSlice.actions._popLastSelectedCard())
 
-            const resp = await Http.axios.put(Http.getTemplateEndpoint(Http.ENDPOINT_DYAD_MESSAGE_CHILD_POP_LAST_CARD, { session_id: state.session.id!! }), null, {
+            await Http.axios.put(Http.getTemplateEndpoint(Http.ENDPOINT_DYAD_MESSAGE_CHILD_POP_LAST_CARD, { session_id: state.session.id!! }), null, {
                 headers
             })
-
-            const { new_recommendation } = resp.data
-
-            dispatch(sessionSlice.actions._storeNewChildCardRecommendation(new_recommendation))
-
         }
     }, true)
 }
@@ -551,4 +539,3 @@ export function confirmSelectedCards(): CoreThunk {
 export const { setSessionInitInfo } = sessionSlice.actions
 
 export default sessionSlice.reducer
-
