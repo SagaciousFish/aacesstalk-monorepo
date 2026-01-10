@@ -139,3 +139,40 @@ async def test_refresh_avoids_repeating(monkeypatch):
 
     labels = {c.label for c in res.cards if c.category == CardCategory.Topic}
     assert labels != {"Pleasant Goat", "Wolf", "Adventure", "Friends"}
+
+
+@pytest.mark.anyio
+async def test_duplicate_words_across_categories_collapse(monkeypatch):
+    # If the same English word appears in topics and actions, the generator
+    # should emit a single card for that word rather than duplicated cards.
+    gen = ChildCardRecommendationGenerator(vector_db=None)
+
+    async def overlapping_run(*args, **kwargs):
+        return ChildCardRecommendationAPIResult(
+            topics=set(["Play", "Run", "Help", "Laugh"]),
+            actions=set(["Play", "Jump", "Sing", "Dance"]),
+            emotions=set(["Happy", "Glad", "Surprised", "Delighted"]),
+        )
+
+    gen._ChildCardRecommendationGenerator__mapper.run = overlapping_run
+
+    topic_info = SessionTopicInfo(category=SessionTopicCategory.Free, subtopic="x")
+    dialogue = [DialogueMessage.example_parent_message("No translated text found")]
+
+    res = await gen.generate(
+        "turn1",
+        UserLocale.English,
+        ParentType.Father,
+        topic_info,
+        dialogue,
+    )
+
+    # Count topic/action cards
+    ta_cards = [c for c in res.cards if c.category in (CardCategory.Topic, CardCategory.Action)]
+    labels = [c.label for c in ta_cards]
+
+    # 'Play' should appear exactly once
+    assert labels.count("Play") == 1
+
+    # Total unique labels should equal length of ta_cards (no accidental merging of different words)
+    assert len(set(labels)) == len(labels)

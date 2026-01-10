@@ -184,6 +184,7 @@ The actions should contain 4 distinct verbs or action words that the child can p
 The emotions should contain 4 distinct emotion words from the allowed list.
 
 - **Important:** Ensure the arrays contain 4 unique items. Emotions must be one of the following (case-insensitive): {" , ".join([c for c in [c.get_label_for_parent(input.parent_type) for c in DEFAULT_EMOTION_CARDS]]) }.
+- **Additionally:** The 8 keywords across `topics` and `actions` must be distinct; do NOT repeat the exact same English keyword in both categories. If a word could plausibly fit both categories, choose the most relevant category and supply another distinct option for the other category.
 - Return no explanation or extra text — only the JSON object as shown.
 """
                 f"""
@@ -372,45 +373,89 @@ The emotions should contain 4 distinct emotion words from the allowed list.
 
         rec_id = id_generator()
 
-        keyword_category_list = [
-            (word, CardCategory.Topic) for word in recommendation.topics
-        ] + [(word, CardCategory.Action) for word in recommendation.actions]
+        # Build an ordered, deduplicated list of keyword/category pairs.
+        seen: set[str] = set()
+        ordered_keyword_category_list: list[tuple[str, CardCategory]] = []
+        for word in recommendation.topics:
+            key = word.lower().strip()
+            if key not in seen:
+                seen.add(key)
+                ordered_keyword_category_list.append((word, CardCategory.Topic))
+        for word in recommendation.actions:
+            key = word.lower().strip()
+            if key not in seen:
+                seen.add(key)
+                ordered_keyword_category_list.append((word, CardCategory.Action))
+
+        # Build a mapping from normalized word -> localized label. We align
+        # with the original recommendation ordering used by the translator:
+        # topics followed by actions.
+        localized_map: dict[str, str] = {}
+        if locale == UserLocale.English:
+            for word, _ in ordered_keyword_category_list:
+                localized_map[word.lower().strip()] = word
+        else:
+            if translated_keywords is None:
+                # Fallback: use original word for localization
+                for word, _ in ordered_keyword_category_list:
+                    localized_map[word.lower().strip()] = word
+            else:
+                orig_list = list(recommendation.topics) + list(recommendation.actions)
+                for i, word in enumerate(orig_list):
+                    key = word.lower().strip()
+                    # Use first translation encountered for duplicates to ensure
+                    # identical words share the same localized label
+                    if key not in localized_map and i < len(translated_keywords):
+                        localized_map[key] = translated_keywords[i] or word
+
+                # Ensure every keyword has a fallback
+                for word, _ in ordered_keyword_category_list:
+                    key = word.lower().strip()
+                    if key not in localized_map:
+                        localized_map[key] = word
 
         selected_emotion_cards: list[DefaultCardInfo] = []
         for emotion in recommendation.emotions:
             matched = [
                 c
                 for c in DEFAULT_EMOTION_CARDS
-                if c.label.lower().strip() == emotion.lower().strip()
+                if c.get_label_for_parent(parent_type).lower().strip() == emotion.lower().strip()
             ]
             if len(matched) > 0:
                 selected_emotion_cards.append(matched[0])
             else:
                 print(f"Emotion not matched - {emotion}")
 
+        # Create CardInfo objects for the ordered, deduplicated keywords. If
+        # the same English word appears in topic and action, it will become a
+        # single CardInfo (same label and localized label).
+        cards = [
+            CardInfo(
+                label=word,
+                label_localized=localized_map[word.lower().strip()]
+                if locale != UserLocale.English
+                else word,
+                category=category,
+                recommendation_id=rec_id,
+            )
+            for (word, category) in ordered_keyword_category_list
+        ]
+
+        # Append emotion and core cards as before
+        cards += [
+            CardInfo(
+                label=c.get_label_for_parent(parent_type),
+                label_localized=c.get_label_localized_for_parent(
+                    locale, parent_type
+                ),
+                recommendation_id=rec_id,
+                category=c.category,
+            )
+            for c in (selected_emotion_cards + DEFAULT_CORE_CARDS)
+        ]
+
         return ChildCardRecommendationResult(
             id=rec_id,
             turn_id=turn_id,
-            cards=[
-                CardInfo(
-                    label=word,
-                    label_localized=translated_keywords[i]
-                    if locale != UserLocale.English
-                    else word,
-                    category=category,
-                    recommendation_id=rec_id,
-                )
-                for i, (word, category) in enumerate(keyword_category_list)
-            ]
-            + [
-                CardInfo(
-                    label=c.get_label_for_parent(parent_type),
-                    label_localized=c.get_label_localized_for_parent(
-                        locale, parent_type
-                    ),
-                    recommendation_id=rec_id,
-                    category=c.category,
-                )
-                for c in (selected_emotion_cards + DEFAULT_CORE_CARDS)
-            ],
+            cards=cards,
         )
