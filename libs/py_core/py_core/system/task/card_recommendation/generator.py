@@ -115,6 +115,9 @@ class ChildCardRecommendationParams(ChatCompletionFewShotMapperParams):
 
     prev_recommendation: ChildCardRecommendationResult | None = None
     interim_cards: list[CardInfo] | None = None
+    # Optional set of words the LLM should avoid repeating in its output. Used
+    # when a previous recommendation must not be repeated on a refresh.
+    avoid_words: set[str] | None = None
 
 
 _convert_input_to_str = DialogueInputToStrConversionFunction(include_topic=True)
@@ -148,6 +151,13 @@ class ChildCardRecommendationGenerator:
                         "- The child had selected the following cards: "
                         + ", ".join([card.label for card in params.interim_cards])
                         + ". The generated recommendation should be relevant, yet still distinct, to these selections."
+                    )
+                # If explicit avoid words are presented (e.g., set of previous words),
+                # instruct the model to not use them in the new recommendation.
+                if getattr(params, "avoid_words", None):
+                    avoid_list = ", ".join(sorted(params.avoid_words))
+                    interim_cards_text += (
+                        f"\n- Additionally, DO NOT use these exact words in any category: {avoid_list}."
                     )
 
             prompt = (
@@ -248,6 +258,93 @@ The emotions should contain 4 distinct emotion words from the allowed list.
                     api_params=ChatCompletionParams(),
                 ),
             )
+
+            # If the generator returned the same recommendation as the previous one
+            # (which can happen when a user hits refresh twice quickly), retry a
+            # couple of times while explicitly asking the model to avoid the exact
+            # previous words. This reduces the chance of returning identical
+            # recommendations on consecutive refreshes.
+            def _prev_words_from_prev_rec(prev_rec: ChildCardRecommendationResult) -> set[str]:
+                words = set()
+                for c in prev_rec.cards:
+                    # use the internal label (English keyword) where possible
+                    if c.category == CardCategory.Topic or c.category == CardCategory.Action:
+                        words.add(c.label.lower().strip())
+                    elif c.category == CardCategory.Emotion:
+                        words.add(c.label.lower().strip())
+                return words
+
+            if previous_recommendation is not None:
+                prev_topics = {
+                    c.label.lower().strip()
+                    for c in previous_recommendation.cards
+                    if c.category == CardCategory.Topic
+                }
+                prev_actions = {
+                    c.label.lower().strip()
+                    for c in previous_recommendation.cards
+                    if c.category == CardCategory.Action
+                }
+                prev_emotions = {
+                    c.label.lower().strip()
+                    for c in previous_recommendation.cards
+                    if c.category == CardCategory.Emotion
+                }
+
+                prev_words = prev_topics | prev_actions | prev_emotions
+
+                def _same_as_prev(rec: ChildCardRecommendationAPIResult) -> bool:
+                    return (
+                        {w.lower().strip() for w in rec.topics} == prev_topics
+                        and {w.lower().strip() for w in rec.actions} == prev_actions
+                        and (
+                            len(prev_emotions) == 0
+                            or {w.lower().strip() for w in rec.emotions} == prev_emotions
+                        )
+                    )
+
+                # Simple heuristic: if identical sets, try a couple more times using avoid_words
+                tries = 0
+                MAX_TRIES = 2
+                while _same_as_prev(recommendation) and tries < MAX_TRIES:
+                    tries += 1
+                    try:
+                        recommendation = await self.__mapper.run(
+                            None,
+                            input=DialogueInput(
+                                dialogue=dialogue, topic=topic_info, parent_type=parent_type
+                            ),
+                            params=ChildCardRecommendationParams(
+                                prev_recommendation=previous_recommendation,
+                                interim_cards=interim_cards,
+                                avoid_words=prev_words,
+                                model="qwen3-max",
+                                api_params=ChatCompletionParams(),
+                            ),
+                        )
+                    except Exception as e:
+                        print(f"Retry {tries} for distinct recommendation failed: {e}")
+                        break
+
+                # If still the same after retries, fall back to a deterministic, shifted list
+                if _same_as_prev(recommendation):
+                    print("New recommendation was identical to previous after retries; using deterministic fallback shift.")
+                    # Shift the fallback lists to produce different items deterministically
+                    import time
+
+                    shift = int(time.time()) % len(FALLBACK_TOPICS)
+                    shifted_topics = [
+                        FALLBACK_TOPICS[(i + shift) % len(FALLBACK_TOPICS)] for i in range(4)
+                    ]
+                    shifted_actions = [
+                        FALLBACK_ACTIONS[(i + shift) % len(FALLBACK_ACTIONS)] for i in range(4)
+                    ]
+                    recommendation = ChildCardRecommendationAPIResult(
+                        topics=set(shifted_topics),
+                        actions=set(shifted_actions),
+                        emotions=set(FALLBACK_EMOTIONS),
+                    )
+
         except Exception as e:
             print(f"Card recommendation generator failed: {e}")
             print("Falling back to deterministic recommendation.")

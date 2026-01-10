@@ -74,3 +74,68 @@ async def test_generate_fallback_on_exception(monkeypatch):
     assert "Pleasant Goat" in labels
     assert "Play" in labels
     assert any(l in labels for l in ["Happy", "Glad", "Surprised", "Delighted"])
+
+
+@pytest.mark.anyio
+async def test_refresh_avoids_repeating(monkeypatch):
+    # Ensure that when the mapper repeatedly returns the same recommendation as
+    # the previous one, generate() will avoid returning identical consecutive
+    # recommendations (by retrying and ultimately falling back to a shifted
+    # deterministic set).
+    gen = ChildCardRecommendationGenerator(vector_db=None)
+
+    async def constant_run(*args, **kwargs):
+        return ChildCardRecommendationAPIResult(
+            topics=set(["Pleasant Goat", "Wolf", "Adventure", "Friends"]),
+            actions=set(["Play", "Run", "Help", "Laugh"]),
+            emotions=set(["Happy", "Glad", "Surprised", "Delighted"]),
+        )
+
+    # Patch the mapper to always return the same recommendation (simulate repeated identical LLM output)
+    gen._ChildCardRecommendationGenerator__mapper.run = constant_run
+
+    # Build a previous recommendation that matches the constant mapper output
+    from py_core.system.model import CardInfo, CardCategory, ChildCardRecommendationResult
+
+    rec_id = "prev1"
+    prev_cards = []
+    for t in ["Pleasant Goat", "Wolf", "Adventure", "Friends"]:
+        prev_cards.append(
+            CardInfo(
+                label=t,
+                label_localized=t,
+                category=CardCategory.Topic,
+                recommendation_id=rec_id,
+            )
+        )
+    for a in ["Play", "Run", "Help", "Laugh"]:
+        prev_cards.append(
+            CardInfo(
+                label=a,
+                label_localized=a,
+                category=CardCategory.Action,
+                recommendation_id=rec_id,
+            )
+        )
+
+    prev = ChildCardRecommendationResult(id=rec_id, turn_id="turn", cards=prev_cards)
+
+    # Force a non-zero shift by monkeypatching time.time
+    import py_core.system.task.card_recommendation.generator as genmod
+
+    monkeypatch.setattr(genmod.time, "time", lambda: 1)
+
+    topic_info = SessionTopicInfo(category=SessionTopicCategory.Free, subtopic="x")
+    dialogue = [DialogueMessage.example_parent_message("No translated text found")]
+
+    res = await gen.generate(
+        "turn1",
+        UserLocale.English,
+        ParentType.Father,
+        topic_info,
+        dialogue,
+        previous_recommendation=prev,
+    )
+
+    labels = {c.label for c in res.cards if c.category == CardCategory.Topic}
+    assert labels != {"Pleasant Goat", "Wolf", "Adventure", "Friends"}
