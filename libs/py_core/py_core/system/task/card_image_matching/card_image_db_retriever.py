@@ -199,7 +199,10 @@ class CardImageDBRetriever:
 
         for id in name_match_results["ids"]:
             card_image_info = self.__card_info_dict[id]
-            name_result_dict[card_image_info.name_en] = [card_image_info]
+            if name_result_dict.get(card_image_info.name_en) is None:
+                name_result_dict[card_image_info.name_en] = [card_image_info]
+            else:
+                name_result_dict[card_image_info.name_en].append(card_image_info)
 
         no_name_matched_card_names = [
             name
@@ -219,8 +222,8 @@ class CardImageDBRetriever:
                 f"{len(no_name_matched_card_names)} cards will be matched through vector search..."
             )
 
-            name_query = asyncio.to_thread(self.__collection_name.query, query_texts = no_name_matched_card_names, n_results = 1)
-            desc_query = asyncio.to_thread(self.__collection_desc.query, query_texts = no_name_matched_card_names, n_results = 1)
+            name_query = asyncio.to_thread(self.__collection_name.query, query_texts = no_name_matched_card_names, n_results = 5)
+            desc_query = asyncio.to_thread(self.__collection_desc.query, query_texts = no_name_matched_card_names, n_results = 5)
 
             name_query_results, desc_query_results = await asyncio.gather(name_query, desc_query)
 
@@ -239,33 +242,27 @@ class CardImageDBRetriever:
 
 
             for i, name in enumerate(no_name_matched_card_names):
-                chosen = None
+                candidates = []
 
-                # Safely check name query result
-                if i < len(name_query_results) and len(name_query_results[i]) > 0:
-                    try:
-                        distance = name_query_results[i][0][1]
-                    except Exception:
-                        distance = None
+                # Add name query results with distance < 0.5
+                if i < len(name_query_results):
+                    for cand, distance in name_query_results[i]:
+                        if distance < 0.5:
+                            candidates.append(cand)
 
-                    if distance is not None and distance < 0.5:
-                        chosen = name_query_results[i][0][0]
-                        print(f"Name win - {name} => {chosen.id}")
+                # Add description query results
+                if i < len(desc_query_results):
+                    for cand, distance in desc_query_results[i]:
+                        if cand not in candidates:
+                            candidates.append(cand)
 
-                # Fallback to description query if name query didn't yield a confident result
-                if chosen is None:
-                    if i < len(desc_query_results) and len(desc_query_results[i]) > 0:
-                        chosen = desc_query_results[i][0][0]
-                        print(f"Description win - {name} => {chosen.id}")
-
-                if chosen is None:
-                    # Neither query returned results; log and leave empty
+                if len(candidates) == 0:
                     print(
                         f"Warning: No image match found for '{name}' via name or description queries."
                     )
                     name_result_dict[name] = []
                 else:
-                    name_result_dict[name] = [chosen]
+                    name_result_dict[name] = candidates
 
             # Ensure result contains a list for every original name
             result: list[list[CardImageInfo]] = [

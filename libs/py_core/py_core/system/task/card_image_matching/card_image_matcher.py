@@ -44,13 +44,17 @@ class CardImageMatcher:
 
     async def match_card_images(self, card_info_list: list[CardInfo], parent_type: ParentType, child_gender: ChildGender, locale: UserLocale) -> list[CardImageMatching]:
 
-        result = [None] * len(card_info_list)
+        result: list[CardImageMatching | None] = [None] * len(card_info_list)
+        seen_images = set() # Set of (type, image_id)
 
         # Look up user defined cards first
         for i, card_info in enumerate(card_info_list):
             custom_card_query_result = await self.__user_storage.query_user_defined_card(card_info.category, card_info.label_localized)
             if custom_card_query_result is not None:
-                result[i] = CardImageMatching(card_info_id=card_info.id, type=CardType.custom, image_id=custom_card_query_result.id)
+                image_key = (CardType.custom, custom_card_query_result.id)
+                if image_key not in seen_images:
+                    result[i] = CardImageMatching(card_info_id=card_info.id, type=CardType.custom, image_id=custom_card_query_result.id)
+                    seen_images.add(image_key)
 
         # Look up default cards
         for i, card_info in enumerate(card_info_list):
@@ -58,37 +62,43 @@ class CardImageMatcher:
                 default_card = find_default_card(
                     card_info.label_localized, card_info.category, parent_type, locale
                 )
-                print(
-                    f"Default card for {card_info.category}, {card_info.label_localized}: {default_card}"
-                )
                 if default_card is not None:
                     image_filename = default_card.get_image_path_for_dyad(
                         parent_type=parent_type, child_gender=child_gender
                     )
                     if image_filename is not None:
-                        result[i] = CardImageMatching(
-                            card_info_id=card_info.id,
-                            type=CardType.static,
-                            image_id=default_card.id,
-                        )
+                        image_key = (CardType.static, default_card.id)
+                        if image_key not in seen_images:
+                            result[i] = CardImageMatching(
+                                card_info_id=card_info.id,
+                                type=CardType.static,
+                                image_id=default_card.id,
+                            )
+                            seen_images.add(image_key)
 
         # Lookup vector db
 
         idx_to_retrive = [i for i, c in enumerate(card_info_list) if result[i] is None]
 
-        db_card_image_infos: list[
-            list[CardImageInfo]
-        ] = await self.__db_retriever.query_nearest_card_image_infos([
-            c for i, c in enumerate(card_info_list) if result[i] is None
-        ])
-        for i, cards in enumerate(db_card_image_infos):
-            result[idx_to_retrive[i]] = CardImageMatching(
-                card_info_id=card_info_list[idx_to_retrive[i]].id,
-                type=CardType.stock,
-                image_id=cards[0].id,
-            )
+        if len(idx_to_retrive) > 0:
+            db_card_image_infos: list[
+                list[CardImageInfo]
+            ] = await self.__db_retriever.query_nearest_card_image_infos([
+                card_info_list[i] for i in idx_to_retrive
+            ])
+            for i, candidates in enumerate(db_card_image_infos):
+                for cand in candidates:
+                    image_key = (CardType.stock, cand.id)
+                    if image_key not in seen_images:
+                        result[idx_to_retrive[i]] = CardImageMatching(
+                            card_info_id=card_info_list[idx_to_retrive[i]].id,
+                            type=CardType.stock,
+                            image_id=cand.id,
+                        )
+                        seen_images.add(image_key)
+                        break
 
-        return result
+        return [m for m in result if m is not None]
 
     @validate_call
     async def get_card_image_filepath(self, type: CardType, image_id: str, parent_type: ParentType, child_gender: ChildGender)->str:
