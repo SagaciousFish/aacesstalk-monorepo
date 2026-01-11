@@ -9,7 +9,8 @@ import { useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { Platform, Pressable, StyleSheet, Text, View } from "react-native"
 import Animated, { Easing, FlipInYLeft, FlipOutEasyY, interpolate, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated"
-import { FasterImageView, ImageOptions } from '@candlefinance/faster-image';
+import MeasuredImage from 'apps/client-rn/src/components/MeasuredImage';
+import type { ImageOptions } from '@candlefinance/faster-image';
 
 
 const styles = StyleSheet.create({
@@ -137,7 +138,7 @@ export const ChildCardView = React.memo((props: {
         }
 
         // Fallback: fetch signed headers and construct the image source
-        const headers = await Http.getSignedInHeaders(token)
+        const headers = { ...(await Http.getSignedInHeaders(token)), Accept: 'image/webp,image/*,*/*' }
 
         setImageSource({
             headers,
@@ -163,7 +164,7 @@ export const ChildCardView = React.memo((props: {
 
     return <Pressable accessible={false} disabled={props.disabled} onPressIn={onPressIn} onPressOut={onPressOut} onPress={onPress}><Animated.View
         style={cardFrameAnimStyle} className={`rounded-xl border-2 border-slate-200 pt-2 pb-2 bg-white w-[11vw] h-[11vw] m-1.5 ${props.cardClassName}`}>
-        <FasterImageView style={styles.imageView} source={imageSource} />
+        <MeasuredImage style={styles.imageView} source={imageSource} />
 
         <Text includeFontPadding={true} allowFontScaling={true} numberOfLines={2} className="self-center mt-2 text-black/80 text-center" style={[styleTemplates.withBoldFont, { lineHeight: 18, paddingVertical: 1 }]}>{props.label}</Text>
     </Animated.View></Pressable>

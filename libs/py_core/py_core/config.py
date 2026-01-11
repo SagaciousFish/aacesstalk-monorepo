@@ -11,6 +11,9 @@ class AACessTalkConfig:
         dataset_dir_path, "parent_example_translation_dictionary.csv"
     )
     card_image_directory_path: str = path.join(dataset_dir_path, "cards")
+    # Dedicated folder for pre-generated WebP variants. Keep WebP images here to be less intrusive
+    # and avoid changing the original file layout.
+    card_image_webp_directory_path: str = path.join(dataset_dir_path, "cards_webp")
     card_image_table_path: str = path.join(dataset_dir_path, "cards_image_info.csv")
     default_core_card_table_path: str = path.join(
         dataset_dir_path, "default_core_cards.yml"

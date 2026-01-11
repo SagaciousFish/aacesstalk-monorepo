@@ -70,7 +70,7 @@ const FreeTopicDetailCard = (props: {id: string, style?: any}) => {
     const [imageSource, setImageSource] = useState<ImageOptions>(undefined)
 
     const applyCardImage = useCallback(async () => {
-        const headers = await Http.getSignedInHeaders(token)
+        const headers = { ...(await Http.getSignedInHeaders(token)), Accept: 'image/webp,image/*,*/*' }
 
         setImageSource({
             headers,

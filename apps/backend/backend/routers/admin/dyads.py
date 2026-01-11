@@ -12,6 +12,7 @@ from py_database.model import DyadORM, UserDefinedCardInfoORM, DialogueTurnORM, 
 from backend.crud.dyad.account import create_dyad
 from backend.crud.dyad.session import DialogueSession, ExtendedSessionInfo, get_dialogue, get_session_summaries
 from backend.crud.media import get_free_topic_image, process_uploaded_image
+from fastapi import Request, Response
 from backend.database import with_db_session
 from backend.database.models import DyadLoginCode
 from backend.routers.admin.common import check_admin_credential
@@ -299,15 +300,42 @@ async def _get_custom_card_image(
     dyad_id: str,
     card_id: str,
     user_storage: Annotated[UserStorage, Depends(get_user_storage_with_id)],
+    request: Request,
 ):
     info = await user_storage.get_user_defined_card(card_id)
-    if info.image_filename is not None:
-        image_path = path.join(
-            AACessTalkConfig.get_user_defined_card_dir_path(dyad_id, True),
-            info.image_filename,
-        )
-        if path.exists(image_path):
-            return FileResponse(image_path, media_type="image/png")
+    if info.image_filename is None:
+        raise HTTPException(status_code=404)
+
+    dir_path = AACessTalkConfig.get_user_defined_card_dir_path(dyad_id, True)
+    png_path = path.join(dir_path, info.image_filename)
+    webp_path = png_path.rsplit(".", 1)[0] + ".webp"
+
+    # Prefer WebP when client supports it and we generated a WebP variant
+    accept_header = request.headers.get("accept", "")
+    if "image/webp" in accept_header and path.exists(webp_path):
+        chosen_path = webp_path
+        media_type = "image/webp"
+    elif path.exists(png_path):
+        chosen_path = png_path
+        media_type = "image/png"
+    else:
+        raise HTTPException(status_code=404)
+
+    # ETag based on mtime and size; avoid hashing large files for speed
+    mtime = int(path.getmtime(chosen_path))
+    size = path.getsize(chosen_path)
+    etag = f'W/"{mtime}-{size}"'
+
+    headers = {
+        "Cache-Control": "public, max-age=604800, immutable",
+        "ETag": etag,
+    }
+
+    if_none_match = request.headers.get("if-none-match")
+    if if_none_match == etag:
+        return Response(status_code=status.HTTP_304_NOT_MODIFIED, headers=headers)
+
+    return FileResponse(chosen_path, media_type=media_type, headers=headers)
 
 
 @router.delete("/{dyad_id}/custom_cards/{card_id}")

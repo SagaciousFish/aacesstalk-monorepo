@@ -1,6 +1,7 @@
 id,category,english,localized,inspected
 KO461OHgbH,action,ate,吃饭,False
 iICIHqmwSB,action,bake,烘烤,False
+Qq5NtafJn8,action,brush,刷牙,False
 ueMhL88kmc,action,build,建造,False
 vG6yhrNNMa,action,built,建造,False
 -mThUw0dmN,action,celebrate,庆祝,False
@@ -76,6 +77,7 @@ e-yH8sEidu,action,share,分享,False
 lQNq_UpMRV,action,shared,分享,False
 EvrWrRKWd1,action,sing,唱歌,False
 1WOid6wdVt,action,sit,坐,False
+2HYpkonkPq,action,sleep,睡觉,False
 k2sjGAxz5e,action,slept,睡觉了,False
 cmyVKl_N_h,action,solve,解决,False
 tLOCu9gSZ-,action,solved,解决,False
@@ -97,6 +99,7 @@ ZuDKCsbPPe,action,walk,走路,False
 F7Nttycc1O,action,walked,行走,False
 uOnZx3--Fu,action,want,想要,False
 1XloGiwOOk,action,want to,想要,False
+1ZvUXOMPpY,action,wash,洗,False
 htQ5jO6urX,action,watch,观看,False
 C5VZ9GpReG,action,write,书写,False
 kS7GLF9fkS,action,wrote,书写,False
