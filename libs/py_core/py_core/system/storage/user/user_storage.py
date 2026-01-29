@@ -1,3 +1,4 @@
+import asyncio
 from abc import ABC, abstractmethod
 from os import path, makedirs
 from py_core.system.model import FreeTopicDetail, id_generator, UserDefinedCardInfo, CardCategory
@@ -5,10 +6,9 @@ from py_core.config import AACessTalkConfig
 
 
 class UserStorage(ABC):
-
-        
     def __init__(self, user_id: str | None = None):
         self.__user_id = user_id or id_generator()
+        self._lock = asyncio.Lock()
 
     @property
     def user_id(self) -> str:
@@ -26,7 +26,6 @@ class UserStorage(ABC):
     async def query_user_defined_card(self, category: CardCategory, label_localized: str)->UserDefinedCardInfo | None:
         pass
 
-
     @abstractmethod
     async def get_user_defined_card(self, id: str) -> UserDefinedCardInfo | None:
         pass
@@ -40,7 +39,7 @@ class UserStorage(ABC):
         pass
 
     @abstractmethod
-    async def get_free_topic_details(self)-> list[FreeTopicDetail]:
+    async def get_free_topic_details(self) -> list[FreeTopicDetail]:
         pass
 
     @abstractmethod
@@ -50,5 +49,3 @@ class UserStorage(ABC):
     @abstractmethod
     async def remove_free_topic_detail(self, id: str):
         pass
-
-    
