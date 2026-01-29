@@ -2,6 +2,9 @@ from os import path, getcwd, makedirs, getenv
 
 
 class AACessTalkConfig:
+    embedding_model = "text-embedding-v4"
+    embedding_dimensions = 1024
+
     dataset_dir_path: str = path.join(getcwd(), "../../data")
 
     card_translation_dictionary_path: str = path.join(
@@ -41,9 +44,6 @@ class AACessTalkConfig:
     voiceover_cache_dir_path: str = path.join(cache_dir_path, "voiceover")
 
     public_base_url: str | None = getenv("PUBLIC_BASE_URL")
-
-    embedding_model = "text-embedding-v4"
-    embedding_dimensions = 1024
 
     @classmethod
     def get_user_defined_card_dir_path(
