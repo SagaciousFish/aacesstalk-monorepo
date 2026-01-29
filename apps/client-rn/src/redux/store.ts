@@ -2,6 +2,8 @@ import { createStore, CoreAction } from "@aacesstalk/libs/ts-core"
 import { MMKV } from "react-native-mmkv";
 import parentAudioRecordingReducer from "../features/audio/reducer";
 import systemStatusReducer from '../features/system-status/reducer';
+import cardCacheReducer from './slices/cardCacheSlice';
+import recommendationReducer from './slices/recommendationSlice';
 import { Action, ThunkAction } from "@reduxjs/toolkit";
 import { Storage } from "redux-persist";
 
@@ -24,7 +26,9 @@ export const reduxStorage: Storage = {
 
 const { store, persistor } = createStore(reduxStorage, {
     parentAudioRecording: parentAudioRecordingReducer,
-    systemStatus: systemStatusReducer
+    systemStatus: systemStatusReducer,
+    cardCache: cardCacheReducer,
+    recommendation: recommendationReducer
 })
 
 export { store, persistor }

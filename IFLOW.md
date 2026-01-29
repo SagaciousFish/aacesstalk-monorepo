@@ -7,8 +7,9 @@ AACessTalk 是一个获得 **ACM CHI 2025 最佳论文奖**的研究项目，旨
 **核心功能：**
 - 为自闭症儿童提供沟通卡片推荐
 - 为父母提供上下文引导建议
-- 支持语音识别和语音合成（包括本地 FunASR 识别）
+- 支持语音识别和语音合成（包括本地 FunASR 识别和 CosyVoice 语音合成）
 - 多语言翻译支持（英语、韩语、简体中文、繁体中文、粤语）
+- 集成 PostHog 进行用户行为分析
 
 ## 技术栈
 
@@ -17,7 +18,7 @@ AACessTalk 是一个获得 **ACM CHI 2025 最佳论文奖**的研究项目，旨
 - **移动客户端：** React Native (TypeScript)
 - **后端服务：** FastAPI (Python)
 - **AI 能力：** OpenAI API
-- **语音服务：** CLOVA Voice API (NAVER)
+- **语音服务：** CLOVA Voice API (NAVER)、CosyVoice 本地语音合成、Dashscope 音频服务
 - **语音识别：** FunASR Nano (本地)、CLOVA Speech Recognition API、OpenAI Whisper、阿里云语音识别
 - **翻译服务：** DeepL API、阿里云翻译
 
@@ -27,6 +28,7 @@ AACessTalk 是一个获得 **ACM CHI 2025 最佳论文奖**的研究项目，旨
 - NX CLI (全局安装)
 - UV (Python 包管理工具)
 - Hatchling (Python 构建工具)
+- CUDA 13.0 (可选，用于 GPU 加速 FunASR 和 CosyVoice)
 
 ## 项目结构
 
@@ -35,6 +37,18 @@ aacesstalk-monorepo/
 ├── apps/
 │   ├── backend/              # FastAPI 后端服务
 │   ├── client-rn/           # React Native 移动客户端
+│   │   └── src/
+│   │       ├── services/    # 服务层（包含缓存、推荐、优化等）
+│   │       │   ├── card-cache.ts          # 卡片缓存管理器
+│   │       │   ├── card-recommender.ts    # 智能卡片推荐器
+│   │       │   ├── image-optimizer.ts     # 图片优化器
+│   │       │   └── voice-cache.ts         # 语音合成缓存
+│   │       ├── redux/
+│   │       │   └── slices/               # Redux slices
+│   │       │       ├── cardCacheSlice.ts  # 卡片缓存状态
+│   │       │       └── recommendationSlice.ts # 推荐状态
+│   │       └── hooks/        # 自定义 Hooks
+│   │           └── useCardPreload.ts      # 卡片预加载 Hook
 │   ├── client-rn-e2e/       # React Native 端到端测试
 │   ├── admin-web/           # 管理后台 Web 应用 (Vite + React)
 │   ├── admin-web-e2e/       # 管理后台端到端测试
@@ -42,8 +56,24 @@ aacesstalk-monorepo/
 │   └── enduser-web-e2e/     # 终端用户端到端测试
 ├── libs/
 │   ├── py_core/             # Python 核心库 (AI处理、翻译、语音识别等)
+│   │   └── py_core/
+│   │       ├── processing_tools/  # 处理工具
+│   │       ├── system/            # 系统工具
+│   │       └── utils/
+│   │           ├── speech/        # 语音服务
+│   │           │   └── extern/    # 外部语音模型
+│   │           │       ├── CosyVoice/  # CosyVoice 本地语音合成
+│   │           │       └── pretrained_models/
+│   │           ├── translate/     # 翻译服务
+│   │           └── platforms/     # 平台工具
 │   ├── py_database/         # Python 数据库库
 │   └── ts-core/             # TypeScript 核心库
+├── convex/                  # Convex 后端（新架构）
+│   ├── schema.ts            # 数据模型定义
+│   ├── auth.ts              # 认证系统
+│   ├── sessions.ts          # 会话管理
+│   ├── http.ts              # HTTP API 端点
+│   └── README.md            # Convex 使用说明
 ├── data/                    # 数据文件 (卡片、语音样本等)
 ├── backend_data/            # 后端数据存储 (SQLite数据库)
 └── logs/                    # 日志文件
@@ -178,6 +208,8 @@ nx run py_core:gen_card_desc               # 生成图片描述
 6. **阿里云语音识别 API** (可选) - 语音识别
    - Access Key ID
    - Access Key Secret
+7. **Dashscope Audio API** (可选) - 音频生成服务
+   - API Key
 
 ### 环境变量配置
 
@@ -191,8 +223,11 @@ nx run py_core:gen_card_desc               # 生成图片描述
 - `CLOVA_VOICE_SECRET` - CLOVA Voice API 密钥
 - `CLOVA_SPEECH_INVOKE_URL` - CLOVA Speech 调用 URL
 - `CLOVA_SPEECH_SECRET` - CLOVA Speech 密钥
+- `POSTHOG_API_KEY` - PostHog 分析服务 API 密钥
+- `POSTHOG_HOST` - PostHog 服务主机地址
+- `DASHSCOPE_API_KEY` - Dashscope 音频服务 API 密钥
 
-**注意：** FunASR Nano 为本地语音识别模型，无需 API 密钥。
+**注意：** FunASR Nano 和 CosyVoice 为本地模型，无需 API 密钥。
 
 ## 开发约定
 
@@ -235,16 +270,32 @@ nx run py_core:gen_card_desc               # 生成图片描述
 - **GPU/CPU 支持：** 自动选择可用设备
 - **集成架构：** 作为 `IntegrationService` 的一部分统一管理
 
+### CosyVoice 本地语音合成
+- **本地推理：** 使用 CosyVoice 模型进行高质量语音合成
+- **多语言支持：** 支持中英文语音合成
+- **模型位置：** `libs/py_core/py_core/utils/speech/extern/CosyVoice`
+- **无需 API：** 完全本地运行，无需外部 API 密钥
+
+### PostHog 用户行为分析
+- **集成方式：** 通过 PostHog SDK 进行用户行为追踪
+- **版本要求：** posthog < 6.0.0
+- **用途：** 分析用户交互数据，优化产品体验
+
 ### 集成服务统一架构
 - **服务基类：** `IntegrationService` 提供标准化接口
-- **子类实现：** `AACCorpusDownloader`, `DeepLTranslator`, `AliyunTranslator`, `WhisperSpeechRecognizer`, `ClovaVoice`, `ClovaSpeech`, `AliyunSpeechRecognizer`
+- **子类实现：** `AACCorpusDownloader`, `DeepLTranslator`, `AliyunTranslator`, `WhisperSpeechRecognizer`, `ClovaVoice`, `ClovaSpeech`, `AliyunSpeechRecognizer`, `CosyVoice`, `DashscopeAudio`
 - **认证管理：** `APIAuthorizationVariableSpec` 统一管理 API 凭证
 
-### 多供应商语音识别栈
-- **FunASR Nano：** 本地识别，无网络依赖
-- **CLOVA Speech：** 韩语语音识别
-- **OpenAI Whisper：** 通用语音识别
-- **阿里云语音识别：** 中文语音识别
+### 多供应商语音识别与合成栈
+- **语音识别：**
+  - FunASR Nano：本地识别，无网络依赖
+  - CLOVA Speech：韩语语音识别
+  - OpenAI Whisper：通用语音识别
+  - 阿里云语音识别：中文语音识别
+- **语音合成：**
+  - CosyVoice：本地高质量语音合成（中英文）
+  - CLOVA Voice：儿童卡片语音合成
+  - Dashscope Audio：云端音频生成服务
 
 ### 多语言翻译支持
 - **支持语言：** 英语、韩语、简体中文、繁体中文、粤语
@@ -262,6 +313,8 @@ nx run py_core:gen_card_desc               # 生成图片描述
 6. **Ruff 代码检查：** 代码检查使用 Ruff 而非 Flake8，配置文件为 `apps/backend/.flake8`
 7. **环境变量配置：** 确保正确配置所有环境变量，特别是多供应商 API 凭证
 8. **FunASR 模型下载：** 首次运行会自动下载 FunASR Nano 模型，确保网络连接
+9. **CosyVoice 模型：** CosyVoice 模型位于 `libs/py_core/py_core/utils/speech/extern/CosyVoice`，首次使用需要下载模型文件
+10. **PostHog 配置：** 如需启用用户行为分析，需配置 `POSTHOG_API_KEY` 和 `POSTHOG_HOST` 环境变量
 
 ### 日志查看
 - 后端日志：`logs/` 目录
@@ -293,5 +346,5 @@ nx run py_core:gen_card_desc               # 生成图片描述
 
 ---
 
-*最后更新：2025-12-19*  
+*最后更新：2026-01-14*  
 *此文档基于项目实际配置和代码分析生成，已同步最新工具链和功能模块*

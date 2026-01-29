@@ -17,6 +17,7 @@ import { useKeepAwake } from '@sayem314/react-native-keep-awake';
 import Toast from 'react-native-toast-message';
 import DeviceInfo from 'react-native-device-info';
 import { toastConfig } from '../components/toast';
+import { useCardPreload } from '../hooks/useCardPreload';
 
 const Stack = createNativeStackNavigator()
 
@@ -29,6 +30,9 @@ const GlobalNavigator = () => {
   const isSignedIn = useSelector(state => {
     return state.auth.jwt != null
   })
+
+  // 自动预加载卡片
+  useCardPreload();
 
   return <Stack.Navigator screenOptions={screenOptions} id={undefined}>
   {

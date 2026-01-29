@@ -1,0 +1,52 @@
+{
+  "expo": {
+    "android": {
+      "adaptiveIcon": {
+        "backgroundColor": "#ebf8fd",
+        "backgroundImage": "./assets/images/android-adaptive-background-inkscape.png",
+        "foregroundImage": "./assets/images/android-icon-foreground.png",
+        "monochromeImage": "./assets/images/android-icon-monochrome.png"
+      },
+      "edgeToEdgeEnabled": true,
+      "package": "top.sagafish.aacesstalk.clientexpo",
+      "predictiveBackGestureEnabled": false,
+      "supportsTablet": true
+    },
+    "experiments": {
+      "reactCompiler": true,
+      "typedRoutes": true
+    },
+    "icon": "./assets/images/icon.png",
+    "ios": {
+      "supportsTablet": true
+    },
+    "name": "AACessTalk",
+    "newArchEnabled": true,
+    "orientation": "default",
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "backgroundColor": "#E0F5FF",
+          "dark": {
+            "backgroundColor": "#2D4F79"
+          },
+          "image": "./assets/images/logo-extended.png",
+          "imageWidth": "404dp",
+          "resizeMode": "contain"
+        }
+      ],
+      "expo-localization",
+      "expo-audio"
+    ],
+    "scheme": "clientexpo",
+    "slug": "aacesstalk-expo",
+    "userInterfaceStyle": "automatic",
+    "version": "1.0.0",
+    "web": {
+      "favicon": "./assets/images/favicon.png",
+      "output": "static"
+    }
+  }
+}
