@@ -1,3 +1,4 @@
+from attr import has
 import asyncio
 from dataclasses import dataclass
 from typing import Optional
@@ -7,33 +8,57 @@ from nanoid import generate
 
 from chatlib.utils.time import get_timestamp
 
-from py_core.system.model import ChildCardRecommendationResult, DialogueMessage, DialogueRole, CardInfo, \
-    CardIdentity, DialogueTurn, Interaction, InteractionType, \
-    ParentGuideRecommendationResult, Dialogue, ParentGuideType, ParentExampleMessage, ParentGuideElement, \
-    InterimCardSelection, Dyad, SessionInfo, SessionStatus, UserLocale
+from py_core.system.model import (
+    ChildCardRecommendationResult,
+    DialogueMessage,
+    DialogueRole,
+    CardInfo,
+    CardIdentity,
+    DialogueTurn,
+    Interaction,
+    InteractionType,
+    ParentGuideRecommendationResult,
+    Dialogue,
+    ParentGuideType,
+    ParentExampleMessage,
+    ParentGuideElement,
+    InterimCardSelection,
+    Dyad,
+    SessionInfo,
+    SessionStatus,
+    UserLocale,
+)
 from py_core.system.session_topic import SessionTopicInfo
 from py_core.system.storage import SessionStorage
 from py_core.system.task import ChildCardRecommendationGenerator
-from py_core.system.task.parent_guide_recommendation import ParentGuideRecommendationGenerator, \
-    ParentExampleMessageGenerator
-from py_core.system.task.parent_guide_recommendation.dialogue_inspector import DialogueInspector
-from py_core.system.task.parent_guide_recommendation.static_guide_factory import StaticGuideFactory
+from py_core.system.task.parent_guide_recommendation import (
+    ParentGuideRecommendationGenerator,
+    ParentExampleMessageGenerator,
+)
+from py_core.system.task.parent_guide_recommendation.dialogue_inspector import (
+    DialogueInspector,
+)
+from py_core.system.task.parent_guide_recommendation.static_guide_factory import (
+    StaticGuideFactory,
+)
 from py_core.utils.translate.aliyun_translator import AliyunTranslator
-from py_core.utils.translate.deepl_translator import DeepLTranslator
 from py_core.utils.models import AsyncTaskInfo
 from chatlib.llm.integration import GPTChatCompletionAPI
 
+from py_core.utils.translate.deepl_translator import DeepLTranslator
 from py_core.utils.speech import ClovaVoice
-
 from py_core.utils.speech.clova_speech_long import ClovaLongSpeech
+
 from py_core.utils.vector_db import VectorDB
+
 
 class WrongSessionStatusError(BaseException):
     pass
 
+
 def speaker(role: DialogueRole):
     def decorator(func):
-        async def wrapper(self: 'ModeratorSession', *args, **kwargs):
+        async def wrapper(self: "ModeratorSession", *args, **kwargs):
             if (await self.current_speaker()) != role:
                 raise Exception("Wrong speaker function called.")
             else:
@@ -46,13 +71,14 @@ def speaker(role: DialogueRole):
 
     return decorator
 
+
 @dataclass
 class ParentExampleGenerationTaskSet:
     recommendation_id: str
     tasks: dict[str, AsyncTaskInfo | None]
 
-class ModeratorSession:
 
+class ModeratorSession:
     class_variables_initialized = False
 
     @classmethod
@@ -73,7 +99,6 @@ class ModeratorSession:
             cls.class_variables_initialized = True
 
     def __init__(self, dyad: Dyad, storage: SessionStorage):
-
         self.__init_class_vars()
 
         self.__storage = storage
@@ -82,8 +107,9 @@ class ModeratorSession:
 
         self.__dialogue_inspection_task_info: AsyncTaskInfo | None = None
 
-        self.__parent_example_generation_tasks: ParentExampleGenerationTaskSet | None = None
-
+        self.__parent_example_generation_tasks: (
+            ParentExampleGenerationTaskSet | None
+        ) = None
 
     @property
     def storage(self) -> SessionStorage:
@@ -101,14 +127,17 @@ class ModeratorSession:
     def storage(self, storage: SessionStorage):
         self.__storage = storage
 
-    async def session_topic(self)->SessionTopicInfo:
+    async def session_topic(self) -> SessionTopicInfo:
         info = await self.storage.get_session_info()
+        if info is None:
+            raise ValueError("Session info is not initialized.")
         return info.topic
 
     async def get_session_status(self) -> SessionStatus:
         info = await self.storage.get_session_info()
+        if info is None:
+            raise ValueError("Session info is not initialized.")
         return info.status
-
 
     @classmethod
     def assert_authorize(cls):
@@ -146,7 +175,7 @@ class ModeratorSession:
                 current_turn = await storage.get_latest_turn()
                 if current_turn is None:
                     new_turn = DialogueTurn(
-                        session_id=storage.session_id, role=DialogueRole.Parent
+                        id=storage.session_id, role=DialogueRole.Parent
                     )
                     await storage.upsert_dialogue_turn(new_turn)
                 elif (
@@ -161,6 +190,8 @@ class ModeratorSession:
 
     async def start(self) -> tuple[DialogueTurn, ParentGuideRecommendationResult]:
         session_info = await self.storage.get_session_info()
+        if session_info is None:
+            raise ValueError("Session info is not initialized.")
 
         if session_info.status == SessionStatus.Initial:
             session_info.status = SessionStatus.Started
@@ -169,7 +200,7 @@ class ModeratorSession:
             current_turn = await self.storage.get_latest_turn()
             if current_turn is None or current_turn.ended_timestamp is not None:
                 new_turn = DialogueTurn(
-                    session_id=self.storage.session_id, role=DialogueRole.Parent
+                    id=self.storage.session_id, role=DialogueRole.Parent
                 )
                 await self.__storage.upsert_dialogue_turn(new_turn)
                 print(
@@ -184,6 +215,8 @@ class ModeratorSession:
             parent_guides = await self.__generate_parent_guide_recommendation()
 
             session_info = await self.storage.get_session_info()
+            if session_info is None:
+                raise ValueError("Session info is not initialized.")
             session_info.status = SessionStatus.Conversation
             await self.storage.update_session_info(session_info)
 
@@ -194,6 +227,8 @@ class ModeratorSession:
     async def terminate(self):
         self.cancel_all_async_tasks()
         session_info = await self.storage.get_session_info()
+        if session_info is None:
+            raise ValueError("Session info is not initialized.")
         session_info.ended_timestamp = get_timestamp()
         session_info.status = SessionStatus.Terminated
         await self.storage.update_session_info(session_info)
@@ -208,11 +243,13 @@ class ModeratorSession:
 
     async def _switch_turn(self) -> DialogueTurn:
         current_turn = await self.__storage.get_latest_turn()
+        if not isinstance(current_turn, DialogueTurn):
+            raise ValueError("Current turn is not initialized.")
         if current_turn.ended_timestamp is None:
             current_turn.ended_timestamp = get_timestamp()
             await self.storage.upsert_dialogue_turn(current_turn)
         next_turn = DialogueTurn(
-            session_id=self.storage.session_id,
+            id=self.storage.session_id,
             role=DialogueRole.Parent
             if current_turn.role == DialogueRole.Child
             else DialogueRole.Child,
@@ -229,7 +266,7 @@ class ModeratorSession:
     def __clear_parent_example_generation_tasks(self):
         if self.__parent_example_generation_tasks is not None:
             for k, t in self.__parent_example_generation_tasks.tasks.items():
-                if not t.task.done():
+                if t is not None and not t.task.done():
                     t.task.cancel()
             self.__parent_example_generation_tasks = None
 
@@ -300,6 +337,8 @@ class ModeratorSession:
         self,
     ) -> ParentGuideRecommendationResult:
         current_turn = await self.storage.get_latest_turn()
+        if current_turn is None:
+            raise ValueError("Can't generate parent guide without current turn.")
 
         dialogue = await self.storage.get_dialogue()
 
@@ -345,6 +384,8 @@ class ModeratorSession:
     ) -> tuple[DialogueTurn, ChildCardRecommendationResult]:
         try:
             current_turn = await self.storage.get_latest_turn()
+            if current_turn is None:
+                raise ValueError("No current turn found.")
 
             # Clear if there is a pending example generation task.
             self.__clear_parent_example_generation_tasks()
@@ -430,22 +471,39 @@ class ModeratorSession:
     async def get_card_info_from_identities(
         self, cards: list[CardIdentity] | list[CardInfo]
     ) -> list[CardInfo]:
-        cards = [
-            card_identity
-            if isinstance(card_identity, CardInfo)
-            else (
-                await self.__storage.get_card_recommendation_result(
-                    card_identity.recommendation_id
-                )
-            ).find_card_by_id(card_identity.id)
-            for card_identity in cards
-        ]
+        cards: list[CardInfo] = []
+
+        all_recommendation_ids = list(
+            set([
+                card_identity.recommendation_id
+                for card_identity in cards
+                if not isinstance(card_identity, CardInfo)
+            ])
+        )
+
+        recommendation_results_cards = dict[str, CardInfo]()
+        for rec_id in all_recommendation_ids:
+            rec_result = await self.__storage.get_card_recommendation_result(rec_id)
+            if hasattr(rec_result, "cards"):
+                for card in rec_result.cards:
+                    recommendation_results_cards[card.id] = card
+
+        for card_identity in cards:
+            if isinstance(card_identity, CardInfo):
+                cards.append(card_identity)
+            else:
+                card = recommendation_results_cards.get(card_identity.id, None)
+                cards.append(card)
+
         return [c for c in cards if c is not None]
 
     @speaker(DialogueRole.Child)
     async def refresh_child_card_recommendation(self) -> ChildCardRecommendationResult:
         try:
             current_turn = await self.storage.get_latest_turn()
+            if current_turn is None:
+                raise ValueError("No current turn found.")
+
             dialogue = await self.__storage.get_dialogue()
 
             interim_card_selection = await self.storage.get_latest_card_selection(
@@ -495,6 +553,8 @@ class ModeratorSession:
     ) -> InterimCardSelection:
         try:
             current_turn = await self.storage.get_latest_turn()
+            if current_turn is None:
+                raise ValueError("No current turn found.")
 
             current_card_selection = await self.storage.get_latest_card_selection(
                 turn_id=current_turn.id
@@ -525,9 +585,14 @@ class ModeratorSession:
     ) -> tuple[InterimCardSelection, ChildCardRecommendationResult]:
         try:
             current_turn = await self.storage.get_latest_turn()
+            if current_turn is None:
+                raise ValueError("No current turn found.")
+
             current_card_selection = await self.storage.get_latest_card_selection(
                 turn_id=current_turn.id
             )
+            if current_card_selection is None:
+                raise ValueError("No current card selection found.")
 
             if len(current_card_selection.cards) > 0:
                 last_card = current_card_selection.cards[-1]
@@ -539,6 +604,9 @@ class ModeratorSession:
                 prev_recommendation = await self.storage.get_card_recommendation_result(
                     last_card.recommendation_id
                 )
+                if prev_recommendation is None:
+                    raise ValueError("Previous recommendation not found.")
+
                 new_recommendation = ChildCardRecommendationResult(
                     **prev_recommendation.model_dump(exclude={"id"})
                 )
@@ -557,6 +625,8 @@ class ModeratorSession:
                 return new_card_selection, new_recommendation
             else:
                 recommendation = await self.storage.get_latest_child_card_recommendation(turn_id = current_turn.id)
+                if recommendation is None:
+                    raise ValueError("No recommendation found for current turn.")
                 return current_card_selection, recommendation
         except Exception as e:
             raise e
@@ -565,6 +635,9 @@ class ModeratorSession:
     async def confirm_child_card_selection(self) -> tuple[DialogueTurn, ParentGuideRecommendationResult]:
         try:
             current_turn = await self.storage.get_latest_turn()
+            if current_turn is None:
+                raise ValueError("No current turn found.")
+
             interim_card_selection = await self.storage.get_latest_card_selection(turn_id=current_turn.id)
             if interim_card_selection is not None:
                 selected_cards = await self.get_card_info_from_identities(interim_card_selection.cards)
@@ -596,19 +669,35 @@ class ModeratorSession:
 
     @speaker(DialogueRole.Parent)
     async def request_parent_example_message(self, recommendation_id: str, guide_id: str) -> ParentExampleMessage:
-        if (self.__parent_example_generation_tasks is not None
-                and self.__parent_example_generation_tasks.recommendation_id == recommendation_id):
-            example_message: ParentExampleMessage = await self.__parent_example_generation_tasks.tasks[guide_id].task
+        if (
+            (self.__parent_example_generation_tasks is not None)
+            and (
+                self.__parent_example_generation_tasks.recommendation_id
+                == recommendation_id
+            )
+            and (
+                self.__parent_example_generation_tasks.tasks.get(guide_id, None)
+                is not None
+            )
+        ):
+            task_info = self.__parent_example_generation_tasks.tasks[guide_id]
+            if task_info is None:
+                raise ValueError("Parent example generation task is None.")
+            example_message: ParentExampleMessage = await task_info.task
         else:
             example_message: ParentExampleMessage | None = await self.__storage.get_parent_example_message(recommendation_id,
                                                                                                     guide_id)
             if example_message is None:
                 dialogue = await self.__storage.get_dialogue()
                 recommendation = await self.__storage.get_parent_guide_recommendation_result(recommendation_id)
+                if recommendation is None:
+                    raise ValueError("Parent guide recommendation not found.")
                 guide = [guide for guide in recommendation.guides if guide.id == guide_id][0]
                 example_message = await self.__parent_example_generate_func(dialogue, guide, recommendation.id)
 
         current_turn = await self.storage.get_latest_turn()
+        if current_turn is None:
+            raise ValueError("No current turn found.")
 
         await self.storage.add_interaction(Interaction(
             type=InteractionType.RequestParentExampleMessage,
