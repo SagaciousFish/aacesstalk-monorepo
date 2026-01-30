@@ -1,6 +1,8 @@
 from .models import DyadLoginCode
 from os import path, makedirs
 from py_core.system.model import ParentType, ChildGender
+from typing import AsyncGenerator
+from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 from py_database.database import (
     AsyncSession,
     make_async_session_maker,
@@ -18,10 +20,10 @@ engine = create_database_engine(
     # verbose=True
 )
 
-db_sessionmaker = make_async_session_maker(engine)
+db_sessionmaker: async_sessionmaker[AsyncSession] = make_async_session_maker(engine)
 
 
-async def with_db_session() -> AsyncSession:
+async def with_db_session() -> AsyncGenerator[AsyncSession, None]:
     async with db_sessionmaker() as session:
         yield session
 
@@ -85,3 +87,4 @@ async def create_test_freetopics() -> bool:
                     return True
                 else:
                     return False
+    return False

@@ -14,7 +14,7 @@ class SessionStorage(ABC):
     @abstractmethod
     async def _load_session_info(cls, session_id: str) -> SessionInfo | None:
         pass
-    
+
     @classmethod
     async def restore_instance(cls, id: str)->Optional['SessionStorage']:
         session_info = await cls._load_session_info(id)
@@ -30,7 +30,7 @@ class SessionStorage(ABC):
     def session_id(self) -> str:
         return self.__session_id
 
-    async def get_session_info(self) -> SessionInfo:
+    async def get_session_info(self) -> SessionInfo | None:
         return await self._load_session_info(self.session_id)
 
     @abstractmethod

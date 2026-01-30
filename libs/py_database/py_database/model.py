@@ -32,13 +32,22 @@ class IdTimestampMixin(BaseModel):
     id: str = Field(primary_key=True, default_factory=id_generator)
     created_at: Optional[datetime] = Field(
         default=None,
-        sa_type=DateTime(timezone=True),
-        sa_column_kwargs=dict(server_default=func.now(), nullable=True)
+        sa_column=Column(
+            DateTime(timezone=True), server_default=func.now(), nullable=True
+        ),
+        # sa_type=DateTime(timezone=True),
+        # sa_column_kwargs=dict(server_default=func.now(), nullable=True)
     )
     updated_at: Optional[datetime] = Field(
         default=None,
-        sa_type=DateTime(timezone=True),
-        sa_column_kwargs=dict(server_default=func.now(), onupdate=func.now(), nullable=True)
+        sa_column=Column(
+            DateTime(timezone=True),
+            server_default=func.now(),
+            onupdate=func.now(),
+            nullable=True,
+        ),
+        # sa_type=DateTime(timezone=True),
+        # sa_column_kwargs=dict(server_default=func.now(), onupdate=func.now(), nullable=True)
     )
 
 
@@ -51,7 +60,7 @@ class DyadORM(SQLModel, IdTimestampMixin, table=True):
     parent_type: ParentType = Field(nullable=False)
     locale: UserLocale = Field(nullable=False, default=UserLocale.SimplifiedChinese)
 
-    sessions: list['SessionORM'] = Relationship(back_populates='dyad')
+    sessions: list["SessionORM"] = Relationship(back_populates="dyad")
 
     def to_data_model(self) -> Dyad:
         return Dyad(**self.model_dump(exclude={"sessions"}))
@@ -77,17 +86,24 @@ class SessionORM(SQLModel, IdTimestampMixin, DyadIdMixin, table=True):
 
     def to_data_model(self) -> SessionInfo:
         return SessionInfo(
-            **self.model_dump(exclude={"topic_category", "subtopic", "subtopic_description"}),
-            topic=SessionTopicInfo(category=self.topic_category, subtopic=self.subtopic, subtopic_description=self.subtopic_description),
+            **self.model_dump(
+                exclude={"topic_category", "subtopic", "subtopic_description"}
+            ),
+            topic=SessionTopicInfo(
+                category=self.topic_category,
+                subtopic=self.subtopic,
+                subtopic_description=self.subtopic_description,
+            ),
         )
 
     @classmethod
-    def from_data_model(cls, session_info: SessionInfo) -> 'SessionORM':
-        return SessionORM(**session_info.model_dump(exclude={'topic'}),
-                          topic_category=session_info.topic.category,
-                          subtopic=session_info.topic.subtopic,
-                          subtopic_description=session_info.topic.subtopic_description
-                          )
+    def from_data_model(cls, session_info: SessionInfo) -> "SessionORM":
+        return SessionORM(
+            **session_info.model_dump(exclude={"topic"}),
+            topic_category=session_info.topic.category,
+            subtopic=session_info.topic.subtopic,
+            subtopic_description=session_info.topic.subtopic_description,
+        )
 
 
 class SessionIdMixin(BaseModel):

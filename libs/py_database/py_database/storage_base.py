@@ -1,14 +1,13 @@
 from sqlmodel.ext.asyncio.session import AsyncSession
-from sqlalchemy.orm import sessionmaker
+from sqlalchemy.ext.asyncio import async_sessionmaker
 
 class SQLStorageBase:
-
-    __sql_session_maker: sessionmaker[AsyncSession]
+    __sql_session_maker: async_sessionmaker[AsyncSession]
 
     @classmethod
-    def set_session_maker(cls, func: sessionmaker[AsyncSession]):
+    def set_session_maker(cls, func: async_sessionmaker[AsyncSession]):
         cls.__sql_session_maker = func
 
     @classmethod
-    def get_sessionmaker(cls)-> sessionmaker[AsyncSession]:
+    def get_sessionmaker(cls) -> AsyncSession:
         return cls.__sql_session_maker()
