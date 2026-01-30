@@ -1,3 +1,4 @@
+from chatlib.chatbot import ChatCompletionParams
 from itertools import groupby
 
 import spacy
@@ -46,7 +47,9 @@ template = convert_to_jinja_template("""
 """)
 
 
-def _generate_prompt(input, params: ChildCardTranslationParams) -> str:
+def _generate_prompt(input, params: ChildCardTranslationParams | None) -> str:
+    if params is None:
+        raise ValueError("params cannot be None for _generate_prompt")
     return template.render(
         similar_cards=params.similar_cards,
         UserLocale=UserLocale,
@@ -86,7 +89,10 @@ class CardTranslator:
 
     def __transform_original_word(self, word: str) -> str:
         doc = self.__nlp(word)
-        return ' '.join([token.text.lower() if token.pos_ != "PROPN" else token.text for token in doc])
+        transform_result = " ".join([
+            token.text.lower() if token.pos_ != "PROPN" else token.text for token in doc
+        ])
+        return transform_result
 
     async def translate(
         self,
@@ -103,7 +109,7 @@ class CardTranslator:
         dictionary_hit_count = 0
         for i, (word, category) in enumerate(word_list):
             localized = self.__dictionary.lookup(word, category, user_locale)
-            if localized is not None:
+            if isinstance(localized, str):
                 localized_words[i] = localized
                 dictionary_hit_count += 1
 
@@ -132,7 +138,7 @@ class CardTranslator:
                 input,
                 ChildCardTranslationParams(
                     model="qwen3-max",
-                    api_params={},
+                    api_params=ChatCompletionParams(),
                     similar_cards=list(similar_card_set),
                     user_locale=user_locale,
                 ),
@@ -153,4 +159,6 @@ class CardTranslator:
             if self.__auto_update_dictionary is True:
                 self.__dictionary.write_to_file()
 
-        return localized_words
+        final_words: list[str] = [w for w in localized_words if w is not None]
+
+        return final_words
