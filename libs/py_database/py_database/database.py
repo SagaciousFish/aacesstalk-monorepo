@@ -18,9 +18,8 @@ async def column_exists_in_db(
 ) -> bool:
     async with engine.connect() as connection:
         result = await connection.execute(text(f"PRAGMA table_info({model.__tablename__})"))
-
-        columns = [row[1] for row in result]
-
+        rows = result.fetchall()
+        columns = [row[1] for row in rows]
         return column_name in columns
 
 
@@ -31,12 +30,14 @@ async def add_column_to_table(
     column_params: str,
     default_value: Any | None = None,
 ):
-    async with engine.connect() as connection:
-        await connection.execute(
-            text(
-                f"ALTER TABLE {model.__tablename__}\nADD COLUMN {column_name} {column_params} {('DEFAULT ' + default_value) if default_value is not None else ''}"
+    sql = f"ALTER TABLE {model.__tablename__}\nADD COLUMN {column_name} {column_params}"
+    async with engine.begin() as connection:
+        if default_value is not None:
+            await connection.execute(
+                text(sql + " DEFAULT :default"), {"default": default_value}
             )
-        )
+        else:
+            await connection.execute(text(sql))
 
 
 async def migrate(engine: AsyncEngine):
@@ -45,7 +46,7 @@ async def migrate(engine: AsyncEngine):
     if (await column_exists_in_db(engine, DyadORM, "locale")) is False:
         # Add locale column
         await add_column_to_table(
-            engine, DyadORM, "locale", "VARCHAR(7) NOT NULL", "SimplifiedChinese"
+            engine, DyadORM, "locale", "VARCHAR(35) NOT NULL", "SimplifiedChinese"
         )
 
     return

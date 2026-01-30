@@ -25,7 +25,7 @@ from py_core.utils.vector_db import VectorDB
 
 template = convert_to_jinja_template("""You are a helpful translator who translates an utterance of a parent talking with their child with ASD.
 [Task]
-- Translate the following English message to {{ user_locale }}.
+- Translate the following message to locale {{ user_locale }}.
 - Note that the messages are intended to be spoken by a parent to a child.
 - Reflect the cultural and linguistic characteristics of {{ user_locale }} in the translation.
 - Keep the meaning of the original message as much as possible.
@@ -37,16 +37,17 @@ def _generate_prompt(input, params) -> str:
     user_locale = getattr(params, "user_locale", None)
     if user_locale is None:
         api_params = getattr(params, "api_params", None)
-        user_locale = "SimplifiedChinese"
+        default_locale = UserLocale.SimplifiedChinese.value
+        user_locale = default_locale
         if api_params is not None:
             if isinstance(api_params, dict):
-                user_locale = api_params.get("user_locale", "SimplifiedChinese")
+                user_locale = api_params.get("user_locale", default_locale)
             else:
                 # api_params may be an object (e.g., ChatCompletionParams). Try attribute access.
                 user_locale = (
                     getattr(api_params, "user_locale", None)
                     or getattr(api_params, "userLocale", None)
-                    or "SimplifiedChinese"
+                    or default_locale
                 )
 
     r = template.render(user_locale=user_locale)
