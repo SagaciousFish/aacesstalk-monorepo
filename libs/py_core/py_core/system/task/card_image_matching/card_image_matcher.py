@@ -1,3 +1,4 @@
+import pathlib
 from enum import StrEnum
 from os import path
 
@@ -104,13 +105,14 @@ class CardImageMatcher:
     async def get_card_image_filepath(self, type: CardType, image_id: str, parent_type: ParentType, child_gender: ChildGender)->str:
         if type is CardType.custom:
             info = await self.__user_storage.get_user_defined_card(image_id)
-            image_path = path.join(
+            if info is None:
+                raise ValueError(f"User defined card with id {image_id} not found")
+            image_path = pathlib.Path(
                 AACessTalkConfig.get_user_defined_card_dir_path(
                     self.__user_storage.user_id
-                ),
-                info.image_filename,
-            )
-            return image_path
+                )
+            ) / str(info.image_filename)
+            return image_path.resolve().as_posix()
         elif type is CardType.stock:
             stock_image_path = path.join(
                 AACessTalkConfig.card_image_directory_path,
@@ -119,4 +121,13 @@ class CardImageMatcher:
             print(f"Stock image path: {stock_image_path}")
             return stock_image_path
         elif type is CardType.static:
-            return path.join(AACessTalkConfig.card_image_directory_path, find_default_card_by_id(image_id).get_image_path_for_dyad(parent_type, child_gender))
+            image_dir_path = pathlib.Path(AACessTalkConfig.card_image_directory_path)
+            card_image_path = find_default_card_by_id(image_id).get_image_path_for_dyad(
+                parent_type, child_gender
+            )
+            if card_image_path is None:
+                raise ValueError(
+                    f"Static card image with id {image_id} not found for dyad"
+                )
+            static_image_path = (image_dir_path / card_image_path).resolve().as_posix()
+            return static_image_path

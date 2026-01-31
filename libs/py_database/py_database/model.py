@@ -1,9 +1,9 @@
 from enum import StrEnum
-from typing import Optional
-from datetime import datetime
+from typing import Optional, ClassVar, Any
 from pydantic import BaseModel
 from sqlmodel import SQLModel, Column, Field, Relationship, JSON, UniqueConstraint
 from sqlalchemy import DateTime, func
+from datetime import datetime
 
 from py_core.system.model import (UserLocale, id_generator, DialogueRole, DialogueMessage,
                                   CardInfoListTypeAdapter, CardInfo,
@@ -26,28 +26,27 @@ from py_core.system.model import (UserLocale, id_generator, DialogueRole, Dialog
                                   )
 from py_core.system.session_topic import SessionTopicCategory, SessionTopicInfo
 from chatlib.utils.time import get_timestamp
+from sqlalchemy.orm import declared_attr
 
 
 class IdTimestampMixin(BaseModel):
     id: str = Field(primary_key=True, default_factory=id_generator)
+
     created_at: Optional[datetime] = Field(
         default=None,
-        sa_column=Column(
-            DateTime(timezone=True), server_default=func.now(), nullable=True
-        ),
-        # sa_type=DateTime(timezone=True),
-        # sa_column_kwargs=dict(server_default=func.now(), nullable=True)
+        sa_column_kwargs={
+            "server_default": func.now(),
+            "nullable": True,
+        },
     )
+
     updated_at: Optional[datetime] = Field(
         default=None,
-        sa_column=Column(
-            DateTime(timezone=True),
-            server_default=func.now(),
-            onupdate=func.now(),
-            nullable=True,
-        ),
-        # sa_type=DateTime(timezone=True),
-        # sa_column_kwargs=dict(server_default=func.now(), onupdate=func.now(), nullable=True)
+        sa_column_kwargs={
+            "server_default": func.now(),
+            "onupdate": func.now(),
+            "nullable": True,
+        },
     )
 
 
@@ -262,7 +261,9 @@ class UserDefinedCardInfoORM(
     def from_data_model(
         cls, info: UserDefinedCardInfo, dyad_id: str
     ) -> "UserDefinedCardInfoORM":
-        return UserDefinedCardInfoORM(**info.model_dump(), dyad_id=dyad_id)
+        return UserDefinedCardInfoORM(
+            **info.model_dump(exclude={"created_at", "updated_at"}), dyad_id=dyad_id
+        )
 
     def to_data_model(self) -> UserDefinedCardInfo:
         return UserDefinedCardInfo(**self.model_dump(exclude={"dyad_id"}))
