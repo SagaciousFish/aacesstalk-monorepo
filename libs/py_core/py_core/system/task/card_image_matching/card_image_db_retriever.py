@@ -64,32 +64,63 @@ class CardImageDBRetriever:
         self.__card_info_table = DataFrame(data=[inf.model_dump() for inf in info_list])
 
         embedding_store = numpy.load(AACessTalkConfig.card_image_embeddings_path)
-        ids = embedding_store["ids"]
+        ids_array = embedding_store["ids"]
         desc_embeddings = embedding_store["emb_desc"]
         name_embeddings = embedding_store["emb_name"]
+
+        # Normalize data to native Python types to satisfy VectorDB API/type checkers
+        raw_ids = (
+            ids_array.tolist() if hasattr(ids_array, "tolist") else list(ids_array)
+        )
+        ids_list: list[str] = []
+        for v in raw_ids:
+            if isinstance(v, (bytes, bytearray)):
+                try:
+                    ids_list.append(v.decode("utf-8"))
+                except Exception:
+                    ids_list.append(str(v))
+            else:
+                ids_list.append(str(v))
+
+        desc_docs: list[str] = [info.description_brief or "" for info in info_list]
+        name_docs: list[str] = [
+            getattr(info, "name", None) or getattr(info, "name_en", None) or ""
+            for info in info_list
+        ]
+
+        desc_embeddings_list = [emb.tolist() for emb in desc_embeddings]
+        name_embeddings_list = [emb.tolist() for emb in name_embeddings]
+
+        if not (
+            len(ids_list)
+            == len(info_list)
+            == len(desc_embeddings_list)
+            == len(name_embeddings_list)
+        ):
+            print("Warning: mismatch lengths between ids, info_list and embeddings")
 
         self.__vector_db = VectorDB(embedding_model=AACessTalkConfig.embedding_model,
                                     embedding_dimensions=AACessTalkConfig.embedding_dimensions)
 
         self.__collection_desc = self.__vector_db.get_collection("card_image_desc")
         self.__collection_desc.add(
-            ids=[id for id in ids],
-            documents=[info.description_brief for info in info_list],
+            ids=ids_list,
+            documents=desc_docs,
             metadatas=[
                 info.model_dump(include={"name", "category"}) for info in info_list
             ],
-            embeddings=[emb.tolist() for emb in desc_embeddings],
+            embeddings=desc_embeddings_list,
         )
 
         self.__collection_name = self.__vector_db.get_collection("names")
         self.__collection_name.add(
-            ids=[id for id in ids],
-            documents=[info.name for info in info_list],
+            ids=ids_list,
+            documents=name_docs,
             metadatas=[
                 info.model_dump(include={"name", "category", "description_brief"})
                 for info in info_list
             ],
-            embeddings=[emb.tolist() for emb in name_embeddings],
+            embeddings=name_embeddings_list,
         )
 
     def get_card_image_info(self, id: str)->CardImageInfo:
