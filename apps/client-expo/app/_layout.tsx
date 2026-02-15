@@ -15,6 +15,9 @@ SplashScreen.setOptions({
 
 import { useColorScheme } from '@/hooks/use-color-scheme';
 
+// Initialize i18n for the Expo app
+import '../i18n';
+
 export const unstable_settings = {
   anchor: '(tabs)',
 };
@@ -49,6 +52,8 @@ export default function RootLayout() {
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
         <Stack.Screen name="modal" options={{ presentation: 'modal', title: 'Modal' }} />
+        {/* Make Sign In a top-level screen with no header so it appears as the first-level page */}
+        <Stack.Screen name="signin" options={{ headerShown: false }} />
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />

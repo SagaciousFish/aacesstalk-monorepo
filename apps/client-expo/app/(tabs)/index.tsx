@@ -75,6 +75,15 @@ export default function HomeScreen() {
           <ThemedText type="defaultSemiBold">app-example</ThemedText>.
         </ThemedText>
       </ThemedView>
+
+      <ThemedView style={styles.stepContainer}>
+        <ThemedText type="subtitle">Sign In</ThemedText>
+        <Link href="/signin">
+          <Link.Trigger>
+            <ThemedText type="defaultSemiBold">Open Sign In screen</ThemedText>
+          </Link.Trigger>
+        </Link>
+      </ThemedView>
     </ParallaxScrollView>
   );
 }
