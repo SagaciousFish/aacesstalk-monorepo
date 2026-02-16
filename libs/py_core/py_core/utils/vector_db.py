@@ -1,3 +1,5 @@
+from os import path
+
 from py_core.config import AACessTalkConfig
 import chromadb
 from chromadb import EmbeddingFunction, Documents
@@ -32,13 +34,13 @@ class VectorDB:
         dir_name: str = "embeddings",
         embedding_model: str = AACessTalkConfig.embedding_model,
         embedding_dimensions: int = AACessTalkConfig.embedding_dimensions,
+        persistent: bool = True,
     ):
-        #self.__client = chromadb.PersistentClient(path.join(AACessTalkConfig.dataset_dir_path, dir_name))
-        self.__client = chromadb.Client()
-
-        print(
-            f"OpenAI API KEY: {GPTChatCompletionAPI.get_auth_variable_for_spec(APIAuthorizationVariableSpecPresets.ApiKey)}"
-        )
+        if persistent:
+            db_path = path.join(AACessTalkConfig.dataset_dir_path, dir_name)
+            self.__client = chromadb.PersistentClient(db_path)
+        else:
+            self.__client = chromadb.Client()
 
         GPTChatCompletionAPI.assert_authorize()
         api_key = GPTChatCompletionAPI.get_auth_variable_for_spec(
@@ -49,7 +51,7 @@ class VectorDB:
     def get_collection(self, name: str) -> Collection:
         return self.__client.get_or_create_collection(name, embedding_function=self.__decode)
 
-    def upsert(self, collection: str | Collection, dictionary_row: DictionaryRow | list[DictionaryRow]) -> ndarray | list[ndarray]:
+    def upsert(self, collection: str | Collection, dictionary_row: DictionaryRow | list[DictionaryRow]) -> None:
 
         rows = [dictionary_row] if isinstance(dictionary_row, DictionaryRow) else dictionary_row
 
