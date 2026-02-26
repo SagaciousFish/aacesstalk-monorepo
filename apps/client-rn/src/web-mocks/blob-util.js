@@ -156,10 +156,33 @@ const fs = {
 async function fetchBlob(method, url, headers, body) {
   await initDB();
 
+  let fetchBody = body;
+  let fetchHeaders = { ...headers };
+
+  // Handle RNBlobUtil multipart array format:
+  // [{name, data}, {name, filename, type, data: wrap(uri)}]
+  if (Array.isArray(body)) {
+    const formData = new FormData();
+    for (const part of body) {
+      if (part.data && part.data._isRNBlobFileRef) {
+        // File reference created by wrap() — fetch the blob URL
+        const blobResponse = await fetch(part.data.uri);
+        const fileBlob = await blobResponse.blob();
+        const file = new File([fileBlob], part.filename || 'file', { type: part.type || fileBlob.type });
+        formData.append(part.name, file, part.filename || 'file');
+      } else {
+        formData.append(part.name, String(part.data ?? ''));
+      }
+    }
+    fetchBody = formData;
+    // Let the browser set the Content-Type with boundary for multipart
+    delete fetchHeaders['Content-Type'];
+  }
+
   const response = await fetch(url, {
     method: method,
-    headers: headers,
-    body: body,
+    headers: fetchHeaders,
+    body: fetchBody,
   });
 
   const blob = await response.blob();
@@ -196,6 +219,10 @@ async function fetchBlob(method, url, headers, body) {
 const ReactNativeBlobUtil = {
   fs: fs,
   fetch: fetchBlob,
+  // wrap(uri) marks a path/blob-URL as a file reference for multipart uploads
+  wrap: function(uri) {
+    return { _isRNBlobFileRef: true, uri };
+  },
   config: function() { return this; },
   stream: function() {
     return {

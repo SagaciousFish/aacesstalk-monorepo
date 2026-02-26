@@ -169,10 +169,9 @@ function _runAnimation(sv, descriptor) {
           if (repsLeft !== Infinity) repsLeft--;
 
           if (reverse) {
-            // Alternate direction
-            const temp = currentTarget;
-            currentTarget = sv._getRaw() === _inner.toValue ? originalStart : _inner.toValue;
+            // Alternate direction — use threshold to avoid floating-point equality failure
             isForwardPass = !isForwardPass;
+            currentTarget = isForwardPass ? _inner.toValue : originalStart;
           } else {
             // Jump back to start without animation, then run again
             sv._setRaw(originalStart);

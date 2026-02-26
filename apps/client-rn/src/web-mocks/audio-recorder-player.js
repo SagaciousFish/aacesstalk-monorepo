@@ -44,10 +44,10 @@ class AudioRecorderPlayer {
         }
       };
 
-      this.audioRecorder.onstop = () => {
-        this._recordedBlob = new Blob(this._recordedChunks, { type: 'audio/webm' });
-        this._recordedUrl = URL.createObjectURL(this._recordedBlob);
-      };
+      // onstop is set lazily by stopRecorder() to guarantee ordering:
+      // 1. ondataavailable flushes last chunk
+      // 2. onstop builds the Blob and resolves the promise
+      this.audioRecorder.onstop = null;
 
       this.audioRecorder.start();
       this.isRecording = true;
@@ -119,23 +119,31 @@ class AudioRecorderPlayer {
   async stopRecorder() {
     return new Promise((resolve, reject) => {
       if (this.audioRecorder && this.isRecording) {
-        const onStop = () => {
-          resolve(this._recordedUrl || 'web-recording.webm');
-        };
-        this.audioRecorder.addEventListener('stop', onStop, { once: true });
-        this.audioRecorder.stop();
-        this.isRecording = false;
-        this.isPaused = false;
-
         if (this.recordInterval) {
           clearInterval(this.recordInterval);
           this.recordInterval = null;
         }
 
-        if (this.mediaStream) {
-          this.mediaStream.getTracks().forEach(track => track.stop());
-          this.mediaStream = null;
-        }
+        this.isRecording = false;
+        this.isPaused = false;
+
+        // Set onstop here so it runs after all ondataavailable events,
+        // guaranteeing the Blob is built before we resolve.
+        this.audioRecorder.onstop = () => {
+          const blob = new Blob(this._recordedChunks, { type: 'audio/webm' });
+          const url = URL.createObjectURL(blob);
+          this._recordedBlob = blob;
+          this._recordedUrl = url;
+
+          if (this.mediaStream) {
+            this.mediaStream.getTracks().forEach(track => track.stop());
+            this.mediaStream = null;
+          }
+
+          resolve(url);
+        };
+
+        this.audioRecorder.stop();
       } else {
         reject(new Error('Not recording'));
       }
