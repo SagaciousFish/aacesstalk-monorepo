@@ -24,7 +24,6 @@ initializeI18n(defaultLang, {
     resources: {
         yue: { translation: require('./translations/yue') },
         zh: { translation: require('./translations/zh') },
-        zht: { translation: require('./translations/zht') },
         ko: { translation: require('./translations/ko') },
         en: { translation: require("./translations/en") }
     },

@@ -28,9 +28,6 @@ export function initializeI18n(defaultLanguage: string = "zh",
             zh: {
                 translation: require("./translations/zh")
             },
-            zht: {
-                translation: require("./translations/zht")
-            },
             ko: {
                 translation: require("./translations/ko")
             },
