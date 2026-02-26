@@ -49,10 +49,10 @@ export const App = () => {
   useEffect(()=>{
     const isEmulator = DeviceInfo.isEmulatorSync()
     let host: string
-    // Check Platform.OS first - web should always use localhost:8000
+    // Check Platform.OS first - web reads BACKEND_ADDRESS env var (set via webpack DefinePlugin)
     if (Platform.OS === 'web'){
-      console.log("Running on web. Using localhost:8000")
-      host = "http://localhost:8000"
+      host = process.env["BACKEND_ADDRESS"] || "http://localhost:3000"
+      console.log(`Running on web. Using backend: ${host}`)
     } else if(isEmulator){
       if(Platform.OS == 'android'){
         console.log("Running on Android emulator. Use the host address http://10.0.2.2:3000")

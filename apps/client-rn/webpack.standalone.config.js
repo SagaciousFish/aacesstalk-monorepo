@@ -142,6 +142,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development'),
+        'BACKEND_ADDRESS': JSON.stringify(process.env.BACKEND_ADDRESS || 'http://localhost:3000'),
       },
     }),
     // Provide jsx/jsxs from React
