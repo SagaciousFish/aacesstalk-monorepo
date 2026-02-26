@@ -34,7 +34,6 @@
     yue: "問"
   category: "core"
   image: "core_cards/ask.png"
-<<<<<<< HEAD
 - id: what_about_you
   label: "What about you?"
   label_localized:
@@ -44,7 +43,6 @@
     yue: "你感覺點樣？"
   category: "core"
   image: "core_cards/what_about_you.png"
-=======
 - id: how_are_you
   label: "How are you?"
   label_localized:
@@ -54,4 +52,3 @@
     yue: "你點呀？"
   category: "core"
   image: "core_cards/how_are_you.png"
->>>>>>> 2479f3ed0d4e14e151f35183338866e6a4f1a528

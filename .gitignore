@@ -139,6 +139,9 @@ backend_data/**
 /**/*/IFLOW.md
 IFLOW.md
 
+.serena/
+.claude/
+
 # python environment
 venv/
 .venv/

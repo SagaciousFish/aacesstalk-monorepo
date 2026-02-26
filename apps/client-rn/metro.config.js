@@ -18,6 +18,10 @@ async function createConfig() {
       babelTransformerPath: require.resolve('react-native-svg-transformer'),
     },
     resolver: {
+      // Enable web platform
+      platforms: ['ios', 'android', 'web'],
+      // Add aliases for react-native-web
+      resolverMainFields: ['react-native', 'browser', 'main'],
       assetExts: assetExts.filter((ext) => ext !== 'svg'),
       sourceExts: [...sourceExts, 'cjs', 'mjs', 'svg'],
     },

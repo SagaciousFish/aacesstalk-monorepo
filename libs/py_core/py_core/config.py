@@ -2,8 +2,15 @@ from os import path, getcwd, makedirs, getenv
 
 
 class AACessTalkConfig:
+    # Text embedding (for text-only scenarios)
     embedding_model = "text-embedding-v4"
     embedding_dimensions = 1024
+
+    # Multimodal embedding (for text + image fused vectors)
+    # Uses DashScope qwen3-vl-embedding model
+    # Note: API returns 2560 dimensions (max), even when requesting smaller
+    multimodal_embedding_model = "qwen3-vl-embedding"
+    multimodal_embedding_dimensions = 2560
 
     dataset_dir_path: str = path.join(getcwd(), "../../data")
 

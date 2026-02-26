@@ -9,10 +9,13 @@ const colors = require("../styles/colors")
 
 const loadingImages = require("./loading-images.js")
 
-const shuffledLoadingImages = shuffle(loadingImages)
+const shuffledLoadingImages = Array.isArray(loadingImages) && loadingImages.length > 0 ? shuffle(loadingImages) : []
 let pointer = -1
 function getNextLoadingImage(): any{
-    pointer = (++pointer) % loadingImages.length
+    if (shuffledLoadingImages.length === 0) {
+        return null;
+    }
+    pointer = (++pointer) % shuffledLoadingImages.length
     return shuffledLoadingImages[pointer]
 }
 

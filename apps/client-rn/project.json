@@ -6,6 +6,18 @@
   "targets": {
     "clear-avd": {
       "command": "emulator -avd Medium_Tablet -wipe-data"
+    },
+    "web": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/client-rn && npx webpack serve --config webpack.config.js"
+      }
+    },
+    "web:build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "cd apps/client-rn && npx webpack --config webpack.config.js --mode production"
+      }
     }
   },
   "tags": []

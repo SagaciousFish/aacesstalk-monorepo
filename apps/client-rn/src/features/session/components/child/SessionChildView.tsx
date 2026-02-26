@@ -6,7 +6,7 @@ import { View } from "react-native"
 import format from 'pupa'
 import { CardCategoryView, TopicChildCardView } from "./card-views"
 import { SelectedCardDeck } from "./SelectedCardDeck"
-import { Fragment, useCallback, useEffect, useMemo } from "react"
+import { Fragment, React, useCallback, useEffect, useMemo } from "react"
 import Animated, { FadeIn, FadeOut, LayoutAnimationConfig } from 'react-native-reanimated'
 import { TailwindButton } from "apps/client-rn/src/components/tailwind-components"
 import { RefreshIcon } from "apps/client-rn/src/components/vector-icons"

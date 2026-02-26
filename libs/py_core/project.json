@@ -1,77 +1,30 @@
 {
-  "name": "py_core",
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "name": "py_core",
   "projectType": "application",
   "sourceRoot": "libs/py_core/py_core",
+  "tags": [],
   "targets": {
-    "lock": {
-      "executor": "@nxlv/python:run-commands",
-      "options": {
-        "command": "uv lock --no-update",
-        "cwd": "libs/py_core"
-      }
-    },
     "add": {
       "executor": "@nxlv/python:add",
       "options": {}
     },
-    "update": {
-      "executor": "@nxlv/python:update",
-      "options": {}
-    },
-    "remove": {
-      "executor": "@nxlv/python:remove",
-      "options": {}
-    },
     "build": {
       "executor": "@nxlv/python:build",
-      "outputs": ["{projectRoot}/dist"],
       "options": {
-        "outputPath": "libs/py_core/dist",
-        "publish": false,
+        "bundleLocalDependencies": true,
         "lockedVersions": true,
-        "bundleLocalDependencies": true
-      }
-    },
-    "install": {
-      "executor": "@nxlv/python:install",
-      "options": {
-        "silent": false,
-        "args": "",
-        "cacheDir": ".cache/uv",
-        "verbose": false,
-        "debug": false
-      }
-    },
-    "lint": {
-      "executor": "@nxlv/python:flake8",
-      "outputs": ["{workspaceRoot}/reports/libs/py_core/pylint.txt"],
-      "options": {
-        "outputFile": "reports/libs/py_core/pylint.txt"
-      }
-    },
-    "test": {
-      "executor": "@nxlv/python:run-commands",
+        "outputPath": "libs/py_core/dist",
+        "publish": false
+      },
       "outputs": [
-        "{workspaceRoot}/reports/libs/py_core/unittests",
-        "{workspaceRoot}/coverage/libs/py_core"
-      ],
-      "options": {
-        "command": "uv run pytest tests/",
-        "cwd": "libs/py_core"
-      }
+        "{projectRoot}/dist"
+      ]
     },
     "cli": {
       "executor": "@nxlv/python:run-commands",
       "options": {
         "command": "uv run python test_cli.py",
-        "cwd": "libs/py_core"
-      }
-    },
-    "inspect_card_translation": {
-      "executor": "@nxlv/python:run-commands",
-      "options": {
-        "command": "uv run python py_core/processing_tools/inspect_card_translation.py",
         "cwd": "libs/py_core"
       }
     },
@@ -82,10 +35,58 @@
         "cwd": "libs/py_core"
       }
     },
-    "test_vector": {
+    "inspect_card_translation": {
       "executor": "@nxlv/python:run-commands",
       "options": {
-        "command": "uv run python test_vector.py",
+        "command": "uv run python py_core/processing_tools/inspect_card_translation.py",
+        "cwd": "libs/py_core"
+      }
+    },
+    "install": {
+      "executor": "@nxlv/python:install",
+      "options": {
+        "args": "",
+        "cacheDir": ".cache/uv",
+        "debug": false,
+        "silent": false,
+        "verbose": false
+      }
+    },
+    "lint": {
+      "executor": "@nxlv/python:flake8",
+      "options": {
+        "outputFile": "reports/libs/py_core/pylint.txt"
+      },
+      "outputs": [
+        "{workspaceRoot}/reports/libs/py_core/pylint.txt"
+      ]
+    },
+    "lock": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv lock --no-update",
+        "cwd": "libs/py_core"
+      }
+    },
+    "remove": {
+      "executor": "@nxlv/python:remove",
+      "options": {}
+    },
+    "test": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv run pytest tests/",
+        "cwd": "libs/py_core"
+      },
+      "outputs": [
+        "{workspaceRoot}/reports/libs/py_core/unittests",
+        "{workspaceRoot}/coverage/libs/py_core"
+      ]
+    },
+    "test_asr": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv run python test_asr.py",
         "cwd": "libs/py_core"
       }
     },
@@ -103,20 +104,23 @@
         "cwd": "libs/py_core"
       }
     },
-    "test_asr": {
-      "executor": "@nxlv/python:run-commands",
-      "options": {
-        "command": "uv run python test_asr.py",
-        "cwd": "libs/py_core"
-      }
-    },
     "test_corpus_download": {
       "executor": "@nxlv/python:run-commands",
       "options": {
         "command": "uv run python test_corpus_download.py",
         "cwd": "libs/py_core"
       }
+    },
+    "test_vector": {
+      "executor": "@nxlv/python:run-commands",
+      "options": {
+        "command": "uv run python test_vector.py",
+        "cwd": "libs/py_core"
+      }
+    },
+    "update": {
+      "executor": "@nxlv/python:update",
+      "options": {}
     }
-  },
-  "tags": []
+  }
 }

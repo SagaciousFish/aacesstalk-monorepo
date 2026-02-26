@@ -3,6 +3,12 @@
     "paths": {
       "@/*": [
         "./*"
+      ],
+      "apps/client-rn/src/*": [
+        "../client-rn/src/*"
+      ],
+      "@aacesstalk/libs/ts-core/*": [
+        "../../libs/ts-core/src/*"
       ]
     },
     "strict": true

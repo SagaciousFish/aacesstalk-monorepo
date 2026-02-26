@@ -26,28 +26,72 @@ class OpenAIEmbeddingFunction(EmbeddingFunction[Documents]):
                                  )
         return [datum.embedding for datum in result.data]
 
+
 class VectorDB:
+    """
+    Vector database for storing and querying embeddings.
+
+    Supports two modes:
+    - text: Uses OpenAI-compatible API for text-only embeddings
+    - multimodal: Uses DashScope qwen3-vl-embedding for fused text+image vectors
+
+    Note: For multimodal mode, embeddings are typically pre-computed externally
+    (using dashscope_embedding.py) and passed directly via the embeddings parameter.
+    """
+
     def __init__(
         self,
         dir_name: str = "embeddings",
         embedding_model: str = AACessTalkConfig.embedding_model,
         embedding_dimensions: int = AACessTalkConfig.embedding_dimensions,
+        use_multimodal: bool = False,
     ):
+        """
+        Initialize the vector database.
+
+        Args:
+            dir_name: Directory name for ChromaDB persistence
+            embedding_model: Embedding model to use (for text mode)
+            embedding_dimensions: Embedding dimensions
+            use_multimodal: If True, use multimodal embedding config from AACessTalkConfig.
+                           Note: Multimodal embeddings should be pre-computed externally.
+        """
         #self.__client = chromadb.PersistentClient(path.join(AACessTalkConfig.dataset_dir_path, dir_name))
         self.__client = chromadb.Client()
 
-        print(
-            f"OpenAI API KEY: {GPTChatCompletionAPI.get_auth_variable_for_spec(APIAuthorizationVariableSpecPresets.ApiKey)}"
-        )
+        if use_multimodal:
+            # Use multimodal embedding configuration
+            embedding_model = AACessTalkConfig.multimodal_embedding_model
+            embedding_dimensions = AACessTalkConfig.multimodal_embedding_dimensions
+            print(f"Using multimodal embedding: {embedding_model} ({embedding_dimensions} dimensions)")
 
-        GPTChatCompletionAPI.assert_authorize()
-        api_key = GPTChatCompletionAPI.get_auth_variable_for_spec(
-            APIAuthorizationVariableSpecPresets.ApiKey)
+            # For multimodal, we use DashScope SDK directly for embedding generation
+            # The embeddings are typically pre-computed and passed via the embeddings parameter
+            from py_core.utils.dashscope_embedding import DashScopeEmbeddingFunction
+            self.__embedding_function = DashScopeEmbeddingFunction(
+                model=embedding_model,
+                dimensions=embedding_dimensions,
+            )
+        else:
+            # Use text-only embedding (OpenAI compatible)
+            print(
+                f"OpenAI API KEY: {GPTChatCompletionAPI.get_auth_variable_for_spec(APIAuthorizationVariableSpecPresets.ApiKey)}"
+            )
 
-        self.__decode = OpenAIEmbeddingFunction(api_key=api_key, model=embedding_model, dimensions=embedding_dimensions)
+            GPTChatCompletionAPI.assert_authorize()
+            api_key = GPTChatCompletionAPI.get_auth_variable_for_spec(
+                APIAuthorizationVariableSpecPresets.ApiKey)
+
+            self.__embedding_function = OpenAIEmbeddingFunction(
+                api_key=api_key,
+                model=embedding_model,
+                dimensions=embedding_dimensions
+            )
+
+        self.__use_multimodal = use_multimodal
 
     def get_collection(self, name: str) -> Collection:
-        return self.__client.get_or_create_collection(name, embedding_function=self.__decode)
+        return self.__client.get_or_create_collection(name, embedding_function=self.__embedding_function)
 
     def upsert(self, collection: str | Collection, dictionary_row: DictionaryRow | list[DictionaryRow]) -> ndarray | list[ndarray]:
 

@@ -8,15 +8,16 @@ import { TailwindButton } from "apps/client-rn/src/components/tailwind-component
 import { Control, Controller, useController, useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
-import { Fragment, useMemo, useState, useEffect } from "react"
-import i18next from "i18next";
+import React, { Fragment, useMemo, useState, useEffect } from "react"
+import { i18n } from "@aacesstalk/libs/ts-core";
 import { MMKV } from "react-native-mmkv";
 import { TouchableOpacity } from "react-native";
 import { useDispatch, useSelector } from "apps/client-rn/src/redux/hooks"
 import { loginDyadThunk } from "@aacesstalk/libs/ts-core"
 import { twMerge } from "tailwind-merge"
 
-const passcodeInputClassName = twMerge("mt-4 text-xl text-center bg-white rounded-xl border-[#11111345] border-2 focus:border-teal-500 focus:border-[3px]", (Platform.OS == 'android' ? "py-3" : "pt-2.5 pb-3.5"))
+const isAndroid = Platform.OS === 'android';
+const passcodeInputClassName = twMerge("mt-4 text-xl text-center bg-white rounded-xl border-[#11111345] border-2 focus:border-teal-500 focus:border-[3px]", (isAndroid ? "py-3" : "pt-2.5 pb-3.5"))
 
 const PasscodeInput = (props: {
     control: Control,
@@ -95,11 +96,11 @@ export const SignInScreen = () => {
         { code: 'ko', label: '한국어' },
         { code: 'en', label: 'English' }
     ];
-    const [lang, setLang] = useState(i18next.language ?? 'zh');
+    const [lang, setLang] = useState(i18n.language ?? 'zh');
     useEffect(() => {
         const saved = storage.getString('app_language');
         if (saved && saved !== lang) {
-            i18next.changeLanguage(saved);
+            i18n.changeLanguage(saved);
             setLang(saved);
         }
     }, []);
@@ -107,7 +108,7 @@ export const SignInScreen = () => {
         const codes = LANGS.map(l => l.code);
         const idx = codes.indexOf(lang);
         const next = codes[(idx + 1) % codes.length];
-        i18next.changeLanguage(next);
+        i18n.changeLanguage(next);
         storage.set('app_language', next);
         setLang(next);
     };
@@ -127,7 +128,7 @@ export const SignInScreen = () => {
     }), [])
 
     return <HillBackgroundView containerClassName="items-center justify-center pb-[200px]">
-        <View className="items-stretch">
+        <View className="items-center w-full px-8">
             <LogoImage className="justify-self-center" width={400} height={150} />
             {
                 isAuthorizing === true ? <Text className="text-center text-lg text-slate-500" style={styleTemplates.withBoldFont}>{t("SignIn.Authorizing")}</Text> : <Fragment>

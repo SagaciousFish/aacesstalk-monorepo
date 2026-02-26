@@ -1,7 +1,10 @@
 import { Pressable, StyleSheet, Text, ViewStyle } from 'react-native';
 import { PropsWithChildren } from 'react';
-// Shared font templates from client-rn
-import { styleTemplates } from 'apps/client-rn/src/styles';
+
+// Local style templates (simplified from client-rn)
+const styleTemplates = {
+    withBoldFont: { fontFamily: 'NanumSquareNeoTTF-dEb' },
+};
 
 type Props = {
     title?: string;

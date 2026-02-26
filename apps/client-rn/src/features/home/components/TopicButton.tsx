@@ -1,13 +1,16 @@
 import { styleTemplates } from "apps/client-rn/src/styles"
-import { useCallback, useMemo } from "react"
+import { React, useCallback, useMemo } from "react"
 import { useTranslation } from "react-i18next"
 import { Platform, Pressable, StyleSheet, Text, View, ViewStyle } from "react-native"
 import Animated, { Easing, interpolate, useAnimatedStyle, useSharedValue, withSpring, withTiming } from "react-native-reanimated"
 import stringFormat from 'pupa'
 import { twMerge } from "tailwind-merge"
 
+const isAndroid = Platform.OS === 'android';
+const isWeb = Platform.OS === 'web';
+
 const styles = StyleSheet.create({
-    buttonFrame: Platform.OS == 'android' ? {
+    buttonFrame: isAndroid ? {
         elevation: 10
     } : {
         shadowColor: "#000",
@@ -50,7 +53,7 @@ export const TopicButton = (props: {
     }, [])
 
     const containerAnimStyle = useAnimatedStyle(() => {
-        return Platform.OS == 'android' ? {
+        return isAndroid ? {
             elevation: interpolate(pressAnimProgress.value, [0, 1], [10, 2]),
             transform: [
                 {scale: interpolate(pressAnimProgress.value, [0, 1], [1, 0.95])},
@@ -111,8 +114,8 @@ export const TopicButton = (props: {
             props.disabled === true ? 'opacity-50' : '')
     }, [props.buttonClassName, props.disabled])
 
-    const content = <Pressable accessible={false} style={Platform.OS == 'android' ? props.style : undefined} onPressIn={onPressIn} onPressOut={onPressOut} onPress={props.onPress} disabled={props.disabled}>
-    <Animated.View className={buttonViewClassName} style={Platform.OS == 'android'? [styles.buttonFrame, containerAnimStyle] : contentContainerAnimStyleIOS}>
+    const content = <Pressable accessible={false} style={isAndroid ? props.style : undefined} onPressIn={onPressIn} onPressOut={onPressOut} onPress={props.onPress} disabled={props.disabled}>
+    <Animated.View className={buttonViewClassName} style={isAndroid ? [styles.buttonFrame, containerAnimStyle] : contentContainerAnimStyleIOS}>
         <Animated.View style={imageContainerStyle} className="bottom-[25%]">
             {props.imageComponent}
         </Animated.View>
@@ -127,7 +130,7 @@ export const TopicButton = (props: {
     </Animated.View>
 </Pressable>
 
-    if(Platform.OS == 'android'){
+    if(isAndroid){
         return content
     }else{
         return <Animated.View style={[props.style, styles.buttonFrame, containerAnimStyle]} >

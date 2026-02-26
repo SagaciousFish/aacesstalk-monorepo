@@ -1,6 +1,6 @@
 # /// script
 # requires-python = ">=3.11"
-# dependencies = ["pandas", "openai", "pillow", "python-dotenv", "orjson"]
+# dependencies = ["pandas", "openai", "pillow", "python-dotenv", "orjson", "dashscope"]
 # ///
 
 import os
@@ -19,11 +19,13 @@ import openai
 from dotenv import load_dotenv
 import orjson
 import numpy as np
+import dashscope
+from dashscope import MultiModalEmbedding
 
 # Load environment variables
 load_dotenv(Path(__file__).parent / ".env")
 
-# Configure OpenAI client for DashScope
+# Configure DashScope
 DASHSCOPE_API_KEY = os.getenv("DASHSCOPE_API_KEY")
 DASHSCOPE_BASE_URL = os.getenv(
     "DASHSCOPE_BASE_URL", "https://dashscope.aliyuncs.com/compatible-mode/v1"
@@ -32,7 +34,9 @@ DASHSCOPE_BASE_URL = os.getenv(
 if not DASHSCOPE_API_KEY:
     raise ValueError("DASHSCOPE_API_KEY not found in environment variables")
 
-# Create client with proper configuration
+dashscope.api_key = DASHSCOPE_API_KEY
+
+# Create client with proper configuration (for VL model)
 client = openai.AsyncOpenAI(api_key=DASHSCOPE_API_KEY, base_url=DASHSCOPE_BASE_URL)
 
 # Base paths
@@ -45,8 +49,11 @@ RESULTS_FILE = CACHE_DIR / "results.json"
 
 # Model configuration
 VL_MODEL = "qwen3-vl-plus"
-EMBEDDING_MODEL = "text-embedding-v4"
-EMBEDDING_DIMENSIONS = 1024
+
+# Multimodal embedding configuration (using DashScope qwen3-vl-embedding)
+# Note: API returns 2560 dimensions (max) regardless of requested dimensions
+MULTIMODAL_EMBEDDING_MODEL = "qwen3-vl-embedding"
+MULTIMODAL_EMBEDDING_DIMENSIONS = 2560
 
 
 def setup_cache_dir(resume: bool = False):
@@ -616,21 +623,101 @@ def load_from_csv() -> List[Dict[str, Any]]:
     return results
 
 
+async def encode_image_to_base64(image_path: Path) -> str | None:
+    """
+    Encode image to base64 string.
+
+    Args:
+        image_path: Path to the image file
+
+    Returns:
+        Base64 encoded string (with data URI prefix) or None if failed
+    """
+    try:
+        if not image_path.exists():
+            return None
+
+        with open(image_path, "rb") as f:
+            image_data = f.read()
+
+        # Determine MIME type
+        suffix = image_path.suffix.lower()
+        mime_type = f"image/{suffix[1:]}"
+        if mime_type == "image/jpg":
+            mime_type = "image/jpeg"
+
+        # Encode to base64
+        base64_data = base64.b64encode(image_data).decode("utf-8")
+        return f"data:{mime_type};base64,{base64_data}"
+    except Exception as e:
+        print(f"Error encoding image {image_path}: {e}")
+        return None
+
+
+def call_multimodal_embedding_with_retry(
+    input_data: list,
+    max_retries: int = 3,
+    retry_delay: float = 2.0,
+) -> list:
+    """
+    Call DashScope multimodal embedding API with retry logic.
+
+    Args:
+        input_data: Input data for embedding
+        max_retries: Maximum number of retries
+        retry_delay: Delay between retries in seconds
+
+    Returns:
+        Embedding vector
+    """
+    import time
+
+    last_error = None
+    for attempt in range(max_retries):
+        try:
+            response = MultiModalEmbedding.call(
+                api_key=DASHSCOPE_API_KEY,
+                model=MULTIMODAL_EMBEDDING_MODEL,
+                input=input_data,
+                dimensions=MULTIMODAL_EMBEDDING_DIMENSIONS,
+            )
+
+            if response.status_code != 200:
+                raise RuntimeError(f"DashScope API error: {response.code} - {response.message}")
+
+            return response.output["embeddings"][0]["embedding"]
+
+        except Exception as e:
+            last_error = e
+            if attempt < max_retries - 1:
+                wait_time = retry_delay * (2 ** attempt)  # Exponential backoff
+                print(f"\nRetry {attempt + 1}/{max_retries} after {wait_time}s: {e}")
+                time.sleep(wait_time)
+            else:
+                raise last_error
+
+    raise last_error
+
+
 async def cache_description_embeddings_async(
     results: List[Dict[str, Any]], chunk_size: int = 10, resume: bool = False
 ):
     """
-    Generate and cache embeddings for card names and descriptions.
-    Saves to BASE_DIR/cards_image_desc_embeddings.npz with 1024-dim text-embedding-v4 model.
+    Generate and cache multimodal embeddings for card images and descriptions.
+    Uses DashScope qwen3-vl-embedding model to generate fused vectors (text + image).
+
+    Saves to BASE_DIR/cards_image_desc_embeddings.npz with 1024-dim multimodal embedding.
 
     Args:
         results: List of processed card results
-        chunk_size: Batch size for embedding generation (max 10 for text-embedding-v4)
+        chunk_size: Batch size for embedding generation (max 10 for qwen3-vl-embedding)
+                   since each card uses text+image = 2 elements
         resume: If True, load existing embeddings and only generate new ones
     """
     print("\n" + "=" * 60)
-    print("Generating embeddings...")
-    print(f"Model: {EMBEDDING_MODEL} ({EMBEDDING_DIMENSIONS} dimensions)")
+    print("Generating multimodal embeddings...")
+    print(f"Model: {MULTIMODAL_EMBEDDING_MODEL} ({MULTIMODAL_EMBEDDING_DIMENSIONS} dimensions)")
+    print("Mode: Fused (text + image)")
     print("=" * 60)
 
     # Extract data from results with deduplication
@@ -644,18 +731,24 @@ async def cache_description_embeddings_async(
         name_en = translation.get("english", "")
         desc_brief = image_info.get("description_brief", "")
 
+        # Get image path from card_id
+        # Card IDs are like "core_cards/yes.png" or "extra_cards/food/apple.png"
+        image_path = CARDS_DIR / card_id
+
         if card_id and name_en and desc_brief:
             # Only keep the first occurrence of each card_id
             if card_id not in card_data:
                 card_data[card_id] = {
                     "name_en": name_en,
                     "desc_brief": desc_brief,
+                    "image_path": image_path,
                 }
 
     # Extract deduplicated data
     ids = list(card_data.keys())
     names_en = [card_data[card_id]["name_en"] for card_id in ids]
     descriptions_brief = [card_data[card_id]["desc_brief"] for card_id in ids]
+    image_paths = [card_data[card_id]["image_path"] for card_id in ids]
 
     total_cards = len(ids)
     print(f"Processing {total_cards} unique cards for embeddings...")
@@ -673,7 +766,7 @@ async def cache_description_embeddings_async(
     if resume and output_path.exists():
         print(f"Loading existing embeddings from {output_path}...")
         try:
-            existing_data = np.load(output_path)
+            existing_data = np.load(output_path, allow_pickle=True)
             existing_ids_set = set(existing_data["ids"])
             existing_ids = existing_ids_set
 
@@ -692,6 +785,7 @@ async def cache_description_embeddings_async(
     new_ids = []
     new_names = []
     new_descs = []
+    new_image_paths = []
 
     for idx, card_id in enumerate(ids):
         if resume and card_id in existing_ids:
@@ -700,6 +794,7 @@ async def cache_description_embeddings_async(
         new_ids.append(card_id)
         new_names.append(names_en[idx])
         new_descs.append(descriptions_brief[idx])
+        new_image_paths.append(image_paths[idx])
 
     if resume and len(new_ids) < total_cards:
         print(f"Skipping {total_cards - len(new_ids)} cards with existing embeddings.")
@@ -709,7 +804,9 @@ async def cache_description_embeddings_async(
         print("All embeddings already exist. Skipping generation.")
         return
 
-    # Generate embeddings for new cards in chunks
+    # Generate multimodal embeddings for new cards in chunks
+    # Note: qwen3-vl-embedding supports max 20 elements per request
+    # Each card uses text + image = 2 elements, so max batch size is 10
     name_embeddings = []
     description_embeddings = []
 
@@ -717,6 +814,7 @@ async def cache_description_embeddings_async(
         chunk_end = min(chunk_i + chunk_size, len(new_ids))
         chunk_names = new_names[chunk_i:chunk_end]
         chunk_descs = new_descs[chunk_i:chunk_end]
+        chunk_image_paths = new_image_paths[chunk_i:chunk_end]
 
         print(
             f"\rProcessing chunk {chunk_i // chunk_size + 1}/{(len(new_ids) + chunk_size - 1) // chunk_size} "
@@ -726,25 +824,33 @@ async def cache_description_embeddings_async(
         )
 
         try:
-            # Generate embeddings for names
-            name_emb_response = await client.embeddings.create(
-                input=chunk_names,
-                model=EMBEDDING_MODEL,
-                dimensions=EMBEDDING_DIMENSIONS,
-            )
-            name_embeddings.extend([
-                datum.embedding for datum in name_emb_response.data
-            ])
+            # Generate fused embeddings (text + image)
+            # We'll use description_brief + image for the fused embedding
 
-            # Generate embeddings for descriptions
-            desc_emb_response = await client.embeddings.create(
-                input=chunk_descs,
-                model=EMBEDDING_MODEL,
-                dimensions=EMBEDDING_DIMENSIONS,
-            )
-            description_embeddings.extend([
-                datum.embedding for datum in desc_emb_response.data
-            ])
+            # First, encode images to base64
+            encoded_images = []
+            for img_path in chunk_image_paths:
+                encoded = await encode_image_to_base64(img_path)
+                encoded_images.append(encoded)
+
+            # Generate fused embeddings for descriptions + images
+            fused_embeddings = []
+            for text, img_base64 in zip(chunk_descs, encoded_images):
+                input_data = [{"text": text}]
+                if img_base64:
+                    input_data[0]["image"] = img_base64
+
+                embedding = call_multimodal_embedding_with_retry(input_data)
+                fused_embeddings.append(embedding)
+
+            # For names, use text-only embedding (since we don't have name images)
+            name_embeddings_chunk = []
+            for text in chunk_names:
+                embedding = call_multimodal_embedding_with_retry([{"text": text}])
+                name_embeddings_chunk.append(embedding)
+
+            name_embeddings.extend(name_embeddings_chunk)
+            description_embeddings.extend(fused_embeddings)
 
         except Exception as e:
             print(f"\nError generating embeddings for chunk {chunk_i}-{chunk_end}: {e}")

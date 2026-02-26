@@ -10,7 +10,7 @@ import { Platform } from "react-native";
 
 const screenOptions = {headerShown: false, gestureEnabled: false}
 
-const sharedScreenOptions: NativeStackNavigationOptions = {statusBarHidden: Platform.OS == 'android' ? true : false, gestureEnabled: false}
+const sharedScreenOptions: NativeStackNavigationOptions = {statusBarHidden: Platform.OS === 'android', gestureEnabled: false}
 
 const sessionScreenOptions: NativeStackNavigationOptions = {...sharedScreenOptions, animation: 'fade'}
 const sessionClosingScreenOptions: NativeStackNavigationOptions = {...sharedScreenOptions, animation: 'none'}

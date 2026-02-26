@@ -99,8 +99,11 @@ class CardImageDBRetriever:
         ):
             print("Warning: mismatch lengths between ids, info_list and embeddings")
 
-        self.__vector_db = VectorDB(embedding_model=AACessTalkConfig.embedding_model,
-                                    embedding_dimensions=AACessTalkConfig.embedding_dimensions)
+        self.__vector_db = VectorDB(
+            embedding_model=AACessTalkConfig.multimodal_embedding_model,
+            embedding_dimensions=AACessTalkConfig.multimodal_embedding_dimensions,
+            use_multimodal=True,
+        )
 
         self.__collection_desc = self.__vector_db.get_collection("card_image_desc")
         self.__collection_desc.add(

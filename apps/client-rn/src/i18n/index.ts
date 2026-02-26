@@ -3,10 +3,22 @@ import { initReactI18next } from "react-i18next";
 import { MMKV } from "react-native-mmkv";
 
 import * as RNLocalize from 'react-native-localize';
-const storage = new MMKV();
-const savedLang = storage.getString('app_language') ?? undefined;
-const locales = RNLocalize.getLocales();
-const defaultLang = savedLang ?? locales?.[0]?.languageCode ?? 'zh';
+
+// Get saved language or detect from device - with fallback for web
+let defaultLang = 'zh';
+try {
+    const storage = new MMKV();
+    const savedLang = storage.getString('app_language');
+    if (savedLang) {
+        defaultLang = savedLang;
+    } else {
+        const locales = RNLocalize.getLocales();
+        defaultLang = locales?.[0]?.languageCode ?? 'zh';
+    }
+} catch (e) {
+    // Web environment or initialization failed - use default
+    console.warn('i18n: Failed to load saved language, using default:', e);
+}
 
 initializeI18n(defaultLang, {
     resources: {

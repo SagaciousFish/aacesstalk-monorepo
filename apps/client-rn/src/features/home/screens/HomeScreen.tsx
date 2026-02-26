@@ -2,7 +2,7 @@ import { HillBackgroundView } from "apps/client-rn/src/components/HillBackground
 import { TailwindButton } from "apps/client-rn/src/components/tailwind-components"
 import { useDispatch, useSelector } from "apps/client-rn/src/redux/hooks"
 import { styleTemplates } from "apps/client-rn/src/styles"
-import { useCallback, useEffect, useMemo, useState } from "react"
+import { React, useCallback, useEffect, useMemo, useState } from "react"
 import { useTranslation } from "react-i18next"
 import { Alert, InteractionManager, Platform, StyleSheet, Text, View } from "react-native"
 import { SafeAreaView, useSafeAreaInsets } from "react-native-safe-area-context"
@@ -37,6 +37,9 @@ switch(Platform.OS){
         break;
     case 'ios':
         REQUIRED_PERMISSIONS.push(PERMISSIONS.IOS.MICROPHONE)
+        break;
+    case 'web':
+        // Web uses browser's getUserMedia API, no permission constant needed
         break;
 }
 

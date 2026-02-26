@@ -17,8 +17,19 @@ import i18next from 'i18next';
 import { getString, setString } from '@/utils/storage';
 import { useTranslation } from 'react-i18next';
 import { useFonts } from 'expo-font';
-import colors from 'tailwindcss/colors';
-import { styleTemplates } from 'apps/client-rn/src/styles';
+
+// Tailwind v4 colors (replaced tailwindcss/colors)
+const colors = {
+    slate: {
+        400: '#94a3b8',
+        700: '#334155',
+    },
+};
+
+// Local styleTemplates (simplified from client-rn)
+const styleTemplates = {
+    withSemiboldFont: { fontFamily: 'NanumSquareNeoTTF-cBd' },
+};
 
 export default function SignInScreen() {
     const router = useRouter();
@@ -27,6 +38,9 @@ export default function SignInScreen() {
     const [langIndex, setLangIndex] = useState(LANGS.findIndex(l => l.code === (i18next.language ?? 'zh')) ?? 0);
     const [isAuthorizing, setIsAuthorizing] = useState(false);
     const { t } = useTranslation();
+
+    const [isFocused, setIsFocused] = useState(false);
+    const { width } = useWindowDimensions();
 
     // Load the same fonts used by client-rn so the Sign In page matches its style
     const [fontsLoaded] = useFonts({
@@ -38,21 +52,28 @@ export default function SignInScreen() {
         'KyoboHandwriting2019': require('assets/fonts/KyoboHandwriting2019.ttf')
     });
 
-    if (!fontsLoaded) {
-        // Keep a simple fallback while fonts load
-        return null;
-    }
-
+    // Always call useEffect to maintain hook order
     useEffect(() => {
         (async () => {
             const saved = await getString('app_language');
-            if (saved && saved !== lang) {z
+            if (saved && saved !== lang) {
                 i18next.changeLanguage(saved);
                 setLang(saved);
                 setLangIndex(LANGS.findIndex(l => l.code === saved) ?? 0);
             }
         })();
-    }, []);
+    }, [lang]);
+
+    // Show loading while fonts load
+    if (!fontsLoaded) {
+        return (
+            <HillBackgroundView>
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <ThemedText>Loading...</ThemedText>
+                </View>
+            </HillBackgroundView>
+        );
+    }
 
     const cycleLang = async () => {
         const codes = LANGS.map(l => l.code);
@@ -78,8 +99,6 @@ export default function SignInScreen() {
         }
     };
 
-    const [isFocused, setIsFocused] = useState(false);
-    const { width } = useWindowDimensions();
     const logoWidth = Math.min(350, width * 0.85);
     const logoHeight = (150 / 400) * logoWidth;
 

@@ -1,8 +1,13 @@
 import { StyleSheet, Text, type TextProps } from 'react-native';
 
 import { useThemeColor } from '@/hooks/use-theme-color';
-// Use shared font templates from client-rn to match app styling
-import { styleTemplates } from 'apps/client-rn/src/styles';
+
+// Local style templates (simplified from client-rn)
+const styleTemplates = {
+    withRegularFont: { fontFamily: 'NanumSquareNeoTTF-bRg' },
+    withSemiboldFont: { fontFamily: 'NanumSquareNeoTTF-cBd' },
+    withBoldFont: { fontFamily: 'NanumSquareNeoTTF-dEb' },
+};
 
 export type ThemedTextProps = TextProps & {
   lightColor?: string;

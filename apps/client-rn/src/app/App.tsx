@@ -49,7 +49,11 @@ export const App = () => {
   useEffect(()=>{
     const isEmulator = DeviceInfo.isEmulatorSync()
     let host: string
-    if(isEmulator){
+    // Check Platform.OS first - web should always use localhost:8000
+    if (Platform.OS === 'web'){
+      console.log("Running on web. Using localhost:8000")
+      host = "http://localhost:8000"
+    } else if(isEmulator){
       if(Platform.OS == 'android'){
         console.log("Running on Android emulator. Use the host address http://10.0.2.2:3000")
         host = "http://10.0.2.2:3000"
@@ -73,7 +77,7 @@ export const App = () => {
   return <Provider store={store}>
     <PersistGate persistor={persistor}>
       <SafeAreaProvider>
-        <GestureHandlerRootView className="flex-1">
+        <GestureHandlerRootView style={{ flex: 1, width: '100vw', height: '100vh' }}>
           <NavigationContainer>
               <GlobalNavigator/>
           </NavigationContainer>

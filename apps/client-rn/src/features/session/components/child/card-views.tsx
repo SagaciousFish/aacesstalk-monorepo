@@ -106,7 +106,8 @@ export const ChildCardView = React.memo((props: {
     }, [])
 
     const cardFrameAnimStyle = useAnimatedStyle(() => {
-        const shadowStyle = Platform.OS == 'ios' ? {
+        const isAndroid = Platform.OS === 'android';
+        const shadowStyle = !isAndroid ? {
             ...styles.cardFrame,
             shadowOffset: { width: 0, height: interpolate(pressAnimProgress.value, [0, 1], [styles.cardFrame.shadowOffset.height, 2]) },
             shadowRadius: interpolate(pressAnimProgress.value, [0, 1], [styles.cardFrame.shadowRadius, 1]),

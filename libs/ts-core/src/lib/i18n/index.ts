@@ -2,6 +2,9 @@ import 'intl-pluralrules';
 import i18next from "i18next";
 import merge from 'merge';
 
+// Export the i18next instance for use with react-i18next
+export const i18n = i18next;
+
 export function initializeI18n(defaultLanguage: string = "zh",
     options: {
         middlewares?: Array<any>,

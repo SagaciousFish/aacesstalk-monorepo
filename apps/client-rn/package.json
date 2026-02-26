@@ -25,6 +25,7 @@
     "pupa": "*",
     "react": "*",
     "react-dom": "*",
+    "react-native-web": "*",
     "react-hook-form": "*",
     "react-i18next": "*",
     "react-native": "*",
@@ -54,7 +55,23 @@
     "tslib": "*",
     "yup": "*"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@babel/core": "*",
+    "@babel/preset-env": "*",
+    "@babel/preset-react": "*",
+    "@babel/preset-typescript": "*",
+    "@svgr/webpack": "*",
+    "babel-loader": "*",
+    "html-webpack-plugin": "*",
+    "webpack": "*",
+    "webpack-cli": "*",
+    "webpack-dev-server": "*"
+  },
+  "scripts": {
+    "web": "npm run web:css && webpack serve --config webpack.standalone.config.js",
+    "web:build": "npm run web:css && webpack --config webpack.standalone.config.js --mode production",
+    "web:css": "tailwindcss -i ./src/global.css -o ./dist/styles.css"
+  },
   "name": "client-rn",
   "private": true,
   "version": "0.0.1"
