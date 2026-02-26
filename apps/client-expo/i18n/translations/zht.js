@@ -1,15 +1,15 @@
 module.exports = {
     SignIn: {
         InsertNumber: "請輸入通行碼。",
-        SignIn: "登錄",
-        Authorizing: "正在登錄...",
+        SignIn: "登入",
+        Authorizing: "登入中...",
         Errors: {
-            ServerNotResponding: "伺服器當前無法連接，稍後再試。",
-            WrongCredential: "請檢查通行碼是否正確。",
-            UnknownError: "登錄失敗，請聯繫研究人員。"
+            ServerNotResponding: "伺服器暫時無法連接，請稍後再試。",
+            WrongCredential: "請確認通行碼是否正確。",
+            UnknownError: "登入失敗，請聯絡研究人員。"
         },
-        ConfirmSignOut: "您確定要退出登錄嗎？",
-        SignOut: "退出登錄",
+        ConfirmSignOut: "您確定要登出嗎？",
+        SignOut: "登出",
         Cancel: "取消"
     },
     TopicSelection: {
