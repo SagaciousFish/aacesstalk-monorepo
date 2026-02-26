@@ -62,9 +62,7 @@ export const RecordingIndicator = () => {
             appearProgress.value = withSpring(1, {duration: 400})
         }else{
             appearProgress.value = withTiming(0, {duration: 300, easing: Easing.out(Easing.quad)}, () => {
-                runOnJS(()=>{
-                    setShown(false)
-                })
+                runOnJS(setShown)(false)
             })
         }
     }, [audioRecordingStatus])

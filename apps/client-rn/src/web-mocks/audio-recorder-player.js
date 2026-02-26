@@ -9,10 +9,21 @@ class AudioRecorderPlayer {
     this.recordBack = null;
     this.playBack = null;
     this.startTime = 0;
+    this.pausedDuration = 0;
+    this.pauseStartTime = null;
     this.isPlaying = false;
     this.isRecording = false;
+    this.isPaused = false;
     this.recordInterval = null;
     this.playInterval = null;
+    this.subscriptionDuration = 100; // ms, default 0.1s
+    this._recordedChunks = [];
+    this._recordedBlob = null;
+    this._recordedUrl = null;
+  }
+
+  setSubscriptionDuration(durationSeconds) {
+    this.subscriptionDuration = Math.round(durationSeconds * 1000);
   }
 
   async startRecorder(path, audioSet, callback) {
@@ -21,53 +32,100 @@ class AudioRecorderPlayer {
       this.audioRecorder = new MediaRecorder(this.mediaStream);
       this.recordBack = callback || null;
       this.startTime = Date.now();
-
-      const chunks = [];
+      this.pausedDuration = 0;
+      this.pauseStartTime = null;
+      this._recordedChunks = [];
+      this._recordedBlob = null;
+      this._recordedUrl = null;
 
       this.audioRecorder.ondataavailable = (e) => {
         if (e.data.size > 0) {
-          chunks.push(e.data);
+          this._recordedChunks.push(e.data);
         }
       };
 
       this.audioRecorder.onstop = () => {
-        const blob = new Blob(chunks, { type: 'audio/webm' });
-        const url = URL.createObjectURL(blob);
-        if (this.recordBack) {
-          this.recordBack({
-            currentPosition: Date.now() - this.startTime,
-            duration: Date.now() - this.startTime,
-          });
-        }
+        this._recordedBlob = new Blob(this._recordedChunks, { type: 'audio/webm' });
+        this._recordedUrl = URL.createObjectURL(this._recordedBlob);
       };
 
       this.audioRecorder.start();
       this.isRecording = true;
+      this.isPaused = false;
 
       // Start interval for position updates
-      if (this.recordBack) {
-        this.recordInterval = setInterval(() => {
-          if (this.isRecording && this.recordBack) {
-            this.recordBack({
-              currentPosition: Date.now() - this.startTime,
-              duration: Date.now() - this.startTime,
-            });
-          }
-        }, 100);
-      }
+      this._startRecordInterval();
 
-      return path;
+      return path || 'web-recording.webm';
     } catch (error) {
       console.error('startRecorder error:', error);
       throw error;
     }
   }
 
+  _startRecordInterval() {
+    if (this.recordInterval) {
+      clearInterval(this.recordInterval);
+    }
+    this.recordInterval = setInterval(() => {
+      if (this.isRecording && !this.isPaused && this.recordBack) {
+        const elapsed = (Date.now() - this.startTime) - this.pausedDuration;
+        this.recordBack({
+          currentPosition: elapsed,
+          duration: elapsed,
+          currentMetering: -30, // approximate metering value
+        });
+      }
+    }, this.subscriptionDuration);
+  }
+
+  async pauseRecorder() {
+    return new Promise((resolve, reject) => {
+      if (this.audioRecorder && this.isRecording && !this.isPaused) {
+        try {
+          this.audioRecorder.pause();
+          this.isPaused = true;
+          this.pauseStartTime = Date.now();
+          resolve('paused');
+        } catch (error) {
+          reject(error);
+        }
+      } else {
+        reject(new Error('Not recording or already paused'));
+      }
+    });
+  }
+
+  async resumeRecorder() {
+    return new Promise((resolve, reject) => {
+      if (this.audioRecorder && this.isRecording && this.isPaused) {
+        try {
+          this.audioRecorder.resume();
+          this.isPaused = false;
+          if (this.pauseStartTime != null) {
+            this.pausedDuration += Date.now() - this.pauseStartTime;
+            this.pauseStartTime = null;
+          }
+          resolve('resumed');
+        } catch (error) {
+          reject(error);
+        }
+      } else {
+        reject(new Error('Not paused'));
+      }
+    });
+  }
+
   async stopRecorder() {
     return new Promise((resolve, reject) => {
       if (this.audioRecorder && this.isRecording) {
+        const onStop = () => {
+          resolve(this._recordedUrl || 'web-recording.webm');
+        };
+        this.audioRecorder.addEventListener('stop', onStop, { once: true });
         this.audioRecorder.stop();
         this.isRecording = false;
+        this.isPaused = false;
 
         if (this.recordInterval) {
           clearInterval(this.recordInterval);
@@ -78,8 +136,6 @@ class AudioRecorderPlayer {
           this.mediaStream.getTracks().forEach(track => track.stop());
           this.mediaStream = null;
         }
-
-        resolve('stopped');
       } else {
         reject(new Error('Not recording'));
       }
@@ -127,7 +183,7 @@ class AudioRecorderPlayer {
               duration: (this.audioPlayer.duration || 0) * 1000,
             });
           }
-        }, 100);
+        }, this.subscriptionDuration);
       }
 
       return path;

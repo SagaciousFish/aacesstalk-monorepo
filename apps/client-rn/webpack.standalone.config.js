@@ -247,6 +247,11 @@ module.exports = {
       /node_modules\/react-native-svg$/,
       path.resolve(__dirname, 'src/web-mocks/react-native-svg.js')
     ),
+    // Keep-awake - use web Screen Wake Lock API stub
+    new webpack.NormalModuleReplacementPlugin(
+      /@sayem314\/react-native-keep-awake/,
+      path.resolve(__dirname, 'src/web-mocks/keep-awake.js')
+    ),
   ],
   devServer: {
     port: 4200,

@@ -218,6 +218,47 @@ const FileSystem = {
       throw error;
     }
   },
+
+  // Cancellable fetch with result promise — mirrors react-native-file-access fetchManaged
+  fetchManaged: function(url, options = {}) {
+    const controller = new AbortController();
+    let cancelled = false;
+
+    const result = (async () => {
+      await initDB();
+      const response = await fetch(url, {
+        method: options.method || 'GET',
+        headers: options.headers,
+        signal: controller.signal,
+      });
+
+      if (!response.ok) {
+        return { ok: false, statusText: response.statusText || String(response.status) };
+      }
+
+      const blob = await response.blob();
+
+      if (options.path && !cancelled) {
+        // Convert blob to base64 and persist to IndexedDB
+        const base64 = await new Promise((resolve) => {
+          const reader = new FileReader();
+          reader.onloadend = () => resolve(reader.result.split(',')[1]);
+          reader.readAsDataURL(blob);
+        });
+        await FileSystem.writeFile(options.path, base64, 'base64');
+      }
+
+      return { ok: true, statusText: 'OK' };
+    })();
+
+    return {
+      result,
+      cancel: async () => {
+        cancelled = true;
+        controller.abort();
+      },
+    };
+  },
 };
 
 // Directory paths (virtual)

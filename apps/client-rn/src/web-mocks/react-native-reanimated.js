@@ -19,6 +19,8 @@ function createSharedValue(initial) {
   let _animFrameId = null;
   const _subscribers = new Set();
 
+  let _isTimeout = false;
+
   const sv = {
     get value() {
       if (_currentTracker) _currentTracker.add(sv);
@@ -26,8 +28,10 @@ function createSharedValue(initial) {
     },
     set value(newVal) {
       if (_animFrameId !== null) {
-        cancelAnimationFrame(_animFrameId);
+        if (_isTimeout) clearTimeout(_animFrameId);
+        else cancelAnimationFrame(_animFrameId);
         _animFrameId = null;
+        _isTimeout = false;
       }
       if (newVal !== null && typeof newVal === 'object' && newVal._isAnimationDescriptor) {
         _runAnimation(sv, newVal);
@@ -46,9 +50,14 @@ function createSharedValue(initial) {
       _subscribers.add(cb);
       return () => _subscribers.delete(cb);
     },
-    _setFrameId(id) { _animFrameId = id; },
+    _setFrameId(id, isTimeout = false) { _animFrameId = id; _isTimeout = isTimeout; },
     _cancelAnim() {
-      if (_animFrameId !== null) { cancelAnimationFrame(_animFrameId); _animFrameId = null; }
+      if (_animFrameId !== null) {
+        if (_isTimeout) clearTimeout(_animFrameId);
+        else cancelAnimationFrame(_animFrameId);
+        _animFrameId = null;
+        _isTimeout = false;
+      }
     },
   };
   return sv;
@@ -58,7 +67,38 @@ function createSharedValue(initial) {
 // Animation runner
 // ---------------------------------------------------------------------------
 function _runAnimation(sv, descriptor) {
-  const { _type, toValue, duration, easingFn, stiffness, damping, mass, callback } = descriptor;
+  const { _type, toValue, duration, easingFn, stiffness, damping, mass, callback, delay, _inner, _animations } = descriptor;
+
+  if (_type === 'delay') {
+    const timerId = setTimeout(() => {
+      _runAnimation(sv, _inner);
+    }, delay ?? 0);
+    sv._setFrameId(timerId, true);
+    return;
+  }
+
+  if (_type === 'sequence') {
+    if (!_animations || _animations.length === 0) {
+      if (callback) callback(true);
+      return;
+    }
+    const runNext = (index) => {
+      if (index >= _animations.length) {
+        if (callback) callback(true);
+        return;
+      }
+      const anim = {
+        ..._animations[index],
+        callback: (finished) => {
+          if (!finished) { if (callback) callback(false); return; }
+          runNext(index + 1);
+        },
+      };
+      _runAnimation(sv, anim);
+    };
+    runNext(0);
+    return;
+  }
 
   if (_type === 'timing') {
     const startValue = sv._getRaw();
@@ -107,6 +147,44 @@ function _runAnimation(sv, descriptor) {
       }
     };
     sv._setFrameId(requestAnimationFrame(frame));
+
+  } else if (_type === 'repeat') {
+    const { _inner, numberOfReps, reverse } = descriptor;
+    let repsLeft = numberOfReps === Infinity ? Infinity : numberOfReps;
+    let originalStart = sv._getRaw();
+    let currentTarget = _inner.toValue;
+    let isForwardPass = true;
+
+    const runIteration = () => {
+      if (repsLeft <= 0) {
+        if (callback) callback(true);
+        return;
+      }
+
+      const iterDescriptor = {
+        ..._inner,
+        toValue: currentTarget,
+        callback: (finished) => {
+          if (!finished) return;
+          if (repsLeft !== Infinity) repsLeft--;
+
+          if (reverse) {
+            // Alternate direction
+            const temp = currentTarget;
+            currentTarget = sv._getRaw() === _inner.toValue ? originalStart : _inner.toValue;
+            isForwardPass = !isForwardPass;
+          } else {
+            // Jump back to start without animation, then run again
+            sv._setRaw(originalStart);
+          }
+
+          runIteration();
+        },
+      };
+      _runAnimation(sv, iterDescriptor);
+    };
+
+    runIteration();
   }
 }
 
@@ -242,17 +320,28 @@ function withDelay(delay, animation) {
     _isAnimationDescriptor: true,
     _type: 'delay',
     delay,
-    inner: animation,
+    _inner: animation,
   };
 }
 
 function withSequence(...animations) {
-  // Return the last animation value for static use; real sequencing needs a runner
-  return animations[animations.length - 1] ?? 0;
+  return {
+    _isAnimationDescriptor: true,
+    _type: 'sequence',
+    _animations: animations,
+  };
 }
 
 function withRepeat(animation, numberOfReps, reverse, callback) {
-  return animation;
+  return {
+    ...animation,
+    _isAnimationDescriptor: true,
+    _type: 'repeat',
+    _inner: animation,
+    numberOfReps: (numberOfReps == null || numberOfReps < 0) ? Infinity : numberOfReps,
+    reverse: reverse ?? false,
+    callback,
+  };
 }
 
 // ---------------------------------------------------------------------------
